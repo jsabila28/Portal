@@ -1,0 +1,158 @@
+.main-body > .page-wrapper
+{
+	padding-top: 1rem;
+}
+
+table
+{
+	font-size: 10px;
+}
+
+table th,
+table td
+{
+	padding-left: 5px !important;
+	padding-right: 5px !important;
+}
+
+/* #tbl-sl-guidelines table th,
+#tbl-sl-guidelines table td
+{
+	width: 1px;
+	min-width: 1px;
+} */
+
+#tbl-sl-guidelines table td:first-child
+{
+	width: 50px;
+}
+
+#tbl-sl-guidelines table td:last-child
+{
+	width: 20px;
+}
+
+#tbl-sl-guidelines table td
+{
+	vertical-align: middle;
+}
+
+#tbl-sl-guidelines table td select
+{
+	min-width: 100%;
+}
+
+#tbl-sl-guidelines table td input
+{
+	border: none;
+	width: 99%;
+	text-align: right;
+}
+
+#tbl-sl-guidelines table td .btn-edit-sl,
+#tbl-sl-guidelines table td .btn-save-sl
+{
+	max-height: 30px;
+}
+
+/* Chrome, Safari, Edge, Opera */
+#tbl-sl-guidelines table input[class*='sl-tc-']::-webkit-outer-spin-button,
+#tbl-sl-guidelines table input[class*='sl-ccr-']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+#tbl-sl-guidelines table input[class*='sl-tc-'],
+#tbl-sl-guidelines table input[class*='sl-ccr-']
+{
+	appearance: textfield;
+	-moz-appearance: textfield;
+}
+
+
+
+#tbl-sl-guidelines table td[class*='td-sl-tc-'],
+#tbl-sl-guidelines table td[class*='td-sl-ccr-']
+{
+	/*max-width: 60px;*/
+	width: 60px;
+	font-size: 11px;
+	text-align: right;
+	height: 1px;
+	padding-left: 1px !important;
+	padding-right: 1px !important;
+}
+
+#tbl-sl-guidelines table td[class*='td-sl-tc-'] span,
+#tbl-sl-guidelines table td[class*='td-sl-ccr-'] span
+{
+	min-width: 100%;
+}
+
+#tbl-sl-guidelines table input[class*='sl-tc-'],
+#tbl-sl-guidelines table input[class*='sl-ccr-']
+{
+	vertical-align: middle;
+	/*text-align: right;*/
+	/*width: 60px;*/
+	width: 100%;
+	min-height: 100%;
+	white-space: pre;
+	box-sizing: border-box;
+}
+
+#tbl-sl-guidelines table input[class*='sl-tc-'].invalid-pattern,
+#tbl-sl-guidelines table input[class*='sl-ccr-'].invalid-pattern
+{
+	border: 1px solid red !important;
+}
+
+#tbl-sl-guidelines table tr td span,
+#tbl-sl-guidelines table tr td .btn-edit-sl
+{
+	display: initial !important;
+}
+
+#tbl-sl-guidelines table tr td input,
+#tbl-sl-guidelines table tr td .btn-save-sl
+{
+	display: none !important;
+}
+
+#tbl-sl-guidelines table tr.edit-mode td span,
+#tbl-sl-guidelines table tr.edit-mode td .btn-edit-sl
+{
+	display: none !important;
+}
+
+#tbl-sl-guidelines table tr.edit-mode td input,
+#tbl-sl-guidelines table tr.edit-mode td .btn-save-sl
+{
+	display: initial !important;
+}
+
+
+#tblumap
+{
+	max-height: 50vh;
+}
+
+#tblumap table tbody tr.invalid
+{
+	color: gray;
+}
+
+#tblumap table tbody tr.nocontrolno
+{
+	color: red;
+}
+
+/* #tblumap table tbody tr td[guess_empno]:not([guess_empno='']):after
+{
+	content: "? " attr(guess_empno);
+	color: gray;
+	text-align: right;
+	font-size: 11px;
+	vertical-align: middle;
+} */

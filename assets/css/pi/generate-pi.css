@@ -1,0 +1,34 @@
+.main-body > .page-wrapper
+{
+    padding-top: 1rem;
+}
+
+.wizard > .content {
+    overflow: auto;
+}
+
+.wizard-form div.steps > ul li
+{
+    max-width: 150px;
+    width: 150px;
+    /*white-space: nowrap;*/
+}
+
+.wizard-form div.steps > ul li a
+{
+    /*padding: 15px;*/
+    font-size: 11px;
+}
+
+.wizard-form .content fieldset
+{
+    font-size: 10px;
+}
+
+.wizard-form .content fieldset tr th,
+.wizard-form .content fieldset tr td
+{
+    padding-top: 1px;
+    padding-bottom: 1px;
+    vertical-align: middle;
+}

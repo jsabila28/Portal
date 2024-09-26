@@ -1,0 +1,9 @@
+#div-employee-list table tbody tr.invalid
+{
+	color: gray;
+}
+
+#div-employee-list table tbody tr.nocontrolno
+{
+	color: red;
+}

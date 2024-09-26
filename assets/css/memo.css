@@ -1,0 +1,116 @@
+/*RIGHT*/
+#memo ol{
+    overflow: auto;
+    height: 100px;
+    /*padding-left: 50px*/
+}
+#memo ol li{
+    width: 100%;
+}
+#memo ol li h6{
+   font-size: 8px;
+}
+#memo ol li p{
+   font-size: 8px;
+}
+
+/* Default state: hide the scrollbar */
+#memo ol::-webkit-scrollbar {
+    width: 0;
+}
+
+/* Show scrollbar on hover */
+#memo:hover ol::-webkit-scrollbar {
+    width: 7px;
+}
+
+#memo ol::-webkit-scrollbar-thumb {
+    background-color: rgba(0,0,0,0.4);
+    border-radius: 10rem;
+    border: 1px solid #fff;
+}
+
+#memo ol::-webkit-scrollbar-track-piece:start {
+    background: transparent;
+}
+
+#memo ol::-webkit-scrollbar-track-piece:end {
+    background: transparent;
+}
+#memo li { 
+  color: #4F4F4F; 
+  margin-top: 10px;
+  position: relative;
+  font-size: 8px;
+  line-height: 0px;
+  width: 100%;
+  counter-increment: memo-counter;
+  
+  /*&:before {
+    content: counter(memo-counter);
+    display: block;
+    height: 22px;
+    width: 22px;
+    border-radius: 50%;
+    border: 2px solid #ddd;
+    position: absolute;
+    top: -12px;
+    left: -46px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    color: #4F4F4F;
+    background-color: white;
+  }*/
+}
+strong { 
+    color: #292929; 
+    font-size: 8px;
+}
+#memo ol.alternating-colors { 
+  li:nth-child(odd):before { border-color: #0BAD02; }
+  li:nth-child(even):before { border-color: #2378D5; }
+}
+
+
+/*RESIGNING*/
+.comment-wrapper .panel-body {
+    max-height:100px;
+    overflow:auto;
+}
+
+.comment-wrapper .media-list .media img .img-circle{
+    width:35px;
+    height:35px;
+    border:2px solid #e5e7e8;
+}
+
+.comment-wrapper .media-list .media {
+    border-bottom:1px dashed #efefef;
+    margin-bottom:25px;
+}
+
+/* Default state: hide the scrollbar */
+.comment-wrapper .panel-body::-webkit-scrollbar {
+    width: 0;
+}
+
+/* Show scrollbar on hover */
+.comment-wrapper .panel-body:hover::-webkit-scrollbar {
+    width: 7px;
+}
+
+.comment-wrapper .panel-body::-webkit-scrollbar-thumb {
+    background-color: rgba(0,0,0,0.4);
+    border-radius: 10rem;
+    border: 1px solid #fff;
+}
+
+.comment-wrapper .panel-body::-webkit-scrollbar-track-piece:start {
+    background: transparent;
+}
+
+.comment-wrapper .panel-body::-webkit-scrollbar-track-piece:end {
+    background: transparent;
+}
