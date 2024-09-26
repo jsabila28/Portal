@@ -103,7 +103,7 @@
     <script src="/prosperityph/admin_template/assets/js/jquery.mousewheel.min.js"></script>
     <!-- Handson table js -->
     <!-- <script type="text/javascript" src="/prosperityph/admin_template/bower_components/handsontable/js/handsontable.full.js"></script> -->
-    <script src="/prosperityph/assets/js/prosperityph.js"></script>
+    <!-- <script src="/prosperityph/assets/js/prosperityph.js"></script> -->
     <script src="/Portal/assets/js/post.js"></script>
     <!-- <script src="fullcalendar/js/main.min.js"></script> -->
     

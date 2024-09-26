@@ -10,14 +10,18 @@ const createPostSection = document.
 	querySelector('.create-post'); 
 const postAudienceSection = document. 
 	querySelector('.post-audience-section'); 
-const emojiBtn = document. 
-	querySelector('.emoji'); 
-const emojiPicker = document. 
-	querySelector('emoji-picker'); 
+// const emojiBtn = document. 
+// 	querySelector('.emoji'); 
+// const emojiPicker = document. 
+// 	querySelector('emoji-picker'); 
 const audienceOptions = document. 
 	querySelectorAll(".audience-option"); 
 const radioBtns = document. 
 	querySelectorAll(".audience-option-radio"); 
+// const addtoPostBtn = document. 
+// 	querySelectorAll(".add-to-your-post"); 
+// const postItemSection = document. 
+// 	querySelectorAll(".post-item-section");
 
 document.body.style.overflowX = 'none'; 
 
@@ -27,15 +31,15 @@ textarea.addEventListener("input", () => {
 	else
 		postBtn.disabled = true; 
 }) 
-emojiBtn.addEventListener("click", () => { 
-	if (emojiPicker.style.display == 'none') 
-		emojiPicker.style.display = 'block'; 
-	else
-		emojiPicker.style.display = 'none'; 
-}) 
-emojiPicker.addEventListener('emoji-click', e => { 
-	textarea.value += e.detail.unicode; 
-}) 
+// emojiBtn.addEventListener("click", () => { 
+// 	if (emojiPicker.style.display == 'none') 
+// 		emojiPicker.style.display = 'block'; 
+// 	else
+// 		emojiPicker.style.display = 'none'; 
+// }) 
+// emojiPicker.addEventListener('emoji-click', e => { 
+// 	textarea.value += e.detail.unicode; 
+// }) 
 postAudienceBtn.addEventListener('click', () => { 
 	document.querySelector('.wrapper') 
 		.classList.add('wrapper-active'); 
@@ -64,3 +68,46 @@ backBtn.addEventListener('click', () => {
 	postAudienceSection.style.display = 'none'; 
 	createPostSection.style.display = 'block'; 
 })
+
+function toggleDiv() {
+    const div = document.getElementById('add-photo-video');
+    const showIcon = document.getElementById('showIcon');
+    const hideIcon = document.getElementById('close');
+
+    if (div.style.display === 'none') {
+        div.style.display = 'block';
+        showIcon.style.display = 'block';
+        hideIcon.style.display = 'inline';
+    } else {
+        div.style.display = 'none';
+        showIcon.style.display = 'inline';
+        hideIcon.style.display = 'none';
+    }
+
+}
+
+function updateFileContent() {
+    const fileInput = document.getElementById('file-input');
+    const imageVideoDiv = document.getElementById('image-video');
+
+    if (fileInput.files.length > 0) {
+        const file = fileInput.files[0];
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+            // Set the background image of the image-video div
+            imageVideoDiv.style.backgroundImage = `url(${e.target.result})`;
+            imageVideoDiv.innerHTML = `<i id="close" onclick="toggleDiv()" style="cursor: pointer;" class="fa fa-times-circle"></i>`;
+            
+            // Create and append the "Change File" button
+            const changeButton = document.createElement('button');
+            changeButton.textContent = 'Change File';
+            changeButton.onclick = function() {
+                fileInput.click();
+            };
+            imageVideoDiv.appendChild(changeButton);
+        };
+
+        reader.readAsDataURL(file);
+    }
+}

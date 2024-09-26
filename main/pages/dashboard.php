@@ -5,6 +5,7 @@ $date = date("Y");
 $memos = Portal::GetMemo($date);
 $leave = Portal::GetLeave($date);
 ?>
+<script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
 <div class="page-wrapper">
     <div class="page-body">
         <div class="row">
@@ -29,10 +30,11 @@ $leave = Portal::GetLeave($date);
                                                             <div class="modal-header">
                                                                 <h6 class="modal-title" style="text-align: center; width: 100%;">Create Post</h6>
                                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
+                                                                    <span aria-hidden="true"><i style="cursor: pointer;" class="fa fa-times-circle"></i></span>
                                                                 </button>
                                                             </div>
                                                             <div class="modal-body">
+                                                            <form>
                                                                <main class="post"> 
                                                                     <div class="wrapper"> 
                                                                         <section class="create-post">  
@@ -52,15 +54,25 @@ $leave = Portal::GetLeave($date);
                                                                                 <textarea name="post-desc" id="post-desc" 
                                                                                         cols="30" rows="5" 
                                                                                     placeholder="What's on you mind ?"></textarea> 
-                                                                                <div class="emoji-picker"> 
+                                                                                <!-- <div class="emoji-picker"> 
                                                                                     <emoji-picker class="light"></emoji-picker> 
                                                                                     <i class="emoji" aria-label="Insert an emoji" 
                                                                                     role="img"></i> 
-                                                                                </div> 
+                                                                                </div> -->
+                                                                                <div id="add-photo-video" class="hide-image">
+                                                                                    <div class="image-video" id="image-video">
+                                                                                        <i id="close" onclick="toggleDiv()" style="cursor: pointer;" class="fa fa-times-circle"></i>
+                                                                                        <div onclick="document.getElementById('file-input').click();">
+                                                                                            <img src="assets/img/plus.png" alt="Add">
+                                                                                            <p>Add Photos/Videos</p>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <input type="file" id="file-input" style="display: none;" onchange="updateFileContent()">
+                                                                                </div>
                                                                                 <div class="add-to-your-post"> 
-                                                                                    <span class="add-to-post-text">Add to your post</span> 
+                                                                                    <p class="add-to-post-text">Add to your post</p> 
                                                                                     <div class="add-to-post-icons"> 
-                                                                                        <div class="photo-video"></div> 
+                                                                                        <div class="photo-video" id="showIcon" onclick="toggleDiv()"></div> 
                                                                                         <div class="tag-people"></div> 
                                                                                         <div class="feeling-activity"></div> 
                                                                                         <div class="check-in"></div> 
@@ -88,7 +100,7 @@ $leave = Portal::GetLeave($date);
                                                                             <div class="post-audience-options"> 
                                                                                 <div class="audience-option"> 
                                                                                     <div class="audience-option-left"> 
-                                                                                        <div class="audience-option-icon earth"></div> 
+                                                                                        <div class="audience-option-icon"><i class="icofont icofont-world"></i></div> 
                                                                                         <div class="audience-option-details"> 
                                                                                             <div class="audience-option-text">ALL</div> 
                                                                                             <!-- <span class="audience-option-desc">Anyone on 
@@ -104,7 +116,7 @@ $leave = Portal::GetLeave($date);
                                                                                 </div> 
                                                                                 <div class="audience-option"> 
                                                                                     <div class="audience-option-left"> 
-                                                                                        <div class="audience-option-icon user-group"></div> 
+                                                                                        <div class="audience-option-icon"><i class="icofont icofont-compass-alt-2"></i></div> 
                                                                                         <div class="audience-option-details"> 
                                                                                             <div class="audience-option-text">TNGC</div> 
                                                                                             <!-- <span class="audience-option-desc">Your friends 
@@ -120,7 +132,7 @@ $leave = Portal::GetLeave($date);
                                                                                 </div> 
                                                                                 <div class="audience-option"> 
                                                                                     <div class="audience-option-left"> 
-                                                                                        <div class="audience-option-icon user"></div> 
+                                                                                        <div class="audience-option-icon"><i class="icofont icofont-girl-alt"></i></div> 
                                                                                         <div class="audience-option-details"> 
                                                                                             <div class="audience-option-text">SJI</div> 
                                                                                             <!-- <span class="audience-option-desc">Don't show 
@@ -136,7 +148,7 @@ $leave = Portal::GetLeave($date);
                                                                                 </div> 
                                                                                 <div class="audience-option"> 
                                                                                     <div class="audience-option-left"> 
-                                                                                        <div class="audience-option-icon specific-user"></div> 
+                                                                                        <div class="audience-option-icon"></div> 
                                                                                         <div class="audience-option-details"> 
                                                                                             <div class="audience-option-text"> 
                                                                                             DI</div> 
@@ -154,7 +166,7 @@ $leave = Portal::GetLeave($date);
                                                                                 </div> 
                                                                                 <div class="audience-option"> 
                                                                                     <div class="audience-option-left"> 
-                                                                                        <div class="audience-option-icon lock"></div> 
+                                                                                        <div class="audience-option-icon"><i class="icofont icofont-man-in-glasses"></i></div> 
                                                                                         <div class="audience-option-details"> 
                                                                                             <div class="audience-option-text">QST</div> 
                                                                                         </div> 
@@ -169,7 +181,7 @@ $leave = Portal::GetLeave($date);
                                                                                 </div> 
                                                                                 <div class="audience-option"> 
                                                                                     <div class="audience-option-left"> 
-                                                                                        <div class="audience-option-icon gear"></div> 
+                                                                                        <div class="audience-option-icon"><i class="icofont icofont-lock"></i></div> 
                                                                                         <div class="audience-option-details"> 
                                                                                             <div class="audience-option-text">Only Me</div> 
                                                                                             <!-- <span class="audience-option-desc">Include 
@@ -183,29 +195,12 @@ $leave = Portal::GetLeave($date);
                                                                                                 class="audience-option-radio"> 
                                                                                         </div> 
                                                                                     </div> 
-                                                                                </div> 
-                                                                                <!-- <div class="audience-option"> 
-                                                                                    <div class="audience-option-left"> 
-                                                                                        <div class="audience-option-icon star"></div> 
-                                                                                        <div class="audience-option-details"> 
-                                                                                            <div class="audience-option-text">Close 
-                                                                                            friends</div> 
-                                                                                            <span class="audience-option-desc">Your 
-                                                                                            custom list</span> 
-                                                                                        </div> 
-                                                                                    </div> 
-                                                                                    <div class="audience-option-right"> 
-                                                                                        <div class="radio-btn"> 
-                                                                                            <input type="radio" 
-                                                                                                name="audience-option-radio" 
-                                                                                                class="audience-option-radio"> 
-                                                                                        </div> 
-                                                                                    </div> 
-                                                                                </div>  -->
+                                                                                </div>
                                                                             </div> 
                                                                         </section> 
                                                                     </div> 
                                                                 </main> 
+                                                            </form>
                                                             </div>
                                                         </div>
                                                     </div>

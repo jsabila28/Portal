@@ -4,21 +4,22 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 500px;
+    height: auto;
     margin-top: 0px;
 }
 
 .wrapper {
-    height: 30rem;
+    height: auto;
     transition: height 0.2s ease;
 }
 
 .wrapper.wrapper-active {
-    height: 20rem;
+    height: auto;
 }
 
 .create-post {
     border-radius: 5px;
+    width: 500px;
     /*-webkit-box-shadow: 0 0 5px 1px grey;*/
     /*box-shadow: 0 0 5px 1px grey;*/
 
@@ -71,7 +72,7 @@ h1 {
 }
 
 .friends-icon {
-    background-image: url(https://static.xx.fbcdn.net/rsrc.php/v3/yZ/r/4qsdCsLNqKi.png);
+    background-image: url(https://i.pinimg.com/564x/de/61/5d/de615d1010040c458ac0d7337298c2ef.jpg);
     width: 14px;
     height: 14px;
     background-position: center;
@@ -125,6 +126,7 @@ https://static.xx.fbcdn.net/rsrc.php/v3/yY/r/fCbUcoRfiez.png);
     justify-content: space-around;
     padding: 0.25rem;
     border-radius: 5px;
+    margin-top: 10px;
 }
 
 .fa-sort-down {
@@ -141,12 +143,13 @@ https://static.xx.fbcdn.net/rsrc.php/v3/yY/r/fCbUcoRfiez.png);
 
 textarea {
     font-family: 'Inter', sans-serif;
-    font-size: 1.25rem;
+    font-size: 12px;
     width: 100%;
     border: none;
     resize: none;
     outline: none;
-    line-height: 1.25;
+    line-height: 1rem;
+    height: 50px;
 }
 
 .emoji-picker {
@@ -172,7 +175,7 @@ emoji-picker {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 7rem;
+    /*gap: 7rem;*/
     border: 1px solid rgb(193, 190, 190);
     padding: 1.25rem 1rem;
     border-radius: 5px;
@@ -257,6 +260,7 @@ url(https://static.xx.fbcdn.net/rsrc.php/v3/yF/r/v1iF2605Cb5.png);
     border-radius: 5px;
     -webkit-box-shadow: 0 0 5px 1px grey;
     box-shadow: 0 0 5px 1px grey;
+    margin-top: 70px;
 }
 
 .post-audience-header {
@@ -320,7 +324,7 @@ url(https://static.xx.fbcdn.net/rsrc.php/v3/yF/r/v1iF2605Cb5.png);
 .post-audience-options {
     padding: 0 0.625rem 0.625rem 0.625rem;
     overflow-y: scroll;
-    height: 15rem;
+    height: auto;
 }
 
 .audience-option {
@@ -356,12 +360,12 @@ url(https://static.xx.fbcdn.net/rsrc.php/v3/yT/r/0QOZ5Rw18zW.png);
 
 .user-group {
     background-image: 
-url(https://static.xx.fbcdn.net/rsrc.php/v3/ym/r/GgYVAS1o2Dp.png);
+url(https://i.pinimg.com/564x/a4/c3/aa/a4c3aa8720f862215dcb6e44663e5087.jpg);
 }
 
 .user {
     background-image:
-url(https://static.xx.fbcdn.net/rsrc.php/v3/yf/r/_OLjeOMXK05.png);
+url(https://i.pinimg.com/564x/03/2b/b2/032bb25a840bbbb5ac167a13d33b1944.jpg);
 }
 
 .specific-user {
@@ -425,4 +429,48 @@ url(https://static.xx.fbcdn.net/rsrc.php/v3/yX/r/QryT_9DQQgy.png);
 
 .audience-option.active {
     background-color: hsl(210, 12%, 94%);
+}
+#add-photo-video{
+    width: 100%;
+    height: 200px;
+    max-height: 400px;
+    border: 1px solid #797a7a;
+    align-content: center;
+    background-color: transparent;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+    padding: 5px;
+}
+#add-photo-video .image-video{
+    width: 98%;
+    height: 200px;
+    max-height: 400px;
+    border-radius: 5px;
+    background-color: #dee0e3;
+    cursor: pointer;  
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+} 
+.image-video #close{
+    float: right;
+    color: #383838;
+    font-size: 24px;
+}
+.image-video img{
+    margin-top: 60px;
+    border: none;
+}
+.image-video p{
+    border: none;
+    font-weight: 400px;
+}
+.hide-image {
+    display: none;
+}
+#preview-container img{
+    height: 200px;
+    width: 100px;
 }
