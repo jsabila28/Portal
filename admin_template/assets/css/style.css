@@ -129,7 +129,8 @@ Card-Layout css start
   margin-bottom: 30px; 
   background-color: transparent;
   height: 600px;
-  overflow-y: scroll;}
+  overflow-y: scroll; 
+  overflow-x: hidden;}
 .card::-webkit-scrollbar {
   width: 7px;
 }

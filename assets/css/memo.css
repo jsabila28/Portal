@@ -64,6 +64,9 @@
     background-color: white;
   }*/
 }
+#memo label, span{
+  font-size: 8px;
+}
 strong { 
     color: #292929; 
     font-size: 8px;
@@ -113,4 +116,22 @@ strong {
 
 .comment-wrapper .panel-body::-webkit-scrollbar-track-piece:end {
     background: transparent;
+}
+
+#carouselExampleIndicators .carousel-inner {
+  height: 400px;
+  transition: height 0.4s ease;
+}
+
+#carouselExampleIndicators .carousel-inner:hover {
+  height: 100%;
+}
+
+#carouselExampleIndicators .carousel-inner img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+#carouselExampleIndicators .carousel-indicators" {
+  height: 30px !important;
 }

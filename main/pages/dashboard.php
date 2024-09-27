@@ -1,9 +1,11 @@
 <?php
 require_once($main_root."/actions/memo.php");
 // $user_id = '045-2022-013';
-$date = date("Y");
-$memos = Portal::GetMemo($date);
+$date = date("Y-m-d");
+$Year = date("Y");
+$memos = Portal::GetMemo($Year);
 $leave = Portal::GetLeave($date);
+$ongoingleave = Portal::GetOngoingLeave($date);
 ?>
 <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
 <div class="page-wrapper">
@@ -30,7 +32,7 @@ $leave = Portal::GetLeave($date);
                                                             <div class="modal-header">
                                                                 <h6 class="modal-title" style="text-align: center; width: 100%;">Create Post</h6>
                                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true"><i style="cursor: pointer;" class="fa fa-times-circle"></i></span>
+                                                                    <span aria-hidden="true"><i style="cursor: pointer;font-size: 30px;" class="fa fa-times-circle"></i></span>
                                                                 </button>
                                                             </div>
                                                             <div class="modal-body">
@@ -60,12 +62,11 @@ $leave = Portal::GetLeave($date);
                                                                                     role="img"></i> 
                                                                                 </div> -->
                                                                                 <div id="add-photo-video" class="hide-image">
-                                                                                    <div class="image-video" id="image-video">
+                                                                                    <div class="image-video" id="image-video" style="background-image: url('assets/img/upload.png');" onclick="document.getElementById('file-input').click();">
                                                                                         <i id="close" onclick="toggleDiv()" style="cursor: pointer;" class="fa fa-times-circle"></i>
-                                                                                        <div onclick="document.getElementById('file-input').click();">
-                                                                                            <img src="assets/img/plus.png" alt="Add">
-                                                                                            <p>Add Photos/Videos</p>
-                                                                                        </div>
+                                                                                        <!-- <div>
+                                                                                            <img src="assets/img/upload.png" width="100" height="100">
+                                                                                        </div> -->
                                                                                     </div>
                                                                                     <input type="file" id="file-input" style="display: none;" onchange="updateFileContent()">
                                                                                 </div>
@@ -232,7 +233,7 @@ $leave = Portal::GetLeave($date);
                 <div class="user-card-block card">
                     <div class="card-block" style="background-color: white; padding: 10px !important;">
                         <div id="memo"> 
-                            <span><a href="#">Memo</a></span>
+                            <span><a href="#" class="btn btn-primary btn-mini">Memo</a></span>
                             <ol>
                                 <?php
                                      if (!empty($memos)) {
@@ -247,11 +248,43 @@ $leave = Portal::GetLeave($date);
                         </div>
                         <hr>
                         <div id="memo"> 
-                            <span><a href="#"><p>Leave / Offset</p></a></span>
+                            <span><a href="#" class="btn btn-primary btn-mini">Leave / Offset</a></span>
                                 <div class="m-portlet__body">
                                     <div class="tab-content">
                                         <div class="tab-pane active" id="m_widget4_tab1_content">
                                             <div class="m-widget4 m-widget4--progress">
+                                                <?php
+                                                     if (!empty($ongoingleave)) {
+                                                          foreach ($ongoingleave as $ol) {
+                                                ?>
+                                                <div class="m-widget4__item">
+                                                    <div class="m-widget4__img m-widget4__img--pic">
+                                                        <img src="assets/image/img/<?=$ol['la_empno'].'.jpg'?>" alt="">
+                                                    </div>
+                                                    <div class="m-widget4__info">
+                                                        <span class="m-widget4__title">
+                                                            <strong ><?=$ol['bi_empfname'].' '.$ol['bi_emplname']?></strong>
+                                                        </span>
+                                                        <br>
+                                                        <span class="m-widget4__sub">
+                                                            <strong class="text-muted"><?=$ol['jrec_department']?></strong>
+                                                        </span>
+                                                    </div>
+                                                    <div class="m-widget4__progress">
+                                                        <div class="m-widget4__progress-wrapper">
+                                                            <span class="m-widget17__progress-number">
+                                                               <strong>start: <?= date("F j, Y", strtotime($ol['la_start'])) ?></strong>
+                                                            </span><br>
+                                                            <span class="m-widget17__progress-label">
+                                                               <strong>return: <?= date("F j, Y", strtotime($ol['la_return'])) ?></strong>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="m-widget4__ext">
+                                                        <label class="label label-inverse-danger"><?=$ol['la_type']?></label>
+                                                    </div>
+                                                </div>
+                                                <?php }} ?>
                                                 <?php
                                                      if (!empty($leave)) {
                                                           foreach ($leave as $lv) {
@@ -291,7 +324,7 @@ $leave = Portal::GetLeave($date);
                         </div>
                         <hr>
                         <div id="memo"> 
-                            <span><a href="#">Resigning</a></span>
+                            <span><a href="#" class="btn btn-primary btn-mini">Resigning</a></span>
                             <div class="comment-wrapper">
                                 <div class="panel panel-info">
                                     <div class="panel-body">
@@ -346,9 +379,35 @@ $leave = Portal::GetLeave($date);
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card-block">
-                       
+                        <hr>
+                        <div id="memo"> 
+                            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                                <ol class="carousel-indicators" style="height: 30px !important;">
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                                </ol>
+                                <div class="carousel-inner" role="listbox">
+                                    <div class="carousel-item active">
+                                        <img class="d-block img-fluid w-100" src="https://teamtngc.com/hris2/pages/announcement/2024.02.05.13.52.21423062710_1052212732732982_5612019477039406947_n.jpg" alt="First slide">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img class="d-block img-fluid w-100" src="https://teamtngc.com/hris2/pages/announcement/2024.03.08.16.11.10420820505_758026563028297_1606682085540392749_n.jpg" alt="Second slide">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img class="d-block img-fluid w-100" src="https://teamtngc.com/hris2/pages/announcement/2024.03.05.09.23.09430987860_818963086931821_5307512019766346447_n.jpg" alt="Third slide">
+                                    </div>
+                                </div>
+                                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

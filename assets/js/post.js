@@ -86,6 +86,7 @@ function toggleDiv() {
 
 }
 
+
 function updateFileContent() {
     const fileInput = document.getElementById('file-input');
     const imageVideoDiv = document.getElementById('image-video');
@@ -99,11 +100,15 @@ function updateFileContent() {
             imageVideoDiv.style.backgroundImage = `url(${e.target.result})`;
             imageVideoDiv.innerHTML = `<i id="close" onclick="toggleDiv()" style="cursor: pointer;" class="fa fa-times-circle"></i>`;
             
-            // Create and append the "Change File" button
+            // Create and append the "Change File" button with Bootstrap classes
             const changeButton = document.createElement('button');
             changeButton.textContent = 'Change File';
-            changeButton.onclick = function() {
-                fileInput.click();
+            changeButton.classList.add('btn', 'btn-primary', 'btn-mini');
+            
+            // Prevent the modal from closing when the button is clicked
+            changeButton.onclick = function(event) {
+                event.preventDefault(); // Prevent default behavior
+                fileInput.click(); // Trigger file input to change file
             };
             imageVideoDiv.appendChild(changeButton);
         };

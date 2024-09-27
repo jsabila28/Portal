@@ -61,7 +61,7 @@
     <script type="text/javascript" src="/prosperityph/admin_template/bower_components/jquery-slimscroll/js/jquery.slimscroll.js"></script>
     <!-- modernizr js -->
     <script type="text/javascript" src="/prosperityph/admin_template/bower_components/modernizr/js/modernizr.js"></script>
-    <script type="text/javascript" src="/prosperityph/admin_template/bower_components/modernizr/js/css-scrollbars.js"></script>
+    <script type="text/javascript" src="/Portal/admin_template/bower_components/modernizr/js/css-scrollbars.js"></script>
     <!-- classie js -->
     <script type="text/javascript" src="/prosperityph/admin_template/bower_components/classie/js/classie.js"></script>    
     <!-- i18next.min.js -->

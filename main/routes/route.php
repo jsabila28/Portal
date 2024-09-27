@@ -11,7 +11,8 @@ $routes = [
 
 
 	'/holiday' => 'main/actions/holiday.php',
-	'/post' => 'main/actions/postfeed.php'
+	'/post' => 'main/actions/postfeed.php',
+	'/legal' => 'main/actions/gov_ann.php'
 ];
 
 // Get the current request URI (remove the base URL if needed)

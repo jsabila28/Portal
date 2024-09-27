@@ -431,9 +431,8 @@ url(https://static.xx.fbcdn.net/rsrc.php/v3/yX/r/QryT_9DQQgy.png);
     background-color: hsl(210, 12%, 94%);
 }
 #add-photo-video{
-    width: 100%;
-    height: 200px;
-    max-height: 400px;
+    width: 450px;
+    height: 300px;
     border: 1px solid #797a7a;
     align-content: center;
     background-color: transparent;
@@ -444,15 +443,17 @@ url(https://static.xx.fbcdn.net/rsrc.php/v3/yX/r/QryT_9DQQgy.png);
     padding: 5px;
 }
 #add-photo-video .image-video{
-    width: 98%;
-    height: 200px;
-    max-height: 400px;
+    width: 100%;
+    height: 100%;
     border-radius: 5px;
     background-color: #dee0e3;
     cursor: pointer;  
     text-align: center;
     justify-content: center;
     align-items: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 } 
 .image-video #close{
     float: right;
@@ -462,6 +463,8 @@ url(https://static.xx.fbcdn.net/rsrc.php/v3/yX/r/QryT_9DQQgy.png);
 .image-video img{
     margin-top: 60px;
     border: none;
+    height: 50px;
+    width: 50px;
 }
 .image-video p{
     border: none;
