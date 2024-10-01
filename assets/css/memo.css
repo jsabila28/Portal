@@ -64,7 +64,7 @@
     background-color: white;
   }*/
 }
-#memo label, span{
+#memo label, a{
   font-size: 8px;
 }
 strong { 

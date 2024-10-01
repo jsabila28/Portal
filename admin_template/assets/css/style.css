@@ -78,10 +78,10 @@ h5 {
   font-size: 15px; }
 
 h6 {
-  font-size: 16px; }
+  font-size: 12px; }
 
 h1, h2, h3, h4, h5, h6 {
-  font-weight: 600; }
+  font-weight: 200; }
 
 /**====== Custom css end ======**/
 /**  =====================
@@ -5540,7 +5540,8 @@ table thead .border-bottom-info th {
       .header-navbar .navbar-wrapper .navbar-logo h5 {
         margin-bottom: 0; }
       .header-navbar .navbar-wrapper .navbar-logo a {
-        color: #fff; }
+        color: #fff;
+        font-size: 14px; }
       .header-navbar .navbar-wrapper .navbar-logo .mobile-menu,
       .header-navbar .navbar-wrapper .navbar-logo .mobile-search,
       .header-navbar .navbar-wrapper .navbar-logo .mobile-options {
@@ -16515,7 +16516,8 @@ body.dark-layout {
 /**====== Dark-Layout css end ======**/
 .pcoded .pcoded-container {
   position: relative;
-  background: #d5dae6; }
+  /*background: #d5dae6; */
+}
 .pcoded .pcoded-header {
   position: relative;
   display: block; }
@@ -16553,7 +16555,7 @@ body.dark-layout {
     position: relative; }
     .pcoded .pcoded-navbar .pcoded-item > li > a {
       display: block;
-      font-size: 14px;
+      font-size: 12px;
       padding: 0 15px;
       text-decoration: none;
       position: relative; }

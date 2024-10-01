@@ -270,7 +270,7 @@
                                 		<img src="assets/img/1.png" width="40" height="40"><br>Schedule
                                 	</div>
                                 </a>
-                                <a class="media-left" href="#!" style="text-align: center;">
+                                <a class="media-left" href="/Portal/leave/" style="text-align: center;">
                                 	<div>
                                 		<img src="assets/img/4.png" width="40" height="40"><br>Leave
                                 	</div>

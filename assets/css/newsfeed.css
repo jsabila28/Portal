@@ -118,11 +118,13 @@
     position: relative;
     display: block;
     padding: 5px;
+    text-align: center;
 }
 
 .cardbox .cardbox-item .img-fluid {
-    width: 100%;
+    /*width: 100%;*/
     height: auto;
+
 }
 
 .img-responsive {
@@ -218,9 +220,16 @@
 .cardbox-base .media-body {
     -ms-flex: 1;
     flex: 1;
-    padding: .4rem !important;
+    /*padding: .4rem !important;*/
 }
-
+.cardbox-base .media-body #post-button button{
+    width: 90%; 
+    align-items: left;
+    background-color:#373837;
+    color:white;
+    text-align: left;
+    font-size: 12px;
+}
 
 .cardbox-base .media {
     display: -ms-flexbox;

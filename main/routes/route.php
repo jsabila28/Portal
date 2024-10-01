@@ -9,12 +9,12 @@ $routes = [
 	'/getUser' => 'main/actions/get_user.php',
 	'/signOut' => 'main/actions/logout.php',
 
-
+	// DASHBOARD
 	'/holiday' => 'main/actions/holiday.php',
 	'/post' => 'main/actions/postfeed.php',
 	'/legal' => 'main/actions/gov_ann.php'
-];
 
+];
 // Get the current request URI (remove the base URL if needed)
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $uri = rtrim(str_replace("/Portal", "", $uri), "#");

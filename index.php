@@ -7,7 +7,7 @@ if(empty($_SESSION['user_id']) && !in_array($_SERVER['REQUEST_URI'], ['/Portal/l
 
 $portal_root = $_SERVER['DOCUMENT_ROOT']."/Portal";
 $main_root = $portal_root."/main";
-$sr_root = $portal_root."/rotation";
+$sr_root = $portal_root."/leave";
 
 // sidenav
 $sidenav = $main_root."/layout/sidenav.php";

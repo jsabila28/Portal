@@ -42,7 +42,7 @@ class Portal
         }
         return [];
     }
-        public static function GetOngoingLeave($date) {
+    public static function GetOngoingLeave($date) {
         $conn = self::getDatabaseConnection('port');
 
         if ($conn) {
@@ -62,7 +62,38 @@ class Portal
         }
         return [];
     }
+    public static function GetResigning($date) {
+        $conn = self::getDatabaseConnection('port');
 
+        if ($conn) {
+            $stmt = $conn->prepare("SELECT 
+                bi_emplname, 
+                bi_empfname, 
+                bi_empmname, 
+                jrec_department,
+                jd_title,
+                C_Name,
+                xintvw_lastday ,
+                xintvw_empno
+                FROM tbl201_exit_intvw a
+                LEFT JOIN tbl201_basicinfo b
+                ON b.`bi_empno` = a.`xintvw_empno`
+                LEFT JOIN tbl201_jobrec c
+                ON c.`jrec_empno` = b.`bi_empno`
+                LEFT JOIN tbl_jobdescription d
+                ON d.`jd_code` = c.`jrec_position`
+                LEFT JOIN tbl_company e
+                ON e.`C_Code` = c.`jrec_company`
+                WHERE c.`jrec_status` = 'Primary'
+                AND c.`jrec_type` = 'Primary'
+                AND a.`xintvw_lastday` >= ?
+                GROUP BY xintvw_empno");
+            $stmt->execute([$date]);
+
+            return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
+        }
+        return [];
+    }
 
 }
 ?>

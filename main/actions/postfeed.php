@@ -1,12 +1,20 @@
 <?php
-require_once($sr_root . "/db/db.php");
+$host = 'localhost'; // Database host
+$db   = 'portal_db'; // Database name
+$user = 'root'; // Database username
+$pass = ''; // Database password
+$charset = 'utf8mb4'; // Character set
 
-// Enable error reporting for debugging
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+$dsn = "mysql:host=$host;dbname=$db;charset=$charset"; // Data Source Name
+
+$options = [
+    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION, // Error reporting
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,       // Fetch mode
+    PDO::ATTR_EMULATE_PREPARES   => false,                  // Turn off emulation mode for prepared statements
+];
 
 try {
-    $port = Database::getConnection('port');
+    $port = new PDO($dsn, $user, $pass, $options);
 
     // Cache file path
     $cacheFile = 'cache/data.json'; // The path to store the cache file
@@ -18,11 +26,11 @@ try {
         $data = json_decode(file_get_contents($cacheFile), true);
     } else {
         // Fetch data from the database
-        $currentYear = date("Y");
+        $currentYear = '2024-09';
         $stmt = $port->prepare("SELECT * FROM tbl_announcement a
             LEFT JOIN tbl201_basicinfo b ON a.ann_approvedby = b.bi_empno
             WHERE a.ann_type = 'LOCAL'
-            AND LEFT(a.ann_date, 4) = ?
+            AND DATE_FORMAT(a.ann_date, '%Y-%m') = ?
             ORDER BY a.ann_date DESC");
         $stmt->execute([$currentYear]);
         $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -53,15 +61,16 @@ try {
             echo '</div>';
             echo '<div class="media-body">';
             echo '<p class="m-0">'. htmlspecialchars($row['bi_empfname']) . ' '. htmlspecialchars($row['bi_emplname']).'</p>';
-            echo '<small><span><i class="icon ion-md-pin"></i>' . date("F j, Y", strtotime($row['ann_timestatmp'])) . '</span></small>';
-            echo '<small><span><i class="icon ion-md-time"></i>' . (new DateTime($row['ann_timestatmp']))->format("h:i A") . '</span></small>';
+            echo '<small><span><i class="icon ion-md-pin"></i>' . date("F j, Y", strtotime($row['ann_date'])) . '</span></small>';
+            echo '<small><span><i class="icon ion-md-time"></i>' . (new DateTime($row['ann_date']))->format("h:i A") . '</span></small>';
             echo '</div>'; // Close media-body
             echo '</div>'; // Close media
             echo '</div>'; // Close cardbox-heading
             
             // Cardbox Item
             echo '<div class="cardbox-item">';
-            echo '<img class="img-fluid" src="assets/img/bday.png" alt="Image">';
+            // echo ''.$row['ann_content'];
+            echo '<img class="img-fluid" style="max-height: 500px !important;" src="assets/announcement/' . htmlspecialchars($row['ann_content']) . '">';
             // echo "".$row['ann_content']."";
             echo '</div>'; // Close cardbox-item
             
@@ -92,7 +101,7 @@ try {
             echo '</div>';
             echo '<div class="media-body">';
             echo '<p class="m-0">Rosette Larracochea</p>';
-            echo '<small><span><i class="icon ion-md-pin"></i> Happy Birthday</span></small>';
+            echo '<small><span><i class="icon ion-md-pin"></i> Comments Here</span></small>';
             echo '</div>'; // Close media-body
             echo '</div>'; // Close media
             echo '</div>'; // Close cardbox-base-comment
