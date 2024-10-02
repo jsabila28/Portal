@@ -10,7 +10,7 @@ $main_root = $portal_root."/main";
 $sr_root = $portal_root."/leave";
 
 // sidenav
-$sidenav = $main_root."/layout/sidenav.php";
+ $sidenav = $main_root."/layout/sidenav.php";
 
 // layout + route
 include_once($main_root."/routes/route.php");

@@ -65,6 +65,13 @@ try {
             echo '<small><span><i class="icon ion-md-time"></i>' . (new DateTime($row['ann_date']))->format("h:i A") . '</span></small>';
             echo '</div>'; // Close media-body
             echo '</div>'; // Close media
+
+            echo '<div class="media m-0">';
+            echo '<div class="media-body">';
+            echo '<p><span><i class="icon ion-md-time"></i>' . htmlspecialchars($row['ann_title']). '</span></p>';
+            echo '</div>'; // Close media-body
+            echo '</div>'; // Close media
+
             echo '</div>'; // Close cardbox-heading
             
             // Cardbox Item

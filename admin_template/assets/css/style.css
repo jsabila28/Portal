@@ -119,6 +119,110 @@ Main-body css start
 /**  =====================
 Card-Layout css start
 ==========================  **/
+#right-side{
+  position: fixed;
+  right: 0;
+  top: 60px;
+  height: 100vh; /* Full height */
+  overflow-y: hidden; 
+}
+#left-side{
+  position: fixed;
+  left: 0;
+  height: 100vh; 
+  overflow: hidden; 
+  background-color: transparent;
+  top: 0;
+  width: 100%;
+}
+/* Sidebar Menu Styling */
+.sidebar-menu {
+  list-style-type: none; /* Remove bullet points */
+  padding: 0;
+  margin-top: 65px;
+}
+
+.sidebar-menu li {
+  padding: 5px 5px;
+  border-radius: 5%;
+  height: 40px;
+}
+
+.sidebar-menu li a {
+  color:#292828; /* Menu item text color */
+  text-decoration: none; /* Remove underline */
+  display: flex;
+  align-items: center;
+  font-size: 14px !important;
+  font-weight: 600px !important;
+  display: flex;
+  align-items: center;
+}
+
+.sidebar-menu li:hover {
+  background-color: #878686; /* Hover effect */
+  color: white !important;
+  border-radius: 5%;
+}
+
+.sidebar-menu li a:hover {
+  color: white !important;
+}
+
+.sidebar-menu li a i {
+  margin-right: 10px; /* Space between icon and text */
+}
+#center{
+  margin-left: 300px; /* Equal to the width of the left-side div */
+  margin-right: 200px; /* Equal to the width of the right-side div */
+}
+/* Base styles for desktop (as above) */
+
+/* Responsive styles for mobile devices */
+@media screen and (max-width: 480px) {
+  #left-side, #right-side {
+    position: relative;
+    width: 100%; /* Make sidebars full width */
+    height: auto; /* Adjust height to fit content */
+  }
+
+  #center {
+    margin: 0;
+    padding: 10px;
+  }
+
+  #left-side {
+   display: none;
+  }
+
+  #center {
+    order: 1; /* Show center content next */
+  }
+
+  #right-side {
+    order: 2; /* Show right sidebar last */
+    top: 0;
+  }
+
+  /* Flexbox to stack items vertically */
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+}
+ #left-side .card {
+  border-radius: 2px;
+  /*border-top: 4px solid rgba(0, 115, 170, 0.5);*/
+  box-shadow: 0 2px 1px rgba(0, 0, 0, 0.05);
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+  margin-bottom: 30px; 
+  background-color: transparent;
+  height: auto;
+  overflow-y: scroll; 
+  overflow-x: hidden;
+}
 .card {
   border-radius: 2px;
   /*border-top: 4px solid rgba(0, 115, 170, 0.5);*/
@@ -128,9 +232,10 @@ Card-Layout css start
   border-bottom: none;
   margin-bottom: 30px; 
   background-color: transparent;
-  height: 600px;
-  overflow-y: scroll; 
-  overflow-x: hidden;}
+  height: auto;
+  overflow-y: hidden; 
+  overflow-x: hidden;
+}
 .card::-webkit-scrollbar {
   width: 7px;
 }
@@ -3520,8 +3625,8 @@ a[data-lightbox="example-set"] .img-fluid {
     -webkit-box-flex: 0;
     -webkit-flex: 0 0 16.666667%;
     -ms-flex: 0 0 16.666667%;
-    flex: 0 0 16.666667%;
-    max-width: 16.666667%; }
+    flex: 0 0 17.666667%;
+    max-width: 17.666667%; }
 
   .col-md-3 {
     -webkit-box-flex: 0;
@@ -16902,7 +17007,8 @@ body.dark-layout {
     text-align: left;
     padding: 8.7px 10px; }
 .pcoded[theme-layout="vertical"][vertical-nav-type="expanded"] .pcoded-navbar .pcoded-item .pcoded-hasmenu .pcoded-submenu li > a {
-  padding-left: 30px; }
+  padding-left: 30px; 
+}
 .pcoded[theme-layout="vertical"] .pcoded-navbar .pcoded-item .pcoded-hasmenu .pcoded-submenu {
   width: 100%;
   list-style: outside none none;
@@ -17377,7 +17483,8 @@ body.dark-layout {
   margin-left: 0; }
 .pcoded[theme-layout="vertical"][vertical-placement="left"][vertical-nav-type="offcanvas"][vertical-effect="shrink"] .pcoded-navbar {
   width: 235px;
-  margin-left: -235px; }
+  margin-left: -235px; 
+}
 .pcoded[theme-layout="vertical"][vertical-placement="left"][vertical-nav-type="offcanvas"][vertical-effect="shrink"] .pcoded-content {
   margin-left: 0; }
 .pcoded[theme-layout="vertical"][vertical-placement="right"][vertical-nav-type="offcanvas"][vertical-effect="shrink"] .pcoded-header .pcoded-left-header {

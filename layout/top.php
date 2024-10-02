@@ -21,7 +21,8 @@
 	<!-- Google font-->
 	<!-- <link href="../../../../css.css?family=Mada:300,400,500,600,700" rel="stylesheet"> -->
 	<!-- Required Fremwork -->
-	<link rel="stylesheet" type="text/css" href="/prosperityph/admin_template/bower_components/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/Portal/admin_template/bower_components/bootstrap/css/bootstrap.min.css">
+	<!-- <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"> -->
 	<!-- themify-icons line icon -->
 	<link rel="stylesheet" type="text/css" href="/Portal/admin_template/assets/icon/themify-icons/themify-icons.css">
 	<!-- Material Design Icon -->
@@ -99,13 +100,19 @@
 	<!-- Pre-loader end -->
 	<!-- Menu header start -->
 	<div id="pcoded" class="pcoded" vertical-nav-type="offcanvas">
-		<div class="pcoded-overlay-box"></div>
+		<div class="pcoded-overlay-box">
+			<?php if (!empty($sidenav)) { ?>
+								<li>
+									<div class="sidebar_toggle"><a href="javascript:void(0)"><i class="ti-menu"></i></a></div>
+								</li>
+								<?php } ?>
+		</div>
 		<div class="pcoded-container navbar-wrapper">
 			<nav class="navbar header-navbar pcoded-header">
 				<div class="navbar-wrapper">
 					<div class="navbar-logo" data-navbar-theme="theme4">
 						<a class="mobile-menu" id="mobile-collapse" href="#!">
-							<i class="ti-menu"></i>
+							<i id="toggle-sidebar" class="ti-menu"></i>
 						</a>
 						<a href="/prosperityph">
 							<!-- <img class="img-fluid" src="/prosperityph/assets/image/prosperity_logo.png" width="20%" alt="Theme-Logo"> -->
@@ -118,11 +125,7 @@
 					<div class="navbar-container container-fluid">
 						<div>
 							<ul class="nav-left">
-								<?php if (!empty($sidenav)) { ?>
-								<li>
-									<div class="sidebar_toggle"><a href="javascript:void(0)"><i class="ti-menu"></i></a></div>
-								</li>
-								<?php } ?>
+								
 								<!-- <li>
 									<a href="#!" onclick="javascript:toggleFullScreen()">
 										<i class="ti-fullscreen"></i>
