@@ -15,7 +15,7 @@ class Portal
         $conn = self::getDatabaseConnection('port');
 
         if ($conn) {
-            $stmt = $conn->prepare("SELECT * FROM tbl_memo WHERE LEFT(memo_date, 4) = ? ORDER BY memo_date DESC");
+            $stmt = $conn->prepare("SELECT * FROM tbl_memo WHERE LEFT(memo_date, 4) = ? ORDER BY memo_date DESC LIMIT 3");
             $stmt->execute([$Year]);
 
             return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
@@ -35,7 +35,7 @@ class Portal
                 WHERE a.`la_status` NOT IN ('cancelled','draft','pending')
                 AND a.`la_start` >= ?
                 GROUP BY a.`la_empno`,a.`la_start`
-                ORDER BY a.`la_start` ASC");
+                ORDER BY a.`la_start` ASC LIMIT 3");
             $stmt->execute([$date]);
 
             return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
@@ -55,7 +55,7 @@ class Portal
                 AND a.`la_start` <= ?
                 AND a.`la_return` >= ?
                 GROUP BY a.`la_empno`,a.`la_start`
-                ORDER BY a.`la_start` ASC");
+                ORDER BY a.`la_start` ASC LIMIT 3");
             $stmt->execute([$date,$date]);
 
             return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
@@ -87,7 +87,7 @@ class Portal
                 WHERE c.`jrec_status` = 'Primary'
                 AND c.`jrec_type` = 'Primary'
                 AND a.`xintvw_lastday` >= ?
-                GROUP BY xintvw_empno");
+                GROUP BY xintvw_empno LIMIT 3");
             $stmt->execute([$date]);
 
             return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];

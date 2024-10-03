@@ -1,7 +1,7 @@
 /*RIGHT*/
 #memo ol{
-    overflow: auto;
-    height: 100px;
+    /*overflow: auto;*/
+    /*height: 100px;*/
     /*padding-left: 50px*/
 }
 #memo ol li{

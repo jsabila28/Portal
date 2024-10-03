@@ -45,7 +45,9 @@ ul {
     text-decoration: none; }
 
 p {
-  font-size: 14px; }
+  font-size: 12px !important;
+  font-weight: 500;
+  font-family: inherit; }
 
 .media-left {
   padding-right: 20px; 

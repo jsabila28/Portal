@@ -17,49 +17,35 @@ $resigning = Portal::GetResigning($date);
                   <li>
                     <a href="#dashboard">
                       <p>
-                        <img src="assets/img/atdmenu.png" width="25" height="25" style="margin-right: 20px;">ATD
+                        <img src="assets/img/atd.png" width="30" height="30" style="margin-right: 5px;">Authority to Deduct
                       </p>
                     </a>
                   </li>
                   <li>
                     <a href="#dashboard">
                       <p>
-                        <img src="assets/img/sign.png" width="25" height="25" style="margin-right: 20px;">Requisition and Purchasing
+                        <img src="assets/img/rps.png" width="30" height="30" style="margin-right: 5px;">Requisition and Purchasing
                       </p>
                     </a>
                   </li>
                   <li>
                     <a href="#dashboard">
                       <p>
-                        <img src="assets/img/ris.png" width="25" height="25" style="margin-right: 20px;">Requisition / Issue Slip
+                        <img src="assets/img/ris.png" width="30" height="30" style="margin-right: 5px;">Requisition / Issue Slip
                       </p>
                     </a>
                   </li>
                   <li>
                     <a href="#dashboard">
                       <p>
-                        <img src="assets/img/atd.png" width="25" height="25" style="margin-right: 20px;">ATD
+                        <img src="assets/img/jrs.png" width="30" height="30" style="margin-right: 5px;">Jewellery Requisition
                       </p>
                     </a>
                   </li>
                   <li>
                     <a href="#dashboard">
                       <p>
-                        <img src="assets/img/atd.png" width="25" height="25" style="margin-right: 20px;">ATD
-                      </p>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#dashboard">
-                      <p>
-                        <img src="assets/img/atd.png" width="25" height="25" style="margin-right: 20px;">ATD
-                      </p>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#dashboard">
-                      <p>
-                        <img src="assets/img/atd.png" width="25" height="25" style="margin-right: 20px;">ATD
+                        <img src="assets/img/abs.png" width="30" height="30" style="margin-right: 5px;">Annual Budget
                       </p>
                     </a>
                   </li>
@@ -78,7 +64,7 @@ $resigning = Portal::GetResigning($date);
             </div> -->
             <div class="col-md-3 col-md-offset-1" id="right-side">
                 <div class="user-card-block card">
-                    <div class="card-block" style="background-color: transparent; padding: 10px !important;">
+                    <div class="card-block" style="background-color: transparent; padding: 10px !important;overflow: auto !important;height: 100vh !important;">
                         <!-- MEMO -->
                         <?php require_once($main_root."/pages/memo.php"); ?>
                         <hr>
