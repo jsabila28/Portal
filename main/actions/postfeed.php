@@ -77,14 +77,28 @@ try {
             // Cardbox Item
             echo '<div class="cardbox-item">';
             // echo ''.$row['ann_content'];
-            echo '<img class="img-fluid" style="max-height: 500px !important;" src="assets/announcement/' . htmlspecialchars($row['ann_content']) . '">';
+            echo '<img class="img-fluid" style="max-height: 500px !important;cursor: pointer;" src="assets/announcement/' . htmlspecialchars($row['ann_content']) . '">';
             // echo "".$row['ann_content']."";
             echo '</div>'; // Close cardbox-item
             
             // Cardbox Base
             echo '<div class="cardbox-base">';
             echo '<ul>';
-            echo '<li><a id="react-button"><i class="ti-face-smile"></i></a></li>';
+            echo '<li>
+            <div class="reaction-container">
+            <a id="react-button" class="reaction-trigger"><i class="ti-face-smile"></i></a>
+            <div class="reaction-options">
+                <div class="reaction" data-reaction="like"><img width="50" height="50" src="https://i.pinimg.com/originals/fb/0e/29/fb0e291a63c613670dafb8bd2f75cc70.gif"></div>
+                <div class="reaction" data-reaction="like"><img width="50" height="60" src="https://i.pinimg.com/originals/58/91/52/58915204d17860c24d4c02be7425a830.gif"></div>
+                <div class="reaction" data-reaction="like"><img width="50" height="50" src="https://i.pinimg.com/originals/9c/97/2b/9c972b76ac2edb9baccb38292b9a3d11.gif"></div>
+                <div class="reaction" data-reaction="love"><img width="50" height="50" src="https://i.pinimg.com/originals/45/7d/c2/457dc257bc755c151547501e6cd4710f.gif"></div>
+                <div class="reaction" data-reaction="haha"><img width="50" height="50" src="https://i.pinimg.com/originals/b4/e2/58/b4e258aeea2d68f55d616a7422d7ffff.gif"></div>
+                <div class="reaction" data-reaction="wow"><img width="50" height="50" src="https://i.pinimg.com/originals/f0/34/70/f03470e0fcd40508faed5c6c16c7dc50.gif"></div>
+                <div class="reaction" data-reaction="sad"><img width="50" height="50" src="https://i.pinimg.com/originals/f3/e1/db/f3e1db8ea58558a810e8c880963b0734.gif"></div>
+                <div class="reaction" data-reaction="angry"><img width="50" height="50" src="https://i.pinimg.com/originals/61/50/bd/6150bd0fd8198bd2bc50d87f36a7148a.gif"></div>
+            </div>
+            </div>
+            </li>';
             echo '<li><a href="#"><img src="https://i.pinimg.com/564x/4a/e9/59/4ae959ce0a3f3ebdad4c64c62db42c13.jpg" class="img-fluid rounded-circle" alt="User"></a></li>';
             echo '<li><a href="#"><img src="https://i.pinimg.com/564x/f0/1b/91/f01b919c68c353f95d58b174761e5df5.jpg" class="img-fluid rounded-circle" alt="User"></a></li>';
             echo '<li><a href="#"><img src="https://i.pinimg.com/564x/dc/12/46/dc124679726a20dc2cad0aaefdfdb312.jpg" class="img-fluid rounded-circle" alt="User"></a></li>';
@@ -92,8 +106,8 @@ try {
             echo '<li><a><span>242</span></a></li>';
             echo '</ul>';
             echo '<ul class="float-right">';
-            echo '<li><a><i class="fa fa-comments"></i></a></li>';
-            echo '<li><a><em class="mr-5">46</em></a></li>';
+            // echo '<li><a><i class="fa fa-comments"></i></a></li>';
+            echo '<li><a><span class="mr-5">46 comments</span></a></li>';
             echo '</ul>';
             echo '</div>'; // Close cardbox-base
             

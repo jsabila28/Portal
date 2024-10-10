@@ -1814,6 +1814,9 @@
     padding-top: 5px;
     padding-bottom: 5px;
 }
+.m-widget4 .m-widget4__item:hover {
+    background-color: #c9c9c7;
+}
 
 .m-widget4.m-widget4--progress{
     /*height: 100px;*/
@@ -1856,23 +1859,23 @@
 }
 
 .m-widget4 .m-widget4__item .m-widget4__img.m-widget4__img--pic img {
-    width: 35px;
-    height: 35px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%
 }
 
 .m-widget4 .m-widget4__item .m-widget4__img.m-widget4__img--icon img {
-    width: 35px;
-    height: 35px;
+    width: 30px;
+    height: 30px;
 }
 
 .m-widget4 .m-widget4__item .m-widget4__info {
     display: table-cell;
     width: 100%;
-    padding-left: 1.2rem;
+    /*padding-left: 1.2rem;*/
     /*padding-right: 1.2rem;*/
-    font-size: 1rem;
-    vertical-align: middle
+    /*font-size: 1rem;*/
+    /*vertical-align: middle*/
 }
 
 .m-widget4 .m-widget4__item .m-widget4__info .m-widget4__text {
@@ -1882,7 +1885,7 @@
 
 .m-widget4 .m-widget4__item .m-widget4__info .m-widget4__title {
     font-size: 10px;
-    font-weight: 600;
+    font-weight: 400;
 }
 
 .m-widget4 .m-widget4__item .m-widget4__info .m-widget4__sub {
@@ -1913,15 +1916,17 @@
 }
 
 .m-widget4.m-widget4--progress .m-widget4__info {
-    width: 50%
+    width: 50%;
+    line-height: 1;
 }
 
 .m-widget4.m-widget4--progress .m-widget4__progress {
     display: table-cell;
     vertical-align: middle;
-    padding-left: 10px;
-    padding-right: 4rem;
-    width: 50%
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 100%;
+    line-height: 1;
 }
 
 .m-widget4.m-widget4--progress .m-widget4__progress .m-widget4__progress-wrapper .m-widget17__progress-number {

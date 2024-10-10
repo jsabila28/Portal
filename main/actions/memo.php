@@ -32,6 +32,8 @@ class Portal
                 ON a.`la_empno` = b.`bi_empno`
                 LEFT JOIN tbl201_jobrec c
                 ON c.`jrec_empno` = a.`la_empno`
+                LEFT JOIN tbl_department d
+                ON d.`Dept_Code` = c.`jrec_department`
                 WHERE a.`la_status` NOT IN ('cancelled','draft','pending')
                 AND a.`la_start` >= ?
                 GROUP BY a.`la_empno`,a.`la_start`
@@ -50,7 +52,9 @@ class Portal
                 LEFT JOIN tbl201_basicinfo b
                 ON a.`la_empno` = b.`bi_empno`
                 LEFT JOIN tbl201_jobrec c
-                ON c.`jrec_empno` = a.`la_empno`
+                ON c.`jrec_empno` = a.`la_empno` 
+                LEFT JOIN tbl_department d
+                ON d.`Dept_Code` = c.`jrec_department`
                 WHERE a.`la_status` NOT IN ('cancelled','draft','pending')
                 AND a.`la_start` <= ?
                 AND a.`la_return` >= ?
@@ -89,6 +93,23 @@ class Portal
                 AND a.`xintvw_lastday` >= ?
                 GROUP BY xintvw_empno LIMIT 3");
             $stmt->execute([$date]);
+
+            return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
+        }
+        return [];
+    }
+
+    public static function GetGovAnn($date) {
+        $conn = self::getDatabaseConnection('port');
+
+        if ($conn) {
+            $stmt = $conn->prepare("SELECT * FROM tbl_announcement
+                WHERE ann_date <= ?
+                AND ann_end >= ?
+                AND ann_status <> 'inactive'
+                AND ann_type = 'GOVERNMENT'
+                LIMIT 3");
+            $stmt->execute([$date,$date]);
 
             return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
         }

@@ -4,37 +4,37 @@
         <ul class="pcoded-item pcoded-left-item">
             <li class="">
                 <a href="maintenance">
-                    <span class="pcoded-micon"><i class="icofont icofont-cur-peso-minus"></i></span>
-                    <span class="pcoded-mtext">Authority to Deduct</span>
-                    <span class="pcoded-mcaret"></span>
+                    <span class="pcoded-micon"><img src="assets/img/atd.png" width="30" height="30" style="margin-right: 5px;">Authority to Deduct</span>
+                    <!-- <span class="pcoded-mtext">Authority to Deduct</span>
+                    <span class="pcoded-mcaret"></span> -->
                 </a>
             </li>
             <li class="">
                 <a href="maintenance">
-                    <span class="pcoded-micon"><i class="far fa-clock"></i></span>
-                    <span class="pcoded-mtext">Timekeeping</span>
-                    <span class="pcoded-mcaret"></span>
+                    <span class="pcoded-micon"><img src="assets/img/rps.png" width="30" height="30" style="margin-right: 5px;">Requisition and Purchasing</span>
+                    <!-- <span class="pcoded-mtext">Authority to Deduct</span>
+                    <span class="pcoded-mcaret"></span> -->
                 </a>
             </li>
             <li class="">
                 <a href="maintenance">
-                    <span class="pcoded-micon"><i class="fa fa-shopping-basket"></i></span>
-                    <span class="pcoded-mtext">RIS/RPS</span>
-                    <span class="pcoded-mcaret"></span>
+                    <span class="pcoded-micon"><img src="assets/img/ris.png" width="30" height="30" style="margin-right: 5px;">Requisition / Issue Slip</span>
+                    <!-- <span class="pcoded-mtext">Authority to Deduct</span>
+                    <span class="pcoded-mcaret"></span> -->
                 </a>
             </li>
             <li class="">
                 <a href="maintenance">
-                    <span class="pcoded-micon"><i class="fa fa-money"></i></span>
-                    <span class="pcoded-mtext">ABS</span>
-                    <span class="pcoded-mcaret"></span>
+                    <span class="pcoded-micon"><img src="assets/img/jrs.png" width="30" height="30" style="margin-right: 5px;">Jewellery Requisition</span>
+                    <!-- <span class="pcoded-mtext">Authority to Deduct</span>
+                    <span class="pcoded-mcaret"></span> -->
                 </a>
             </li>
             <li class="">
                 <a href="maintenance">
-                    <span class="pcoded-micon"><i class="fa fa-money"></i></span>
-                    <span class="pcoded-mtext">WFH</span>
-                    <span class="pcoded-mcaret"></span>
+                    <span class="pcoded-micon"><img src="assets/img/abs.png" width="30" height="30" style="margin-right: 5px;">Annual Budget</span>
+                    <!-- <span class="pcoded-mtext">Authority to Deduct</span>
+                    <span class="pcoded-mcaret"></span> -->
                 </a>
             </li>
         </ul>

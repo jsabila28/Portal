@@ -42,7 +42,7 @@
   margin-top: 10px;
   position: relative;
   font-size: 8px;
-  line-height: 0px;
+  line-height: 9px;
   width: 100%;
   counter-increment: memo-counter;
   
@@ -69,7 +69,7 @@
 }
 strong { 
     color: #292929; 
-    font-size: 8px;
+    font-size: 10px;
 }
 #memo ol.alternating-colors { 
   li:nth-child(odd):before { border-color: #0BAD02; }

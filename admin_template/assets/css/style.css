@@ -401,7 +401,7 @@ Card-Layout css start
   margin: 0 0 20px; }
 .typography small {
   margin-left: 10px;
-  font-weight: 600;
+  font-weight: 400;
   color: #777; }
 
 .card-block.list-tag ul li {
@@ -2026,7 +2026,8 @@ Gallery css start
   margin-bottom: -20px; }
 
 .thumbnail {
-  margin-bottom: 20px; }
+  /*margin-bottom: 20px; */
+}
   .thumbnail .thumb {
     position: relative;
     display: block; }
@@ -5823,7 +5824,7 @@ table thead .border-bottom-info th {
 .main-menu {
   background: #2c3e50;
   float: left;
-  width: 235px;
+  width: auto;
   z-index: 99; }
   .main-menu .main-menu-header {
     align-items: center;
@@ -17299,7 +17300,8 @@ body.dark-layout {
   right: unset; }
 .pcoded[theme-layout="vertical"][vertical-nav-type="expanded"] .pcoded-header .pcoded-left-header,
 .pcoded[theme-layout="vertical"][vertical-nav-type="expanded"] .pcoded-navbar {
-  width: 235px; }
+  width: 300px; 
+}
 .pcoded[theme-layout="vertical"][vertical-placement="left"][vertical-nav-type="expanded"][vertical-effect="push"] .pcoded-header .pcoded-right-header {
   margin-left: 235px; }
 .pcoded[theme-layout="vertical"][vertical-placement="left"][vertical-nav-type="expanded"][vertical-effect="push"] .pcoded-header.iscollapsed .pcoded-right-header {

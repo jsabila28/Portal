@@ -16,8 +16,8 @@ $resigning = Portal::GetResigning($date);
                   foreach ($memos as $memo) {
         ?>
         <li>
-          <strong><?=$memo['memo_subject'];?> <label class="badge badge-danger" style="float: right;">unread</label></strong>
-          <p><?= date("F j, Y", strtotime($memo['memo_date'])) ?> | <?=$memo['memo_no'];?></p>
+          <strong><?=$memo['memo_subject'];?> <label class="badge badge-danger" style="float: right;">unread</label></strong><br>
+          <small><?= date("F j, Y", strtotime($memo['memo_date'])) ?> | <?=$memo['memo_no'];?></small>
         </li>
         <?php } } ?>
     </ol>

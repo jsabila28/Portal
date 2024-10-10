@@ -18,16 +18,16 @@
                                 </span>
                                 <br>
                                 <span class="m-widget4__sub">
-                                    <strong class="text-muted"><?=$ol['jrec_department']?></strong>
+                                    <strong class="text-muted"><?=$ol['Dept_Name']?></strong>
                                 </span>
                             </div>
                             <div class="m-widget4__progress">
                                 <div class="m-widget4__progress-wrapper">
                                     <span class="m-widget17__progress-number">
-                                       <strong>start: <?= date("F j, Y", strtotime($ol['la_start'])) ?></strong>
+                                       <strong>start: <?= date("M d, Y", strtotime($ol['la_start'])) ?></strong>
                                     </span><br>
                                     <span class="m-widget17__progress-label">
-                                       <strong>return: <?= date("F j, Y", strtotime($ol['la_return'])) ?></strong>
+                                       <strong>return: <?= date("M d, Y", strtotime($ol['la_return'])) ?></strong>
                                     </span>
                                 </div>
                             </div>
@@ -50,16 +50,16 @@
                                 </span>
                                 <br>
                                 <span class="m-widget4__sub">
-                                    <strong class="text-muted"><?=$lv['jrec_department']?></strong>
+                                    <strong class="text-muted"><?=$lv['Dept_Name']?></strong>
                                 </span>
                             </div>
                             <div class="m-widget4__progress">
                                 <div class="m-widget4__progress-wrapper">
                                     <span class="m-widget17__progress-number">
-                                       <strong>start: <?= date("F j, Y", strtotime($lv['la_start'])) ?></strong>
+                                       <strong>start: <?= date("M d, Y", strtotime($lv['la_start'])) ?></strong>
                                     </span><br>
                                     <span class="m-widget17__progress-label">
-                                       <strong>return: <?= date("F j, Y", strtotime($lv['la_return'])) ?></strong>
+                                       <strong>return: <?= date("M d, Y", strtotime($lv['la_return'])) ?></strong>
                                     </span>
                                 </div>
                             </div>
@@ -68,8 +68,24 @@
                             </div>
                         </div>
                         <?php }} ?>
+                        <button class="view-more-btn">View More</button>
                     </div>
                 </div>
             </div>
         </div>
 </div>
+<script>
+    document.querySelectorAll('.view-more-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const empId = this.getAttribute('data-id');
+            const detailsDiv = document.getElementById(`details-${empId}`);
+            if (detailsDiv.style.display === "none" || detailsDiv.style.display === "") {
+                detailsDiv.style.display = "block";
+                this.textContent = "View Less";
+            } else {
+                detailsDiv.style.display = "none";
+                this.textContent = "View More";
+            }
+        });
+    });
+</script>
