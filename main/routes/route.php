@@ -9,6 +9,8 @@ $routes = [
 	'/getUser' => 'main/actions/get_user.php',
 	'/signOut' => 'main/actions/logout.php',
 
+	'/reaction' => 'main/actions/save_reaction.php',
+
 	// DASHBOARD
 	'/holiday' => 'main/actions/holiday.php',
 	'/post' => 'main/actions/postfeed.php',

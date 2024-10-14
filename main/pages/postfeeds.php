@@ -29,6 +29,7 @@
                                                         <img class="profile-pic" src="https://e-classtngcacademy.s3.ap-southeast-1.amazonaws.com/e-class/Thumbnail/img/<?= $empno ?>.JPG">
                                                         <div class="user-info"> 
                                                             <div class="full-name"><?php echo $username; ?></div> 
+                                                            <input type="hidden" name="posted-by" value="<?= $user_id ?>">
                                                             <div class="post-audience"> 
                                                                 <div class="friends-icon"></div> 
                                                                 <span class="audience-text">Only Me</span> 
@@ -52,17 +53,17 @@
                                                                     <img src="assets/img/upload.png" width="100" height="100">
                                                                 </div> -->
                                                             </div>
-                                                            <input type="file" id="file-input" style="display: none;" onchange="updateFileContent()">
+                                                            <input type="file" id="file-input" name="post-content" style="display: none;" onchange="updateFileContent()">
                                                         </div>
                                                         <div class="add-to-your-post"> 
                                                             <p class="add-to-post-text">Add to your post</p> 
                                                             <div class="add-to-post-icons"> 
                                                                 <div class="photo-video" id="showIcon" onclick="toggleDiv()"></div> 
-                                                                <div class="tag-people"></div> 
-                                                                <div class="feeling-activity"></div> 
-                                                                <div class="check-in"></div> 
-                                                                <div class="gif"></div> 
-                                                                <div class="live-video"></div> 
+                                                                <!-- <div class="tag-people"></div>  -->
+                                                                <!-- <div class="feeling-activity"></div>  -->
+                                                                <!-- <div class="check-in"></div>  -->
+                                                                <!-- <div class="gif"></div>  -->
+                                                                <!-- <div class="live-video"></div>  -->
                                                             </div> 
                                                         </div> 
                                                         <button class="post-btn" disabled>Post</button> 
@@ -94,7 +95,7 @@
                                                             </div> 
                                                             <div class="audience-option-right"> 
                                                                 <div class="radio-btn"> 
-                                                                    <input type="radio" name="audience-option-radio" 
+                                                                    <input type="radio" name="audience" 
                                                                         class="audience-option-radio"> 
                                                                 </div> 
                                                             </div> 
@@ -110,7 +111,7 @@
                                                             </div> 
                                                             <div class="audience-option-right"> 
                                                                 <div class="radio-btn"> 
-                                                                    <input type="radio" name="audience-option-radio" 
+                                                                    <input type="radio" name="audience" 
                                                                         class="audience-option-radio"> 
                                                                 </div> 
                                                             </div> 
@@ -126,7 +127,7 @@
                                                             </div> 
                                                             <div class="audience-option-right"> 
                                                                 <div class="radio-btn"> 
-                                                                    <input type="radio" name="audience-option-radio" 
+                                                                    <input type="radio" name="audience" 
                                                                         class="audience-option-radio"> 
                                                                 </div> 
                                                             </div> 
@@ -144,7 +145,7 @@
                                                             <div class="audience-option-right"> 
                                                                 <div class="radio-btn"> 
                                                                     <input type="radio" 
-                                                                        name="audience-option-radio" 
+                                                                        name="audience" 
                                                                         class="audience-option-radio"> 
                                                                 </div> 
                                                             </div> 
@@ -159,7 +160,7 @@
                                                             <div class="audience-option-right"> 
                                                                 <div class="radio-btn"> 
                                                                     <input type="radio" 
-                                                                        name="audience-option-radio" 
+                                                                        name="audience" 
                                                                         class="audience-option-radio"> 
                                                                 </div> 
                                                             </div> 
@@ -176,7 +177,7 @@
                                                             <div class="audience-option-right"> 
                                                                 <div class="radio-btn"> 
                                                                     <input type="radio" 
-                                                                        name="audience-option-radio" 
+                                                                        name="audience" 
                                                                         class="audience-option-radio"> 
                                                                 </div> 
                                                             </div> 

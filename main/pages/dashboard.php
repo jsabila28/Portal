@@ -54,7 +54,7 @@ $government = Portal::GetGovAnn($date);
             </div>
             <!-- <div class="col-xm-1">
             </div> -->
-            <div class="col-md-5 col-md-offset-2" id="center">
+            <div class="col-md-5" id="center">
                 <div class="card">
                     <div class="card-block">
                         <?php require_once($main_root."/pages/postfeeds.php"); ?>
@@ -115,26 +115,33 @@ $government = Portal::GetGovAnn($date);
     }
 </script>
 
-<script type="text/javascript">
-// document.querySelectorAll('.reaction').forEach(item => {
-//     item.addEventListener('click', function() {
-//         const reaction = this.getAttribute('data-reaction');
-//         alert('You reacted with: ' + reaction);
-//     });
-// });
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Toggle reaction options on click of the reaction trigger
+        $('.reaction-trigger').on('click', function () {
+            $(this).siblings('.reaction-options').toggle();
+        });
 
-$(document).ready(function() {
-    $('#react-button').on('click', function(e) {
-        e.stopPropagation(); 
-        $('.reaction-options').toggle();
-    });
+        // Handle reaction click
+        $('.reaction').on('click', function () {
+            var reactionType = $(this).data('reaction');
+            var postBy = $(this).data('posted-by');
+            var postId = $(this).closest('.reaction-container').find('.reaction-trigger').attr('id').split('-')[2]; // Get post ID from the button ID
 
-    $(document).on('click', function() {
-        $('.reaction-options').hide();
+            // Send AJAX request to store reaction
+            $.ajax({
+                url: 'reaction', // Create this PHP file to handle reactions
+                method: 'POST',
+                data: { post_id: postId, reaction: reactionType, posted-by: postBy },
+                success: function (response) {
+                    // Update the UI dynamically after the server responds
+                    alert('Reaction submitted: ' + reactionType);
+                },
+                error: function (xhr, status, error) {
+                    console.error(error);
+                }
+            });
+        });
     });
-
-    $('.reaction-options').on('click', function(e) {
-        e.stopPropagation();
-    });
-});
 </script>
