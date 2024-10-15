@@ -17,7 +17,7 @@ try {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $postId = $_POST['post_id'];
         $reaction = $_POST['reaction'];
-        $postBy = $_POST['posted-by'];
+        // $postBy = $_POST['posted-by'];
 
         $stmt = $pdo->prepare("INSERT INTO tbl_reaction (post_id, reaction_type, reaction_by) 
                        VALUES (:post_id, :reaction_type, :reaction_by)

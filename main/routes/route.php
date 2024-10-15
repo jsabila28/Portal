@@ -10,6 +10,7 @@ $routes = [
 	'/signOut' => 'main/actions/logout.php',
 
 	'/reaction' => 'main/actions/save_reaction.php',
+	'/postnews' => 'main/actions/post_news.php',
 
 	// DASHBOARD
 	'/holiday' => 'main/actions/holiday.php',

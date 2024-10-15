@@ -41,11 +41,9 @@
                                                         <textarea name="post-desc" id="post-desc" 
                                                                 cols="30" rows="5" 
                                                             placeholder="What's on you mind ?"></textarea> 
-                                                        <!-- <div class="emoji-picker"> 
-                                                            <emoji-picker class="light"></emoji-picker> 
-                                                            <i class="emoji" aria-label="Insert an emoji" 
-                                                            role="img"></i> 
-                                                        </div> -->
+                                                        <div class="emoji-picker"> 
+                                                           <img height="38" alt="" class="xz74otr" referrerpolicy="origin-when-cross-origin" src="assets/img/foto.png">
+                                                        </div>
                                                         <div id="add-photo-video" class="hide-image">
                                                             <div class="image-video" id="image-video" style="background-image: url('assets/img/upload.png');" onclick="document.getElementById('file-input').click();">
                                                                 <i id="close" onclick="toggleDiv()" style="cursor: pointer;" class="fa fa-times-circle"></i>
@@ -95,7 +93,7 @@
                                                             </div> 
                                                             <div class="audience-option-right"> 
                                                                 <div class="radio-btn"> 
-                                                                    <input type="radio" name="audience" 
+                                                                    <input type="radio" value="All" name="audience" 
                                                                         class="audience-option-radio"> 
                                                                 </div> 
                                                             </div> 
@@ -111,7 +109,7 @@
                                                             </div> 
                                                             <div class="audience-option-right"> 
                                                                 <div class="radio-btn"> 
-                                                                    <input type="radio" name="audience" 
+                                                                    <input type="radio" value="TNGC" name="audience" 
                                                                         class="audience-option-radio"> 
                                                                 </div> 
                                                             </div> 
@@ -127,7 +125,7 @@
                                                             </div> 
                                                             <div class="audience-option-right"> 
                                                                 <div class="radio-btn"> 
-                                                                    <input type="radio" name="audience" 
+                                                                    <input type="radio" value="SJI" name="audience" 
                                                                         class="audience-option-radio"> 
                                                                 </div> 
                                                             </div> 
@@ -144,7 +142,7 @@
                                                             </div> 
                                                             <div class="audience-option-right"> 
                                                                 <div class="radio-btn"> 
-                                                                    <input type="radio" 
+                                                                    <input type="radio" value="DI" 
                                                                         name="audience" 
                                                                         class="audience-option-radio"> 
                                                                 </div> 
@@ -159,7 +157,7 @@
                                                             </div> 
                                                             <div class="audience-option-right"> 
                                                                 <div class="radio-btn"> 
-                                                                    <input type="radio" 
+                                                                    <input type="radio" value="QST" 
                                                                         name="audience" 
                                                                         class="audience-option-radio"> 
                                                                 </div> 
@@ -176,7 +174,7 @@
                                                             </div> 
                                                             <div class="audience-option-right"> 
                                                                 <div class="radio-btn"> 
-                                                                    <input type="radio" 
+                                                                    <input type="radio" value="Only Me" 
                                                                         name="audience" 
                                                                         class="audience-option-radio"> 
                                                                 </div> 

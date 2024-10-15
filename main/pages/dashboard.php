@@ -57,6 +57,7 @@ $government = Portal::GetGovAnn($date);
             <div class="col-md-5" id="center">
                 <div class="card">
                     <div class="card-block">
+                        <input type="hidden" name="reacted_by" value="<?=$user_id?>">
                         <?php require_once($main_root."/pages/postfeeds.php"); ?>
                     </div>
                 </div>
@@ -118,30 +119,80 @@ $government = Portal::GetGovAnn($date);
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function () {
-        // Toggle reaction options on click of the reaction trigger
         $('.reaction-trigger').on('click', function () {
             $(this).siblings('.reaction-options').toggle();
         });
 
-        // Handle reaction click
         $('.reaction').on('click', function () {
             var reactionType = $(this).data('reaction');
-            var postBy = $(this).data('posted-by');
-            var postId = $(this).closest('.reaction-container').find('.reaction-trigger').attr('id').split('-')[2]; // Get post ID from the button ID
+            var postBy = $(this).data('reacted_by');
+            var postId = $(this).closest('.reaction-container').find('.reaction-trigger').attr('id').split('-')[2];
 
-            // Send AJAX request to store reaction
             $.ajax({
-                url: 'reaction', // Create this PHP file to handle reactions
+                url: 'reaction',
                 method: 'POST',
-                data: { post_id: postId, reaction: reactionType, posted-by: postBy },
+                data: { post_id: postId, reaction: reactionType, reacted_by: postBy },
                 success: function (response) {
-                    // Update the UI dynamically after the server responds
                     alert('Reaction submitted: ' + reactionType);
                 },
                 error: function (xhr, status, error) {
                     console.error(error);
                 }
             });
+        });
+    });
+
+    $(document).ready(function() {
+        $('.post-btn').click(function(e) {
+            e.preventDefault(); 
+
+            var postedBy = $('input[name="posted-by"]').val();
+            var postDesc = $('#post-desc').val();
+            var audience = $('input[name="audience"]:checked').val();
+            var postContent = new FormData();
+
+            postContent.append('postedBy', postedBy);
+            postContent.append('postDesc', postDesc);
+            postContent.append('audience', audience);
+            
+            var fileInput = $('#file-input')[0].files[0];
+            if (fileInput) {
+                postContent.append('file', fileInput);
+            }
+
+            $.ajax({
+                url: 'postnews',
+                type: 'POST',
+                data: postContent,
+                processData: false, 
+                contentType: false,
+                success: function(response) {
+                    alert(response);
+                    $('#default-Modal').modal('hide');
+                     resetModalForm();
+                },
+                error: function(xhr, status, error) {
+                    console.error(error);
+                }
+            });
+        });
+
+        function resetModalForm() {
+            $('#post-desc').val('');  // Clear the textarea
+            $('input[name="audience"]').prop('checked', false);  // Uncheck audience radio buttons
+            $('#file-input').val('');  // Clear file input
+            $('#image-video').css('background-image', 'url(assets/img/upload.png)');  // Reset image preview
+            $('.post-btn').prop('disabled', true);  // Disable post button again
+            $('#add-photo-video').addClass('hide-image');  // Hide the photo/video section
+        }
+
+
+        $('#post-desc').on('input', function() {
+            if ($(this).val().trim() !== '') {
+                $('.post-btn').prop('disabled', false);
+            } else {
+                $('.post-btn').prop('disabled', true);
+            }
         });
     });
 </script>
