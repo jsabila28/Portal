@@ -13,47 +13,47 @@ $government = Portal::GetGovAnn($date);
 <div class="page-wrapper">
     <div class="page-body">
         <div class="row">
-            <div class="col-md-2" id="left-side">
+            <div class="col-md-3" id="left-side">
                 <ul class="sidebar-menu">
                   <li>
-                    <a href="/Portal/leave/">
+                    <a href="/Portal/ATD/">
                       <p>
-                        <img src="assets/img/atd.png" width="30" height="30" style="margin-right: 5px;">Authority to Deduct
+                        <img src="assets/img/atd.png" width="40" height="40" style="margin-right: 5px;">Authority to Deduct
                       </p>
                     </a>
                   </li>
                   <li>
                     <a href="#dashboard">
                       <p>
-                        <img src="assets/img/rps.png" width="30" height="30" style="margin-right: 5px;">Requisition and Purchasing
+                        <img src="assets/img/rps.png" width="40" height="40" style="margin-right: 5px;">Requisition and Purchasing
                       </p>
                     </a>
                   </li>
                   <li>
                     <a href="#dashboard">
                       <p>
-                        <img src="assets/img/ris.png" width="30" height="30" style="margin-right: 5px;">Requisition / Issue Slip
+                        <img src="assets/img/ris.png" width="40" height="40" style="margin-right: 5px;">Requisition / Issue Slip
                       </p>
                     </a>
                   </li>
                   <li>
                     <a href="#dashboard">
                       <p>
-                        <img src="assets/img/jrs.png" width="30" height="30" style="margin-right: 5px;">Jewellery Requisition
+                        <img src="assets/img/jrs.png" width="40" height="40" style="margin-right: 5px;">Jewellery Requisition
                       </p>
                     </a>
                   </li>
                   <li>
                     <a href="#dashboard">
                       <p>
-                        <img src="assets/img/abs.png" width="30" height="30" style="margin-right: 5px;">Annual Budget
+                        <img src="assets/img/abs.png" width="40" height="40" style="margin-right: 5px;">Annual Budget
                       </p>
                     </a>
                   </li>
                 </ul>
             </div>
-            <!-- <div class="col-xm-1">
-            </div> -->
+            <div class="col-xm-3">
+            </div>
             <div class="col-md-5" id="center">
                 <div class="card">
                     <div class="card-block">
@@ -62,9 +62,9 @@ $government = Portal::GetGovAnn($date);
                     </div>
                 </div>
             </div>
-            <!-- <div class="col-xm-1">
-            </div> -->
-            <div class="col-md-3 col-md-offset-1" id="right-side">
+            <div class="col-xm-1">
+            </div>
+            <div class="col-md-3" id="right-side">
                 <div class="user-card-block card">
                     <div class="card-block" id="right-bar">
                         <!-- GOVERNMENT -->

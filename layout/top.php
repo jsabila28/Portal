@@ -21,6 +21,8 @@
 	<!-- Google font-->
 	<!-- <link href="../../../../css.css?family=Mada:300,400,500,600,700" rel="stylesheet"> -->
 	<!-- Required Fremwork -->
+	<!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> -->
+
 	<link rel="stylesheet" type="text/css" href="/Portal/admin_template/bower_components/bootstrap/css/bootstrap.min.css">
 	<!-- <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"> -->
 	<!-- themify-icons line icon -->
@@ -91,8 +93,15 @@
     <!-- Bootstrap Multiselect JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.min.js"></script>
 
-    <!-- FullCalendar CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.6/main.min.css" rel="stylesheet" />
+    <!-- FullCalendar Core and Styles -->
+	<link href="https://cdn.jsdelivr.net/npm/@fullcalendar/core/main.css" rel="stylesheet" />
+	<script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core/main.js"></script>
+	
+	<!-- FullCalendar Resource Timeline Plugin -->
+	<link href="https://cdn.jsdelivr.net/npm/@fullcalendar/resource-timeline/main.css" rel="stylesheet" />
+	<script src="https://cdn.jsdelivr.net/npm/@fullcalendar/resource-timeline/main.js"></script>
+
+
 
 </head>
 
@@ -138,6 +147,29 @@
         								<i style="font-size: 14px;" class="fa-solid fa-calendar-days"></i></button>
         							<ul class="show-notification">
 										<div id="calendar"></div>
+										<script>
+										document.addEventListener('DOMContentLoaded', function() {
+										  var calendarEl = document.getElementById('calendar');
+										
+										  var calendar = new FullCalendar.Calendar(calendarEl, {
+										    schedulerLicenseKey: 'GPL-My-Project-Is-Open-Source',
+										    plugins: ['resourceTimeline'],
+										    initialView: 'resourceTimelineDay',
+										    resources: [
+										      { id: 'a', title: 'Room A' },
+										      { id: 'b', title: 'Room B' },
+										      { id: 'c', title: 'Room C' }
+										    ],
+										    events: [
+										      { id: '1', resourceId: 'a', start: '2024-10-16T10:00:00', end: '2024-10-16T12:00:00', title: 'Event 1' },
+										      { id: '2', resourceId: 'b', start: '2024-10-16T13:00:00', end: '2024-10-16T15:00:00', title: 'Event 2' }
+										    ]
+										  });
+										
+										  calendar.render();
+										});
+
+										</script>
 									</ul>
     							</li>
     							<li class="header-notification" style="margin: 0px; padding-left: 0px !important;">
@@ -145,6 +177,7 @@
         								<i style="font-size: 14px;" class="fa-solid fa-bell"></i>
         							</button>
         							<ul class="show-notification">
+        								<div id="calendar"></div>
 										<li>
 											<h6>Notifications</h6>
 											<label class="label label-danger">New</label>
@@ -278,13 +311,13 @@
                                 		<img src="assets/img/4.png" width="40" height="40"><br>Leave
                                 	</div>
                                 </a>
-                            </div>
-                            <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
                                 		<img src="assets/img/break.png" width="40" height="40"><br>Break
                                 	</div>
                                 </a>
+                            </div>
+                            <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
                                 		<img src="assets/img/rest.png" width="40" height="40"><br>RestDay
@@ -295,8 +328,6 @@
                                 		<img src="assets/img/offset.png" width="40" height="40"><br>Offset
                                 	</div>
                                 </a>
-                            </div>
-                            <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
                                 		<img src="assets/img/OT.png" width="40" height="40"><br>OT
@@ -307,13 +338,13 @@
                                 		<img src="assets/img/sign.png" width="40" height="40"><br>Gatepass
                                 	</div>
                                 </a>
+                            </div>
+                            <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
                                 		<img src="assets/img/drd.png" width="40" height="40"><br>DRD
                                 	</div>
                                 </a>
-                            </div>
-                            <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
                                 		<img src="assets/img/dhd.png" width="40" height="40"><br>DHD
@@ -358,13 +389,13 @@
                                 		<img src="assets/img/pa.png" width="40" height="40"><br>PA
                                 	</div>
                                 </a>
-                            </div>
-                            <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
                                 		<img src="assets/img/hire.png" width="40" height="40"><br>Hiring
                                 	</div>
                                 </a>
+                            </div>
+                            <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
                                 		<img src="assets/img/report.png" width="40" height="40"><br>Reports
@@ -381,11 +412,11 @@
                                 <span>Systems</span>
                             </div>
                             <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
-                                <a class="media-left" href="#!" style="text-align: center;">
+                                <!-- <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
                                 		<img src="assets/img/atd.png" width="40" height="40"><br>ATD
                                 	</div>
-                                </a>
+                                </a> -->
                             </div>
                         </div>
                     </div>
@@ -398,4 +429,5 @@
 					<?php if (!empty($sidenav)) include_once($sidenav); ?>
 					<div class="pcoded-content">
 						<div class="pcoded-inner-content">
-							<div class="main-body"><!-- main-body -->
+							<!-- main-body -->
+							<div class="main-body">

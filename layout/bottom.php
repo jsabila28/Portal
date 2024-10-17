@@ -86,11 +86,25 @@
     <script src="/Portal/admin_template/bower_components/moment/js/moment.min.js"></script>
     <script type="text/javascript" src="/Portal/admin_template/assets/pages/form-validation/validate.js"></script>
 
+    <!-- data-table js -->
+    <script src="/Portal/admin_template/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="/Portal/admin_template/bower_components/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="/Portal/admin_template/assets/pages/data-table/js/jszip.min.js"></script>
+    <script src="/Portal/admin_template/assets/pages/data-table/js/pdfmake.min.js"></script>
+    <script src="/Portal/admin_template/assets/pages/data-table/js/vfs_fonts.js"></script>
+    <script src="/Portal/admin_template/assets/pages/data-table/extensions/colreorder/js/dataTables.colReorder.min.js"></script>
+    <script src="/Portal/admin_template/bower_components/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="/Portal/admin_template/bower_components/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="/Portal/admin_template/bower_components/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="/Portal/admin_template/bower_components/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="/Portal/admin_template/bower_components/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
+
     <!-- Handson table js -->
     <!-- <script type="text/javascript" src="/Portal/admin_template/bower_components/handsontable/js/handsontable.full.js"></script> -->
     <!-- Custom js -->
     <!-- <script type="text/javascript" src="/Portal/admin_template/assets/pages/handson-table/cell-features.js"></script> -->
     <script type="text/javascript" src="/Portal/admin_template/bower_components/jscolor/js/jscolor.js"></script>
+    <script src="/Portal/admin_template/assets/pages/data-table/extensions/colreorder/js/colreorder-custom.js"></script>
 
     <!-- <script src="/Portal/admin_template/assets/pages/data-table/extensions/buttons/js/extension-btns-custom.js"></script> -->
     <!-- <script type="text/javascript" src="/Portal/admin_template/assets/pages/handson-table/integration.js"></script> -->
@@ -106,7 +120,8 @@
     <!-- <script type="text/javascript" src="/Portal/admin_template/bower_components/handsontable/js/handsontable.full.js"></script> -->
     <!-- <script src="/Portal/assets/js/Portal.js"></script> -->
     <script src="/Portal/assets/js/post.js"></script>
-    <!-- <script src="fullcalendar/js/main.min.js"></script> -->
+    <script src="fullcalendar/js/main.min.js"></script>
+    <script src="assets/pages/jquery.filer/js/jquery.filer.min.js"></script>
     
 </body>
 

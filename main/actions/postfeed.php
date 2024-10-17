@@ -60,7 +60,7 @@ try {
             echo '<a href=""><img class="img-fluid rounded-circle" src="assets/image/img/'. htmlspecialchars($row['bi_empno']) .'.jpg'.'" onerror="this.onerror=null; this.src="https://i.pinimg.com/736x/6e/db/e7/6edbe770213e7d6885240b2c91e9dd86.jpg";"></a>';
             echo '</div>';
             echo '<div class="media-body">';
-            echo '<p class="m-0">'. htmlspecialchars($row['bi_empfname']) . ' '. htmlspecialchars($row['bi_emplname']).'</p>';
+            echo '<p class="m-0" style="font-weight: 500px;">'. htmlspecialchars($row['bi_empfname']) . ' '. htmlspecialchars($row['bi_emplname']).'</p>';
             echo '<small><span><i class="icon ion-md-pin"></i>' . date("F j, Y", strtotime($row['ann_date'])) . '</span></small>';
             echo '<small><span><i class="icon ion-md-time"></i>' . (new DateTime($row['ann_date']))->format("h:i A") . '</span></small>';
             echo '</div>'; // Close media-body
@@ -109,7 +109,7 @@ try {
             echo '</ul>';
             echo '<ul class="float-right">';
             // echo '<li><a><i class="fa fa-comments"></i></a></li>';
-            echo '<li><a><span class="mr-5">46 comments</span></a></li>';
+            echo '<li><a style="cursor: pointer;"><span class="mr-5">46 comments</span></a></li>';
             echo '</ul>';
             echo '</div>'; // Close cardbox-base
             

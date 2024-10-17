@@ -68,7 +68,6 @@
                             </div>
                         </div>
                         <?php }} ?>
-                        <button class="view-more-btn">View More</button>
                     </div>
                 </div>
             </div>

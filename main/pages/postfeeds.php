@@ -1,4 +1,4 @@
-<div id="memo" style="margin-bottom: 5px;"> 
+<div id="memo" style="margin-bottom: 5px; border-radius: 40px;"> 
     <div class="comment-wrapper">
         <div class="panel panel-info">
             <div >
@@ -8,7 +8,7 @@
                             <img src="https://e-classtngcacademy.s3.ap-southeast-1.amazonaws.com/e-class/Thumbnail/img/<?= $empno ?>.JPG" alt="" class="img-circle">
                         </a>
                         <div class="media-body">
-                           <button id="post-button" class="btn btn-mini btn-round" data-toggle="modal" data-target="#default-Modal" style="width: 90%; align-items: left;background-color:#b5b5b3;color:white;text-align: left;font-size: 12px;">Post Announcement or Celebration ?</button>
+                           <button id="post-button" class="btn btn-mini btn-round" data-toggle="modal" data-target="#default-Modal" style="width: 90%; align-items: left;background-color:#b5b5b3;color:white;text-align: left;font-size: 14px;">Post Announcement or Celebration ?</button>
                         </div>
                         <div class="modal fade" id="default-Modal" tabindex="-1" role="dialog">
                             <div class="modal-dialog" role="document">
@@ -40,10 +40,16 @@
                                                     <div class="post-content"> 
                                                         <textarea name="post-desc" id="post-desc" 
                                                                 cols="30" rows="5" 
-                                                            placeholder="What's on you mind ?"></textarea> 
-                                                        <div class="emoji-picker"> 
-                                                           <img height="38" alt="" class="xz74otr" referrerpolicy="origin-when-cross-origin" src="assets/img/foto.png">
-                                                        </div>
+                                                            placeholder="What's on you mind ?">   
+                                                        </textarea> 
+                                                        <!-- <div class="custom-pick">
+                                                            <div class="background-picker"> 
+                                                                <img height="38" alt="" class="xz74otr" referrerpolicy="origin-when-cross-origin" src="assets/img/foto.png">
+                                                            </div>
+                                                            <div class="emoji-picker"> 
+                                                                <img height="38" alt="" class="xz74otr" referrerpolicy="origin-when-cross-origin" src="assets/img/emoji.png">
+                                                            </div>
+                                                        </div> -->
                                                         <div id="add-photo-video" class="hide-image">
                                                             <div class="image-video" id="image-video" style="background-image: url('assets/img/upload.png');" onclick="document.getElementById('file-input').click();">
                                                                 <i id="close" onclick="toggleDiv()" style="cursor: pointer;" class="fa fa-times-circle"></i>
@@ -57,8 +63,8 @@
                                                             <p class="add-to-post-text">Add to your post</p> 
                                                             <div class="add-to-post-icons"> 
                                                                 <div class="photo-video" id="showIcon" onclick="toggleDiv()"></div> 
-                                                                <!-- <div class="tag-people"></div>  -->
-                                                                <!-- <div class="feeling-activity"></div>  -->
+                                                                <div class="tag-people"></div> 
+                                                                <div class="feeling-activity"></div> 
                                                                 <!-- <div class="check-in"></div>  -->
                                                                 <!-- <div class="gif"></div>  -->
                                                                 <!-- <div class="live-video"></div>  -->
@@ -73,13 +79,13 @@
                                                         <h6>Post Audience</h6> 
                                                     </header> 
                                                     <div class="post-audience-content"> 
-                                                        <p>Who can see your post?</p> 
-                                                        <p class="your-post-text">Your post will show up 
-                                                            in Feed, on your profile and in search results.</p> 
-                                                        <p> Your default audience is set to Only me, 
+                                                        <h6>Who can see your post?</h6> 
+                                                        <h6 class="your-post-text">Your post will show up 
+                                                            in Feed, on your profile and in search results.</h6> 
+                                                        <h6> Your default audience is set to Only me, 
                                                             but you can change the<br /> audience 
                                                             of this specific 
-                                                            post.</p> 
+                                                            post.</h6> 
                                                     </div> 
                                                     <div class="post-audience-options"> 
                                                         <div class="audience-option"> 
@@ -180,6 +186,10 @@
                                                                 </div> 
                                                             </div> 
                                                         </div>
+                                                    </div>
+                                                    <div class="post-audience-options" style="text-align: right;">
+                                                        <a id="cancel" style="text-decoration: none; font-size: 12px;margin-right: 5px;">Cancel</a>
+                                                        <button class="btn btn-primary btn-mini" style="font-size: 12px;">Done</button>
                                                     </div> 
                                                 </section> 
                                             </div> 

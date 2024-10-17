@@ -143,7 +143,7 @@ https://static.xx.fbcdn.net/rsrc.php/v3/yY/r/fCbUcoRfiez.png);
 
 textarea {
     font-family: 'Inter', sans-serif;
-    font-size: 12px;
+    font-size: 20px;
     width: 100%;
     border: none;
     resize: none;
@@ -151,11 +151,20 @@ textarea {
     line-height: 1rem;
     height: 50px;
 }
-
-.emoji-picker {
-    text-align: right;
+.custom-pick{
+    display: flex;
     margin-bottom: 1rem;
     position: relative;
+    justify-content: space-between;
+}
+.custom-pick .background-picker {
+    text-align: left;
+}
+
+.custom-pick .emoji-picker {
+    text-align: right;
+    /*margin-bottom: 1rem;*/
+    /*position: relative;*/
 }
 
 emoji-picker {

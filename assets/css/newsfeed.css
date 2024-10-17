@@ -89,28 +89,28 @@
     width: 35px !important;
     height: 35px !important;
     padding: 2px;
-    border: 2px solid #f4f4f4;
+    /*border: 2px solid #f4f4f4;*/
 }
 
 .media-body {
     /*-ms-flex: 1;*/
     flex: 1;
     /*padding: .4rem !important;*/
-    line-height: 0;
+    line-height: 1;
     min-height: 30px;
     max-height: 50px;
 }
 
 .media-body p {
     /*font-family: 'Rokkitt', serif;*/
-    font-weight: 200 !important;
-    font-size: 12px;
+    font-weight: 500 !important;
+    font-size: 11px;
     color: #000000;
 }
 .media-body p span{
     /*font-family: 'Rokkitt', serif;*/
     /*font-weight: 200 !important;*/
-    font-size: 11px;
+    font-size: 12px;
     color: #000000;
 }
 .media-body small span {
