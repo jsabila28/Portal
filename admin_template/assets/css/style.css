@@ -132,32 +132,55 @@ Main-body css start
 Card-Layout css start
 ==========================  **/
 /* Sidebar Menu Styling */
+
+/* Sidebar menu styles */
 .sidebar-menu {
-  list-style-type: none; /* Remove bullet points */
+  list-style-type: none;
   padding: 0;
   margin-top: 65px;
+  height: 100%; /* Allow the sidebar to take the full height */
+  overflow-y: hidden; /* Enable vertical scrolling */
+}
+
+.sidebar-menu > li {
+  margin-bottom: 10px;
+}
+
+.sidebar-menu:hover{
+  overflow-y: auto;
+}
+
+/* Submenu: hidden initially, displayed as a block element when shown */
+.submenu {
+  display: none; /* Hidden initially */
+  padding-left: 20px;
+  background-color: transparent;
+}
+
+/* Add spacing between submenu items */
+.submenu li {
+  margin-bottom: 5px;
 }
 
 .sidebar-menu li {
   padding: 5px 5px;
   border-radius: 5%;
-  height: 40px;
+  /*height: 40px;*/
   margin-bottom: 5px;
 }
 
 .sidebar-menu li a {
-  color:#292828; /* Menu item text color */
-  text-decoration: none; /* Remove underline */
+  color: #292828;
+  text-decoration: none;
   display: flex;
   align-items: center;
   font-size: 14px !important;
-  font-weight: 600px !important;
-  display: flex;
-  align-items: center;
+  font-weight: 600 !important;
+  height: 40px;
 }
 
 .sidebar-menu li:hover {
-  background-color: #e3e1e1; /* Hover effect */
+  background-color: #e3e1e1;
   color: black !important;
   border-radius: 5%;
 }
@@ -167,8 +190,24 @@ Card-Layout css start
 }
 
 .sidebar-menu li a i {
-  margin-right: 10px; /* Space between icon and text */
+  margin-right: 10px;
 }
+
+/* Fixed position sidebar with vertical scroll enabled */
+#left-side {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh; /* Full viewport height */
+  width: 100%;
+  overflow-y: hidden; /* Enable vertical scrolling */
+  background-color: transparent;
+}
+
+#left-side:hover {
+  overflow-y: auto;
+}
+
 #center{
   margin-left: 400px; /* Equal to the width of the left-side div */
   /*margin-right: 200px;  Equal to the width of the right-side div */
@@ -183,15 +222,6 @@ Card-Layout css start
   top: 60px;
   height: 100vh; /* Full height */
   overflow-y: hidden; 
-}
-#left-side{
-  position: fixed;
-  left: 0;
-  height: 100vh; 
-  overflow: hidden; 
-  background-color: transparent;
-  top: 0;
-  width: 100%;
 }
 /* Base styles for desktop (as above) */
 
@@ -3656,7 +3686,7 @@ a[data-lightbox="example-set"] .img-fluid {
     -webkit-flex: 0 0 16.666667%;
     -ms-flex: 0 0 16.666667%;
     flex: 0 0 17.666667%;
-    max-width: 17.666667%; }
+    max-width: 19.666667%; }
 
   .col-md-3 {
     -webkit-box-flex: 0;

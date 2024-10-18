@@ -82,53 +82,39 @@
                                 <!-- Nav tabs -->
                                 <ul class="nav nav-tabs md-tabs" role="tablist">
                                     <li class="nav-item" style="width: 100px !important;">
-                                        <a class="nav-link active" data-toggle="tab" href="#home3" role="tab">Pending</a>
+                                        <a class="nav-link active" data-toggle="tab" href="#list" role="tab">Maintenance List</a>
                                         <div class="slide" style="width: 100px !important;"></div>
                                     </li>
                                     <li class="nav-item" style="width: 100px !important;">
-                                        <a class="nav-link" data-toggle="tab" href="#profile3" role="tab">Checked</a>
+                                        <a class="nav-link" data-toggle="tab" href="#type" role="tab">ATD Type</a>
                                         <div class="slide" style="width: 100px !important;"></div>
                                     </li>
                                     <li class="nav-item" style="width: 100px !important;">
-                                        <a class="nav-link" data-toggle="tab" href="#messages3" role="tab">Reviewed</a>
+                                        <a class="nav-link" data-toggle="tab" href="#category" role="tab">ATD Category</a>
                                         <div class="slide" style="width: 100px !important;"></div>
                                     </li>
                                     <li class="nav-item" style="width: 100px !important;">
-                                        <a class="nav-link" data-toggle="tab" href="#settings3" role="tab">Approved</a>
-                                        <div class="slide" style="width: 100px !important;"></div>
-                                    </li>
-                                    <li class="nav-item" style="width: 100px !important;">
-                                        <a class="nav-link" data-toggle="tab" href="#settings3" role="tab">Confirmed</a>
-                                        <div class="slide" style="width: 100px !important;"></div>
-                                    </li>
-                                    <li class="nav-item" style="width: 100px !important;">
-                                        <a class="nav-link" data-toggle="tab" href="#settings3" role="tab">Verified</a>
-                                        <div class="slide" style="width: 100px !important;"></div>
-                                    </li>
-                                    <li class="nav-item" style="width: 100px !important;">
-                                        <a class="nav-link" data-toggle="tab" href="#settings3" role="tab">Clarification</a>
+                                        <a class="nav-link" data-toggle="tab" href="#item" role="tab">ATD Item</a>
                                         <div class="slide" style="width: 100px !important;"></div>
                                     </li>
                                 </ul>
                                 <!-- Tab panes -->
                                 <div class="tab-content" style="background-color: white;padding: 10px;">
-                                    <div class="tab-pane active" id="home3" role="tabpanel">
+                                    <div class="tab-pane active" id="list" role="tabpanel">
                                         <div class="dt-responsive table-responsive">
                                             <table id="saving-reorder" class="table table-striped table-bordered nowrap">
                                                 <thead>
                                                     <tr>
-                                                        <th>Request No.</th>
-                                                        <th>Requested by</th>
-                                                        <th>Employee</th>
-                                                        <th>Amount</th>
-                                                        <th>Date Requested</th>
-                                                        <th>Description</th>
+                                                        <th>ATD Type</th>
+                                                        <th>ATD Category</th>
+                                                        <th>ATD Item</th>
+                                                        <th># of Payroll</th>
+                                                        <th>Take-Home Pay (%)</th>
                                                         <th>Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr>
-                                                        <td><label class="badge badge-warning">HR</label> ATD-MIS00008</td>
                                                         <td>Aira Mariz</td>
                                                         <td>Joyce Camacho</td>
                                                         <td>30,000.00</td>
@@ -140,7 +126,6 @@
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td><label class="badge badge-danger">Employee</label> ATD-MIS00020</td>
                                                         <td>Finn Camacho</td>
                                                         <td>Finn Camacho</td>
                                                         <td>15,500.00</td>
@@ -152,7 +137,6 @@
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td><label class="badge badge-success">Accounting</label> ATD-MIS00023</td>
                                                         <td>Maria Clara</td>
                                                         <td>Junel Redillas</td>
                                                         <td>4,500.00</td>
@@ -164,27 +148,23 @@
                                                         </td>
                                                     </tr>
                                                 </tbody>
-                                                <!-- <tfoot>
-                                                    <tr>
-                                                        <th>Name</th>
-                                                        <th>Position</th>
-                                                        <th>Office</th>
-                                                        <th>Age</th>
-                                                        <th>Start date</th>
-                                                        <th>Salary</th>
-                                                    </tr>
-                                                </tfoot> -->
                                             </table>
                                         </div>
                                     </div>
-                                    <div class="tab-pane" id="profile3" role="tabpanel">
-                                        <p class="m-0">2.Cras consequat in enim ut efficitur. Nulla posuere elit quis auctor interdum praesent sit amet nulla vel enim amet. Donec convallis tellus neque, et imperdiet felis amet.</p>
+                                    <div class="tab-pane" id="type" role="tabpanel">
+                                        <form>
+                                            
+                                        </form>
                                     </div>
-                                    <div class="tab-pane" id="messages3" role="tabpanel">
-                                        <p class="m-0">3. This is Photoshop's version of Lorem IpThis is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean mas Cum sociis natoque penatibus et magnis dis.....</p>
+                                    <div class="tab-pane" id="category" role="tabpanel">
+                                        <form>
+                                            
+                                        </form>
                                     </div>
-                                    <div class="tab-pane" id="settings3" role="tabpanel">
-                                        <p class="m-0">4.Cras consequat in enim ut efficitur. Nulla posuere elit quis auctor interdum praesent sit amet nulla vel enim amet. Donec convallis tellus neque, et imperdiet felis amet.</p>
+                                    <div class="tab-pane" id="item" role="tabpanel">
+                                        <form>
+                                            
+                                        </form>
                                     </div>
                                 </div>
                             </div>

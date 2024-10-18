@@ -76,6 +76,14 @@
     <script src="/Portal/admin_template/bower_components/jquery.steps/js/jquery.steps.js"></script>
     <script src="/Portal/admin_template/bower_components/jquery-validation/js/jquery.validate.js"></script>
 
+    <!-- Select 2 js -->
+    <script type="text/javascript" src="/Portal/admin_template/bower_components/bower_components/select2/js/select2.full.min.js"></script>
+    <!-- Multiselect js -->
+    <script type="text/javascript" src="/Portal/admin_template/bower_components/bower_components/bootstrap-multiselect/js/bootstrap-multiselect.js">
+    </script>
+    <script type="text/javascript" src="/Portal/admin_template/bower_components/bower_components/multiselect/js/jquery.multi-select.js"></script>
+    <script type="text/javascript" src="assets/js/jquery.quicksearch.js"></script>
+
     <!-- jquery file upload js -->
     <script src="/Portal/admin_template/assets/pages/jquery.filer/js/jquery.filer.min.js"></script>
     <script src="/Portal/admin_template/assets/pages/filer/custom-filer.js" type="text/javascript"></script>
@@ -105,6 +113,7 @@
     <!-- <script type="text/javascript" src="/Portal/admin_template/assets/pages/handson-table/cell-features.js"></script> -->
     <script type="text/javascript" src="/Portal/admin_template/bower_components/jscolor/js/jscolor.js"></script>
     <script src="/Portal/admin_template/assets/pages/data-table/extensions/colreorder/js/colreorder-custom.js"></script>
+    <script type="text/javascript" src="/Portal/admin_template/assets/pages/advance-elements/select2-custom.js"></script>
 
     <!-- <script src="/Portal/admin_template/assets/pages/data-table/extensions/buttons/js/extension-btns-custom.js"></script> -->
     <!-- <script type="text/javascript" src="/Portal/admin_template/assets/pages/handson-table/integration.js"></script> -->

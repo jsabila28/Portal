@@ -21,6 +21,12 @@ class Database
                     "dbname" => "portal_db",
                     "username" => "root",
                     "password" => ""
+                ],
+                "atd" => [
+                    "host" => "localhost",
+                    "dbname" => "atd_db",
+                    "username" => "root",
+                    "password" => ""
                 ]
             ];
 

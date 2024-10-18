@@ -39,7 +39,7 @@
             </li>
             <li class="">
                 <a href="maintenance">
-                    <span class="pcoded-micon"><img src="assets/img/atd_icons/receipt.png" width="40" height="40" style="margin-right: 5px;">About</span>
+                    <span class="pcoded-micon"><img src="assets/img/atd_icons/about.png" width="40" height="40" style="margin-right: 5px;">About</span>
                     <!-- <span class="pcoded-mtext">Authority to Deduct</span>
                     <span class="pcoded-mcaret"></span> -->
                 </a>

@@ -4,8 +4,11 @@ $routes = [
 	'' => '/pages/dashboard.php',
 	'/' => '/pages/dashboard.php',
 	'/dashboard' => '/pages/dashboard.php',
-	'/login' => '/Portal/main/pages/login.php'
+	'/login' => '/Portal/main/pages/login.php',
 
+	//REQUEST PAGES
+	'/maintenance' => '/pages/maintenance.php',
+	'/employee' => '/pages/employee_request.php'
 	
 ];
 
