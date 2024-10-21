@@ -7,6 +7,9 @@
 #memo ol li{
     width: 100%;
 }
+#memo ol li:hover{
+   background-color: #e3e1e1;
+}
 #memo ol li h6{
    font-size: 8px;
 }
@@ -76,6 +79,13 @@ strong {
   li:nth-child(even):before { border-color: #2378D5; }
 }
 
+#addmemo-card{
+  margin-left: 5px; 
+  background-color: white;
+}
+#addmemo-card #form-g{
+  margin-bottom: 0px !important;
+}
 
 /*RESIGNING*/
 .comment-wrapper .panel-body {

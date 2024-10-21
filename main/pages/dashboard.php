@@ -4,6 +4,7 @@ require_once($main_root."/actions/memo.php");
 $date = date("Y-m-d");
 $Year = date("Y");
 $memos = Portal::GetMemo($Year);
+$memoAll = Portal::GetAllMemo($Year);
 $leave = Portal::GetLeave($date);
 $ongoingleave = Portal::GetOngoingLeave($date);
 $resigning = Portal::GetResigning($date);

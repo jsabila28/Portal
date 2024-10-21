@@ -214,7 +214,7 @@ Card-Layout css start
 }
 #req-list{
   margin-left: none;
-  margin-left: 250px;
+  margin-left: 300px;
 }
 #right-side{
   position: fixed;
@@ -242,10 +242,10 @@ Card-Layout css start
    display: none;
   }
 
-  #req-list {
+/*  #req-list {
    margin-left: 1px !important;
   }
-
+*/
   #center {
     order: 1; /* Show center content next */
   }
@@ -7627,7 +7627,8 @@ body.menu-sidebar .navbar-wrapper {
   width: 100% !important; }
 
 .form-group {
-  margin-bottom: 1.25em; }
+  /*margin-bottom: 1.25em; */
+}
   .form-group .form-control-lg {
     font-size: 1.25em; }
   .form-group .form-control-round {
@@ -19670,4 +19671,7 @@ ul.button-grid button:hover {
 }
 #saving-reorder th{
   text-align: center;
+}
+.money{
+  text-align: right;
 }

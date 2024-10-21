@@ -23,6 +23,18 @@ class Portal
         return [];
     }
 
+    public static function GetAllMemo($Year) {
+        $conn = self::getDatabaseConnection('port');
+
+        if ($conn) {
+            $stmt = $conn->prepare("SELECT * FROM tbl_memo WHERE LEFT(memo_date, 4) = ? ORDER BY memo_date DESC");
+            $stmt->execute([$Year]);
+
+            return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
+        }
+        return [];
+    }
+
     public static function GetLeave($date) {
         $conn = self::getDatabaseConnection('port');
 
@@ -110,6 +122,50 @@ class Portal
                 AND ann_type = 'GOVERNMENT'
                 LIMIT 3");
             $stmt->execute([$date,$date]);
+
+            return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
+        }
+        return [];
+    }
+
+    public static function GetDepartments() {
+        $conn = self::getDatabaseConnection('port');
+
+        if ($conn) {
+            $stmt = $conn->prepare("SELECT * FROM tbl_department WHERE Dept_Stat = 'active' ORDER BY Dept_Name ASC");
+            $stmt->execute();
+
+            return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
+        }
+        return [];
+    }
+
+    public static function GetCompany() {
+        $conn = self::getDatabaseConnection('port');
+
+        if ($conn) {
+            $stmt = $conn->prepare("SELECT * FROM tbl_company WHERE C_Remarks = 'active' ORDER BY C_Name ASC");
+            $stmt->execute();
+
+            return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
+        }
+        return [];
+    }
+
+    public static function GetEmployee() {
+        $conn = self::getDatabaseConnection('port');
+
+        if ($conn) {
+            $stmt = $conn->prepare("SELECT * FROM tbl201_basicinfo a
+                                    LEFT JOIN tbl201_jobrec b
+                                    ON a.`bi_empno` = b.`jrec_empno`
+                                    LEFT JOIN tbl201_jobinfo c
+                                    ON c.`ji_empno` = b.`jrec_empno`
+                                    WHERE a.`datastat` = 'current'
+                                    AND b.`jrec_status` = 'Primary'
+                                    AND c.`ji_remarks` = 'Active'
+                                    GROUP BY a.`bi_empno` ORDER BY a.`bi_emplname` ASC");
+            $stmt->execute();
 
             return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
         }

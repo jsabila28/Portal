@@ -101,29 +101,97 @@
     						</div>
     						<div class="col-sm-9">
     							<div class="row">
-            						<div class="col-sm-6">
-            						    <div class="input-group input-group-primary">
-            						        <span class="input-group-addon">
-            						           Category
-            						        </span>
-            						        <select class="js-example-basic-single col-sm-9">
-            						                <option value="AL">Alabama</option>
-            						                <option value="WY">Wyoming</option>
-            						                <option value="WY">Peter</option>
-            						                <option value="WY">Hanry Die</option>
-            						                <option value="WY">Soeng Souy</option>
-            						        </select>
-            						    </div>
-            						</div>
-            						<div class="col-sm-6">
-            						    <div class="input-group input-group-primary">
-            						        <span class="input-group-addon">
-            						           Item
-            						        </span>
-            						        <input type="text" class="form-control">
-            						    </div>
-            						</div>
-            					</div>  
+            				<div class="col-sm-6">
+            				    <div class="input-group input-group-primary">
+            				        <span class="input-group-addon">
+            				           Category
+            				        </span>
+            				        <select class="js-example-basic-single col-sm-9">
+            				                <option value="AL">Alabama</option>
+            				                <option value="WY">Wyoming</option>
+            				                <option value="WY">Peter</option>
+            				                <option value="WY">Hanry Die</option>
+            				                <option value="WY">Soeng Souy</option>
+            				        </select>
+            				    </div>
+            				</div>
+            				<div class="col-sm-6">
+            				    <div class="input-group input-group-primary">
+            				        <span class="input-group-addon">
+            				           Item
+            				        </span>
+            				        <select class="js-example-basic-single col-sm-9">
+                                    <option value="AL">Alabama</option>
+                                    <option value="WY">Wyoming</option>
+                                    <option value="WY">Peter</option>
+                                    <option value="WY">Hanry Die</option>
+                                    <option value="WY">Soeng Souy</option>
+                            </select>
+            				    </div>
+            				</div>
+            			</div>
+                  <div class="row">
+                    <div class="col-sm-6">
+                        <div class="input-group input-group-primary">
+                            <span class="input-group-addon">
+                               Total Amount
+                            </span>
+                            <input type="text" class="form-control money">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="input-group input-group-primary">
+                            <span class="input-group-addon">
+                               Monthly Amortization
+                            </span>
+                            <input type="text" class="form-control money">
+                        </div>
+                    </div>
+                  </div> 
+                  <div class="row">
+                    <div class="col-sm-4">
+                        <div class="input-group input-group-primary">
+                            <span class="input-group-addon">
+                               # of Payroll
+                            </span>
+                            <input type="text" class="form-control" readonly>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="input-group input-group-primary">
+                            <span class="input-group-addon">
+                              <input type="checkbox" name=""> 15
+                            </span>
+                            <input type="text" class="form-control money">
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="input-group input-group-primary">
+                            <span class="input-group-addon">
+                              <input type="checkbox" name=""> 30
+                            </span>
+                            <input type="text" class="form-control money" readonly="readonly">
+                        </div>
+                    </div>
+                  </div> 
+                  <div class="row">
+                    <div class="col-sm-4">
+                        <div class="input-group input-group-primary">
+                            <span class="input-group-addon">
+                              Start Date
+                            </span>
+                            <input type="date" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="input-group input-group-primary">
+                            <span class="input-group-addon">
+                              End Date
+                            </span>
+                            <input type="date" class="form-control">
+                        </div>
+                    </div>
+                  </div>  
     						</div>
                         </div>
                     </div>
