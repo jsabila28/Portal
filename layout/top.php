@@ -63,12 +63,14 @@
 	<link rel="stylesheet" type="text/css" href="/Portal/assets/css/memo.css">
 	<link rel="stylesheet" type="text/css" href="/Portal/assets/css/leave.css">
 	<link rel="stylesheet" type="text/css" href="/Portal/assets/css/post.css">
+	<link rel="stylesheet" type="text/css" href="/Portal/assets/css/events.css">
 
 
     <!-- Required Jqurey -->
     <!-- <script type="text/javascript" src="/Portal/admin_template/bower_components/jquery/js/jquery.min.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.0/xlsx.full.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.2.min.js"></script> -->
 	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/handsontable@9.0.0/dist/handsontable.full.min.css"> -->
 	<!-- <script src="https://cdn.jsdelivr.net/npm/handsontable@9.0.0/dist/handsontable.full.min.js"></script> -->
@@ -81,7 +83,7 @@
     <!-- Select2 Bootstrap Theme CSS -->
     <link href="https://cdn.jsdelivr.net/npm/select2-bootstrap-theme@0.1.0-beta.10/dist/select2-bootstrap.min.css" rel="stylesheet" />
     <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
     <!-- Bootstrap JS -->
     <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.5.1/js/bootstrap.min.js"></script> -->
     <!-- Select2 JS -->
@@ -100,6 +102,8 @@
 	<!-- FullCalendar Resource Timeline Plugin -->
 	<link href="https://cdn.jsdelivr.net/npm/@fullcalendar/resource-timeline/main.css" rel="stylesheet" />
 	<script src="https://cdn.jsdelivr.net/npm/@fullcalendar/resource-timeline/main.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="/Portal/assets/css/jquery.emojipicker.css">
 
 
 
@@ -235,7 +239,7 @@
 								    
 								    error_log("User ID: $user_id");
 							
-								    $stmt = $hr_db->prepare("SELECT bi_empno, CONCAT(bi_empfname,' ',LEFT(bi_emplname,1),'.') as name FROM tbl201_basicinfo WHERE bi_empno = :user_id");
+								    $stmt = $hr_db->prepare("SELECT bi_empno, CONCAT(bi_empfname,' ',bi_empmname,' ',bi_emplname) as name FROM tbl201_basicinfo WHERE bi_empno = :user_id");
 								    $stmt->bindParam(':user_id', $user_id);
 								    $stmt->execute();
 								
@@ -267,13 +271,18 @@
 									</a>
 									<ul class="show-notification profile-notification">
 										<li>
-											<a href="#">
+											<a href="/Portal/profile">
 												<!-- <i class="ti-layout-sidebar-left"></i>  -->
 												<?php
             										echo $username;
             									?>
 											</a>
 										</li>
+										<!-- <li>
+											<a href="#">
+												<i class="ti-layout-sidebar-left"></i> Profile
+											</a>
+										</li> -->
 										<li>
 											<a href="/Portal/signOut">
 												<i class="ti-layout-sidebar-left"></i> Logout

@@ -18,12 +18,12 @@ try {
         $data = json_decode(file_get_contents($cacheFile), true);
     } else {
         // Fetch data from the database
-        $currentYear = date("Y");
+        $currentYear = date('Y');
         $stmt = $port->prepare("SELECT * FROM tbl_announcement a
-            LEFT JOIN tbl201_basicinfo b ON a.ann_approvedby = b.bi_empno
+            LEFT JOIN tbl201_basicinfo b ON a.ann_postby = b.bi_empno
             WHERE a.ann_type = 'GOVERNMENT'
-            AND LEFT(a.ann_date, 4) = ?
-            ORDER BY a.ann_date DESC");
+            AND DATE_FORMAT(a.ann_timestatmp, '%Y') = ?
+            ORDER BY a.ann_id DESC");
         $stmt->execute([$currentYear]);
         $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 

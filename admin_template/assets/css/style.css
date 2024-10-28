@@ -138,7 +138,7 @@ Card-Layout css start
   list-style-type: none;
   padding: 0;
   margin-top: 65px;
-  height: 100%; /* Allow the sidebar to take the full height */
+  height: 75vh; /* Allow the sidebar to take the full height */
   overflow-y: hidden; /* Enable vertical scrolling */
 }
 
@@ -204,9 +204,32 @@ Card-Layout css start
   background-color: transparent;
 }
 
+/* Show the scrollbar on hover and make it thin */
 #left-side:hover {
-  overflow-y: auto;
+  overflow-y: auto;   /* Show scrollbar when hovering */
 }
+
+/* WebKit browsers (Chrome, Safari, etc.) */
+#left-side::-webkit-scrollbar {
+  width: 6px; /* Thin scrollbar */
+  height: 6px;
+}
+
+#left-side::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.5); /* Thumb color */
+  border-radius: 10px; /* Rounded scrollbar thumb */
+}
+
+#left-side::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1); /* Track color */
+}
+
+/* For Firefox */
+#left-side {
+  scrollbar-width: thin; /* Thin scrollbar for Firefox */
+  scrollbar-color: rgba(0, 0, 0, 0.5) rgba(0, 0, 0, 0.1); /* Thumb and track colors */
+}
+
 
 #center{
   margin-left: 400px; /* Equal to the width of the left-side div */
@@ -347,7 +370,7 @@ Card-Layout css start
   .card .card-block .dropdown-menu {
     top: 38px; }
   .card .card-block p {
-    line-height: 25px; }
+    line-height: 18px; }
   .card .card-block a.dropdown-item {
     margin-bottom: 0;
     font-size: 14px;
@@ -3685,8 +3708,8 @@ a[data-lightbox="example-set"] .img-fluid {
     -webkit-box-flex: 0;
     -webkit-flex: 0 0 16.666667%;
     -ms-flex: 0 0 16.666667%;
-    flex: 0 0 17.666667%;
-    max-width: 19.666667%; }
+    flex: 0 0 22.666667%;
+    max-width: 22.666667%; }
 
   .col-md-3 {
     -webkit-box-flex: 0;
@@ -16705,7 +16728,7 @@ body.dark-layout {
   position: relative; }
 
 .pcoded-inner-content {
-  padding: 10px; }
+  padding-left: 10px; }
 
 .pcoded .pcoded-navbar .pcoded-item {
   display: block;
@@ -19670,6 +19693,9 @@ ul.button-grid button:hover {
     background-color: #0056b3;
 }
 #saving-reorder th{
+  text-align: center;
+}
+#saving-reorder #num{
   text-align: center;
 }
 .money{

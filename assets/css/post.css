@@ -486,3 +486,86 @@ url(https://static.xx.fbcdn.net/rsrc.php/v3/yX/r/QryT_9DQQgy.png);
     height: 200px;
     width: 100px;
 }
+/*#comment {
+    font-size: 12px;
+    background-color: #ebebeb;
+    height: 30px;
+    border-radius: 10px;
+    padding: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#comment textarea {
+    font-size: 12px;
+    background-color: transparent;
+    border: none;
+    resize: none;
+    flex-grow: 1;
+    height: 100%;
+    margin-right: 10px;
+    outline: none;
+}*/
+
+#comment img {
+    cursor: pointer;
+    border-color: transparent;
+}
+#comment {
+    font-size: 12px;
+    background-color: #ebebeb;
+    height: 30px;
+    border-radius: 10px;
+    padding: 7px;
+    display: flex;
+    align-items: center;
+}
+
+.textarea-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.textarea-wrapper input {
+    font-size: 12px;
+    background-color: transparent;
+    border: none; /* Removes border if desired */
+    width: 100%; /* Takes full width of wrapper */
+    height: 100%; /* Takes full height of wrapper */
+    padding-right: 30px; /* Adds space for the icon */
+    resize: none; /* Prevents resizing */
+    outline: none; /* Removes outline on focus */
+}
+
+.textarea-wrapper .icon {
+    position: absolute;
+    right: 20px; /* Position it inside textarea on the right */
+    top: 50%;
+    transform: translateY(-50%); /* Vertically center the icon */
+    cursor: pointer; /* Makes it look clickable */
+}
+/* Style for the emoji card */
+.emoji-card {
+  display: none; /* Hidden by default */
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  z-index: 1000;
+  top: 40px; /* Adjust to your needs */
+}
+
+.emoji-card span {
+  cursor: pointer;
+  font-size: 24px;
+  margin: 5px;
+}
+
+.emoji-card span:hover {
+  background-color: #f0f0f0;
+  border-radius: 5px;
+}

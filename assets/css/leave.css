@@ -1819,8 +1819,8 @@
 }
 
 .m-widget4.m-widget4--progress{
-    /*height: 100px;*/
-    /*overflow: auto;*/
+    height: 350px;
+    overflow: auto;
 }
 
 /* Default state: hide the scrollbar */

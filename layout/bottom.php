@@ -131,6 +131,11 @@
     <script src="/Portal/assets/js/post.js"></script>
     <script src="fullcalendar/js/main.min.js"></script>
     <script src="assets/pages/jquery.filer/js/jquery.filer.min.js"></script>
+    <script type="text/javascript" src="/Portal/assets/js/jquery.emojipicker.js"></script>
+
+    <!-- Emoji Data -->
+    <link rel="stylesheet" type="text/css" href="/Portal/assets/css/jquery.emojipicker.tw.css">
+    <script type="text/javascript" src="/Portal/assets/js/jquery.emojis.js"></script>
     
 </body>
 

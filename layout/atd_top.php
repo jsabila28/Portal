@@ -29,6 +29,8 @@
 	<link rel="stylesheet" type="text/css" href="/Portal/admin_template/assets/icon/themify-icons/themify-icons.css">
 	<!-- Material Design Icon -->
 	<link rel="stylesheet" type="text/css" href="/Portal/admin_template/assets/icon/material-design/css/material-design-iconic-font.min.css">
+	<link rel="stylesheet" type="text/css" href="/Portal/admin_template/assets/icon/typicons-icons/css/typicons.min.css">
+	<link rel="stylesheet" type="text/css" href="/Portal/admin_template/assets/icon/flag-icons/css/flag-icon.css">
 	<!-- ico font -->
 	<link rel="stylesheet" type="text/css" href="/Portal/admin_template/assets/icon/icofont/css/icofont.css">
 	<!-- Fontawesome -->
@@ -67,6 +69,7 @@
 	<link rel="stylesheet" type="text/css" href="/Portal/assets/css/memo.css">
 	<link rel="stylesheet" type="text/css" href="/Portal/assets/css/leave.css">
 	<link rel="stylesheet" type="text/css" href="/Portal/assets/css/post.css">
+	<link rel="stylesheet" type="text/css" href="/Portal/assets/css/profile.css">
 
 
     <!-- Required Jqurey -->
@@ -117,7 +120,7 @@
 								</li>
 								<?php } ?>
 		</div>
-		<div class="pcoded-container navbar-wrapper">
+		<div class="pcoded-container navbar-wrapper" style="height: 100vh !important;">
 			<nav class="navbar header-navbar pcoded-header">
 				<div class="navbar-wrapper">
 					<div class="navbar-logo" data-navbar-theme="theme4">
@@ -126,7 +129,7 @@
 						</a>
 						<a href="/prosperityph">
 							<!-- <img class="img-fluid" src="/prosperityph/assets/image/prosperity_logo.png" width="20%" alt="Theme-Logo"> -->
-							<b>ATD</b>
+							<!-- <b>ATD</b> -->
 						</a>
 						<a class="mobile-options">
 							<i class="ti-more"></i>
@@ -236,7 +239,7 @@
 								    
 								    error_log("User ID: $user_id");
 							
-								    $stmt = $hr_db->prepare("SELECT bi_empno, CONCAT(bi_empfname,' ',LEFT(bi_emplname,1),'.') as name FROM tbl201_basicinfo WHERE bi_empno = :user_id");
+								    $stmt = $hr_db->prepare("SELECT bi_empno, CONCAT(bi_empfname,' ',bi_empmname,' ',bi_emplname) as name FROM tbl201_basicinfo WHERE bi_empno = :user_id");
 								    $stmt->bindParam(':user_id', $user_id);
 								    $stmt->execute();
 								
@@ -299,73 +302,73 @@
                             <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
-                                		<img src="assets/img/2.png" width="40" height="40"><br>DTR
+                                		<img src="/Portal/ATD/assets/img/2.png" width="40" height="40"><br>DTR
                                 	</div>
                                 </a>
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
-                                		<img src="assets/img/1.png" width="40" height="40"><br>Schedule
+                                		<img src="/Portal/ATD/assets/img/1.png" width="40" height="40"><br>Schedule
                                 	</div>
                                 </a>
                                 <a class="media-left" href="/Portal/leave/" style="text-align: center;">
                                 	<div>
-                                		<img src="assets/img/4.png" width="40" height="40"><br>Leave
+                                		<img src="/Portal/ATD/assets/img/4.png" width="40" height="40"><br>Leave
                                 	</div>
                                 </a>
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
-                                		<img src="assets/img/break.png" width="40" height="40"><br>Break
-                                	</div>
-                                </a>
-                            </div>
-                            <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
-                                <a class="media-left" href="#!" style="text-align: center;">
-                                	<div>
-                                		<img src="assets/img/rest.png" width="40" height="40"><br>RestDay
-                                	</div>
-                                </a>
-                                <a class="media-left" href="#!" style="text-align: center;">
-                                	<div>
-                                		<img src="assets/img/offset.png" width="40" height="40"><br>Offset
-                                	</div>
-                                </a>
-                                <a class="media-left" href="#!" style="text-align: center;">
-                                	<div>
-                                		<img src="assets/img/OT.png" width="40" height="40"><br>OT
-                                	</div>
-                                </a>
-                                <a class="media-left" href="#!" style="text-align: center;">
-                                	<div>
-                                		<img src="assets/img/sign.png" width="40" height="40"><br>Gatepass
+                                		<img src="/Portal/ATD/assets/img/break.png" width="40" height="40"><br>Break
                                 	</div>
                                 </a>
                             </div>
                             <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
-                                		<img src="assets/img/drd.png" width="40" height="40"><br>DRD
+                                		<img src="/Portal/ATD/assets/img/rest.png" width="40" height="40"><br>RestDay
                                 	</div>
                                 </a>
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
-                                		<img src="assets/img/dhd.png" width="40" height="40"><br>DHD
+                                		<img src="/Portal/ATD/assets/img/offset.png" width="40" height="40"><br>Offset
                                 	</div>
                                 </a>
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
-                                		<img src="assets/img/training.png" width="40" height="40"><br>Trainings
+                                		<img src="/Portal/ATD/assets/img/OT.png" width="40" height="40"><br>OT
                                 	</div>
                                 </a>
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
-                                		<img src="assets/img/travel.png" width="40" height="40"><br>Travel
+                                		<img src="/Portal/ATD/assets/img/sign.png" width="40" height="40"><br>Gatepass
                                 	</div>
                                 </a>
                             </div>
                             <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
-                                		<img src="assets/img/sales.png" width="40" height="40"><br>Sales
+                                		<img src="/Portal/ATD/assets/img/drd.png" width="40" height="40"><br>DRD
+                                	</div>
+                                </a>
+                                <a class="media-left" href="#!" style="text-align: center;">
+                                	<div>
+                                		<img src="/Portal/ATD/assets/img/dhd.png" width="40" height="40"><br>DHD
+                                	</div>
+                                </a>
+                                <a class="media-left" href="#!" style="text-align: center;">
+                                	<div>
+                                		<img src="/Portal/ATD/assets/img/training.png" width="40" height="40"><br>Trainings
+                                	</div>
+                                </a>
+                                <a class="media-left" href="#!" style="text-align: center;">
+                                	<div>
+                                		<img src="/Portal/ATD/assets/img/travel.png" width="40" height="40"><br>Travel
+                                	</div>
+                                </a>
+                            </div>
+                            <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
+                                <a class="media-left" href="#!" style="text-align: center;">
+                                	<div>
+                                		<img src="/Portal/ATD/assets/img/sales.png" width="40" height="40"><br>Sales
                                 	</div>
                                 </a>
                             </div>
@@ -377,34 +380,34 @@
                             <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
-                                		<img src="assets/img/eei.png" width="40" height="40"><br>EEI
+                                		<img src="/Portal/ATD/assets/img/eei.png" width="40" height="40"><br>EEI
                                 	</div>
                                 </a>
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
-                                		<img src="assets/img/emplo.png" width="40" height="40"><br>Employees
+                                		<img src="/Portal/ATD/assets/img/emplo.png" width="40" height="40"><br>Employees
                                 	</div>
                                 </a>
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
-                                		<img src="assets/img/pa.png" width="40" height="40"><br>PA
+                                		<img src="/Portal/ATD/assets/img/pa.png" width="40" height="40"><br>PA
                                 	</div>
                                 </a>
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
-                                		<img src="assets/img/hire.png" width="40" height="40"><br>Hiring
+                                		<img src="/Portal/ATD/assets/img/hire.png" width="40" height="40"><br>Hiring
                                 	</div>
                                 </a>
                             </div>
                             <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
-                                		<img src="assets/img/report.png" width="40" height="40"><br>Reports
+                                		<img src="/Portal/ATD/assets/img/report.png" width="40" height="40"><br>Reports
                                 	</div>
                                 </a>
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
-                                		<img src="assets/img/announce.png" width="40" height="40"><br>Post
+                                		<img src="/Portal/ATD/assets/img/announce.png" width="40" height="40"><br>Post
                                 	</div>
                                 </a>
                             </div>

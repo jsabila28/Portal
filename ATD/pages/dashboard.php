@@ -82,37 +82,37 @@
                                 <!-- Nav tabs -->
                                 <ul class="nav nav-tabs md-tabs" role="tablist">
                                     <li class="nav-item" style="width: 100px !important;">
-                                        <a class="nav-link active" data-toggle="tab" href="#home3" role="tab">Pending</a>
+                                        <a class="nav-link active" data-toggle="tab" href="#pending" role="tab">Pending</a>
                                         <div class="slide" style="width: 100px !important;"></div>
                                     </li>
                                     <li class="nav-item" style="width: 100px !important;">
-                                        <a class="nav-link" data-toggle="tab" href="#profile3" role="tab">Checked</a>
+                                        <a class="nav-link" data-toggle="tab" href="#checked" role="tab">Checked</a>
                                         <div class="slide" style="width: 100px !important;"></div>
                                     </li>
                                     <li class="nav-item" style="width: 100px !important;">
-                                        <a class="nav-link" data-toggle="tab" href="#messages3" role="tab">Reviewed</a>
+                                        <a class="nav-link" data-toggle="tab" href="#reviewed" role="tab">Reviewed</a>
                                         <div class="slide" style="width: 100px !important;"></div>
                                     </li>
                                     <li class="nav-item" style="width: 100px !important;">
-                                        <a class="nav-link" data-toggle="tab" href="#settings3" role="tab">Approved</a>
+                                        <a class="nav-link" data-toggle="tab" href="#approved" role="tab">Approved</a>
                                         <div class="slide" style="width: 100px !important;"></div>
                                     </li>
                                     <li class="nav-item" style="width: 100px !important;">
-                                        <a class="nav-link" data-toggle="tab" href="#settings3" role="tab">Confirmed</a>
+                                        <a class="nav-link" data-toggle="tab" href="#confirmed" role="tab">Confirmed</a>
                                         <div class="slide" style="width: 100px !important;"></div>
                                     </li>
                                     <li class="nav-item" style="width: 100px !important;">
-                                        <a class="nav-link" data-toggle="tab" href="#settings3" role="tab">Verified</a>
+                                        <a class="nav-link" data-toggle="tab" href="#verified" role="tab">Verified</a>
                                         <div class="slide" style="width: 100px !important;"></div>
                                     </li>
                                     <li class="nav-item" style="width: 100px !important;">
-                                        <a class="nav-link" data-toggle="tab" href="#settings3" role="tab">Clarification</a>
+                                        <a class="nav-link" data-toggle="tab" href="#comment" role="tab">Clarification</a>
                                         <div class="slide" style="width: 100px !important;"></div>
                                     </li>
                                 </ul>
                                 <!-- Tab panes -->
                                 <div class="tab-content" style="background-color: white;padding: 10px;">
-                                    <div class="tab-pane active" id="home3" role="tabpanel">
+                                    <div class="tab-pane active" id="pending" role="tabpanel">
                                         <div class="dt-responsive table-responsive">
                                             <table id="saving-reorder" class="table table-striped table-bordered nowrap">
                                                 <thead>
@@ -177,14 +177,23 @@
                                             </table>
                                         </div>
                                     </div>
-                                    <div class="tab-pane" id="profile3" role="tabpanel">
-                                        <p class="m-0">2.Cras consequat in enim ut efficitur. Nulla posuere elit quis auctor interdum praesent sit amet nulla vel enim amet. Donec convallis tellus neque, et imperdiet felis amet.</p>
+                                    <div class="tab-pane" id="checked" role="tabpanel">
+                                        
                                     </div>
-                                    <div class="tab-pane" id="messages3" role="tabpanel">
-                                        <p class="m-0">3. This is Photoshop's version of Lorem IpThis is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean mas Cum sociis natoque penatibus et magnis dis.....</p>
+                                    <div class="tab-pane" id="reviewed" role="tabpanel">
+                                        
                                     </div>
-                                    <div class="tab-pane" id="settings3" role="tabpanel">
-                                        <p class="m-0">4.Cras consequat in enim ut efficitur. Nulla posuere elit quis auctor interdum praesent sit amet nulla vel enim amet. Donec convallis tellus neque, et imperdiet felis amet.</p>
+                                    <div class="tab-pane" id="approved" role="tabpanel">
+                                        
+                                    </div>
+                                    <div class="tab-pane" id="confirmed" role="tabpanel">
+                                        
+                                    </div>
+                                    <div class="tab-pane" id="verified" role="tabpanel">
+                                        
+                                    </div>
+                                    <div class="tab-pane" id="comment" role="tabpanel">
+                                        
                                     </div>
                                 </div>
                             </div>

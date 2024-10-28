@@ -115,33 +115,33 @@
                                                 </thead>
                                                 <tbody>
                                                     <tr>
-                                                        <td>Aira Mariz</td>
-                                                        <td>Joyce Camacho</td>
-                                                        <td>30,000.00</td>
-                                                        <td>2009/04/07</td>
-                                                        <td>Audit Findings | Wrong Computation</td>
+                                                        <td>Employee</td>
+                                                        <td>Surplus assets</td>
+                                                        <td>Chair</td>
+                                                        <td id="num">1</td>
+                                                        <td id="num">0%</td>
                                                         <td>
                                                             <img src="assets/img/atd_icons/edit.png" width="30" height="30">
                                                             <img src="assets/img/atd_icons/deactive.png" width="30" height="30">
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Finn Camacho</td>
-                                                        <td>Finn Camacho</td>
-                                                        <td>15,500.00</td>
-                                                        <td>2012/07/09</td>
-                                                        <td>Gov Loan | SSS Salary Loan</td>
+                                                        <td>HR</td>
+                                                        <td>Audit Findings</td>
+                                                        <td>Wrong Computation</td>
+                                                        <td id="num">10</td>
+                                                        <td id="num">80%</td>
                                                         <td>
                                                             <img src="assets/img/atd_icons/edit.png" width="30" height="30">
                                                             <img src="assets/img/atd_icons/deactive.png" width="30" height="30">
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Maria Clara</td>
-                                                        <td>Junel Redillas</td>
-                                                        <td>4,500.00</td>
-                                                        <td>2012/10/09</td>
-                                                        <td>Travel Fees | Plane Ticket</td>
+                                                        <td>Accounting</td>
+                                                        <td>Travel Fees</td>
+                                                        <td>Plane ticket</td>
+                                                        <td id="num">1</td>
+                                                        <td id="num">0</td>
                                                         <td>
                                                             <img src="assets/img/atd_icons/edit.png" width="30" height="30">
                                                             <img src="assets/img/atd_icons/deactive.png" width="30" height="30">

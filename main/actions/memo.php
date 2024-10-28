@@ -111,17 +111,17 @@ class Portal
         return [];
     }
 
-    public static function GetGovAnn($date) {
+    public static function GetGovAnn($yearMonth) {
         $conn = self::getDatabaseConnection('port');
 
         if ($conn) {
-            $stmt = $conn->prepare("SELECT * FROM tbl_announcement
-                WHERE ann_date <= ?
-                AND ann_end >= ?
-                AND ann_status <> 'inactive'
-                AND ann_type = 'GOVERNMENT'
-                LIMIT 3");
-            $stmt->execute([$date,$date]);
+            $stmt = $conn->prepare("SELECT * FROM tbl_announcement a
+            LEFT JOIN tbl201_basicinfo b ON a.ann_postby = b.bi_empno
+            WHERE a.ann_type = 'GOVERNMENT'
+            AND DATE_FORMAT(a.ann_to_date, '%Y-%m') >= ?
+            GROUP BY a.`ann_id`
+            ORDER BY a.`ann_id` DESC");
+            $stmt->execute([$yearMonth]);
 
             return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
         }
