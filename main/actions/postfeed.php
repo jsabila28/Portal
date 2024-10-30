@@ -10,6 +10,7 @@ $user_id = $_SESSION['user_id'];
 
 try {
     $port_db = Database::getConnection('port');
+    $hr_db = Database::getConnection('hr');
 
     $cacheFile = 'cache/postfeeddata.json';
     $cacheTime = 30 * 30; 
@@ -19,10 +20,10 @@ try {
         $data = json_decode(file_get_contents($cacheFile), true);
     } else { 
         $currentYear = date('Y');
-        $stmt = $port_db->prepare("SELECT * FROM tbl_announcement a
-            LEFT JOIN tbl201_basicinfo b ON a.ann_postby = b.bi_empno
-            WHERE a.ann_type = 'LOCAL'
-            AND DATE_FORMAT(a.ann_timestatmp, '%Y') = ?
+        $stmt = $hr_db->prepare("SELECT * FROM tbl_announcement a
+            LEFT JOIN tbl201_basicinfo b ON a.`ann_approvedby` = b.`bi_empno`
+            WHERE a.`ann_type` = 'LOCAL'
+            AND DATE_FORMAT(a.`ann_timestatmp`, '%Y') = ?
             ORDER BY ann_timestatmp DESC");
         $stmt->execute([$currentYear]);
         $data = $stmt->fetchAll(PDO::FETCH_ASSOC);    
@@ -111,10 +112,10 @@ try {
             echo '<div class="reaction-container">';
             $stmt = $port_db->prepare("
                 SELECT reaction_type FROM tbl_reaction 
-                WHERE reaction_by = '045-2022-013'
+                WHERE reaction_by = ?
                 AND post_id = ?
             ");
-            $stmt->execute([$row['ann_id']]);
+            $stmt->execute([$user_id,$row['ann_id']]);
             $ireact = $stmt->fetch(PDO::FETCH_ASSOC);
             
             // Check if the reaction type is 'heart'
@@ -173,10 +174,10 @@ try {
                 SELECT reaction_type 
                 FROM tbl_reaction 
                 WHERE post_id = ?
-                AND reaction_by <> '045-2022-013'
+                AND reaction_by <> ?
                 GROUP BY reaction_type
             ");
-            $stmt->execute([$row['ann_id']]);
+            $stmt->execute([$row['ann_id'], $user_id]);
             $reactions = $stmt->fetchAll(PDO::FETCH_ASSOC);
             
             foreach ($reactions as $react) {
@@ -311,10 +312,10 @@ try {
                                 echo '<div class="reaction-container">';
                                 $stmt = $port_db->prepare("
                                     SELECT reaction_type FROM tbl_reaction 
-                                    WHERE reaction_by = '045-2022-013'
+                                    WHERE reaction_by = ?
                                     AND post_id = ?
                                 ");
-                                $stmt->execute([$row['ann_id']]);
+                                $stmt->execute([$user_id,$row['ann_id']]);
                                 $ireact = $stmt->fetch(PDO::FETCH_ASSOC);
                                 
                                 // Check if the reaction type is 'heart'
@@ -373,10 +374,10 @@ try {
                                     SELECT reaction_type 
                                     FROM tbl_reaction 
                                     WHERE post_id = ?
-                                    AND reaction_by <> '045-2022-013'
+                                    AND reaction_by <> ?
                                     GROUP BY reaction_type
                                 ");
-                                $stmt->execute([$row['ann_id']]);
+                                $stmt->execute([$row['ann_id'],$user_id]);
                                 $reactions = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 
                                 foreach ($reactions as $react) {

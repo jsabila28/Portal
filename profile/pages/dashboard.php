@@ -168,6 +168,7 @@
                             ?>
                             </span>
                             <p>Jr. Software Developer</p>
+                            <p>045-2022-013</p>
                           </div>
                         </div>
                         <div class="edit-profile">
@@ -183,7 +184,7 @@
                               <i class="icofont icofont-ui-call"></i>
                             </div>
                             <div class="content">
-                              <p> +11111</p><br> 
+                              <p> NA</p><br> 
                               <span>Telephone</span>
                             </div>
                           </div>
@@ -229,7 +230,7 @@
                               <i class="fa fa-home" aria-hidden="true"></i>
                             </div>
                             <div class="content">
-                              <p> Polangui Albay</p><br> 
+                              <p> Zone 2 Matacon, Polangui, Albay</p><br> 
                               <span>Permanent Address</span>
                             </div>
                           </div>
@@ -239,7 +240,7 @@
                               <i class="typcn typcn-location"></i>
                             </div>
                             <div class="content">
-                              <p> Zamboanga City</p><br> 
+                              <p> Armor Village San Jose Gusu, Zamboanga City, Zamboanga Del Sur</p><br> 
                               <span>Current Address</span>
                             </div>
                           </div>
@@ -249,7 +250,7 @@
                               <i class="icofont icofont-social-gnome"></i>
                             </div>
                             <div class="content">
-                              <p> Albay</p><br> 
+                              <p> Zone 2 Matacon, Polangui, Albay</p><br> 
                               <span>Place of birth</span>
                             </div>
                           </div>
@@ -312,10 +313,52 @@
                           </div>
 
                       </div>
-                      <div class="contact" style="margin-bottom: 25px;">
+                      <div class="contact">
                           <div class="numbers">
                             <div class="icon">
-                              
+                              <i class="icofont icofont-id-card"></i>
+                            </div>
+                            <div class="content">
+                              <p> 35-0017545-8</p><br> 
+                              <span>SSS</span>
+                            </div>
+                          </div>
+                          
+                          <div class="numbers">
+                            <div class="icon">
+                              <i class="icofont icofont-id-card"></i>
+                            </div>
+                            <div class="content">
+                              <p> 1212-7646-3910</p><br> 
+                              <span>PAGIBIG</span>
+                            </div>
+                          </div>
+
+                          <div class="numbers">
+                            <div class="icon">
+                              <i class="icofont icofont-id-card"></i>
+                            </div>
+                            <div class="content">
+                              <p> 382-592-170</p><br> 
+                              <span>TIN</span>
+                            </div>
+                          </div>
+
+                          <div class="numbers">
+                            <div class="icon">
+                              <i class="icofont icofont-id-card"></i>
+                            </div>
+                            <div class="content">
+                              <p> 100253981606</p><br> 
+                              <span>PHILHEALTH</span>
+                            </div>
+                          </div>
+                      </div>
+
+                      <div class="contact" style="margin-top: 25px;">
+                          <div class="numbers">
+                            <div class="icon">
+                              <i class="icofont icofont-throne"></i>
                             </div>
                             <div class="content">
                               <p> Roman Catholic</p><br> 
@@ -332,17 +375,6 @@
                               <span>Blood type</span>
                             </div>
                           </div>
-
-                          <div class="numbers">
-                            <div class="icon">
-                              <i class="flag flag-icon-background flag-icon-PHP"></i>
-                            </div>
-                            <div class="content">
-                              <p> Filipino</p><br> 
-                              <span>Nationality</span>
-                            </div>
-                          </div>
-
                           <div class="numbers">
                             <div class="icon">
                               <i class="ti-ruler"></i>
@@ -358,53 +390,21 @@
                               <i class="ti-dashboard"></i>
                             </div>
                             <div class="content">
-                              <p> 57</p><br> 
+                              <p> 57kg</p><br> 
                               <span>Weight</span>
                             </div>
                           </div>
                       </div>
-                      <div class="contact">
+                      <div class="contact" style="margin-top: 25px;">
                           <div class="numbers">
                             <div class="icon">
-                              
+                              <i class="flag flag-icon-background flag-icon-PHP"></i>
                             </div>
                             <div class="content">
-                              <p> 35-0017545-8</p><br> 
-                              <span>SSS</span>
+                              <p> Filipino</p><br> 
+                              <span>Nationality</span>
                             </div>
                           </div>
-                          
-                          <div class="numbers">
-                            <div class="icon">
-                              
-                            </div>
-                            <div class="content">
-                              <p> 1212-7646-3910</p><br> 
-                              <span>PAGIBIG</span>
-                            </div>
-                          </div>
-
-                          <div class="numbers">
-                            <div class="icon">
-                              
-                            </div>
-                            <div class="content">
-                              <p> 382-592-170</p><br> 
-                              <span>TIN</span>
-                            </div>
-                          </div>
-
-                          <div class="numbers">
-                            <div class="icon">
-                              
-                            </div>
-                            <div class="content">
-                              <p> 100253981606</p><br> 
-                              <span>PHILHEALTH</span>
-                            </div>
-                          </div>
-
-
                       </div>
                     </div>
                     <!-- #COMPLETE PERSONAL ADDRESS END-->

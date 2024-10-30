@@ -11,10 +11,10 @@ class Database
 		if (!isset(self::$connections[$name])) {
 			$config = [
                 "hr" => [
-                    "host" => "localhost",
+                    "host" => "13.213.190.95",
                     "dbname" => "tngc_hrd2",
-                    "username" => "root",
-                    "password" => ""
+                    "username" => "misadmin",
+                    "password" => "88224646abxy@"
                 ],
                 "port" => [
                     "host" => "localhost",

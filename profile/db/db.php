@@ -10,19 +10,31 @@ class Database
 	public static function getConnection($name) {
 		if (!isset(self::$connections[$name])) {
 			$config = [
+                // "hr" => [
+                //     "host" => "localhost",
+                //     "dbname" => "tngc_hrd2",
+                //     "username" => "root",
+                //     "password" => ""
+                // ],
                 "hr" => [
-                    "host" => "localhost",
+                    "host" => "13.213.190.95",
                     "dbname" => "tngc_hrd2",
-                    "username" => "root",
-                    "password" => ""
+                    "username" => "misadmin",
+                    "password" => "88224646abxy@"
                 ],
                 "port" => [
                     "host" => "localhost",
                     "dbname" => "portal_db",
                     "username" => "root",
                     "password" => ""
+                ],
+                "atd" => [
+                    "host" => "localhost",
+                    "dbname" => "atd_db",
+                    "username" => "root",
+                    "password" => ""
                 ]
-			];
+            ];
 
             if(!array_key_exists($name, $config)){
                 throw new Exception("Invalid connection name: $name");

@@ -91,6 +91,7 @@
   display: flex;
   align-items: center; /* Center align items vertically */
   gap: 10px; /* Adds space between icon and content */
+  width: 150px;
 }
 
 .icon {
@@ -110,10 +111,15 @@
 
 .content p {
   margin: 0;
-  font-size: 12px;
+  font-size: 11px !important;
 }
 
 .content span {
   font-size: 10px;
   color: #666; /* Optional: style the label color */
+}
+
+/*ON MOBILE VIEW SIDEBAR*/
+.pcoded-left-item .prof-header label{
+	color: white !important;
 }

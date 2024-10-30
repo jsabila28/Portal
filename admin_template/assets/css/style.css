@@ -370,7 +370,7 @@ Card-Layout css start
   .card .card-block .dropdown-menu {
     top: 38px; }
   .card .card-block p {
-    line-height: 18px; }
+    line-height: 15px; }
   .card .card-block a.dropdown-item {
     margin-bottom: 0;
     font-size: 14px;
@@ -5904,7 +5904,7 @@ table thead .border-bottom-info th {
 .main-menu {
   background: #2c3e50;
   float: left;
-  width: auto;
+  width: 100%;
   z-index: 99; }
   .main-menu .main-menu-header {
     align-items: center;
