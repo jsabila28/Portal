@@ -6,7 +6,11 @@ $routes = [
 	'/dashboard' => '/pages/dashboard.php',
 	'/login' => '/Portal/main/pages/login.php',
 	'/sji' => '/pages/sji.php',
-	'/so' => '/pages/so.php'
+	'/so' => '/pages/so.php',
+
+	'/personal' => '/actions/personal.php',
+	//PAGES
+	'/fam' => '/pages/family_background.php'
 
 	
 ];

@@ -120,6 +120,8 @@
 }
 
 /*ON MOBILE VIEW SIDEBAR*/
-.pcoded-left-item .prof-header label{
+.pcoded .pcoded-navbar .pcoded-item #prof-header label{
 	color: white !important;
+	margin-left: 10px;
+	font-size: 16px;
 }
