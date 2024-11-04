@@ -168,78 +168,23 @@
                                 echo $username;
                             ?>
                             </span>
-                            <p>Jr. Software Developer</p>
-                            <p>045-2022-013</p>
+                            <p>Software Developer</p>
+                            <p><?php
+                                echo $empno;
+                            ?></p>
                           </div>
                         </div>
                         <div class="edit-profile">
-                          <button class="btn btn-default btn-mini" data-toggle="modal" data-target="#Personal-<?=$user_id?>"><i class="icofont icofont-pencil-alt-2"></i> Edit Profile</button>
+                          <button class="btn btn-default btn-mini" data-toggle="modal" data-target="#Personal-<?=$empno?>"><i class="icofont icofont-pencil-alt-2"></i> Edit Profile</button>
                         </div>  
                       </div>
                     </div>
                     <div id="personal"></div>
-                    <script>
-                    fetch('personal')
-                        .then(response => {
-                            if (!response.ok) {
-                                throw new Error('Network response was not ok: ' + response.statusText);
-                            }
-                            return response.text(); // Since we're expecting HTML
-                        })
-                        .then(data => {
-                            document.getElementById("personal").innerHTML = data; // Set the inner HTML
-                        })
-                        .catch(error => console.error('Error fetching data:', error));
-                    </script>
-
-                    <!-- #COMPLETE GOVERNMENT ID -->
-                    <div class="card-block" id="prof-card">
-                      <div class="contact">
-                          <div class="numbers">
-                            <div class="icon">
-                              <i class="icofont icofont-id-card"></i>
-                            </div>
-                            <div class="content">
-                              <p> 35-0017545-8</p><br> 
-                              <span>SSS</span>
-                            </div>
-                          </div>
-                          
-                          <div class="numbers">
-                            <div class="icon">
-                              <i class="icofont icofont-id-card"></i>
-                            </div>
-                            <div class="content">
-                              <p> 1212-7646-3910</p><br> 
-                              <span>PAGIBIG</span>
-                            </div>
-                          </div>
-
-                          <div class="numbers">
-                            <div class="icon">
-                              <i class="icofont icofont-id-card"></i>
-                            </div>
-                            <div class="content">
-                              <p> 382-592-170</p><br> 
-                              <span>TIN</span>
-                            </div>
-                          </div>
-
-                          <div class="numbers">
-                            <div class="icon">
-                              <i class="icofont icofont-id-card"></i>
-                            </div>
-                            <div class="content">
-                              <p> 100253981606</p><br> 
-                              <span>PHILHEALTH</span>
-                            </div>
-                          </div>
-                      </div>
-                    </div>
-                    <!-- #COMPLETE GOVERNMENT ID END-->
+                   
                 </div>
             </div>
         </div>
     </div>
 </div> 
 <script type="text/javascript" src="../assets/js/address.js"></script>
+<script type="text/javascript" src="../assets/js/personal_profile.js"></script>

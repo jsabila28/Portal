@@ -167,12 +167,14 @@
                                 echo $username;
                             ?>
                             </span>
-                            <p>Jr. Software Developer</p>
-                            <p>045-2022-013</p>
+                            <p>Software Developer</p>
+                            <p><?php
+                                echo $empno;
+                            ?></p>
                           </div>
                         </div>
                         <div class="edit-profile">
-                          <button class="btn btn-default btn-mini"><i class="icofont icofont-pencil-alt-2"></i> Edit Profile</button>
+                          <button class="btn btn-default btn-mini" data-toggle="modal" data-target="#Family-<?=$empno?>"><i class="icofont icofont-pencil-alt-2"></i> Edit Family Profile</button>
                         </div>  
                       </div>
                     </div>

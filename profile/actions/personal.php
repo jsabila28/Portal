@@ -170,7 +170,21 @@ try {
                           <i class="fa fa-birthday-cake" aria-hidden="true"></i>
                         </div>
                         <div class="content">
-                          <p></p><br> 
+                          <p>';
+                          if ($p['pers_birthdate']) {
+                              function calculateAge($birthdate) {
+                                  $birthDate = new DateTime($birthdate);
+                                  $currentDate = new DateTime();
+                                  $age = $birthDate->diff($currentDate);
+                                  return $age->y;
+                              }
+                              
+                              echo calculateAge($p['pers_birthdate']);
+                          } else {
+                              echo '0';
+                          }
+
+                          echo'</p><br> 
                           <span>Age</span>
                         </div>
                       </div>';
@@ -195,7 +209,7 @@ try {
                         </div>
                       </div>';
                 echo '</div>'; //contact end
-                 echo '<div class="contact" style="margin-top: 25px;">'; //contact start
+                echo '<div class="contact" style="margin-top: 25px;">'; //contact start
                 echo '<div class="numbers">
                         <div class="icon">
                             <i class="icofont icofont-throne"></i>
@@ -239,6 +253,52 @@ try {
                 echo '</div>';//prof-card end 
                 //OTHER PERSONAL INFO END
 
+                #COMPLETE GOVERNMENT ID
+                echo'<div class="card-block" id="prof-card">
+                      <div class="contact">
+                          <div class="numbers">
+                            <div class="icon">
+                              <i class="icofont icofont-id-card"></i>
+                            </div>
+                            <div class="content">
+                              <p> 35-0017545-8</p><br> 
+                              <span>SSS</span>
+                            </div>
+                          </div>
+                          
+                          <div class="numbers">
+                            <div class="icon">
+                              <i class="icofont icofont-id-card"></i>
+                            </div>
+                            <div class="content">
+                              <p> 1212-7646-3910</p><br> 
+                              <span>PAGIBIG</span>
+                            </div>
+                          </div>
+
+                          <div class="numbers">
+                            <div class="icon">
+                              <i class="icofont icofont-id-card"></i>
+                            </div>
+                            <div class="content">
+                              <p> 382-592-170</p><br> 
+                              <span>TIN</span>
+                            </div>
+                          </div>
+
+                          <div class="numbers">
+                            <div class="icon">
+                              <i class="icofont icofont-id-card"></i>
+                            </div>
+                            <div class="content">
+                              <p> 100253981606</p><br> 
+                              <span>PHILHEALTH</span>
+                            </div>
+                          </div>
+                      </div>
+                    </div>';
+                    #COMPLETE GOVERNMENT ID END-->
+
                 //MODAL EDIT PROFILE START
                 echo '<div class="modal fade" id="Personal-' . htmlspecialchars($user_id) . '" tabindex="-1" role="dialog">
                           <div class="modal-dialog modal-lg" role="document">
@@ -252,20 +312,50 @@ try {
                                   <div class="modal-body" style="padding: 5px !important;">
                                     <p> Please provide accurate and complete information in all fields. This information is required for reference purposes only within the company and will not be used for any illegal purposes. All personal data will be securely stored and handled in accordance with company privacy policies and applicable data protection laws. It will not be shared externally without your consent.</p>
 
-                                    <div id="personal-form"> 
-                                        <form>
-                                            <div id="pers-name">
+                                    <div id="personal-form">';
+                                        $deptSql = "SELECT jrec_department 
+                                                    FROM tbl201_jobrec
+                                                    WHERE jrec_empno = :employeeId";
+                                        $deptStmt = $port_db->prepare($deptSql);
+                                        $deptStmt->execute(['employeeId' => $user_id]);
+                                        
+                                        $department = $deptStmt->fetchColumn();
+                                        $year = date('y');
+                                        $month = date('m');
+                                        
+                                        if (!$department) {
+                                            throw new Exception("No department found for employee ID $employeeId");
+                                        }
+
+                                        $sql = "SELECT pers_id FROM tbl201_persinfo WHERE pers_id LIKE :pattern ORDER BY pers_id DESC LIMIT 1";
+                                        $stmt = $port_db->prepare($sql);
+                                        $stmt->execute(['pattern' => "$year-$month-%-$department"]);
+
+                                        $lastId = $stmt->fetchColumn();
+
+                                        if ($lastId) {
+                                            $lastSequence = (int)substr($lastId, 6, 3);
+                                            $nextSequence = str_pad($lastSequence + 1, 3, '0', STR_PAD_LEFT); 
+                                        } else {
+                                            $nextSequence = '001';
+                                        }
+
+                                        $newId = "$year-$month-$nextSequence-$department";
+
+                                        echo '<input class="form-control" type="hidden" name="pers_id"  value="' . htmlspecialchars($newId) . '"/>';
+
+                                            echo'<div id="pers-name">
                                                 <label>Last Name<span id="required">*</span> 
-                                                    <input class="form-control" type="text" required value="' . htmlspecialchars($p['pers_lastname']) . '"/>
+                                                    <input class="form-control" type="text" name="lastname" required value="' . htmlspecialchars($p['pers_lastname']) . '"/>
                                                 </label>
                                                 <label>Middle Name 
-                                                    <input class="form-control" type="text" value="' . htmlspecialchars($p['pers_midname']) . '"/>
+                                                    <input class="form-control" type="text" name="midname" value="' . htmlspecialchars($p['pers_midname']) . '"/>
                                                 </label>
                                                 <label>First Name<span id="required">*</span> 
-                                                    <input class="form-control" type="text" required value="' . htmlspecialchars($p['pers_lastname']) . '"/>
+                                                    <input class="form-control" type="text" name="firstname" required value="' . htmlspecialchars($p['pers_firstname']) . '"/>
                                                 </label>
                                                 <label>Maiden Name 
-                                                    <input class="form-control" type="text" value="' . htmlspecialchars($p['pers_maidenname']) . '"/>
+                                                    <input class="form-control" type="text" name="maidenname" value="' . htmlspecialchars($p['pers_maidenname']) . '"/>
                                                 </label>
                                             </div>';
                                             $stmt = $port_db->prepare("SELECT * FROM tbl201_contact WHERE cont_empno = ?");
@@ -275,16 +365,16 @@ try {
                                             foreach ($contact as $c) {
                                             echo'<div id="pers-name">
                                                 <label>Personal Contact<span id="required">*</span> 
-                                                    <input class="form-control" type="text" required value="' . htmlspecialchars($c['cont_person_num']) . '"/>
+                                                    <input class="form-control" type="text" name="person_num" required value="' . htmlspecialchars($c['cont_person_num']) . '"/>
                                                 </label>
                                                 <label>Company Contact 
-                                                    <input class="form-control" type="text" value="' . htmlspecialchars($c['cont_company_num']) . '"/>
+                                                    <input class="form-control" type="text" name="company_num" value="' . htmlspecialchars($c['cont_company_num']) . '"/>
                                                 </label>
                                                 <label>Email<span id="required">*</span> 
-                                                    <input class="form-control" type="email" required value="' . htmlspecialchars($c['cont_email']) . '"/>
+                                                    <input class="form-control" type="email" name="email" required value="' . htmlspecialchars($c['cont_email']) . '"/>
                                                 </label>
                                                 <label>Telephone 
-                                                    <input class="form-control" type="text" value="' . htmlspecialchars($c['cont_telephone']) . '"/>
+                                                    <input class="form-control" type="text" name="telephone" value="' . htmlspecialchars($c['cont_telephone']) . '"/>
                                                 </label>
                                             </div>';
                                             }
@@ -295,33 +385,33 @@ try {
                                             foreach ($gov_num as $g) {
                                             echo'<div id="pers-name">
                                                 <label>SSS Number<span id="required">*</span> 
-                                                    <input class="form-control" type="text" value="' . htmlspecialchars($g['gov_sss']) . '" required />
+                                                    <input class="form-control" type="text" name="sss" value="' . htmlspecialchars($g['gov_sss']) . '" required />
                                                 </label>
                                                 <label>Pagibig Number<span id="required">*</span> 
-                                                    <input class="form-control" type="text" value="' . htmlspecialchars($g['gov_pagibig']) . '" required />
+                                                    <input class="form-control" type="text" name="pagibig" value="' . htmlspecialchars($g['gov_pagibig']) . '" required />
                                                 </label>
                                                 <label>Philhealth Number<span id="required">*</span> 
-                                                    <input class="form-control" type="text" value="' . htmlspecialchars($g['gov_philhealth']) . '" required />
+                                                    <input class="form-control" type="text" name="philhealth" value="' . htmlspecialchars($g['gov_philhealth']) . '" required />
                                                 </label>
                                                 <label>Tin Number<span id="required">*</span> 
-                                                    <input class="form-control" type="text" value="' . htmlspecialchars($g['gov_tin']) . '" required />
+                                                    <input class="form-control" type="text" name="tin" value="' . htmlspecialchars($g['gov_tin']) . '" required />
                                                 </label>
                                             </div>';
                                             }
                                             echo'<div id="pers-name">
                                                 <label>Permanent Address </label>
                                                 <label> 
-                                                    <select class="form-control" id="province" name="province">
+                                                    <select class="form-control" id="province" name="Pprovince">
                                                         <option>Select Province</option>
                                                     </select>
                                                 </label>
                                                 <label> 
-                                                    <select class="form-control" id="municipal" name="municipal">
+                                                    <select class="form-control" id="municipal" name="Pmunicipal">
                                                         <option>Select Municipality</option>
                                                     </select>
                                                 </label>
                                                 <label> 
-                                                    <select class="form-control" id="brngy" name="brngy">
+                                                    <select class="form-control" id="brngy" name="Pbrngy">
                                                         <option>Select Barangay</option>
                                                     </select>
                                                 </label>
@@ -329,17 +419,17 @@ try {
                                             <div id="pers-name">
                                                 <label>Current Address </label>
                                                 <label> 
-                                                    <select class="form-control" id="provincec" name="province">
+                                                    <select class="form-control" id="provincec" name="Cprovince">
                                                         <option>Select Province</option>
                                                     </select>
                                                 </label>
                                                 <label> 
-                                                    <select class="form-control" id="municipalc" name="municipal">
+                                                    <select class="form-control" id="municipalc" name="Cmunicipal">
                                                         <option>Select Municipality</option>
                                                     </select>
                                                 </label>
                                                 <label> 
-                                                    <select class="form-control" id="brngyc" name="brngy">
+                                                    <select class="form-control" id="brngyc" name="Cbrngy">
                                                         <option>Select Barangay</option>
                                                     </select>
                                                 </label>
@@ -347,60 +437,64 @@ try {
                                             <div id="pers-name">
                                                 <label>Place of Birth </label>
                                                 <label> 
-                                                    <select class="form-control" id="provincep" name="province">
+                                                    <select class="form-control" id="provincep" name="Bprovince">
                                                         <option>Select Province</option>
                                                     </select>
                                                 </label>
                                                 <label> 
-                                                    <select class="form-control" id="municipalp" name="municipal">
+                                                    <select class="form-control" id="municipalp" name="Bmunicipal">
                                                         <option>Select Municipality</option>
                                                     </select>
                                                 </label>
                                                 <label> 
-                                                    <select class="form-control" id="brngyp" name="brngy">
+                                                    <select class="form-control" id="brngyp" name="Bbrngy">
                                                         <option>Select Barangay</option>
                                                     </select>
                                                 </label>
                                             </div>
                                             <div id="pers-name">
                                                 <label>Birth Date<span id="required">*</span> 
-                                                    <input class="form-control" type="date" value="'. date('Y-m-d', strtotime($p['pers_birthdate'])) . '" required/>
+                                                    <input class="form-control" type="date" name="birthdate" value="'. date('Y-m-d', strtotime($p['pers_birthdate'])) . '" required/>
                                                 </label>
                                                 <label>Civil Status<span id="required">*</span> 
-                                                    <input class="form-control" type="text" required value="' . htmlspecialchars($p['pers_civilstat']) . '"/>
+                                                    <input class="form-control" type="text" name="civilstat" required value="' . htmlspecialchars($p['pers_civilstat']) . '"/>
                                                 </label>
                                                 <label>Sex<span id="required">*</span> <br>';
                                                     if($p['pers_sex'] == 'Male'){
-                                                        echo'<input type="checkbox" checked/> Male ';
-                                                        echo'<input type="checkbox"/> Female';
+                                                        echo'<input type="checkbox" name="sex" value="Male" checked/> Male ';
+                                                        echo'<input type="checkbox" name="sex" value="Female"/> Female';
                                                     }else{
-                                                        echo'<input type="checkbox"/> Male ';
-                                                        echo'<input type="checkbox" checked/> Female';
+                                                        echo'<input type="checkbox" name="sex" value="Male"/> Male ';
+                                                        echo'<input type="checkbox" name="sex" value="Female" checked/> Female';
                                                     }
                                                     
                                                     
                                                 echo'</label>
                                                 <label>Religion 
-                                                    <input class="form-control" type="text" value="' . htmlspecialchars($p['pers_religion']) . '"/>
+                                                    <input class="form-control" type="text" name="religion" value="' . htmlspecialchars($p['pers_religion']) . '"/>
                                                 </label>
                                             </div>
                                             <div id="pers-name">
                                                 <label>Height(cm) 
-                                                    <input class="form-control" type="text" value="' . htmlspecialchars($p['pers_height']) . '"/>
+                                                    <input class="form-control" type="text" name="height" value="' . htmlspecialchars($p['pers_height']) . '"/>
                                                 </label>
                                                 <label>Weight(kg) 
-                                                    <input class="form-control" type="text" value="' . htmlspecialchars($p['pers_weight']) . '"/>
+                                                    <input class="form-control" type="text" name="weight" value="' . htmlspecialchars($p['pers_weight']) . '"/>
                                                 </label>
                                                 <label>Blood Type 
-                                                    <input class="form-control" type="text" value="' . htmlspecialchars($p['pers_bloodtype']) . '"/>
+                                                    <input class="form-control" type="text" name="bloodtype" value="' . htmlspecialchars($p['pers_bloodtype']) . '"/>
                                                 </label>
                                             </div>
-                                        </form>
+                                            <div id="pers-name">
+                                                <label>Dialect
+                                                    <input class="form-control" type="text" name="dialect" value="' . htmlspecialchars($p['pers_dialect']) . '"/>
+                                                </label>
+                                            </div>
                                     </div>
                                   </div>
                                   <div class="modal-footer">
                                       <button type="button" class="btn btn-default btn-mini waves-effect " data-dismiss="modal">Close</button>
-                                      <button type="button" class="btn btn-primary btn-mini waves-effect waves-light ">Save changes</button>
+                                      <button type="button" id="save-personal" class="btn btn-primary btn-mini waves-effect waves-light ">Save changes</button>
                                   </div>
                               </div>
                           </div>
@@ -409,7 +503,193 @@ try {
                       // <input class="form-control" type="text" value="' . htmlspecialchars($p['pers_sex']) . '" required/>
         }
     } else {
-        echo "No data available.";
+        //MODAL EDIT PROFILE START
+                echo '<div class="modal fade" id="Personal-' . htmlspecialchars($user_id) . '" tabindex="-1" role="dialog">
+                          <div class="modal-dialog modal-lg" role="document">
+                              <div class="modal-content">
+                                  <div class="modal-header">
+                                      <h4 class="modal-title"></h4>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true"><i style="font-size: 30px;" class="fa fa-times-circle"></i></span>
+                                      </button>
+                                  </div>
+                                  <div class="modal-body" style="padding: 5px !important;">
+                                    <p> Please provide accurate and complete information in all fields. This information is required for reference purposes only within the company and will not be used for any illegal purposes. All personal data will be securely stored and handled in accordance with company privacy policies and applicable data protection laws. It will not be shared externally without your consent.</p>
+
+                                    <div id="personal-form">';
+                                        $deptSql = "SELECT jrec_department 
+                                                    FROM tbl201_jobrec
+                                                    WHERE jrec_empno = :employeeId";
+                                        $deptStmt = $port_db->prepare($deptSql);
+                                        $deptStmt->execute(['employeeId' => $user_id]);
+                                        
+                                        $department = $deptStmt->fetchColumn();
+                                        $year = date('y');
+                                        $month = date('m');
+                                        
+                                        if (!$department) {
+                                            throw new Exception("No department found for employee ID $employeeId");
+                                        }
+
+                                        $sql = "SELECT pers_id FROM tbl201_persinfo WHERE pers_id LIKE :pattern ORDER BY pers_id DESC LIMIT 1";
+                                        $stmt = $port_db->prepare($sql);
+                                        $stmt->execute(['pattern' => "$year-$month-%-$department"]);
+
+                                        $lastId = $stmt->fetchColumn();
+
+                                        if ($lastId) {
+                                            $lastSequence = (int)substr($lastId, 6, 3);
+                                            $nextSequence = str_pad($lastSequence + 1, 3, '0', STR_PAD_LEFT); 
+                                        } else {
+                                            $nextSequence = '001';
+                                        }
+
+                                        $newId = "$year-$month-$nextSequence-$department";
+
+                                        echo '<input class="form-control" type="hidden" name="pers_id"  value="' . htmlspecialchars($newId) . '"/>';
+
+                                            echo'<div id="pers-name">
+                                                <label>Last Name<span id="required">*</span> 
+                                                    <input class="form-control" type="text" name="lastname"  value=""/>
+                                                </label>
+                                                <label>Middle Name 
+                                                    <input class="form-control" type="text" name="midname" value=""/>
+                                                </label>
+                                                <label>First Name<span id="required">*</span> 
+                                                    <input class="form-control" type="text" name="firstname"  value=""/>
+                                                </label>
+                                                <label>Maiden Name 
+                                                    <input class="form-control" type="text" name="maidenname" value=""/>
+                                                </label>
+                                            </div>';
+                                            
+                                            echo'<div id="pers-name">
+                                                <label>Personal Contact<span id="required">*</span> 
+                                                    <input class="form-control" type="text" name="person_num"  value=""/>
+                                                </label>
+                                                <label>Company Contact 
+                                                    <input class="form-control" type="text" name="company_num" value=""/>
+                                                </label>
+                                                <label>Email<span id="required">*</span> 
+                                                    <input class="form-control" type="email" name="email"  value=""/>
+                                                </label>
+                                                <label>Telephone 
+                                                    <input class="form-control" type="text" name="telephone" value=""/>
+                                                </label>
+                                            </div>';
+                                            echo'<div id="pers-name">
+                                                <label>SSS Number<span id="required">*</span> 
+                                                    <input class="form-control" type="text" name="sss" value=""  />
+                                                </label>
+                                                <label>Pagibig Number<span id="required">*</span> 
+                                                    <input class="form-control" type="text" name="pagibig" value=""  />
+                                                </label>
+                                                <label>Philhealth Number<span id="required">*</span> 
+                                                    <input class="form-control" type="text" name="philhealth" value=""  />
+                                                </label>
+                                                <label>Tin Number<span id="required">*</span> 
+                                                    <input class="form-control" type="text" name="tin" value=""  />
+                                                </label>
+                                            </div>';
+                                            echo'<div id="pers-name">
+                                                <label>Permanent Address </label>
+                                                <label> 
+                                                    <select class="form-control" id="province" name="Pprovince">
+                                                        <option>Select Province</option>
+                                                    </select>
+                                                </label>
+                                                <label> 
+                                                    <select class="form-control" id="municipal" name="Pmunicipal">
+                                                        <option>Select Municipality</option>
+                                                    </select>
+                                                </label>
+                                                <label> 
+                                                    <select class="form-control" id="brngy" name="Pbrngy">
+                                                        <option>Select Barangay</option>
+                                                    </select>
+                                                </label>
+                                            </div>
+                                            <div id="pers-name">
+                                                <label>Current Address </label>
+                                                <label> 
+                                                    <select class="form-control" id="provincec" name="Cprovince">
+                                                        <option>Select Province</option>
+                                                    </select>
+                                                </label>
+                                                <label> 
+                                                    <select class="form-control" id="municipalc" name="Cmunicipal">
+                                                        <option>Select Municipality</option>
+                                                    </select>
+                                                </label>
+                                                <label> 
+                                                    <select class="form-control" id="brngyc" name="Cbrngy">
+                                                        <option>Select Barangay</option>
+                                                    </select>
+                                                </label>
+                                            </div>
+                                            <div id="pers-name">
+                                                <label>Place of Birth </label>
+                                                <label> 
+                                                    <select class="form-control" id="provincep" name="Bprovince">
+                                                        <option>Select Province</option>
+                                                    </select>
+                                                </label>
+                                                <label> 
+                                                    <select class="form-control" id="municipalp" name="Bmunicipal">
+                                                        <option>Select Municipality</option>
+                                                    </select>
+                                                </label>
+                                                <label> 
+                                                    <select class="form-control" id="brngyp" name="Bbrngy">
+                                                        <option>Select Barangay</option>
+                                                    </select>
+                                                </label>
+                                            </div>
+                                            <div id="pers-name">
+                                                <label>Birth Date<span id="required">*</span> 
+                                                    <input class="form-control" type="date" name="birthdate" value="" />
+                                                </label>
+                                                <label>Civil Status<span id="required">*</span> 
+                                                    <input class="form-control" type="text" name="civilstat"  value=""/>
+                                                </label>
+                                                <label>Sex<span id="required">*</span> <br>';
+                                                    
+                                                        echo'<input type="checkbox" name="sex" value="Male"/> Male ';
+                                                        echo'<input type="checkbox" name="sex" value="Female"/> Female';
+                                                    
+                                                    
+                                                    
+                                                echo'</label>
+                                                <label>Religion 
+                                                    <input class="form-control" type="text" name="religion" value=""/>
+                                                </label>
+                                            </div>
+                                            <div id="pers-name">
+                                                <label>Height(cm) 
+                                                    <input class="form-control" type="text" name="height" value=""/>
+                                                </label>
+                                                <label>Weight(kg) 
+                                                    <input class="form-control" type="text" name="weight" value=""/>
+                                                </label>
+                                                <label>Blood Type 
+                                                    <input class="form-control" type="text" name="bloodtype" value=""/>
+                                                </label>
+                                            </div>
+                                            <div id="pers-name">
+                                                <label>Dialect
+                                                    <input class="form-control" type="text" name="dialect" value=""/>
+                                                </label>
+                                            </div>
+                                    </div>
+                                  </div>
+                                  <div class="modal-footer">
+                                      <button type="button" class="btn btn-default btn-mini waves-effect " data-dismiss="modal">Close</button>
+                                      <button type="button" id="save-personal" class="btn btn-primary btn-mini waves-effect waves-light ">Save changes</button>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>';
+                //MODAL EDIT PROFILE END
     }
 
 } catch (PDOException $e) {

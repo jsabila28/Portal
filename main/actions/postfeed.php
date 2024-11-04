@@ -51,7 +51,7 @@ try {
             ");
             $stmt->execute([$row['ann_id']]);
             $cm = $stmt->fetch(PDO::FETCH_ASSOC);
-            echo '<section class="profile-feed">';
+            echo '<section class="profile-feed" id="prof-'. htmlspecialchars($row['ann_id']) .'">';
             echo '<div class="cardbox shadow-lg bg-white">';
             echo '<div class="cardbox-heading">';
             echo '<div class="dropdown float-right">';
@@ -59,7 +59,7 @@ try {
             echo '<em class="fa fa-ellipsis-h"></em>';
             echo '</button>';
             echo '<div class="dropdown-menu dropdown-scale dropdown-menu-right" role="menu">';
-            echo '<a class="dropdown-item" href="#"><i class="fas fa-eye-slash"></i> Hide post</a>';
+            echo '<a class="dropdown-item" href="#" onclick="hideProfile('. htmlspecialchars($row['ann_id']) .'); return false;"><i class="fas fa-eye-slash"></i> Hide post</a>';
             // echo '<a class="dropdown-item" href="#">Stop following</a>';
             echo '<a class="dropdown-item" href="#"><i class="fas fa-exclamation-circle"></i> Report</a>';
             echo '</div>';

@@ -218,4 +218,10 @@ fetch('post')
         document.getElementById("myDiv").innerHTML = data; // Set the inner HTML
     })
     .catch(error => console.error('Error fetching data:', error));
+
+
+    function hideProfile(empNo) {
+        const section = document.getElementById('prof-' + empNo);
+        if (section) section.style.display = 'none';
+    }
 </script>
