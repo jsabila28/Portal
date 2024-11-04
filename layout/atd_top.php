@@ -271,7 +271,7 @@
 									</a>
 									<ul class="show-notification profile-notification">
 										<li>
-											<a href="#">
+											<a href="/Portal/profile">
 												<!-- <i class="ti-layout-sidebar-left"></i>  -->
 												<?php
             										echo $username;

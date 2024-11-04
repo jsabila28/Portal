@@ -6,7 +6,7 @@
                 <ul class="sidebar-menu">
                   <div id="header"><label>Profile</label></div>
                   <li>
-                    <a href="dashboard">
+                    <a href="person">
                       <p>
                         <i class="icon-user-female"></i> Personal
                       </p>
@@ -176,9 +176,9 @@
                         </div>  
                       </div>
                     </div>
-                    <div id="personal"></div>
+                    <div id="family"></div>
                     <script>
-                    fetch('personal')
+                    fetch('family')
                         .then(response => {
                             if (!response.ok) {
                                 throw new Error('Network response was not ok: ' + response.statusText);
@@ -186,56 +186,10 @@
                             return response.text(); // Since we're expecting HTML
                         })
                         .then(data => {
-                            document.getElementById("personal").innerHTML = data; // Set the inner HTML
+                            document.getElementById("family").innerHTML = data; // Set the inner HTML
                         })
                         .catch(error => console.error('Error fetching data:', error));
                     </script>
-
-                    <!-- #COMPLETE GOVERNMENT ID -->
-                    <div class="card-block" id="prof-card">
-                      <div class="contact">
-                          <div class="numbers">
-                            <div class="icon">
-                              <i class="icofont icofont-id-card"></i>
-                            </div>
-                            <div class="content">
-                              <p> 35-0017545-8</p><br> 
-                              <span>SSS</span>
-                            </div>
-                          </div>
-                          
-                          <div class="numbers">
-                            <div class="icon">
-                              <i class="icofont icofont-id-card"></i>
-                            </div>
-                            <div class="content">
-                              <p> 1212-7646-3910</p><br> 
-                              <span>PAGIBIG</span>
-                            </div>
-                          </div>
-
-                          <div class="numbers">
-                            <div class="icon">
-                              <i class="icofont icofont-id-card"></i>
-                            </div>
-                            <div class="content">
-                              <p> 382-592-170</p><br> 
-                              <span>TIN</span>
-                            </div>
-                          </div>
-
-                          <div class="numbers">
-                            <div class="icon">
-                              <i class="icofont icofont-id-card"></i>
-                            </div>
-                            <div class="content">
-                              <p> 100253981606</p><br> 
-                              <span>PHILHEALTH</span>
-                            </div>
-                          </div>
-                      </div>
-                    </div>
-                    <!-- #COMPLETE GOVERNMENT ID END-->
                 </div>
             </div>
         </div>

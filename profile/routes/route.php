@@ -3,12 +3,16 @@
 $routes = [
 	'' => '/pages/dashboard.php',
 	'/' => '/pages/dashboard.php',
-	'/dashboard' => '/pages/dashboard.php',
+	'/person' => '/pages/dashboard.php',
 	'/login' => '/Portal/main/pages/login.php',
 	'/sji' => '/pages/sji.php',
 	'/so' => '/pages/so.php',
 
+	'/province' => '/actions/province.php',
+	'/municipal' => '/actions/municipal.php',
+	'/brngy' => '/actions/barangay.php',
 	'/personal' => '/actions/personal.php',
+	'/family' => '/actions/fam_back.php',
 	//PAGES
 	'/fam' => '/pages/family_background.php'
 

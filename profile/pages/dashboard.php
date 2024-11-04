@@ -6,7 +6,7 @@
                 <ul class="sidebar-menu">
                   <div id="header"><label>Profile</label></div>
                   <li>
-                    <a href="dashboard">
+                    <a href="person">
                       <p>
                         <i class="icon-user-female"></i> Personal
                       </p>
@@ -22,7 +22,7 @@
                   <li>
                     <a href="#">
                       <p>
-                        <i class="zmdi zmdi-account-box-phone"></i> Emergency Contact
+                        <i class="zmdi zmdi-favorite"></i> Special Skills
                       </p>
                     </a>
                   </li>
@@ -38,17 +38,18 @@
                   <li>
                     <a href="#">
                       <p>
-                       <i class="icofont icofont-certificate-alt-2"></i> Certificate
+                        <i class="icofont icofont-certificate-alt-1"></i> Eligibility/Licenses
                       </p>
                     </a>
                   </li>
                   <li>
                     <a href="#">
                       <p>
-                        <i class="zmdi zmdi-favorite"></i> Special Skills
+                       <i class="icofont icofont-certificate-alt-2"></i> Certificate
                       </p>
                     </a>
                   </li>
+                  
                   <hr>
                   <div id="header"><label>Work</label></div>
                   <li>
@@ -61,7 +62,7 @@
                   <li>
                     <a href="#">
                       <p>
-                        <i class="icofont icofont-certificate-alt-1"></i> Eligibility/Licenses
+                        <i class="icofont icofont-certificate-alt-2"></i> Internal Certificate
                       </p>
                     </a>
                   </li>
@@ -172,7 +173,7 @@
                           </div>
                         </div>
                         <div class="edit-profile">
-                          <button class="btn btn-default btn-mini"><i class="icofont icofont-pencil-alt-2"></i> Edit Profile</button>
+                          <button class="btn btn-default btn-mini" data-toggle="modal" data-target="#Personal-<?=$user_id?>"><i class="icofont icofont-pencil-alt-2"></i> Edit Profile</button>
                         </div>  
                       </div>
                     </div>
@@ -240,4 +241,5 @@
             </div>
         </div>
     </div>
-</div>
+</div> 
+<script type="text/javascript" src="../assets/js/address.js"></script>
