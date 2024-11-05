@@ -168,7 +168,9 @@
                                 echo $username;
                             ?>
                             </span>
-                            <p>Software Developer</p>
+                             <p><?php
+                                echo $position;
+                            ?></p>
                             <p><?php
                                 echo $empno;
                             ?></p>

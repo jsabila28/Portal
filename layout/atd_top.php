@@ -92,7 +92,7 @@
     <!-- Bootstrap JS -->
     <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.5.1/js/bootstrap.min.js"></script> -->
     <!-- Select 2 css -->
-    <link rel="stylesheet" href="/Portal/admin_template/bower_components/select2/css/select2.min.css">
+    <!-- <link rel="stylesheet" href="/Portal/admin_template/bower_components/select2/css/select2.min.css"> -->
     <!-- Multi Select css -->
     <link rel="stylesheet" type="text/css" href="/Portal/admin_template/bower_components/bootstrap-multiselect/css/bootstrap-multiselect.css">
     <link rel="stylesheet" type="text/css" href="/Portal/admin_template/bower_components/multiselect/css/multi-select.css">
@@ -145,83 +145,19 @@
 									</a>
 								</li> -->
 							</ul>
+							<ul class="nav-center">
+								<li>
+									<a href="/Portal/">
+										<img src="/Portal/ATD/assets/img/home.png" width="15" height="15">
+									</a>
+								</li>
+							</ul>
 							<ul class="nav-right">
-								<li class="header-notification" style="margin: 0px; padding-right: 0px !important;">
-        							<button class="btn btn-mini btn-default btn-outline-default">
-        								<i style="font-size: 14px;" class="fa-solid fa-calendar-days"></i></button>
-        							<ul class="show-notification">
-										<div id="calendar"></div>
-										<script>
-										document.addEventListener('DOMContentLoaded', function() {
-										  var calendarEl = document.getElementById('calendar');
-										
-										  var calendar = new FullCalendar.Calendar(calendarEl, {
-										    schedulerLicenseKey: 'GPL-My-Project-Is-Open-Source',
-										    plugins: ['resourceTimeline'],
-										    initialView: 'resourceTimelineDay',
-										    resources: [
-										      { id: 'a', title: 'Room A' },
-										      { id: 'b', title: 'Room B' },
-										      { id: 'c', title: 'Room C' }
-										    ],
-										    events: [
-										      { id: '1', resourceId: 'a', start: '2024-10-16T10:00:00', end: '2024-10-16T12:00:00', title: 'Event 1' },
-										      { id: '2', resourceId: 'b', start: '2024-10-16T13:00:00', end: '2024-10-16T15:00:00', title: 'Event 2' }
-										    ]
-										  });
-										
-										  calendar.render();
-										});
-
-										</script>
-									</ul>
-    							</li>
-    							<li class="header-notification" style="margin: 0px; padding-left: 0px !important;">
-        							<button class="btn btn-mini btn-default btn-outline-default">
-        								<i style="font-size: 14px;" class="fa-solid fa-bell"></i>
-        							</button>
-        							<ul class="show-notification">
-        								<div id="calendar"></div>
-										<li>
-											<h6>Notifications</h6>
-											<label class="label label-danger">New</label>
-										</li>
-										<li>
-											<div class="media">
-												<img class="d-flex align-self-center" src="/Portal/admin_template/assets/images/user.png" alt="Generic placeholder image">
-												<div class="media-body">
-													<h5 class="notification-user">Soeng Souy</h5>
-													<p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
-													<span class="notification-time">30 minutes ago</span>
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="media">
-												<img class="d-flex align-self-center" src="/Portal/admin_template/assets/images/user.png" alt="Generic placeholder image">
-												<div class="media-body">
-													<h5 class="notification-user">Joseph William</h5>
-													<p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
-													<span class="notification-time">30 minutes ago</span>
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="media">
-												<img class="d-flex align-self-center" src="/Portal/admin_template/assets/images/user.png" alt="Generic placeholder image">
-												<div class="media-body">
-													<h5 class="notification-user">Sara Soudein</h5>
-													<p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
-													<span class="notification-time">30 minutes ago</span>
-												</div>
-											</div>
-										</li>
-									</ul>
-    							</li>
+								
                             	<li class="header-notification">
-        							<button class="btn btn-mini displayChatbox" style="background-color: white;">
-        								<i style="font-size: 20px; color: black;" class="ti-layout-grid3"></i>
-        							</button>
+        							<a href="#" class="displayChatbox">
+        								<img src="/Portal/ATD/assets/img/menu.png" class="circle-img" width="30" height="30">
+        							</a>
     							</li>
 								<?php
 								require_once($sr_root."/db/db.php");
@@ -239,7 +175,15 @@
 								    
 								    error_log("User ID: $user_id");
 							
-								    $stmt = $hr_db->prepare("SELECT bi_empno, CONCAT(bi_empfname,' ',bi_empmname,' ',bi_emplname) as name FROM tbl201_basicinfo WHERE bi_empno = :user_id");
+								    $stmt = $hr_db->prepare("SELECT bi_empno, CONCAT(bi_empfname,' ',bi_empmname,' ',bi_emplname) AS name, jd_title 
+										FROM tbl201_basicinfo 
+										LEFT JOIN tbl201_jobrec 
+										ON tbl201_basicinfo.`bi_empno` = tbl201_jobrec.`jrec_empno`
+										LEFT JOIN tbl_jobdescription
+										ON tbl_jobdescription.`jd_code` = tbl201_jobrec.`jrec_position`
+										WHERE bi_empno = :user_id
+										AND jrec_type = 'Primary'
+										AND jrec_status = 'Primary'");
 								    $stmt->bindParam(':user_id', $user_id);
 								    $stmt->execute();
 								
@@ -249,6 +193,7 @@
 								        error_log("Query Result: " . print_r($user, true));
 								        $username = $user['name'];
 								        $empno = $user['bi_empno'];
+								        $position = $user['jd_title'];
 								    } else {
 								        error_log("No user found for ID: $user_id");
 								        $username = "Guest";
@@ -257,6 +202,12 @@
 								    $username = "Guest";
 								}
 								?>
+
+								<li class="header-notification">
+        							<a href="#">
+        								<img src="/Portal/ATD/assets/img/notif.png" width="30" height="30">
+        							</a>
+    							</li>
 
 								<li class="user-profile header-notification">
 									<a href="#!">

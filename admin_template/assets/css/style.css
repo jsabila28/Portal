@@ -5734,18 +5734,18 @@ table thead .border-bottom-info th {
       .header-navbar .navbar-wrapper .navbar-logo .mobile-search,
       .header-navbar .navbar-wrapper .navbar-logo .mobile-options {
         display: none; }
-    .header-navbar .navbar-wrapper .navbar-container .nav-left, .header-navbar .navbar-wrapper .navbar-container .nav-right {
+    .header-navbar .navbar-wrapper .navbar-container .nav-left, .header-navbar .navbar-wrapper .navbar-container .nav-center, .header-navbar .navbar-wrapper .navbar-container .nav-right {
       float: left;
       margin-bottom: 0; }
-      .header-navbar .navbar-wrapper .navbar-container .nav-left li, .header-navbar .navbar-wrapper .navbar-container .nav-right li {
+      .header-navbar .navbar-wrapper .navbar-container .nav-left li, .header-navbar .navbar-wrapper .navbar-container .nav-center li, .header-navbar .navbar-wrapper .navbar-container .nav-right li {
         float: left;
         line-height: 4;
         padding: 0 10px;
         position: relative; }
-      .header-navbar .navbar-wrapper .navbar-container .nav-left a, .header-navbar .navbar-wrapper .navbar-container .nav-right a {
+      .header-navbar .navbar-wrapper .navbar-container .nav-left a, .header-navbar .navbar-wrapper .navbar-container .nav-center a, .header-navbar .navbar-wrapper .navbar-container .nav-right a {
         color: #000;
         padding: 1.5rem .6rem; }
-      .header-navbar .navbar-wrapper .navbar-container .nav-left .mega-menu-top i, .header-navbar .navbar-wrapper .navbar-container .nav-right .mega-menu-top i {
+      .header-navbar .navbar-wrapper .navbar-container .nav-left .mega-menu-top i, .header-navbar .navbar-wrapper .navbar-container .nav-center .mega-menu-top i, .header-navbar .navbar-wrapper .navbar-container .nav-right .mega-menu-top i {
         font-size: 10px;
         margin-left: 10px; }
     .header-navbar .navbar-wrapper .navbar-container .nav-right {
@@ -19701,3 +19701,14 @@ ul.button-grid button:hover {
 .money{
   text-align: right;
 }
+.displayChatbox:focus i,
+.displayChatbox:active i {
+    color: red !important; 
+}
+.circle-img:hover {
+    border-radius: 50%; 
+}
+.circle-img:hover {
+    background-color: #d9d7d7;
+}
+

@@ -77,12 +77,12 @@
     <script src="/Portal/admin_template/bower_components/jquery-validation/js/jquery.validate.js"></script>
 
     <!-- Select 2 js -->
-    <script type="text/javascript" src="/Portal/admin_template/bower_components/bower_components/select2/js/select2.full.min.js"></script>
+    <script type="text/javascript" src="/Portal/admin_template/bower_components/select2/js/select2.full.min.js"></script>
     <!-- Multiselect js -->
-    <script type="text/javascript" src="/Portal/admin_template/bower_components/bower_components/bootstrap-multiselect/js/bootstrap-multiselect.js">
+    <script type="text/javascript" src="/Portal/admin_template/bower_components/bootstrap-multiselect/js/bootstrap-multiselect.js">
     </script>
-    <script type="text/javascript" src="/Portal/admin_template/bower_components/bower_components/multiselect/js/jquery.multi-select.js"></script>
-    <script type="text/javascript" src="assets/js/jquery.quicksearch.js"></script>
+    <script type="text/javascript" src="/Portal/admin_template/bower_components/multiselect/js/jquery.multi-select.js"></script>
+    <script type="text/javascript" src="/Portal/admin_template/assets/js/jquery.quicksearch.js"></script>
 
     <!-- jquery file upload js -->
     <script src="/Portal/admin_template/assets/pages/jquery.filer/js/jquery.filer.min.js"></script>
@@ -136,7 +136,15 @@
     <!-- Emoji Data -->
     <link rel="stylesheet" type="text/css" href="/Portal/assets/css/jquery.emojipicker.tw.css">
     <script type="text/javascript" src="/Portal/assets/js/jquery.emojis.js"></script>
-    
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('.displayChatbox').on('click', function(e) {
+            e.preventDefault(); // Prevent default link behavior if needed
+            $(this).find('i').toggleClass('active-color');
+        });
+    });
+
+    </script>
 </body>
 
 </html>

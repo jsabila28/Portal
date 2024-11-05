@@ -242,4 +242,31 @@ $(document).ready(function() {
     });
 
 });
+
+function saveComment() {
+    // Get the values from the inputs
+    const comment = document.querySelector("input[name='Mycomment']").value;
+    const postId = document.querySelector("input[name='post-id']").value;
+
+    // Create an AJAX request
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", "save_comment", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    // Send the data as POST parameters
+    xhr.send("Mycomment=" + encodeURIComponent(comment) + "&post-id=" + encodeURIComponent(postId));
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            const response = JSON.parse(xhr.responseText);
+            if (response.success) {
+                alert(response.success);
+            } else {
+                alert(response.error);
+            }
+        }
+    };
+}
+
+
 </script>

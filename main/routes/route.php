@@ -11,6 +11,7 @@ $routes = [
 	'/signOut' => 'main/actions/logout.php',
 
 	'/reaction' => 'main/actions/save_reaction.php',
+	'/save_comment' => 'main/actions/save_comment.php',
 	'/postnews' => 'main/actions/post_news.php',
 
 	// DASHBOARD

@@ -14,7 +14,7 @@ $(document).ready(function() {
     $('#province').on('change', function() {
         const province = $(this).val();
         $('#municipal').prop('disabled', !province);
-        $('#brngy').prop('disabled', true).empty().append('<option value="">Select Barangay</option>');
+        $('#brngy').prop('disabled', true).empty().append('<option value=" ">Select Barangay</option>');
         
         if (province) {
             $.ajax({
@@ -23,7 +23,7 @@ $(document).ready(function() {
                 data: { pr_code: province },
                 dataType: 'json',
                 success: function(data) {
-                    $('#municipal').empty().append('<option value="">Select Municipality</option>');
+                    $('#municipal').empty().append('<option value=" ">Select Municipality</option>');
                     $('#municipal').append(data.map(municipal => `<option value="${municipal.ct_id}">${municipal.ct_name}</option>`));
                     $('#municipal').select2({ placeholder: 'Select Municipal', allowClear: true }); // Initialize Select2
                 }
@@ -43,7 +43,7 @@ $(document).ready(function() {
                 data: { ct_id: municipal },
                 dataType: 'json',
                 success: function(data) {
-                    $('#brngy').empty().append('<option value="">Select Barangay</option>');
+                    $('#brngy').empty().append('<option value=" ">Select Barangay</option>');
                     $('#brngy').append(data.map(brngy => `<option value="${brngy.br_id}">${brngy.br_name}</option>`));
                     $('#brngy').select2({ placeholder: 'Select Municipal', allowClear: true }); // Initialize Select2
                 }
@@ -66,7 +66,7 @@ $(document).ready(function() {
     $('#provincec').on('change', function() {
         const province = $(this).val();
         $('#municipalc').prop('disabled', !province);
-        $('#brngyc').prop('disabled', true).empty().append('<option value="">Select Barangay</option>');
+        $('#brngyc').prop('disabled', true).empty().append('<option value=" ">Select Barangay</option>');
         
         if (province) {
             $.ajax({
@@ -95,7 +95,7 @@ $(document).ready(function() {
                 data: { ct_id: municipal },
                 dataType: 'json',
                 success: function(data) {
-                    $('#brngyc').empty().append('<option value="">Select Barangay</option>');
+                    $('#brngyc').empty().append('<option value=" ">Select Barangay</option>');
                     $('#brngyc').append(data.map(brngy => `<option value="${brngy.br_id}">${brngy.br_name}</option>`));
                     $('#brngyc').select2({ placeholder: 'Select Municipal', allowClear: true }); // Initialize Select2
                 }
@@ -118,7 +118,7 @@ $(document).ready(function() {
     $('#provincep').on('change', function() {
         const province = $(this).val();
         $('#municipalp').prop('disabled', !province);
-        $('#brngyp').prop('disabled', true).empty().append('<option value="">Select Barangay</option>');
+        $('#brngyp').prop('disabled', true).empty().append('<option value=" ">Select Barangay</option>');
         
         if (province) {
             $.ajax({
@@ -127,7 +127,7 @@ $(document).ready(function() {
                 data: { pr_code: province },
                 dataType: 'json',
                 success: function(data) {
-                    $('#municipalp').empty().append('<option value="">Select Municipality</option>');
+                    $('#municipalp').empty().append('<option value=" ">Select Municipality</option>');
                     $('#municipalp').append(data.map(municipal => `<option value="${municipal.ct_id}">${municipal.ct_name}</option>`));
                     $('#municipalp').select2({ placeholder: 'Select Municipal', allowClear: true }); // Initialize Select2
                 }
@@ -147,7 +147,7 @@ $(document).ready(function() {
                 data: { ct_id: municipal },
                 dataType: 'json',
                 success: function(data) {
-                    $('#brngyp').empty().append('<option value="">Select Barangay</option>');
+                    $('#brngyp').empty().append('<option value=" ">Select Barangay</option>');
                     $('#brngyp').append(data.map(brngy => `<option value="${brngy.br_id}">${brngy.br_name}</option>`));
                     $('#brngyp').select2({ placeholder: 'Select Municipal', allowClear: true }); // Initialize Select2
                 }

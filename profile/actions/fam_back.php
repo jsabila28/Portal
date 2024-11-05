@@ -502,7 +502,7 @@ try {
                                           echo'<input type="checkbox" name="sex" value="Female"/> Female';
                                         echo'</label>
                                         <label> 
-                                            <a class="btn btn-primary btn-mini">add child</a>
+                                            <a class="btn btn-success btn-mini" style="color: white;">add child</a>
                                         </label>
                                     </div>';
                                     echo '<hr>';
@@ -541,6 +541,33 @@ try {
                                         </label>
                                         <label>Birth Date<span id="required">*</span> 
                                             <input class="form-control" type="date" name="sss" value=""  />
+                                        </label>
+                                    </div>';
+                                     echo '<hr>';
+                                    echo'<div id="pers-name">
+                                          <label>Siblings</label>
+                                         </div>';
+                                    echo'<div id="pers-name">
+                                        <label>Last Name<span id="required">*</span> 
+                                            <input class="form-control" type="text" name="sss" value=""  />
+                                        </label>
+                                        <label>First Name<span id="required">*</span> 
+                                            <input class="form-control" type="text" name="pagibig" value=""  />
+                                        </label>
+                                        <label>Middle Name<span id="required">*</span> 
+                                            <input class="form-control" type="text" name="philhealth" value=""  />
+                                        </label>
+                                    </div>
+                                    <div id="pers-name">
+                                        <label>Birth Date<span id="required">*</span> 
+                                            <input class="form-control" type="date" name="sss" value=""  />
+                                        </label>
+                                        <label>Sex<span id="required">*</span> <br>';
+                                          echo'<input type="checkbox" name="sex" value="Male"/> Male ';
+                                          echo'<input type="checkbox" name="sex" value="Female"/> Female';
+                                        echo'</label>
+                                        <label> 
+                                            <a class="btn btn-success btn-mini" style="color: white;">add sibling</a>
                                         </label>
                                     </div>';
                           echo'</div>

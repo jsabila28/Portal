@@ -263,10 +263,10 @@ try {
             echo '</div>';
             echo '<div class="media-body" id="comment">';
             echo '<div class="textarea-wrapper">';
-            echo '<input type="text" placeholder="Write a comment..." id="input-default" class="emojiable-option"></input>';
+            echo '<input type="text" name="Mycomment" placeholder="Write a comment..." id="input-default" class="emojiable-option"></input>';
             echo '<i class="ti-face-smile icon emoji-icon"></i>';
             echo '</div>'; // Close textarea-wrapper
-            echo '<img src="assets/img/send_icon.png" height="30" width="30"/>';
+            echo '<a href="#" id="saveComment" onclick="saveComment()"><img src="assets/img/send_icon.png" height="30" width="30"/></a>';
             echo '</div>'; // Close media-body
             echo '</div>'; // Close media
             echo '</div>'; // Close cardbox-base-comment
@@ -465,10 +465,10 @@ try {
                                 echo '</div>';
                                 echo '<div class="media-body" id="comment">';
                                 echo '<div class="textarea-wrapper">';
-                                echo '<input type="text" placeholder="Write a comment..." id="input-default" class="emojiable-option"></input>';
+                                echo '<input type="text" name="Mycomment" value="" placeholder="Write a comment..." id="input-default" class="emojiable-option"></input>';
                                 echo '<i class="ti-face-smile icon emoji-icon"></i>';
                                 echo '</div>'; // Close textarea-wrapper
-                                echo '<img src="assets/img/send_icon.png" height="30" width="30"/>';
+                                echo '<a href="#" id="saveComment" onclick="saveComment()"><img src="assets/img/send_icon.png" height="30" width="30"/></a>';
                                 echo '</div>'; // Close media-body
                                 echo '</div>'; // Close media
                                 echo '</div>'; // Close cardbox-base-comment

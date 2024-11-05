@@ -304,13 +304,13 @@ try {
                           <div class="modal-dialog modal-lg" role="document">
                               <div class="modal-content">
                                   <div class="modal-header">
-                                      <h4 class="modal-title"></h4>
+                                      <p style="width:90%;"> Please provide accurate and complete information in all fields. This information is required for reference purposes only within the company and will not be used for any illegal purposes. All personal data will be securely stored and handled in accordance with company privacy policies and applicable data protection laws. It will not be shared externally without your consent.</p>
                                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                           <span aria-hidden="true"><i style="font-size: 30px;" class="fa fa-times-circle"></i></span>
                                       </button>
                                   </div>
                                   <div class="modal-body" style="padding: 5px !important;">
-                                    <p> Please provide accurate and complete information in all fields. This information is required for reference purposes only within the company and will not be used for any illegal purposes. All personal data will be securely stored and handled in accordance with company privacy policies and applicable data protection laws. It will not be shared externally without your consent.</p>
+                                    
 
                                     <div id="personal-form">';
                                         $deptSql = "SELECT jrec_department 
@@ -398,11 +398,49 @@ try {
                                                 </label>
                                             </div>';
                                             }
+                                            $stmt = $port_db->prepare("SELECT 
+                                                b.`pr_name` AS P_province, 
+                                                c.`ct_name` AS P_city,
+                                                d.`br_name` AS P_barangay,
+                                                e.`pr_name` AS C_province, 
+                                                f.`ct_name` AS C_city,
+                                                g.`br_name` AS C_barangay,
+                                                h.`pr_name` AS B_province, 
+                                                i.`ct_name` AS B_city,
+                                                j.`br_name` AS B_barangay
+                                            FROM 
+                                                tbl201_address a
+                                            LEFT JOIN 
+                                                tbl_province b ON b.`pr_code` = a.`add_perm_prov`
+                                            LEFT JOIN 
+                                                tbl_municipality c ON c.`ct_id` = a.`add_perm_city`
+                                            LEFT JOIN 
+                                                tbl_barangay d ON d.`br_id` = a.`add_perm_brngy`
+                                            LEFT JOIN 
+                                                tbl_province e ON e.`pr_code` = a.`add_cur_prov`
+                                            LEFT JOIN 
+                                                tbl_municipality f ON f.`ct_id` = a.`add_cur_city`
+                                            LEFT JOIN 
+                                                tbl_barangay g ON g.`br_id` = a.`add_cur_brngy`
+                                            LEFT JOIN 
+                                                tbl_province h ON h.`pr_code` = a.`add_birth_prov`
+                                            LEFT JOIN 
+                                                tbl_municipality i ON i.`ct_id` = a.`add_birth_city`
+                                            LEFT JOIN 
+                                                tbl_barangay j ON j.`br_id` = a.`add_birth_brngy`
+                                            WHERE 
+                                                a.`add_empno` = ?
+                                            
+                                            ");
+                                            $stmt->execute([$user_id]);
+                                            $address = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                                            
+                                            foreach ($address as $ad) {
                                             echo'<div id="pers-name">
                                                 <label>Permanent Address </label>
                                                 <label> 
                                                     <select class="form-control" id="province" name="Pprovince">
-                                                        <option>Select Province</option>
+                                                        <option selected>' . htmlspecialchars($ad['P_province']) . '</option>
                                                     </select>
                                                 </label>
                                                 <label> 
@@ -451,8 +489,9 @@ try {
                                                         <option>Select Barangay</option>
                                                     </select>
                                                 </label>
-                                            </div>
-                                            <div id="pers-name">
+                                            </div>';
+                                          }
+                                          echo'<div id="pers-name">
                                                 <label>Birth Date<span id="required">*</span> 
                                                     <input class="form-control" type="date" name="birthdate" value="'. date('Y-m-d', strtotime($p['pers_birthdate'])) . '" required/>
                                                 </label>
