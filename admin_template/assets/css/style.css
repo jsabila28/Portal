@@ -138,7 +138,7 @@ Card-Layout css start
   list-style-type: none;
   padding: 0;
   margin-top: 65px;
-  height: 75vh; /* Allow the sidebar to take the full height */
+  height: 45vh; /* Allow the sidebar to take the full height */
   overflow-y: hidden; /* Enable vertical scrolling */
 }
 
@@ -356,7 +356,7 @@ Card-Layout css start
     color: #757575;
     font-size: 16px;
     font-weight: 600;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     display: inline-block;
     margin-right: 10px; }
   .card .card-block table tr {
@@ -18659,7 +18659,8 @@ body[themebg-pattern="pattern9"] {
   .pcoded .pcoded-navbar[data-navbar-theme="themelight1"] li:hover > a {
     background-color: #e6e6e6 !important; }
 .pcoded .pcoded-header .navbar-logo[data-navbar-theme="theme1"] {
-  background-color: #23282d; }
+  /*background-color: #23282d; */
+}
 .pcoded .pcoded-header .navbar-logo[data-navbar-theme="themelight1"] {
   background-color: #23282D; }
 .pcoded[theme-layout="vertical"][vnavigation-view="view2"][pcoded-device-type="desktop"] .pcoded-navbar, .pcoded[theme-layout="vertical"][vnavigation-view="view2"][pcoded-device-type="tablet"] .pcoded-navbar {

@@ -149,7 +149,7 @@ try {
                       </a>';
             }elseif ($ireact && $ireact['reaction_type'] == 'angry') {
                 echo '<a id="react-button-' . htmlspecialchars($row['ann_id']) . '" class="reaction-trigger">
-                        <img src="https://i.pinimg.com/564x/0e/b2/75/0eb275a0b969571ca235168b176949ed.jpg class="img-fluid rounded-circle">
+                        <img src="https://i.pinimg.com/564x/0e/b2/75/0eb275a0b969571ca235168b176949ed.jpg" class="img-fluid rounded-circle">
                       </a>';
             } else {
                 echo '<a id="react-button-' . htmlspecialchars($row['ann_id']) . '" class="reaction-trigger">
@@ -209,7 +209,10 @@ try {
 
 
             if ($reaction !== false && isset($reaction['reaction_count'])) {
-                echo '<li><a><span>' . htmlspecialchars($reaction['reaction_count']) . '</span></a></li>';
+                echo '
+                <li><a><span>' . htmlspecialchars($reaction['reaction_count']) . '</span></a>
+                    <div class="tooltip">Tooltip for Item 1</div>
+                </li>';
             } else {
                 echo '<li><a><span></span></a></li>';
             }
@@ -231,9 +234,8 @@ try {
                   tbl_post_comment a
                 LEFT JOIN tbl201_basicinfo b
                 ON b.`bi_empno` = a.`com_post_by`
-                WHERE a.`com_post_by` = ?
-                AND a.`com_post_id` = ?");
-            $stmt->execute([$user_id, $row['ann_id']]);
+                WHERE a.`com_post_id` = ?");
+            $stmt->execute([$row['ann_id']]);
             $comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
             
             // Loop through comments if available
@@ -431,9 +433,8 @@ try {
                                       tbl_post_comment a
                                     LEFT JOIN tbl201_basicinfo b
                                     ON b.`bi_empno` = a.`com_post_by`
-                                    WHERE a.`com_post_by` = ?
-                                    AND a.`com_post_id` = ?");
-                                $stmt->execute([$user_id, $row['ann_id']]);
+                                    WHERE a.`com_post_id` = ?");
+                                $stmt->execute([$row['ann_id']]);
                                 $comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 
                                 // Loop through comments if available

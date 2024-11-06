@@ -8,9 +8,9 @@
                              if (!empty($ongoingleave)) {
                                   foreach ($ongoingleave as $ol) {
                         ?>
-                        <div class="m-widget4__item">
+                        <div class="m-widget4__item"style="display:flex;justify-content: space-between;">
                             <div class="m-widget4__img m-widget4__img--pic">
-                                <img src="assets/image/img/<?=$ol['la_empno'].'.jpg'?>" alt="">
+                                <img style="width:30px; height:30px; border-radius:50%" src="assets/image/img/<?=$ol['la_empno'].'.jpg'?>" alt="">
                             </div>
                             <div class="m-widget4__info">
                                 <span class="m-widget4__title">
@@ -40,11 +40,11 @@
                              if (!empty($leave)) {
                                   foreach ($leave as $lv) {
                         ?>
-                        <div class="m-widget4__item">
+                        <div class="m-widget4__item"style="display:flex;justify-content: space-between;">
                             <div class="m-widget4__img m-widget4__img--pic">
-                                <img src="assets/image/img/<?=$lv['la_empno'].'.jpg'?>" alt="">
+                                <img style="width:30px; height:30px; border-radius:50%" src="assets/image/img/<?=$lv['la_empno'].'.jpg'?>" alt="">
                             </div>
-                            <div class="m-widget4__info">
+                            <div class="m-widget4__info"style="width: 120px;">
                                 <span class="m-widget4__title">
                                     <strong ><?=$lv['bi_empfname'].' '.$lv['bi_emplname']?></strong>
                                 </span>
@@ -63,7 +63,7 @@
                                     </span>
                                 </div>
                             </div>
-                            <div class="m-widget4__ext">
+                            <div class="m-widget4__ext" style="width: 50px;">
                                 <label class="label label-inverse-danger"><?=$lv['la_type']?></label>
                             </div>
                         </div>

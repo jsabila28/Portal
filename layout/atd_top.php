@@ -97,14 +97,6 @@
     <link rel="stylesheet" type="text/css" href="/Portal/admin_template/bower_components/bootstrap-multiselect/css/bootstrap-multiselect.css">
     <link rel="stylesheet" type="text/css" href="/Portal/admin_template/bower_components/multiselect/css/multi-select.css">
 
-    <!-- FullCalendar Core and Styles -->
-	<link href="https://cdn.jsdelivr.net/npm/@fullcalendar/core/main.css" rel="stylesheet" />
-	<script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core/main.js"></script>
-	
-	<!-- FullCalendar Resource Timeline Plugin -->
-	<link href="https://cdn.jsdelivr.net/npm/@fullcalendar/resource-timeline/main.css" rel="stylesheet" />
-	<script src="https://cdn.jsdelivr.net/npm/@fullcalendar/resource-timeline/main.js"></script>
-
 
 
 </head>
@@ -127,9 +119,11 @@
 						<a class="mobile-menu" id="mobile-collapse" href="#!">
 							<i id="toggle-sidebar" class="ti-menu"></i>
 						</a>
-						<a href="/prosperityph">
-							<!-- <img class="img-fluid" src="/prosperityph/assets/image/prosperity_logo.png" width="20%" alt="Theme-Logo"> -->
-							<!-- <b>ATD</b> -->
+						<a href="/Portal">
+							<a href="/Portal">
+							<img class="img-fluid" style="float: left;margin-left: 15px;" src="https://teamtngc.com/hris2/pages/hricon.ico" width="20%" alt="Theme-Logo">
+							<!-- <b>PORTAL</b> -->
+						</a>
 						</a>
 						<a class="mobile-options">
 							<i class="ti-more"></i>

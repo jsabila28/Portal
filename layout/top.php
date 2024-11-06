@@ -95,14 +95,7 @@
     <!-- Bootstrap Multiselect JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.min.js"></script>
 
-    <!-- FullCalendar Core and Styles -->
-	<link href="https://cdn.jsdelivr.net/npm/@fullcalendar/core/main.css" rel="stylesheet" />
-	<script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core/main.js"></script>
-	
-	<!-- FullCalendar Resource Timeline Plugin -->
-	<link href="https://cdn.jsdelivr.net/npm/@fullcalendar/resource-timeline/main.css" rel="stylesheet" />
-	<script src="https://cdn.jsdelivr.net/npm/@fullcalendar/resource-timeline/main.js"></script>
-
+   
 	<link rel="stylesheet" type="text/css" href="/Portal/assets/css/jquery.emojipicker.css">
 
 
@@ -127,9 +120,9 @@
 						<a class="mobile-menu" id="mobile-collapse" href="#!">
 							<i id="toggle-sidebar" class="ti-menu"></i>
 						</a>
-						<a href="/prosperityph">
-							<!-- <img class="img-fluid" src="/prosperityph/assets/image/prosperity_logo.png" width="20%" alt="Theme-Logo"> -->
-							<b>PORTAL</b>
+						<a href="/Portal">
+							<img class="img-fluid" style="float: left;margin-left: 15px;" src="https://teamtngc.com/hris2/pages/hricon.ico" width="20%" alt="Theme-Logo">
+							<!-- <b>PORTAL</b> -->
 						</a>
 						<a class="mobile-options">
 							<i class="ti-more"></i>
@@ -151,29 +144,6 @@
         								<i style="font-size: 14px;" class="fa-solid fa-calendar-days"></i></button>
         							<ul class="show-notification">
 										<div id="calendar"></div>
-										<script>
-										document.addEventListener('DOMContentLoaded', function() {
-										  var calendarEl = document.getElementById('calendar');
-										
-										  var calendar = new FullCalendar.Calendar(calendarEl, {
-										    schedulerLicenseKey: 'GPL-My-Project-Is-Open-Source',
-										    plugins: ['resourceTimeline'],
-										    initialView: 'resourceTimelineDay',
-										    resources: [
-										      { id: 'a', title: 'Room A' },
-										      { id: 'b', title: 'Room B' },
-										      { id: 'c', title: 'Room C' }
-										    ],
-										    events: [
-										      { id: '1', resourceId: 'a', start: '2024-10-16T10:00:00', end: '2024-10-16T12:00:00', title: 'Event 1' },
-										      { id: '2', resourceId: 'b', start: '2024-10-16T13:00:00', end: '2024-10-16T15:00:00', title: 'Event 2' }
-										    ]
-										  });
-										
-										  calendar.render();
-										});
-
-										</script>
 									</ul>
     							</li>
     							<li class="header-notification" style="margin: 0px; padding-left: 0px !important;">

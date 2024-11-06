@@ -439,35 +439,35 @@ try {
                                             echo'<div id="pers-name">
                                                 <label>Permanent Address </label>
                                                 <label> 
-                                                    <select class="form-control" id="province" name="Pprovince">
-                                                        <option selected>' . htmlspecialchars($ad['P_province']) . '</option>
+                                                    <select class="form-control" id="province-perm1" name="Pprovince">
+                                                      <option value="" selected>' . htmlspecialchars($ad['P_province']) . '</option>  
                                                     </select>
                                                 </label>
                                                 <label> 
-                                                    <select class="form-control" id="municipal" name="Pmunicipal">
-                                                        <option>Select Municipality</option>
+                                                    <select class="form-control" id="municipal-perm1" name="Pmunicipal">
+                                                        <option value="">Select Municipality</option>
                                                     </select>
                                                 </label>
                                                 <label> 
-                                                    <select class="form-control" id="brngy" name="Pbrngy">
-                                                        <option>Select Barangay</option>
+                                                    <select class="form-control" id="brngy-perm1" name="Pbrngy">
+                                                        <option value="">Select Barangay</option>
                                                     </select>
                                                 </label>
                                             </div>
                                             <div id="pers-name">
                                                 <label>Current Address </label>
                                                 <label> 
-                                                    <select class="form-control" id="provincec" name="Cprovince">
+                                                    <select class="form-control" id="province-cur1" name="Cprovince">
                                                         <option>Select Province</option>
                                                     </select>
                                                 </label>
                                                 <label> 
-                                                    <select class="form-control" id="municipalc" name="Cmunicipal">
+                                                    <select class="form-control" id="municipal-cur1" name="Cmunicipal">
                                                         <option>Select Municipality</option>
                                                     </select>
                                                 </label>
                                                 <label> 
-                                                    <select class="form-control" id="brngyc" name="Cbrngy">
+                                                    <select class="form-control" id="brngy-cur1" name="Cbrngy">
                                                         <option>Select Barangay</option>
                                                     </select>
                                                 </label>
@@ -475,17 +475,17 @@ try {
                                             <div id="pers-name">
                                                 <label>Place of Birth </label>
                                                 <label> 
-                                                    <select class="form-control" id="provincep" name="Bprovince">
+                                                    <select class="form-control" id="province-birth1" name="Bprovince">
                                                         <option>Select Province</option>
                                                     </select>
                                                 </label>
                                                 <label> 
-                                                    <select class="form-control" id="municipalp" name="Bmunicipal">
+                                                    <select class="form-control" id="municipal-birth1" name="Bmunicipal">
                                                         <option>Select Municipality</option>
                                                     </select>
                                                 </label>
                                                 <label> 
-                                                    <select class="form-control" id="brngyp" name="Bbrngy">
+                                                    <select class="form-control" id="brngy-birth1" name="Bbrngy">
                                                         <option>Select Barangay</option>
                                                     </select>
                                                 </label>
@@ -539,7 +539,7 @@ try {
                           </div>
                       </div>';
                 //MODAL EDIT PROFILE END
-                      // <input class="form-control" type="text" value="' . htmlspecialchars($p['pers_sex']) . '" required/>
+                // <input class="form-control" type="text" value="' . htmlspecialchars($p['pers_sex']) . '" required/>
         }
     } else {
         //MODAL EDIT PROFILE START
@@ -633,35 +633,35 @@ try {
                                             echo'<div id="pers-name">
                                                 <label>Permanent Address </label>
                                                 <label> 
-                                                    <select class="form-control" id="province" name="Pprovince">
-                                                        <option>Select Province</option>
+                                                    <select class="form-control" id="province-perm2" name="Pprovince">
+                                                        <option value="">Select Province</option>
                                                     </select>
                                                 </label>
                                                 <label> 
-                                                    <select class="form-control" id="municipal" name="Pmunicipal">
-                                                        <option>Select Municipality</option>
+                                                    <select class="form-control" id="municipal-perm2" name="Pmunicipal">
+                                                        <option value="">Select Municipality</option>
                                                     </select>
                                                 </label>
                                                 <label> 
-                                                    <select class="form-control" id="brngy" name="Pbrngy">
-                                                        <option>Select Barangay</option>
+                                                    <select class="form-control" id="brngy-perm2" name="Pbrngy">
+                                                        <option value="">Select Barangay</option>
                                                     </select>
                                                 </label>
                                             </div>
                                             <div id="pers-name">
                                                 <label>Current Address </label>
                                                 <label> 
-                                                    <select class="form-control" id="provincec" name="Cprovince">
+                                                    <select class="form-control" id="province-cur2" name="Cprovince">
                                                         <option>Select Province</option>
                                                     </select>
                                                 </label>
                                                 <label> 
-                                                    <select class="form-control" id="municipalc" name="Cmunicipal">
+                                                    <select class="form-control" id="municipal-cur2" name="Cmunicipal">
                                                         <option>Select Municipality</option>
                                                     </select>
                                                 </label>
                                                 <label> 
-                                                    <select class="form-control" id="brngyc" name="Cbrngy">
+                                                    <select class="form-control" id="brngy-cur2" name="Cbrngy">
                                                         <option>Select Barangay</option>
                                                     </select>
                                                 </label>
@@ -669,22 +669,22 @@ try {
                                             <div id="pers-name">
                                                 <label>Place of Birth </label>
                                                 <label> 
-                                                    <select class="form-control" id="provincep" name="Bprovince">
+                                                    <select class="form-control" id="province-birth2" name="Bprovince">
                                                         <option>Select Province</option>
                                                     </select>
                                                 </label>
                                                 <label> 
-                                                    <select class="form-control" id="municipalp" name="Bmunicipal">
+                                                    <select class="form-control" id="municipal-birth2" name="Bmunicipal">
                                                         <option>Select Municipality</option>
                                                     </select>
                                                 </label>
                                                 <label> 
-                                                    <select class="form-control" id="brngyp" name="Bbrngy">
+                                                    <select class="form-control" id="brngy-birth2" name="Bbrngy">
                                                         <option>Select Barangay</option>
                                                     </select>
                                                 </label>
-                                            </div>
-                                            <div id="pers-name">
+                                            </div>';
+                                            echo'<div id="pers-name">
                                                 <label>Birth Date<span id="required">*</span> 
                                                     <input class="form-control" type="date" name="birthdate" value="" />
                                                 </label>
@@ -729,7 +729,7 @@ try {
                           </div>
                       </div>';
                 //MODAL EDIT PROFILE END
-    }
+        }
 
 } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();

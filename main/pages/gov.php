@@ -8,29 +8,16 @@
                              if (!empty($government)) {
                                   foreach ($government as $gv) {
                         ?>
-                        <div class="m-widget4__item">
+                        <div class="m-widget4__item" style="display: flex !important;">
                             <div class="m-widget4__img m-widget4__img--pic" style="width: auto !important;">
-                                <img src="assets/announcement/<?=$gv['ann_content']?>" class="thumbnail" id="thumbnail" style="cursor: pointer; border-radius: 10px !important;width:85px; height:100px;">
+                                <img src="assets/announcement/<?=$gv['ann_content']?>" class="thumbnail" id="thumbnail" style="cursor: pointer; border-radius: 10px !important;width:100px; height:120px;">
                             </div>
                             <div class="m-widget4__info" style="padding-left: 10px;padding-top: 20px;">
                                 <span class="m-widget4__title">
                                     <strong ><?=$gv['ann_title']?></strong>
                                 </span>
-                                <br>
-                                <span class="m-widget4__sub">
-                                    <!-- <strong class="text-muted"><?=$gv['jrec_department']?></strong> -->
-                                </span>
                             </div>
-                            <div class="m-widget4__progress" style="width: 90%;">
-                                <div class="m-widget4__progress-wrapper">
-                                    <span class="m-widget17__progress-number">
-                                       <!-- <strong>start: <?= date("M d, Y", strtotime($lv['la_start'])) ?></strong> -->
-                                    </span><br>
-                                    <span class="m-widget17__progress-label">
-                                       <!-- <strong>return: <?= date("M d, Y", strtotime($lv['la_return'])) ?></strong> -->
-                                    </span>
-                                </div>
-                            </div>
+                            
                         </div>
                         <?php }} ?>
                     </div>

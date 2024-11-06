@@ -1,7 +1,98 @@
 <div id="memo" style="margin-bottom: 5px; border-radius: 40px;"> 
     <div class="comment-wrapper">
         <div class="panel panel-info">
-            <div >
+            <div id="scroll">
+                <ul>
+                    <li class="media" style="margin-left: 10px;">
+                        <a href="#" class="pull-left" style="position: relative;width: 55px;">
+                            <img src="https://e-classtngcacademy.s3.ap-southeast-1.amazonaws.com/e-class/Thumbnail/img/<?= $empno ?>.JPG" alt="" class="img-circle">
+                            <!-- Mood icon at the top right corner -->
+                            <div style="position: absolute; top: 0; right: 0; background-color: white; color: white; padding: 2px; border-radius: 50%;">
+                                 <img id="img-emoji" src="https://i.pinimg.com/564x/2a/b7/de/2ab7dea07d8da60b77a42fea25b18533.jpg">
+                            </div>
+                        </a>
+                        
+                        <a href="#" class="pull-left" style="position: relative;width: 55px;">
+                            <img src="https://e-classtngcacademy.s3.ap-southeast-1.amazonaws.com/e-class/Thumbnail/img/045-2022-002.JPG" alt="" class="img-circle">
+                            <!-- Mood icon at the top right corner -->
+                            <div style="position: absolute; top: 0; right: 0; background-color: white; color: white; padding: 2px; border-radius: 50%;">
+                                <img id="img-emoji" src="https://i.pinimg.com/564x/9f/ce/f6/9fcef635990b87aa6eb2119e70fac00b.jpg">
+                            </div>
+                        </a>
+
+                        <a href="#" class="pull-left" style="position: relative;width: 55px;">
+                            <img src="https://e-classtngcacademy.s3.ap-southeast-1.amazonaws.com/e-class/Thumbnail/img/045-2017-068.JPG" alt="" class="img-circle">
+                            <!-- Mood icon at the top right corner -->
+                            <div style="position: absolute; top: 0; right: 0; background-color: white; color: white; padding: 2px; border-radius: 50%;">
+                                <img id="img-emoji" src="https://i.pinimg.com/564x/12/74/ed/1274edc448a32afe764c97c1b861def1.jpg">
+                            </div>
+                        </a>
+
+                        <a href="#" class="pull-left" style="position: relative;width: 55px;">
+                            <img src="https://e-classtngcacademy.s3.ap-southeast-1.amazonaws.com/e-class/Thumbnail/img/045-2022-014.JPG" alt="" class="img-circle">
+                            <!-- Mood icon at the top right corner -->
+                            <div style="position: absolute; top: 0; right: 0; background-color: white; color: white; padding: 2px; border-radius: 50%;">
+                                <img id="img-emoji" src="https://i.pinimg.com/564x/6e/d8/e3/6ed8e31afadb4ee935ed28ddf04a9ec5.jpg">
+                            </div>
+                        </a>
+
+                        <a href="#" class="pull-left" style="position: relative;width: 55px;">
+                            <img src="https://e-classtngcacademy.s3.ap-southeast-1.amazonaws.com/e-class/Thumbnail/img/045-2014-008.JPG" alt="" class="img-circle">
+                            <!-- Mood icon at the top right corner -->
+                            <div style="position: absolute; top: 0; right: 0; background-color: white; color: white; padding: 2px; border-radius: 50%;">
+                                <img id="img-emoji" src="https://i.pinimg.com/564x/ba/17/2d/ba172dcc7abf7198d43f4f14e9932b8b.jpg">
+                            </div>
+                        </a>
+
+                        <a href="#" class="pull-left" style="position: relative;width: 55px;">
+                            <img src="https://e-classtngcacademy.s3.ap-southeast-1.amazonaws.com/e-class/Thumbnail/img/045-2022-016.JPG" alt="" class="img-circle">
+                            <!-- Mood icon at the top right corner -->
+                            <div style="position: absolute; top: 0; right: 0; background-color: white; color: white; padding: 2px; border-radius: 50%;">
+                                <img id="img-emoji" src="https://i.pinimg.com/564x/ba/17/2d/ba172dcc7abf7198d43f4f14e9932b8b.jpg">
+                            </div>
+                        </a>
+
+                        <a href="#" class="pull-left" style="position: relative;width: 55px;">
+                            <img src="https://e-classtngcacademy.s3.ap-southeast-1.amazonaws.com/e-class/Thumbnail/img/ZAM-2023-001.JPG" alt="" class="img-circle">
+                            <!-- Mood icon at the top right corner -->
+                            <div style="position: absolute; top: 0; right: 0; background-color: white; color: white; padding: 2px; border-radius: 50%;">
+                                <img id="img-emoji" src="https://i.pinimg.com/564x/ba/17/2d/ba172dcc7abf7198d43f4f14e9932b8b.jpg">
+                            </div>
+                        </a>
+
+                        <a href="#" class="pull-left" style="position: relative;width: 55px;">
+                            <img src="https://teamtngc.com/hris2/pages/empimg/045-2024-001.jpg" alt="" class="img-circle">
+                            <!-- Mood icon at the top right corner -->
+                            <div style="position: absolute; top: 0; right: 0; background-color: white; color: white; padding: 2px; border-radius: 50%;">
+                                <img id="img-emoji" src="https://i.pinimg.com/564x/ba/17/2d/ba172dcc7abf7198d43f4f14e9932b8b.jpg">
+                            </div>
+                        </a>
+
+                        <a href="#" class="pull-left" style="position: relative;width: 55px;">
+                            <img src="https://e-classtngcacademy.s3.ap-southeast-1.amazonaws.com/e-class/Thumbnail/img/045-2001-001.JPG" alt="" class="img-circle">
+                            <!-- Mood icon at the top right corner -->
+                            <div style="position: absolute; top: 0; right: 0; background-color: white; color: white; padding: 2px; border-radius: 50%;">
+                                <img id="img-emoji" src="https://i.pinimg.com/564x/ba/17/2d/ba172dcc7abf7198d43f4f14e9932b8b.jpg">
+                            </div>
+                        </a>
+
+                        <a href="#" class="pull-left" style="position: relative;width: 55px;">
+                            <img src="https://e-classtngcacademy.s3.ap-southeast-1.amazonaws.com/e-class/Thumbnail/img/045-2019-010.JPG" alt="" class="img-circle">
+                            <div style="position: absolute; top: 0; right: 0; background-color: white; color: white; padding: 2px; border-radius: 50%;">
+                                <img id="img-emoji" src="https://i.pinimg.com/564x/2a/b7/de/2ab7dea07d8da60b77a42fea25b18533.jpg">
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="memo" style="margin-bottom: 5px; border-radius: 40px;"> 
+    <div class="comment-wrapper">
+
+        <div class="panel panel-info">
+            <div>
                 <ul>
                     <li class="media" style="margin-left: 10px;">
                         <a href="#" class="pull-left">
@@ -224,4 +315,5 @@ fetch('post')
         const section = document.getElementById('prof-' + empNo);
         if (section) section.style.display = 'none';
     }
+
 </script>

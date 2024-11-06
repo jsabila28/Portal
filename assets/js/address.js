@@ -1,157 +1,207 @@
 $(document).ready(function() {
-    // Load permanent
     $.ajax({
-        url: 'province', // PHP file to get countries from database
+        url: 'province',
         type: 'GET',
-        dataType: 'json',
         success: function(data) {
-            $('#province').append(data.map(province => `<option value="${province.pr_code}">${province.pr_name}</option>`));
-            $('#province').select2({ placeholder: 'Select Municipal', allowClear: true }); // Initialize Select2
+            $('#province-perm1').html(data);
         }
     });
 
-    // Load states based on province selection
-    $('#province').on('change', function() {
-        const province = $(this).val();
-        $('#municipal').prop('disabled', !province);
-        $('#brngy').prop('disabled', true).empty().append('<option value=" ">Select Barangay</option>');
-        
-        if (province) {
-            $.ajax({
-                url: 'municipal', // PHP file to get states based on province
-                type: 'GET',
-                data: { pr_code: province },
-                dataType: 'json',
-                success: function(data) {
-                    $('#municipal').empty().append('<option value=" ">Select Municipality</option>');
-                    $('#municipal').append(data.map(municipal => `<option value="${municipal.ct_id}">${municipal.ct_name}</option>`));
-                    $('#municipal').select2({ placeholder: 'Select Municipal', allowClear: true }); // Initialize Select2
-                }
-            });
-        }
+    $('#province-perm1').on('change', function() {
+        var provinceId = $(this).val();
+        $.ajax({
+            url: 'municipal',
+            type: 'POST',
+            data: { pr_code: provinceId },
+            success: function(data) {
+                $('#municipal-perm1').html(data);
+                $('#brngy-perm1').html('<option value="">Select Barangay</option>'); 
+            }
+        });
     });
 
-    // Load cities based on municipal selection
-    $('#municipal').on('change', function() {
-        const municipal = $(this).val();
-        $('#brngy').prop('disabled', !municipal);
-        
-        if (municipal) {
-            $.ajax({
-                url: 'brngy', // PHP file to get cities based on municipal
-                type: 'GET',
-                data: { ct_id: municipal },
-                dataType: 'json',
-                success: function(data) {
-                    $('#brngy').empty().append('<option value=" ">Select Barangay</option>');
-                    $('#brngy').append(data.map(brngy => `<option value="${brngy.br_id}">${brngy.br_name}</option>`));
-                    $('#brngy').select2({ placeholder: 'Select Municipal', allowClear: true }); // Initialize Select2
-                }
-            });
-        }
+    $('#municipal-perm1').on('change', function() {
+        var municipalId = $(this).val();
+        $.ajax({
+            url: 'brngy',
+            type: 'POST',
+            data: { municipal_id: municipalId },
+            success: function(data) {
+                $('#brngy-perm1').html(data);
+            }
+        });
     });
 
-        // Load current address
     $.ajax({
-        url: 'province', // PHP file to get countries from database
+        url: 'province',
         type: 'GET',
-        dataType: 'json',
         success: function(data) {
-            $('#provincec').append(data.map(province => `<option value="${province.pr_code}">${province.pr_name}</option>`));
-            $('#provincec').select2({ placeholder: 'Select Municipal', allowClear: true }); // Initialize Select2
+            $('#province-perm2').html(data);
         }
     });
 
-    // Load states based on province selection
-    $('#provincec').on('change', function() {
-        const province = $(this).val();
-        $('#municipalc').prop('disabled', !province);
-        $('#brngyc').prop('disabled', true).empty().append('<option value=" ">Select Barangay</option>');
-        
-        if (province) {
-            $.ajax({
-                url: 'municipal', // PHP file to get states based on province
-                type: 'GET',
-                data: { pr_code: province },
-                dataType: 'json',
-                success: function(data) {
-                    $('#municipalc').empty().append('<option value="">Select Municipality</option>');
-                    $('#municipalc').append(data.map(municipal => `<option value="${municipal.ct_id}">${municipal.ct_name}</option>`));
-                    $('#municipalc').select2({ placeholder: 'Select Municipal', allowClear: true }); // Initialize Select2
-                }
-            });
-        }
+    $('#province-perm2').on('change', function() {
+        var provinceId = $(this).val();
+        $.ajax({
+            url: 'municipal',
+            type: 'POST',
+            data: { pr_code: provinceId },
+            success: function(data) {
+                $('#municipal-perm2').html(data);
+                $('#brngy-perm2').html('<option value="">Select Barangay</option>');
+            }
+        });
     });
 
-    // Load cities based on municipal selection
-    $('#municipalc').on('change', function() {
-        const municipal = $(this).val();
-        $('#brngyc').prop('disabled', !municipal);
-        
-        if (municipal) {
-            $.ajax({
-                url: 'brngy', // PHP file to get cities based on municipal
-                type: 'GET',
-                data: { ct_id: municipal },
-                dataType: 'json',
-                success: function(data) {
-                    $('#brngyc').empty().append('<option value=" ">Select Barangay</option>');
-                    $('#brngyc').append(data.map(brngy => `<option value="${brngy.br_id}">${brngy.br_name}</option>`));
-                    $('#brngyc').select2({ placeholder: 'Select Municipal', allowClear: true }); // Initialize Select2
-                }
-            });
-        }
+    $('#municipal-perm2').on('change', function() {
+        var municipalId = $(this).val();
+        $.ajax({
+            url: 'brngy',
+            type: 'POST',
+            data: { municipal_id: municipalId },
+            success: function(data) {
+                $('#brngy-perm2').html(data);
+            }
+        });
     });
 
-        // Load birth address
     $.ajax({
-        url: 'province', // PHP file to get countries from database
+        url: 'province',
         type: 'GET',
-        dataType: 'json',
         success: function(data) {
-            $('#provincep').append(data.map(province => `<option value="${province.pr_code}">${province.pr_name}</option>`));
-            $('#provincep').select2({ placeholder: 'Select Municipal', allowClear: true }); // Initialize Select2
+            $('#province-cur1').html(data);
         }
     });
 
-    // Load states based on province selection
-    $('#provincep').on('change', function() {
-        const province = $(this).val();
-        $('#municipalp').prop('disabled', !province);
-        $('#brngyp').prop('disabled', true).empty().append('<option value=" ">Select Barangay</option>');
-        
-        if (province) {
-            $.ajax({
-                url: 'municipal', // PHP file to get states based on province
-                type: 'GET',
-                data: { pr_code: province },
-                dataType: 'json',
-                success: function(data) {
-                    $('#municipalp').empty().append('<option value=" ">Select Municipality</option>');
-                    $('#municipalp').append(data.map(municipal => `<option value="${municipal.ct_id}">${municipal.ct_name}</option>`));
-                    $('#municipalp').select2({ placeholder: 'Select Municipal', allowClear: true }); // Initialize Select2
-                }
-            });
+    // Load municipalities when a province is selected
+    $('#province-cur1').on('change', function() {
+        var provinceId = $(this).val();
+        $.ajax({
+            url: 'municipal',
+            type: 'POST',
+            data: { pr_code: provinceId },
+            success: function(data) {
+                $('#municipal-cur1').html(data);
+                $('#brngy-cur1').html('<option value="">Select Barangay</option>'); // Reset Barangay
+            }
+        });
+    });
+
+    // Load barangays when a municipality is selected
+    $('#municipal-cur1').on('change', function() {
+        var municipalId = $(this).val();
+        $.ajax({
+            url: 'brngy',
+            type: 'POST',
+            data: { municipal_id: municipalId },
+            success: function(data) {
+                $('#brngy-cur1').html(data);
+            }
+        });
+    });
+
+    $.ajax({
+        url: 'province',
+        type: 'GET',
+        success: function(data) {
+            $('#province-cur2').html(data);
         }
     });
 
-    // Load cities based on municipal selection
-    $('#municipalp').on('change', function() {
-        const municipal = $(this).val();
-        $('#brngyp').prop('disabled', !municipal);
-        
-        if (municipal) {
-            $.ajax({
-                url: 'brngy', // PHP file to get cities based on municipal
-                type: 'GET',
-                data: { ct_id: municipal },
-                dataType: 'json',
-                success: function(data) {
-                    $('#brngyp').empty().append('<option value=" ">Select Barangay</option>');
-                    $('#brngyp').append(data.map(brngy => `<option value="${brngy.br_id}">${brngy.br_name}</option>`));
-                    $('#brngyp').select2({ placeholder: 'Select Municipal', allowClear: true }); // Initialize Select2
-                }
-            });
+    // Load municipalities when a province is selected
+    $('#province-cur2').on('change', function() {
+        var provinceId = $(this).val();
+        $.ajax({
+            url: 'municipal',
+            type: 'POST',
+            data: { pr_code: provinceId },
+            success: function(data) {
+                $('#municipal-cur2').html(data);
+                $('#brngy-cur2').html('<option value="">Select Barangay</option>'); // Reset Barangay
+            }
+        });
+    });
+
+    // Load barangays when a municipality is selected
+    $('#municipal-cur2').on('change', function() {
+        var municipalId = $(this).val();
+        $.ajax({
+            url: 'brngy',
+            type: 'POST',
+            data: { municipal_id: municipalId },
+            success: function(data) {
+                $('#brngy-cur2').html(data);
+            }
+        });
+    });
+
+     $.ajax({
+        url: 'province',
+        type: 'GET',
+        success: function(data) {
+            $('#province-birth1').html(data);
         }
+    });
+
+    // Load municipalities when a province is selected
+    $('#province-birth1').on('change', function() {
+        var provinceId = $(this).val();
+        $.ajax({
+            url: 'municipal',
+            type: 'POST',
+            data: { pr_code: provinceId },
+            success: function(data) {
+                $('#municipal-birth1').html(data);
+                $('#brngy-birth1').html('<option value="">Select Barangay</option>'); // Reset Barangay
+            }
+        });
+    });
+
+    // Load barangays when a municipality is selected
+    $('#municipal-birth1').on('change', function() {
+        var municipalId = $(this).val();
+        $.ajax({
+            url: 'brngy',
+            type: 'POST',
+            data: { municipal_id: municipalId },
+            success: function(data) {
+                $('#brngy-birth1').html(data);
+            }
+        });
+    });
+
+     $.ajax({
+        url: 'province',
+        type: 'GET',
+        success: function(data) {
+            $('#province-birth2').html(data);
+        }
+    });
+
+    // Load municipalities when a province is selected
+    $('#province-birth2').on('change', function() {
+        var provinceId = $(this).val();
+        $.ajax({
+            url: 'municipal',
+            type: 'POST',
+            data: { pr_code: provinceId },
+            success: function(data) {
+                $('#municipal-birth2').html(data);
+                $('#brngy-birth2').html('<option value="">Select Barangay</option>'); // Reset Barangay
+            }
+        });
+    });
+
+    // Load barangays when a municipality is selected
+    $('#municipal-birth2').on('change', function() {
+        var municipalId = $(this).val();
+        $.ajax({
+            url: 'brngy',
+            type: 'POST',
+            data: { municipal_id: municipalId },
+            success: function(data) {
+                $('#brngy-birth2').html(data);
+            }
+        });
     });
 });

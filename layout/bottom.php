@@ -72,7 +72,7 @@
     <script type="text/javascript" src="/Portal/admin_template/bower_components/jquery-i18next/js/jquery-i18next.min.js"></script>
 
     <!--Forms - Wizard js-->
-    <script src="/Portal/admin_template/bower_components/jquery.cookie/js/jquery.cookie.js"></script>
+    <!-- <script src="/Portal/admin_template/bower_components/jquery.cookie/js/jquery.cookie.form-wizard.jsjs"></script> -->
     <script src="/Portal/admin_template/bower_components/jquery.steps/js/jquery.steps.js"></script>
     <script src="/Portal/admin_template/bower_components/jquery-validation/js/jquery.validate.js"></script>
 
@@ -85,14 +85,14 @@
     <script type="text/javascript" src="/Portal/admin_template/assets/js/jquery.quicksearch.js"></script>
 
     <!-- jquery file upload js -->
-    <script src="/Portal/admin_template/assets/pages/jquery.filer/js/jquery.filer.min.js"></script>
-    <script src="/Portal/admin_template/assets/pages/filer/custom-filer.js" type="text/javascript"></script>
-    <script src="/Portal/admin_template/assets/pages/filer/jquery.fileuploads.init.js" type="text/javascript"></script>
+    <!-- <script src="/Portal/admin_template/assets/pages/jquery.filer/js/jquery.filer.min.js"></script> -->
+    <!-- <script src="/Portal/admin_template/assets/pages/filer/custom-filer.js" type="text/javascript"></script> -->
+    <!-- <script src="/Portal/admin_template/assets/pages/filer/jquery.fileuploads.init.js" type="text/javascript"></script> -->
 
     <!-- Validation js -->
     <script src="/Portal/admin_template/bower_components/underscore/js/underscore-min.js"></script>
     <script src="/Portal/admin_template/bower_components/moment/js/moment.min.js"></script>
-    <script type="text/javascript" src="/Portal/admin_template/assets/pages/form-validation/validate.js"></script>
+    <!-- <script type="text/javascript" src="/Portal/admin_template/assets/pages/form-validation/validate.js"></script> -->
 
     <!-- data-table js -->
     <script src="/Portal/admin_template/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
@@ -119,7 +119,7 @@
     <!-- <script type="text/javascript" src="/Portal/admin_template/assets/pages/handson-table/integration.js"></script> -->
     <!-- <script src="/Portal/admin_template/assets/pages/data-table/extensions/fixed-colums/js/fixed-column-custom.js"></script> -->
     <script type="text/javascript" src="/Portal/admin_template/assets/js/script.js"></script>
-    <script type="text/javascript" src="/Portal/admin_template/assets/pages/forms-wizard-validation/form-wizard.js"></script>
+    <!-- <script type="text/javascript" src="/Portal/admin_template/assets/pages/forms-wizard-validation/form-wizard.js"></script> -->
     <!-- pcmenu js -->
     <script src="/Portal/admin_template/assets/js/pcoded.min.js"></script>
     <script src="/Portal/admin_template/assets/js/demo-12.js"></script>
@@ -129,8 +129,8 @@
     <!-- <script type="text/javascript" src="/Portal/admin_template/bower_components/handsontable/js/handsontable.full.js"></script> -->
     <!-- <script src="/Portal/assets/js/Portal.js"></script> -->
     <script src="/Portal/assets/js/post.js"></script>
-    <script src="fullcalendar/js/main.min.js"></script>
-    <script src="assets/pages/jquery.filer/js/jquery.filer.min.js"></script>
+    <!-- <script src="fullcalendar/js/main.min.js"></script> -->
+    <!-- <script src="/Portal/assets/pages/jquery.filer/js/jquery.filer.min.js"></script> -->
     <script type="text/javascript" src="/Portal/assets/js/jquery.emojipicker.js"></script>
 
     <!-- Emoji Data -->
