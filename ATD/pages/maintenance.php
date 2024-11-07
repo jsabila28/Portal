@@ -1,3 +1,13 @@
+<?php
+require_once($sr_root."/actions/atd.php");
+// $user_id = '045-2022-013';
+$date = date("Y-m-d");
+$Year = date("Y");
+$yearMonth = date("Y-m");
+
+$type = Portal::GetATDType();
+$category = Portal::GetATDCategory();
+?>
 <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
 <div class="page-wrapper">
     <div class="page-body">
@@ -101,70 +111,108 @@
                                 <!-- Tab panes -->
                                 <div class="tab-content" style="background-color: white;padding: 10px;">
                                     <div class="tab-pane active" id="list" role="tabpanel">
-                                        <div class="dt-responsive table-responsive">
-                                            <table id="saving-reorder" class="table table-striped table-bordered nowrap">
-                                                <thead>
-                                                    <tr>
-                                                        <th>ATD Type</th>
-                                                        <th>ATD Category</th>
-                                                        <th>ATD Item</th>
-                                                        <th># of Payroll</th>
-                                                        <th>Take-Home Pay (%)</th>
-                                                        <th>Action</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>Employee</td>
-                                                        <td>Surplus assets</td>
-                                                        <td>Chair</td>
-                                                        <td id="num">1</td>
-                                                        <td id="num">0%</td>
-                                                        <td>
-                                                            <img src="assets/img/atd_icons/edit.png" width="30" height="30">
-                                                            <img src="assets/img/atd_icons/deactive.png" width="30" height="30">
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>HR</td>
-                                                        <td>Audit Findings</td>
-                                                        <td>Wrong Computation</td>
-                                                        <td id="num">10</td>
-                                                        <td id="num">80%</td>
-                                                        <td>
-                                                            <img src="assets/img/atd_icons/edit.png" width="30" height="30">
-                                                            <img src="assets/img/atd_icons/deactive.png" width="30" height="30">
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Accounting</td>
-                                                        <td>Travel Fees</td>
-                                                        <td>Plane ticket</td>
-                                                        <td id="num">1</td>
-                                                        <td id="num">0</td>
-                                                        <td>
-                                                            <img src="assets/img/atd_icons/edit.png" width="30" height="30">
-                                                            <img src="assets/img/atd_icons/deactive.png" width="30" height="30">
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+                                        <div class="dt-responsive table-responsive" id="listmaint">
+
                                         </div>
                                     </div>
                                     <div class="tab-pane" id="type" role="tabpanel">
-                                        <form>
-                                            
-                                        </form>
+                                        <div class="outer">
+                                          <div id="main">
+                                            <span>Add ATD Type</span>
+
+                                            <form action="" id="typeForm">
+                                                <label for="type">
+                                                    Name:
+                                                </label>
+                                                <input type="text" id="type" name="type" required>
+
+                                                <div class="wrap">
+                                                    <button type="submit" id="saveType">
+                                                        Submit
+                                                    </button>
+                                                </div>
+                                            </form>
+                                            <div id="responseMessage" class="mt-3"></div>
+                                          </div>
+                                        </div>
                                     </div>
                                     <div class="tab-pane" id="category" role="tabpanel">
-                                        <form>
-                                            
-                                        </form>
+                                        <div class="outer">
+                                          <div id="main">
+                                            <span>Add ATD Category</span>
+
+                                            <form action="" id="categoryForm">
+                                                <label for="types">
+                                                    Type:
+                                                </label>
+                                                <select id="types" name="types" id="types">
+                                                  <option>Select ATD Types</option>
+                                                  <?php
+                                                    if (!empty($type)) {
+                                                      foreach ($type as $t) {
+                                                  ?>
+                                                  <option value="<?=$t['id']?>"><?=$t['atd_type']?></option>
+                                                  <?php }} ?>
+                                                </select>
+
+                                                <label for="categories">
+                                                    Category Name:
+                                                </label>
+                                                <input type="text" id="categories" name="categories">
+
+                                                <div class="wrap">
+                                                    <button type="submit" id="saveCategory">
+                                                        Submit
+                                                    </button>
+                                                </div>
+                                            </form>
+                                            <div id="responseMessage" class="mt-3"></div>
+                                          </div>
+                                        </div>
                                     </div>
                                     <div class="tab-pane" id="item" role="tabpanel">
-                                        <form>
-                                            
-                                        </form>
+                                        <div class="outer">
+                                          <div id="main">
+                                            <span>Add ATD Item</span>
+
+                                            <form action="" id="itemForm">
+                                                <label for="category">
+                                                    Category:
+                                                </label>
+                                                <select id="category" name="category">
+                                                  <option>Select ATD Category</option>
+                                                  <?php
+                                                    if (!empty($category)) {
+                                                      foreach ($category as $c) {
+                                                  ?>
+                                                  <option value="<?=$c['ac_id']?>"><?=$c['ac_name']?></option>
+                                                  <?php }} ?>
+                                                </select>
+
+                                                <label for="item">
+                                                    Item Name:
+                                                </label>
+                                                <input type="text" id="item" name="item">
+
+                                                <div class="request">
+                                                  <label for="category">
+                                                      # of Payroll:
+                                                    <input type="text" class="number" name="term" >
+                                                  </label>
+                                                  <label for="items">
+                                                      Take Home Pay(%):
+                                                    <input type="text" class="number" name="thome" >
+                                                  </label>
+                                                </div>
+                                                <div class="wrap">
+                                                    <button type="submit" id="saveItem">
+                                                        Submit
+                                                    </button>
+                                                </div>
+                                            </form>
+                                            <div id="itemMessage" class="mt-3"></div>
+                                          </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -175,18 +223,4 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
-$(document).ready(function(){
-  $(".has-submenu > a").click(function(e){
-    e.preventDefault(); // Prevent the default action of the link
-
-    var $submenu = $(this).siblings(".submenu");
-    
-    // Slide toggle the submenu and ensure that it pushes other elements down
-    $submenu.slideToggle('fast', function(){
-      // Optional: Adjust the sidebar height dynamically if needed
-    });
-  });
-});
-
-</script>
+<script type="text/javascript" src="/Portal/assets/js/atd_maintenance.js"></script>

@@ -145,6 +145,9 @@
     });
 
     </script>
-</body>
+
+    <link rel="stylesheet" type="text/css" href="/Portal/assets/js/postfeed.js">
+    <link rel="stylesheet" type="text/css" href="/Portal/assets/js/atd_maintenance.js">
+</body> 
 
 </html>

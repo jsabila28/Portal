@@ -138,7 +138,7 @@ Card-Layout css start
   list-style-type: none;
   padding: 0;
   margin-top: 65px;
-  height: 45vh; /* Allow the sidebar to take the full height */
+  /*height: 45vh;*/
   overflow-y: hidden; /* Enable vertical scrolling */
 }
 

@@ -129,10 +129,7 @@
                                                         </div> 
                                                     </div> 
                                                     <div class="post-content"> 
-                                                        <textarea name="post-desc" id="post-desc" 
-                                                                cols="30" rows="5" 
-                                                            placeholder="What's on you mind ?">   
-                                                        </textarea> 
+                                                        <textarea name="post-desc" id="post-desc" cols="30" rows="5" placeholder="What's on you mind ?"></textarea> 
                                                         <!-- <div class="custom-pick">
                                                             <div class="background-picker"> 
                                                                 <img height="38" alt="" class="xz74otr" referrerpolicy="origin-when-cross-origin" src="assets/img/foto.png">

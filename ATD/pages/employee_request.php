@@ -75,143 +75,76 @@
             </div>
             <div class="col-md-9" id="req-list" style="">
                 <div class="card">
-                    <div class="card-block" style="padding-left: 1.25rem !important;padding-right: 1rem !important;">
-                        <!-- Row start -->
-                        <div class="row">
-                            <div class="col-lg-12 col-xl-12">                                      
-                                <div class="page-header">
-    							    <div class="page-header-title">
-    							        <!-- <h4>Group Add-ons</h4> -->
-    							        <!-- <span>Lorem ipsum dolor sit <code>amet</code>, consectetur adipisicing elit</span> -->
-    							    </div>
-    							    <div class="page-header-breadcrumb">
-    							        <ul class="breadcrumb-title">
-    							            <li class="breadcrumb-item">
-    							                <a href="dashboard">
-    							                    <i class="icofont icofont-home"></i>
-    							                </a>
-    							            </li>
-    							            <li class="breadcrumb-item"><a href="#!">ATD</a>
-    							            </li>
-    							            <li class="breadcrumb-item"><a href="index.html">Employee Request Form</a>
-    							            </li>
-    							        </ul>
-    							    </div>
-    							</div>
-    						</div>
-    						<div class="col-sm-9">
-    							<div class="row">
-            				<div class="col-sm-6">
-            				    <div class="input-group input-group-primary">
-            				        <span class="input-group-addon">
-            				           Category
-            				        </span>
-            				        <select class="js-example-basic-single col-sm-9">
-            				                <option value="AL">Alabama</option>
-            				                <option value="WY">Wyoming</option>
-            				                <option value="WY">Peter</option>
-            				                <option value="WY">Hanry Die</option>
-            				                <option value="WY">Soeng Souy</option>
-            				        </select>
-            				    </div>
-            				</div>
-            				<div class="col-sm-6">
-            				    <div class="input-group input-group-primary">
-            				        <span class="input-group-addon">
-            				           Item
-            				        </span>
-            				        <select class="js-example-basic-single col-sm-9">
-                                    <option value="AL">Alabama</option>
-                                    <option value="WY">Wyoming</option>
-                                    <option value="WY">Peter</option>
-                                    <option value="WY">Hanry Die</option>
-                                    <option value="WY">Soeng Souy</option>
-                            </select>
-            				    </div>
-            				</div>
-            			</div>
-                  <div class="row">
-                    <div class="col-sm-6">
-                        <div class="input-group input-group-primary">
-                            <span class="input-group-addon">
-                               Total Amount
-                            </span>
-                            <input type="text" class="form-control money">
+                  <div class="card-block" style="padding-left: 1.25rem !important;padding-right: 1rem !important;">
+                        <div class="outer">
+                          <div id="req-main">
+                            <form action="">
+                              <div class="request">
+                                <label for="category">
+                                    Category:
+                                  <select id="category" name="category">
+                                    <option>Select ATD Category</option>
+                                  </select>
+                                </label>
+                                <label for="items">
+                                    Item:
+                                  <select id="items" name="items">
+                                    <option>Select ATD Item</option>
+                                  </select>
+                                </label>
+                              </div>
+                              <div class="request">
+                                <label for="types">
+                                    Loan Amount:
+                                  <input type="text" class="number" name="amount" id="amount" placeholder="0.00">
+                                </label>
+                                <label for="types">
+                                    Monthly Amortization:
+                                  <input type="text" class="number" name="amort" id="amort" placeholder="0.00">
+                                </label>
+                                <label for="types">
+                                    # of payroll:
+                                  <input type="number" class="number" name="payroll" id="payroll" readonly>
+                                </label>
+                              </div>
+                              <div class="request">
+                                <label for="types" class="inline-label">
+                                  <div class="label">
+                                    <p>15</p>
+                                    <input type="checkbox" class="checkbox" name="first" id="first">
+                                  </div> 
+                                  <input type="text" class="number" name="first" id="firstValue" placeholder="0.00">                               
+                                </label>
+
+                                <label for="types">
+                                   <div class="label">
+                                    <p>30</p>
+                                    <input type="checkbox" class="checkbox" name="second" id="second">
+                                  </div>
+                                  <input type="text" class="number" name="second" id="secondValue" placeholder="0.00" readonly>
+                                </label>
+                                <label for="types">
+                                    Start Date
+                                  <input type="date" class="number" name="startDate" id="startDate">
+                                </label>
+                                <label for="types">
+                                    End Date
+                                  <input type="date" class="number" name="endDate" id="endDate" readonly>
+                                </label>
+                              </div>
+                                <div class="wrap">
+                                    <button type="submit" id="saveCategory">
+                                        Submit
+                                    </button>
+                                </div>
+                            </form>
+                          </div>
                         </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="input-group input-group-primary">
-                            <span class="input-group-addon">
-                               Monthly Amortization
-                            </span>
-                            <input type="text" class="form-control money">
-                        </div>
-                    </div>
-                  </div> 
-                  <div class="row">
-                    <div class="col-sm-4">
-                        <div class="input-group input-group-primary">
-                            <span class="input-group-addon">
-                               # of Payroll
-                            </span>
-                            <input type="text" class="form-control" readonly>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="input-group input-group-primary">
-                            <span class="input-group-addon">
-                              <input type="checkbox" name=""> 15
-                            </span>
-                            <input type="text" class="form-control money">
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="input-group input-group-primary">
-                            <span class="input-group-addon">
-                              <input type="checkbox" name=""> 30
-                            </span>
-                            <input type="text" class="form-control money" readonly="readonly">
-                        </div>
-                    </div>
-                  </div> 
-                  <div class="row">
-                    <div class="col-sm-4">
-                        <div class="input-group input-group-primary">
-                            <span class="input-group-addon">
-                              Start Date
-                            </span>
-                            <input type="date" class="form-control">
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="input-group input-group-primary">
-                            <span class="input-group-addon">
-                              End Date
-                            </span>
-                            <input type="date" class="form-control">
-                        </div>
-                    </div>
-                  </div>  
-    						</div>
-                        </div>
-                    </div>
+                  </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<script type="text/javascript">
-$(document).ready(function(){
-  $(".has-submenu > a").click(function(e){
-    e.preventDefault(); // Prevent the default action of the link
 
-    var $submenu = $(this).siblings(".submenu");
-    
-    // Slide toggle the submenu and ensure that it pushes other elements down
-    $submenu.slideToggle('fast', function(){
-      // Optional: Adjust the sidebar height dynamically if needed
-    });
-  });
-});
-
-</script>
+<script type="text/javascript" src="/Portal/assets/js/atd_request.js"></script>

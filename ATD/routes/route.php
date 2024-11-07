@@ -6,6 +6,17 @@ $routes = [
 	'/dashboard' => '/pages/dashboard.php',
 	'/login' => '/Portal/main/pages/login.php',
 
+
+	'/Mlist' => '/actions/maintenance_list.php',
+	'/types' => '/actions/get_types.php',
+	'/categry' => '/actions/get_category.php',
+	'/item' => '/actions/get_items.php',
+
+	'/typeSave' => '/actions/save_type.php',
+	'/categSave' => '/actions/save_category.php',
+	'/itemSave' => '/actions/save_item.php',
+
+
 	//REQUEST PAGES
 	'/maintenance' => '/pages/maintenance.php',
 	'/employee' => '/pages/employee_request.php'

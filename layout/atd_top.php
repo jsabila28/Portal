@@ -70,6 +70,7 @@
 	<link rel="stylesheet" type="text/css" href="/Portal/assets/css/leave.css">
 	<link rel="stylesheet" type="text/css" href="/Portal/assets/css/post.css">
 	<link rel="stylesheet" type="text/css" href="/Portal/assets/css/profile.css">
+	<link rel="stylesheet" type="text/css" href="/Portal/assets/css/atd.css">
 
 
     <!-- Required Jqurey -->
@@ -133,21 +134,18 @@
 						<div>
 							<ul class="nav-left">
 								
-								<!-- <li>
-									<a href="#!" onclick="javascript:toggleFullScreen()">
+								<li>
+									<!-- <a href="#!" onclick="javascript:toggleFullScreen()">
 										<i class="ti-fullscreen"></i>
-									</a>
-								</li> -->
+									</a> -->
+								</li>
 							</ul>
-							<ul class="nav-center">
+							<ul class="nav-right">
 								<li>
 									<a href="/Portal/">
 										<img src="/Portal/ATD/assets/img/home.png" width="15" height="15">
 									</a>
 								</li>
-							</ul>
-							<ul class="nav-right">
-								
                             	<li class="header-notification">
         							<a href="#" class="displayChatbox">
         								<img src="/Portal/ATD/assets/img/menu.png" class="circle-img" width="30" height="30">
