@@ -142,3 +142,24 @@
 #personal-form #pers-name label{
 	width: 180px;
 }
+
+/*MODAL*/
+#footer {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    padding: 15px !important;
+    border-top: 1px solid #e9ecef;
+    width: 100% !important; /* Make sure it takes the full width */
+}
+#footer .btn {
+    width: auto; /* Ensure buttons only take up as much space as they need */
+    margin-left: 5px; /* Optional: add some space between buttons */
+}
+#sex{
+	display: flex;
+}
+#sex #gender{
+	width: 10% !important;
+	margin-right: 5px;
+}

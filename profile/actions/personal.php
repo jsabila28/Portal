@@ -500,11 +500,11 @@ try {
                                                 </label>
                                                 <label>Sex<span id="required">*</span> <br>';
                                                     if($p['pers_sex'] == 'Male'){
-                                                        echo'<input type="checkbox" name="sex" value="Male" checked/> Male ';
-                                                        echo'<input type="checkbox" name="sex" value="Female"/> Female';
+                                                        echo'<div id="sex"><input type="radio" id="gender" name="sex" value="Male" checked/> <p>Male</p></div>';
+                                                        echo'<div id="sex"><input type="radio" id="gender" name="sex" value="Female"/><p>Female</p></div>';
                                                     }else{
-                                                        echo'<input type="checkbox" name="sex" value="Male"/> Male ';
-                                                        echo'<input type="checkbox" name="sex" value="Female" checked/> Female';
+                                                        echo'<div id="sex"><input type="radio" id="gender" name="sex" value="Male"/><p>Male</p></div>';
+                                                        echo'<div id="sex"><input type="radio" id="gender" name="sex" value="Female" checked/><p>Female</p></div>';
                                                     }
                                                     
                                                     
@@ -530,8 +530,9 @@ try {
                                                 </label>
                                             </div>
                                     </div>
+                                    <div id="PersonalMessage" class="mt-3"></div>
                                   </div>
-                                  <div class="modal-footer">
+                                  <div class="modal-footer" id="footer">
                                       <button type="button" class="btn btn-default btn-mini waves-effect " data-dismiss="modal">Close</button>
                                       <button type="button" id="save-personal" class="btn btn-primary btn-mini waves-effect waves-light ">Save changes</button>
                                   </div>
@@ -692,11 +693,8 @@ try {
                                                     <input class="form-control" type="text" name="civilstat"  value=""/>
                                                 </label>
                                                 <label>Sex<span id="required">*</span> <br>';
-                                                    
-                                                        echo'<input type="checkbox" name="sex" value="Male"/> Male ';
-                                                        echo'<input type="checkbox" name="sex" value="Female"/> Female';
-                                                    
-                                                    
+                                                  echo'<div id="sex"><input type="radio" id="gender" name="sex" value="Male"/> <p>Male</p> </div>';
+                                                  echo'<div id="sex"><input type="radio" id="gender" name="sex" value="Female"/> <p>Female</p></div>';
                                                     
                                                 echo'</label>
                                                 <label>Religion 
@@ -721,7 +719,7 @@ try {
                                             </div>
                                     </div>
                                   </div>
-                                  <div class="modal-footer">
+                                  <div class="modal-footer" id="footer">
                                       <button type="button" class="btn btn-default btn-mini waves-effect " data-dismiss="modal">Close</button>
                                       <button type="button" id="save-personal" class="btn btn-primary btn-mini waves-effect waves-light ">Save changes</button>
                                   </div>

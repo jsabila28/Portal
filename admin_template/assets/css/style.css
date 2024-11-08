@@ -570,7 +570,9 @@ Notification css start
 
 button.close {
   margin-top: 7px;
-  margin-bottom: 0; }
+  margin-bottom: 0; 
+  width: 50px;
+}
 
 /**====== Notification css end ======**/
 /**  =====================
@@ -19695,6 +19697,10 @@ ul.button-grid button:hover {
 }
 #saving-reorder th{
   text-align: center;
+  font-size: 12px;
+}
+#saving-reorder td{
+  font-size: 10px;
 }
 #saving-reorder #num{
   text-align: center;

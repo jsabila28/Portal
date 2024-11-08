@@ -13,6 +13,7 @@ $routes = [
 	'/brngy' => '/actions/barangay.php',
 	'/personal' => '/actions/personal.php',
 	'/family' => '/actions/fam_back.php',
+	'/Bfamily' => '/actions/save_family.php',
 
 	//FORMS
 	'/save_personal' => '/actions/save_personal.php',

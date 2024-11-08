@@ -499,7 +499,7 @@
     display: block;
 }*/
  /* Full-screen overlay */
-#fullScreenOverlay {
+#imageOverlay {
     display: none;
     position: fixed;
     top: 0;
@@ -511,7 +511,7 @@
 }
 
 /* Full-screen image styling */
-#fullScreenImage {
+#imageOverlay img {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -521,7 +521,7 @@
 }
 
 /* Close button */
-.closeButton {
+.close-btn {
     position: absolute;
     top: 20px;
     right: 40px;

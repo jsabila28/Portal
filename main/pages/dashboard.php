@@ -87,8 +87,8 @@ $government = Portal::GetGovAnn($yearMonth);
         </div>
     </div>
 </div>
-<div id="fullScreenOverlay">
-    <span class="closeButton">&times;</span>
-    <img id="fullScreenImage" src="" alt="">
+<div id="imageOverlay" onclick="closeImageOverlay()">
+    <span class="close-btn">&times;</span>
+    <img id="overlayImage" src="" alt="Full-screen image">
 </div>
 <script type="text/javascript" src="/Portal/assets/js/post.js"></script>

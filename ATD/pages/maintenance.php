@@ -166,7 +166,7 @@ $category = Portal::GetATDCategory();
                                                     </button>
                                                 </div>
                                             </form>
-                                            <div id="responseMessage" class="mt-3"></div>
+                                            <div id="categoryMessage" class="mt-3"></div>
                                           </div>
                                         </div>
                                     </div>

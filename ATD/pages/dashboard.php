@@ -128,7 +128,7 @@
                                                 </thead>
                                                 <tbody>
                                                     <tr>
-                                                        <td><label class="badge badge-warning">HR</label> ATD-MIS00008</td>
+                                                        <td><span class="badge badge-warning">HR</span> ATD-MIS00008</td>
                                                         <td>Aira Mariz</td>
                                                         <td>Joyce Camacho</td>
                                                         <td>30,000.00</td>
@@ -140,7 +140,7 @@
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td><label class="badge badge-danger">Employee</label> ATD-MIS00020</td>
+                                                        <td><span class="badge badge-danger">Employee</span> ATD-MIS00020</td>
                                                         <td>Finn Camacho</td>
                                                         <td>Finn Camacho</td>
                                                         <td>15,500.00</td>
@@ -152,7 +152,7 @@
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td><label class="badge badge-success">Accounting</label> ATD-MIS00023</td>
+                                                        <td><span class="badge badge-success">Accounting</span> ATD-MIS00023</td>
                                                         <td>Maria Clara</td>
                                                         <td>Junel Redillas</td>
                                                         <td>4,500.00</td>
@@ -190,9 +190,6 @@
                                         
                                     </div>
                                     <div class="tab-pane" id="verified" role="tabpanel">
-                                        
-                                    </div>
-                                    <div class="tab-pane" id="comment" role="tabpanel">
                                         
                                     </div>
                                 </div>

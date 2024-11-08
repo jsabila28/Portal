@@ -145,7 +145,7 @@
                                                                     <img src="assets/img/upload.png" width="100" height="100">
                                                                 </div> -->
                                                             </div>
-                                                            <input type="file" id="file-input" name="post-content" style="display: none;" onchange="updateFileContent()">
+                                                            <input type="file" id="file-input" name="post-content[]" style="display: none;" onchange="updateFileContent()" multiple>
                                                         </div>
                                                         <div class="add-to-your-post"> 
                                                             <p class="add-to-post-text">Add to your post</p> 

@@ -217,7 +217,7 @@ try {
     // Check if entry exists in tbl201_contact
     $stmt = $port_db->prepare("SELECT cont_id FROM tbl201_contact WHERE cont_empno = :cont_empno");
     $stmt->execute(['cont_empno' => $user_id]);
-    $address_info = $stmt->fetch(PDO::FETCH_ASSOC);
+    $contact_info = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($address_info) {
         // Update existing entry in tbl201_contact
@@ -269,7 +269,7 @@ try {
     // Check if entry exists in tbl201_gov_req
     $stmt = $port_db->prepare("SELECT gov_id FROM tbl201_gov_req WHERE gov_empno = :gov_empno");
     $stmt->execute(['gov_empno' => $user_id]);
-    $address_info = $stmt->fetch(PDO::FETCH_ASSOC);
+    $gov_info = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($address_info) {
         // Update existing entry in tbl201_gov_req
