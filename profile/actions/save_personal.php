@@ -234,8 +234,8 @@ try {
             'cont_empno' => $user_id,
             'cont_person_num' => $person_num,
             'cont_company_num' => $company_num,
-            'cont_telephone' => $email,
-            'cont_email' => $telephone,
+            'cont_telephone' => $telephone,
+            'cont_email' => $email,
             'cont_status' =>'1',
             'cont_id' => $contact_info['cont_id']
         ]);
@@ -259,8 +259,8 @@ try {
             'cont_empno' => $user_id,
             'cont_person_num' => $person_num,
             'cont_company_num' => $company_num,
-            'cont_telephone' => $email,
-            'cont_email' => $telephone,
+            'cont_telephone' => $telephone,
+            'cont_email' => $email,
             'cont_status' => '1'
             
         ]);

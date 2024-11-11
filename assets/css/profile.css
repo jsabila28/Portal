@@ -163,3 +163,50 @@
 	width: 10% !important;
 	margin-right: 5px;
 }
+#specialSkills {
+  display: flex;
+  /*flex-wrap: wrap;*/
+  gap: 20px;
+  padding: 15px;
+  max-width: 1200px;
+}
+.skill{
+	width: 200px;
+	border-radius: 5%;
+	background-color: #f0f0f0;
+	border: 1px black;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adjust values for desired shadow effect */
+  	transition: box-shadow 0.3s ease; /* Smooth transition for hover effect */
+}
+.skill:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Slightly larger shadow on hover */
+}
+.skill .image-skill{
+	width: 100%;
+	height: 120px;
+	/*background-image: url('https://i.pinimg.com/564x/41/0e/c9/410ec956993b4586ac3d21ba3c779c3f.jpg');*/
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+.desc-skill{
+	padding: 5px;
+}
+.desc-skill .skill-title{
+	text-align: center;
+}
+.desc-skill .skill-title #title{
+	font-weight: 600px !important;
+	font-size: 11px;
+	text-transform: uppercase;
+}
+.desc-skill .skill-types{
+	margin-top: 5px;
+}
+.desc-skill .skill-types #type{
+	font-size: 10px;
+	color: #828282;
+}
+#type i{
+	color: #141414 !important;
+}

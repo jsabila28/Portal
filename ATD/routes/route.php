@@ -19,7 +19,7 @@ $routes = [
 
 	//REQUEST PAGES
 	'/maintenance' => '/pages/maintenance.php',
-	'/employee' => '/pages/employee_request.php'
+	'/request' => '/pages/employee_request.php'
 	
 ];
 

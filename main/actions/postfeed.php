@@ -376,10 +376,9 @@ try {
                                     SELECT reaction_type 
                                     FROM tbl_reaction 
                                     WHERE post_id = ?
-                                    AND reaction_by <> ?
                                     GROUP BY reaction_type
                                 ");
-                                $stmt->execute([$row['ann_id'],$user_id]);
+                                $stmt->execute([$row['ann_id']]);
                                 $reactions = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 
                                 foreach ($reactions as $react) {

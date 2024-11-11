@@ -29,15 +29,6 @@ try {
                 // CONTACT INFO START
                 echo '<div class="card-block" id="prof-card">';  //prof-card start
                 echo '<div class="contact">'; //contact start
-                echo '<div class="numbers">
-                        <div class="icon">
-                            <i class="icofont icofont-ui-call"></i>
-                        </div>
-                        <div class="content">
-                          <p>' . htmlspecialchars($c['cont_telephone']) . '</p><br> 
-                          <span>Telephone</span>
-                        </div>
-                      </div>';
                       
                 echo '<div class="numbers">
                         <div class="icon">
@@ -66,6 +57,16 @@ try {
                         <div class="content">
                           <p>' . htmlspecialchars($c['cont_email']) . '</p><br> 
                           <span>Email</span>
+                        </div>
+                      </div>';
+                      
+                echo '<div class="numbers">
+                        <div class="icon">
+                            <i class="icofont icofont-ui-call"></i>
+                        </div>
+                        <div class="content">
+                          <p>' . htmlspecialchars($c['cont_telephone']) . '</p><br> 
+                          <span>Telephone</span>
                         </div>
                       </div>';
                 echo '</div>'; //contact end

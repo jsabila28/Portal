@@ -39,13 +39,13 @@
                     <!-- Start of Sub-menu -->
                     <ul class="submenu" style="display: none; list-style-type: none; padding-left: 20px;">
                       <li>
-                        <a href="#daily-report">HR Request</a>
+                        <a href="request">HR Request</a>
                       </li>
                       <li>
-                        <a href="#weekly-report">Accounting Request</a>
+                        <a href="request">Accounting Request</a>
                       </li>
                       <li>
-                        <a href="employee">Employee Request</a>
+                        <a href="request">Employee Request</a>
                       </li>
                     </ul>
                   </li>

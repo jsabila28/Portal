@@ -118,80 +118,33 @@
 				<div class="navbar-wrapper">
 					<div class="navbar-logo" data-navbar-theme="theme4">
 						<a class="mobile-menu" id="mobile-collapse" href="#!">
-							<i id="toggle-sidebar" class="ti-menu"></i>
+							<i id="toggle-sidebar" class="ti-menu" style="color: black;"></i>
 						</a>
 						<a href="/Portal">
-							<img class="img-fluid" style="float: left;margin-left: 15px;" src="https://teamtngc.com/hris2/pages/hricon.ico" width="20%" alt="Theme-Logo">
+							<a href="/Portal">
+							<!-- <img class="img-fluid" style="float: left;margin-left: 15px;" src="https://teamtngc.com/hris2/pages/hricon.ico" width="20%" alt="Theme-Logo"> -->
 							<!-- <b>PORTAL</b> -->
 						</a>
+						</a>
 						<a class="mobile-options">
-							<i class="ti-more"></i>
+							<i class="ti-more" style="color: black;"></i>
 						</a>
 					</div>
 					<div class="navbar-container container-fluid">
 						<div>
 							<ul class="nav-left">
 								
-								<!-- <li>
-									<a href="#!" onclick="javascript:toggleFullScreen()">
+								<li>
+									<!-- <a href="#!" onclick="javascript:toggleFullScreen()">
 										<i class="ti-fullscreen"></i>
-									</a>
-								</li> -->
+									</a> -->
+								</li>
 							</ul>
 							<ul class="nav-right">
-								<li class="header-notification" style="margin: 0px; padding-right: 0px !important;">
-        							<button class="btn btn-mini btn-default btn-outline-default">
-        								<i style="font-size: 14px;" class="fa-solid fa-calendar-days"></i></button>
-        							<ul class="show-notification">
-										<div id="calendar"></div>
-									</ul>
-    							</li>
-    							<li class="header-notification" style="margin: 0px; padding-left: 0px !important;">
-        							<button class="btn btn-mini btn-default btn-outline-default">
-        								<i style="font-size: 14px;" class="fa-solid fa-bell"></i>
-        							</button>
-        							<ul class="show-notification">
-        								<div id="calendar"></div>
-										<li>
-											<h6>Notifications</h6>
-											<label class="label label-danger">New</label>
-										</li>
-										<li>
-											<div class="media">
-												<img class="d-flex align-self-center" src="/Portal/admin_template/assets/images/user.png" alt="Generic placeholder image">
-												<div class="media-body">
-													<h5 class="notification-user">Soeng Souy</h5>
-													<p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
-													<span class="notification-time">30 minutes ago</span>
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="media">
-												<img class="d-flex align-self-center" src="/Portal/admin_template/assets/images/user.png" alt="Generic placeholder image">
-												<div class="media-body">
-													<h5 class="notification-user">Joseph William</h5>
-													<p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
-													<span class="notification-time">30 minutes ago</span>
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="media">
-												<img class="d-flex align-self-center" src="/Portal/admin_template/assets/images/user.png" alt="Generic placeholder image">
-												<div class="media-body">
-													<h5 class="notification-user">Sara Soudein</h5>
-													<p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
-													<span class="notification-time">30 minutes ago</span>
-												</div>
-											</div>
-										</li>
-									</ul>
-    							</li>
                             	<li class="header-notification">
-        							<button class="btn btn-mini displayChatbox" style="background-color: white;">
-        								<i style="font-size: 20px; color: black;" class="ti-layout-grid3"></i>
-        							</button>
+        							<a href="#" class="displayChatbox">
+        								<img src="/Portal/ATD/assets/img/menu.png" class="circle-img" width="30" height="30">
+        							</a>
     							</li>
 								<?php
 								require_once($sr_root."/db/db.php");
@@ -209,7 +162,15 @@
 								    
 								    error_log("User ID: $user_id");
 							
-								    $stmt = $hr_db->prepare("SELECT bi_empno, CONCAT(bi_empfname,' ',bi_empmname,' ',bi_emplname) as name FROM tbl201_basicinfo WHERE bi_empno = :user_id");
+								    $stmt = $hr_db->prepare("SELECT bi_empno, CONCAT(bi_empfname,' ',bi_empmname,' ',bi_emplname) AS name, jd_title 
+										FROM tbl201_basicinfo 
+										LEFT JOIN tbl201_jobrec 
+										ON tbl201_basicinfo.`bi_empno` = tbl201_jobrec.`jrec_empno`
+										LEFT JOIN tbl_jobdescription
+										ON tbl_jobdescription.`jd_code` = tbl201_jobrec.`jrec_position`
+										WHERE bi_empno = :user_id
+										AND jrec_type = 'Primary'
+										AND jrec_status = 'Primary'");
 								    $stmt->bindParam(':user_id', $user_id);
 								    $stmt->execute();
 								
@@ -219,6 +180,7 @@
 								        error_log("Query Result: " . print_r($user, true));
 								        $username = $user['name'];
 								        $empno = $user['bi_empno'];
+								        $position = $user['jd_title'];
 								    } else {
 								        error_log("No user found for ID: $user_id");
 								        $username = "Guest";
@@ -227,6 +189,12 @@
 								    $username = "Guest";
 								}
 								?>
+
+								<li class="header-notification">
+        							<a href="#">
+        								<img src="/Portal/ATD/assets/img/notif.png" width="30" height="30">
+        							</a>
+    							</li>
 
 								<li class="user-profile header-notification">
 									<a href="#!">
@@ -248,11 +216,6 @@
             									?>
 											</a>
 										</li>
-										<!-- <li>
-											<a href="#">
-												<i class="ti-layout-sidebar-left"></i> Profile
-											</a>
-										</li> -->
 										<li>
 											<a href="/Portal/signOut">
 												<i class="ti-layout-sidebar-left"></i> Logout
@@ -275,75 +238,75 @@
                                 <span>DTR Services</span>
                             </div>
                             <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
-                                <a class="media-left" href="#!" style="text-align: center;">
+                                <a class="media-left" href="https://teamtngc.com/hrisdtrservices/manpower/dtr" style="text-align: center;">
                                 	<div>
                                 		<img src="assets/img/2.png" width="40" height="40"><br>DTR
                                 	</div>
                                 </a>
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
-                                		<img src="assets/img/1.png" width="40" height="40"><br>Schedule
+                                		<img src="assets/img/schedule2.png" width="45" height="45"><br>Schedule
                                 	</div>
                                 </a>
                                 <a class="media-left" href="/Portal/leave/" style="text-align: center;">
                                 	<div>
-                                		<img src="assets/img/4.png" width="40" height="40"><br>Leave
+                                		<img src="assets/img/leave2.png" width="45" height="45"><br>Leave
                                 	</div>
                                 </a>
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
-                                		<img src="assets/img/break.png" width="40" height="40"><br>Break
-                                	</div>
-                                </a>
-                            </div>
-                            <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
-                                <a class="media-left" href="#!" style="text-align: center;">
-                                	<div>
-                                		<img src="assets/img/rest.png" width="40" height="40"><br>RestDay
-                                	</div>
-                                </a>
-                                <a class="media-left" href="#!" style="text-align: center;">
-                                	<div>
-                                		<img src="assets/img/offset.png" width="40" height="40"><br>Offset
-                                	</div>
-                                </a>
-                                <a class="media-left" href="#!" style="text-align: center;">
-                                	<div>
-                                		<img src="assets/img/OT.png" width="40" height="40"><br>OT
-                                	</div>
-                                </a>
-                                <a class="media-left" href="#!" style="text-align: center;">
-                                	<div>
-                                		<img src="assets/img/sign.png" width="40" height="40"><br>Gatepass
+                                		<img src="assets/img/break2.png" width="45" height="45"><br>Break
                                 	</div>
                                 </a>
                             </div>
                             <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
-                                		<img src="assets/img/drd.png" width="40" height="40"><br>DRD
+                                		<img src="assets/img/restday2.png" width="45" height="45"><br>RestDay
                                 	</div>
                                 </a>
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
-                                		<img src="assets/img/dhd.png" width="40" height="40"><br>DHD
+                                		<img src="assets/img/offset2.png" width="45" height="45"><br>Offset
                                 	</div>
                                 </a>
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
-                                		<img src="assets/img/training.png" width="40" height="40"><br>Trainings
+                                		<img src="assets/img/overtime2.png" width="45" height="45"><br>OT
                                 	</div>
                                 </a>
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
-                                		<img src="assets/img/travel.png" width="40" height="40"><br>Travel
+                                		<img src="assets/img/gatepass2.png" width="45" height="45"><br>Gatepass
                                 	</div>
                                 </a>
                             </div>
                             <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
-                                		<img src="assets/img/sales.png" width="40" height="40"><br>Sales
+                                		<img src="assets/img/drd2.png" width="45" height="45"><br>DRD
+                                	</div>
+                                </a>
+                                <a class="media-left" href="#!" style="text-align: center;">
+                                	<div>
+                                		<img src="assets/img/dhd2.png" width="45" height="45"><br>DHD
+                                	</div>
+                                </a>
+                                <a class="media-left" href="#!" style="text-align: center;">
+                                	<div>
+                                		<img src="assets/img/training2.png" width="45" height="45"><br>Trainings
+                                	</div>
+                                </a>
+                                <a class="media-left" href="#!" style="text-align: center;">
+                                	<div>
+                                		<img src="assets/img/travel2.png" width="45" height="45"><br>Travel
+                                	</div>
+                                </a>
+                            </div>
+                            <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
+                                <a class="media-left" href="#!" style="text-align: center;">
+                                	<div>
+                                		<img src="assets/img/sales2.png" width="45" height="45"><br>Sales
                                 	</div>
                                 </a>
                             </div>
@@ -355,34 +318,34 @@
                             <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
-                                		<img src="assets/img/eei.png" width="40" height="40"><br>EEI
+                                		<img src="assets/img/eei2.png" width="45" height="45"><br>EEI
                                 	</div>
                                 </a>
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
-                                		<img src="assets/img/emplo.png" width="40" height="40"><br>Employees
+                                		<img src="assets/img/employee2.png" width="45" height="45"><br>Employees
                                 	</div>
                                 </a>
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
-                                		<img src="assets/img/pa.png" width="40" height="40"><br>PA
+                                		<img src="assets/img/pa2.png" width="45" height="45"><br>PA
                                 	</div>
                                 </a>
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
-                                		<img src="assets/img/hire.png" width="40" height="40"><br>Hiring
+                                		<img src="assets/img/hiring2.png" width="45" height="45"><br>Hiring
                                 	</div>
                                 </a>
                             </div>
                             <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
-                                		<img src="assets/img/report.png" width="40" height="40"><br>Reports
+                                		<img src="assets/img/report2.png" width="45" height="45"><br>Reports
                                 	</div>
                                 </a>
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
-                                		<img src="assets/img/announce.png" width="40" height="40"><br>Post
+                                		<img src="assets/img/announcement2.png" width="45" height="45"><br>Post
                                 	</div>
                                 </a>
                             </div>

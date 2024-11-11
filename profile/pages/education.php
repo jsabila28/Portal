@@ -177,13 +177,13 @@
                           </div>
                         </div>
                         <div class="edit-profile">
-                          <button class="btn btn-default btn-mini" data-toggle="modal" data-target="#Family-<?=$empno?>"><i class="icofont icofont-pencil-alt-2"></i> Edit Family Profile</button>
+                          <button class="btn btn-default btn-mini" data-toggle="modal" data-target="#Family-<?=$empno?>"><i class="icofont icofont-pencil-alt-2"></i> Edit Education</button>
                         </div>  
                       </div>
                     </div>
-                    <div id="family"></div>
+                    <div id="educ"></div>
                     <script>
-                    fetch('family')
+                    fetch('educ')
                         .then(response => {
                             if (!response.ok) {
                                 throw new Error('Network response was not ok: ' + response.statusText);
@@ -191,7 +191,7 @@
                             return response.text(); // Since we're expecting HTML
                         })
                         .then(data => {
-                            document.getElementById("family").innerHTML = data; // Set the inner HTML
+                            document.getElementById("educ").innerHTML = data; // Set the inner HTML
                         })
                         .catch(error => console.error('Error fetching data:', error));
                     </script>

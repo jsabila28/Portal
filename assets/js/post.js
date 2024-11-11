@@ -1,4 +1,4 @@
-const textarea = document 
+const text = document 
 	.querySelector('#post-desc'); 
 const postBtn = document 
 	.querySelector('.post-btn'); 
@@ -25,8 +25,8 @@ const radioBtns = document.
 
 document.body.style.overflowX = 'none'; 
 
-textarea.addEventListener("input", () => { 
-	if (textarea.value != '') 
+text.addEventListener("input", () => { 
+	if (text.value != '') 
 		postBtn.disabled = false; 
 	else
 		postBtn.disabled = true; 

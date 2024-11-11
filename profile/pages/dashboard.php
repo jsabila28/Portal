@@ -20,7 +20,7 @@
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="skill">
                       <p>
                         <i class="zmdi zmdi-favorite"></i> Special Skills
                       </p>
@@ -29,7 +29,7 @@
                   <hr>
                   <div id="header"><label>Education</label></div>
                   <li>
-                    <a href="#">
+                    <a href="education">
                       <p>
                         <i class="icon-graduation"></i> Education
                       </p>

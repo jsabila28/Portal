@@ -14,13 +14,17 @@ $routes = [
 	'/personal' => '/actions/personal.php',
 	'/family' => '/actions/fam_back.php',
 	'/Bfamily' => '/actions/save_family.php',
+	'/skills' => '/actions/special_skills.php',
+	'/educ' => '/actions/educations.php',
 
 	//FORMS
 	'/save_personal' => '/actions/save_personal.php',
 
 
 	//PAGES
-	'/fam' => '/pages/family_background.php'
+	'/fam' => '/pages/family_background.php',
+	'/skill' => '/pages/special_skills.php',
+	'/education' => '/pages/education.php'
 
 	
 ];

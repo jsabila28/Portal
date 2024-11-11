@@ -22,144 +22,93 @@ try {
           
                 // PERSONAL FAMILY INFO START
                 echo '<div class="card-block" id="prof-card">';  //prof-card start
-                //SPOUSE START
+                // SPOUSE START
                 $stmt = $port_db->prepare("SELECT 
-                CASE WHEN fam_relationship = 'Wife' THEN CONCAT(fam_firstname,' ',fam_maidenname,' ',fam_lastname) END AS Wife,
-                CASE WHEN fam_relationship = 'Husbant' THEN CONCAT(fam_firstname,' ',fam_midname,' ',fam_lastname) END AS Husband
-                FROM tbl201_family
-                WHERE fam_empno = ?");
+                    CASE WHEN fam_relationship = 'Wife' THEN CONCAT(fam_firstname, ' ', fam_maidenname, ' ', fam_lastname) END AS Wife,
+                    CASE WHEN fam_relationship = 'Wife' THEN fam_contact END AS Wife_phone,
+                    CASE WHEN fam_relationship = 'Wife' THEN fam_occupation END AS Wife_work,
+                    CASE WHEN fam_relationship = 'Wife' THEN fam_birthdate END AS Wife_birth,
+                    CASE WHEN fam_relationship = 'Husband' THEN CONCAT(fam_firstname, ' ', fam_midname, ' ', fam_lastname) END AS Husband,
+                    CASE WHEN fam_relationship = 'Husband' THEN fam_contact END AS Husband_phone,
+                    CASE WHEN fam_relationship = 'Husband' THEN fam_occupation END AS Husband_work,
+                    CASE WHEN fam_relationship = 'Husband' THEN fam_birthdate END AS Husband_birth
+                    FROM tbl201_family
+                    WHERE fam_empno = ?");
                 $stmt->execute([$user_id]);
-                $member = $stmt->fetchAll(PDO::FETCH_ASSOC);    
+                $member = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-
+                echo '<div class="contact" style="margin-bottom:10px;">';
+                echo '<div class="numbers">
+                        <div class="content">
+                          <p style="font-size: 14px !important;">Own family</p>
+                        </div>
+                      </div>';
+                echo'</div>';
+                
+                echo '<div class="contact">'; // Start the spouse contact section
+                
                 if (!empty($member)) {
-                  foreach ($member as $m) {
-                echo '<div class="contact">'; //contact start
-                if (!empty($m['Husband']) || !empty($m['Wife'])) {
-                $spouseName = !empty($m['Husband']) ? $m['Husband'] : $m['Wife'];
-                echo '<div class="contact">'; //contact start
-                echo '<div class="numbers">
-                        <div class="content">
-                          <p style="font-size: 14px !important;">If Married</p><br> 
-                        </div>
-                      </div>';
-                echo '</div><br> '; //contact end
-                echo '<div class="contact">'; //contact start
-                echo '<div class="numbers">
-                        <div class="icon">
-                              
-                         </div>
-                        <div class="content">
-                          <p>' . htmlspecialchars($spouseName) . '</p><br> 
-                          <span>Spouse Full Name</span>
-                        </div>
-                      </div>';    
-                echo '<div class="numbers">
-                        <div class="icon">
-                          
-                        </div>
-                        <div class="content">
-                          <p>NA</p><br> 
-                          <span>Contact Number</span>
-                        </div>
-                      </div>';
-
-                echo '<div class="numbers">
-                        <div class="icon">
-                          
-                        </div>
-                        <div class="content">
-                          <p>NA</p><br> 
-                          <span>Occupation</span>
-                        </div>
-                      </div>';
-
-                echo '<div class="numbers">
-                        <div class="icon">
-                          
-                        </div>
-                        <div class="content">
-                          <p>NA</p><br> 
-                          <span>Sex</span>
-                        </div>
-                      </div>';
-                echo '<div class="numbers">
-                        <div class="icon">
-                          
-                        </div>
-                        <div class="content">
-                          <p>NA</p><br> 
-                          <span>Age</span>
-                        </div>
-                      </div>';
-                }
-
-                echo '</div>'; //contact end
+                    $spouseName = '';
+                    $spousePhone = '';
+                    $spouseWork = '';
+                    $spouseBirth = '';
+                    foreach ($member as $m) {
+                        if (!empty($m['Husband']) || !empty($m['Wife'])) {
+                            $spouseName = !empty($m['Husband']) ? $m['Husband'] : $m['Wife'];
+                            $spousePhone = !empty($m['Husband']) ? $m['Husband_phone'] : $m['Wife_phone'];
+                            $spouseWork = !empty($m['Husband']) ? $m['Husband_work'] : $m['Wife_work'];
+                            $spouseBirth = !empty($m['Husband']) ? $m['Husband_birth'] : $m['Wife_birth'];
+                            break;
+                        }
                     }
-                }else{
-                echo '<div class="contact">'; //contact start
-                if (empty($m['Husband']) || empty($m['Wife'])) {
-                echo '<div class="contact">'; //contact start
-                echo '<div class="numbers">
-                        <div class="content">
-                          <p style="font-size: 14px !important;">If Married</p><br> 
-                        </div>
-                      </div>';
-                echo '</div><br> '; //contact end
-                echo '<div class="contact">'; //contact start
-                echo '<div class="numbers">
-                        <div class="icon">
-                              
-                         </div>
-                        <div class="content">
-                          <p></p><br> 
-                          <span>Spouse Full Name</span>
-                        </div>
-                      </div>';    
-                echo '<div class="numbers">
-                        <div class="icon">
-                          
-                        </div>
-                        <div class="content">
-                          <p>NA</p><br> 
-                          <span>Contact Number</span>
-                        </div>
-                      </div>';
-
-                echo '<div class="numbers">
-                        <div class="icon">
-                          
-                        </div>
-                        <div class="content">
-                          <p>NA</p><br> 
-                          <span>Occupation</span>
-                        </div>
-                      </div>';
-
-                echo '<div class="numbers">
-                        <div class="icon">
-                          
-                        </div>
-                        <div class="content">
-                          <p>NA</p><br> 
-                          <span>Sex</span>
-                        </div>
-                      </div>';
-                echo '<div class="numbers">
-                        <div class="icon">
-                          
-                        </div>
-                        <div class="content">
-                          <p>NA</p><br> 
-                          <span>Age</span>
-                        </div>
-                      </div>';
+                
+                    echo '<div class="numbers">
+                            <div class="icon">
+                              <i class="icofont icofont-love"></i>
+                            </div>
+                            <div class="content">
+                              <p>' . htmlspecialchars($spouseName ?: 'NA') . '</p><br> 
+                              <span>Spouse Full Name</span>
+                            </div>
+                          </div>';
+                    echo '<div class="numbers">
+                            <div class="icon">
+                              <i class="icofont icofont-iphone"></i>
+                            </div>
+                            <div class="content">
+                              <p>' . htmlspecialchars($spousePhone ?: 'NA') . '</p><br> 
+                              <span>Contact Number</span>
+                            </div>
+                          </div>';
+                
+                    echo '<div class="numbers">
+                            <div class="icon">
+                              <i class="icofont icofont-labour"></i>
+                            </div>
+                            <div class="content">
+                              <p>' . htmlspecialchars($spouseWork ?: 'NA') . '</p><br> 
+                              <span>Occupation</span>
+                            </div>
+                          </div>';
+                    
+                    
+                    echo '<div class="numbers">
+                            <div class="icon">
+                              <i class="fa fa-birthday-cake" aria-hidden="true"></i>
+                            </div>
+                            <div class="content">
+                              <p>' . htmlspecialchars($spouseBirth ?: 'NA') . '</p><br> 
+                              <span>Age</span>
+                            </div>
+                          </div>';
+                
+                } else {
+                    
                 }
-                 
-                echo '</div>'; //contact end
+                
+                echo '</div>'; // End the spouse contact section
+                // SPOUSE END
 
-                }
-                //SPOUSE END
                 // Children START
                     $stmt = $port_db->prepare("SELECT 
                         fam_relationship,
@@ -174,6 +123,13 @@ try {
                     $child = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                     if (!empty($child)) {
+                            echo '<div class="contact" style="margin-top:20px;margin-bottom:10px;">';
+                            echo '<div class="numbers">
+                                    <div class="content">
+                                      <p style="font-size: 14px !important;"></p>
+                                    </div>
+                                  </div>';
+                            echo'</div>';
                         foreach ($child as $c) {
                             echo '<div class="contact" style="margin-top: 20px;">';
                             
@@ -183,7 +139,7 @@ try {
                                     </div>
                                     <div class="content">
                                       <p>' . htmlspecialchars($c['full_name']) . '</p><br> 
-                                      <span>Sibling Full Name</span>
+                                      <span>Child Full Name</span>
                                     </div>
                                   </div>';
                             echo '<div class="numbers">
@@ -219,11 +175,17 @@ try {
                                     </div>
                                   </div>';
                             
-                            echo '</div>'; // End of sibling contact
+                            echo '</div>'; // End of child contact
                         }
                     } else {
-                       echo '<div class="contact" style="margin-top: 20px;">';
-                            
+                        echo '<div class="contact" style="margin-top:20px;margin-bottom:10px;">';
+                        echo '<div class="numbers">
+                                <div class="content">
+                                  <p style="font-size: 14px !important;"></p>
+                                </div>
+                              </div>';
+                        echo'</div>';
+                        echo '<div class="contact" style="margin-top: 5px;">';
                             echo '<div class="numbers">
                                     <div class="icon">
                                       <i class="icofont icofont-user-alt-1"></i>
@@ -262,7 +224,7 @@ try {
                                     </div>
                                   </div>';
                             
-                            echo '</div>'; // End of sibling contact
+                            echo '</div>'; // End of child contact
                   }
                   // Children END
                 echo '</div>';  //prof-card end
@@ -288,18 +250,25 @@ try {
                   $momdad = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                   if (!empty($momdad)) {
+                        echo '<div class="contact" style="margin-bottom:10px;">';
+                        echo '<div class="numbers">
+                                <div class="content">
+                                  <p style="font-size: 14px !important;">Family of Origin</p>
+                                </div>
+                              </div>';
+                        echo'</div>';
                       foreach ($momdad as $md) {
                           echo '<div class="contact">'; // contact start
                           if (!empty($md['Mother'])) {
-                              echo '<div class="numbers">
-                                      <div class="icon">
-                                          <i class="icofont icofont-girl-alt"></i>
-                                      </div>
-                                      <div class="content">
-                                        <p>' . htmlspecialchars($md['Mother']) . '</p><br> 
-                                        <span>Mother Full Maiden Name</span>
-                                      </div>
-                                    </div>';
+                          echo '<div class="numbers">
+                                  <div class="icon">
+                                      <i class="icofont icofont-girl-alt"></i>
+                                  </div>
+                                  <div class="content">
+                                    <p>' . htmlspecialchars($md['Mother']) . '</p><br> 
+                                    <span>Mother Full Maiden Name</span>
+                                  </div>
+                                </div>';
                           echo '<div class="numbers">
                                   <div class="icon">
                                       <i class="icofont icofont-iphone"></i>
@@ -457,6 +426,48 @@ try {
                             echo '</div>'; // End of sibling contact
                         }
                     } else {
+                      echo '<div class="contact" style="margin-top: 20px;">'; 
+                      echo '<div class="numbers">
+                              <div class="icon">
+                                <i class="icofont icofont-user-alt-1"></i>
+                              </div>
+                              <div class="content">
+                                <p>NA</p><br> 
+                                <span>Sibling Full Name</span>
+                              </div>
+                            </div>';
+                      echo '<div class="numbers">
+                              <div class="icon">
+                                <i class="icofont icofont-iphone"></i>
+                              </div>
+                              <div class="content">
+                                <p>NA</p><br> 
+                                <span>Contact Number</span>
+                              </div>
+                            </div>';
+                      
+                      echo '<div class="numbers">
+                              <div class="icon">
+                                <i class="zmdi zmdi-male-female"></i>
+                              </div>
+                              <div class="content">
+                                <p>NA</p><br> 
+                                <span>Sex</span>
+                              </div>
+                            </div>';
+                      
+                      
+                      echo '<div class="numbers">
+                              <div class="icon">
+                                <i class="fa fa-birthday-cake" aria-hidden="true"></i>
+                              </div>
+                              <div class="content">
+                                <p>NA</p><br> 
+                                <span>Age</span>
+                              </div>
+                            </div>';
+                      
+                      echo '</div>'; // End of sibling contact
                   }
                   // SIBLINGS END
 
