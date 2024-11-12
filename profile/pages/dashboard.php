@@ -36,7 +36,7 @@
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="eligibility">
                       <p>
                         <i class="icofont icofont-certificate-alt-1"></i> Eligibility/Licenses
                       </p>

@@ -94,7 +94,7 @@ try {
                 $sources = $imageMatches[1];
 
                 foreach ($sources as $imgv) {
-                    echo '<img class="img-fluid" style="max-height: 500px !important;cursor: pointer;" src="assets/announcement/' . htmlspecialchars($imgv) . '">';
+                    echo '<img class="img-fluid" style="max-height: 500px !important;cursor: pointer;" src="https://teamtngc.com/hris2/pages/announcement/' . htmlspecialchars($imgv) . '">';
                 }
 
             }else if(strpos($row['ann_content'], '<figure') !== false){
@@ -133,7 +133,7 @@ try {
                       </a>';
             }elseif ($ireact && $ireact['reaction_type'] == 'eey') {
                 echo '<a id="react-button-' . htmlspecialchars($row['ann_id']) . '" class="reaction-trigger">
-                        <img src="https://i.pinimg.com/564x/cc/12/e0/cc12e02e7eed4491de74e05ea8a019a5.jpg" class="img-fluid rounded-circle">
+                        <img src="https://i.pinimg.com/564x/9d/04/2c/9d042cb030e250961454adf7131f76b5.jpg" class="img-fluid rounded-circle">
                       </a>';
             }elseif ($ireact && $ireact['reaction_type'] == 'cry') {
                 echo '<a id="react-button-' . htmlspecialchars($row['ann_id']) . '" class="reaction-trigger">
@@ -265,7 +265,7 @@ try {
             echo '</div>';
             echo '<div class="media-body" id="comment">';
             echo '<div class="textarea-wrapper">';
-            echo '<input type="text" name="Mycomment" placeholder="Write a comment..." id="input-default" class="emojiable-option"></input>';
+            echo '<input type="text" name="Mycomment" value="" placeholder="Write a comment..." id="input-default" class="emojiable-option"></input>';
             echo '<i class="ti-face-smile icon emoji-icon"></i>';
             echo '</div>'; // Close textarea-wrapper
             echo '<a href="#" id="saveComment" onclick="saveComment()"><img src="assets/img/send_icon.png" height="30" width="30"/></a>';
@@ -297,7 +297,7 @@ try {
                                     $sources = $imageMatches[1];
 
                                     foreach ($sources as $imgv) {
-                                        echo '<img class="img-fluid" style="max-height: 500px !important;cursor: pointer;" src="assets/announcement/' . htmlspecialchars($imgv) . '">';
+                                        echo '<img class="img-fluid" style="max-height: 500px !important;cursor: pointer;" src="https://teamtngc.com/hris2/pages/announcement/' . htmlspecialchars($imgv) . '">';
                                     }
 
                                 }else if(strpos($row['ann_content'], '<figure') !== false){
@@ -376,9 +376,10 @@ try {
                                     SELECT reaction_type 
                                     FROM tbl_reaction 
                                     WHERE post_id = ?
+                                    AND reaction_by <> ?
                                     GROUP BY reaction_type
                                 ");
-                                $stmt->execute([$row['ann_id']]);
+                                $stmt->execute([$row['ann_id'], $user_id]);
                                 $reactions = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 
                                 foreach ($reactions as $react) {
@@ -389,7 +390,7 @@ try {
                                         echo '<li><a href="#"><img src="https://i.pinimg.com/564x/f0/1b/91/f01b919c68c353f95d58b174761e5df5.jpg" class="img-fluid rounded-circle"></a></li>';
                                     }
                                     if ($react['reaction_type'] == 'eey') {
-                                        echo '<li><a href="#"><img src="https://i.pinimg.com/564x/cc/12/e0/cc12e02e7eed4491de74e05ea8a019a5.jpg" class="img-fluid rounded-circle"></a></li>';
+                                        echo '<li><a href="#"><img src="https://i.pinimg.com/564x/9d/04/2c/9d042cb030e250961454adf7131f76b5.jpg" class="img-fluid rounded-circle"></a></li>';
                                     }
                                     if ($react['reaction_type'] == 'love') {
                                         echo '<li><a href="#"><img src="https://i.pinimg.com/564x/1e/b9/ab/1eb9abce88c9859c08e70330ef8495dc.jpg" class="img-fluid rounded-circle"></a></li>';

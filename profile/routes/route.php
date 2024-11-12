@@ -11,20 +11,26 @@ $routes = [
 	'/province' => '/actions/province.php',
 	'/municipal' => '/actions/municipal.php',
 	'/brngy' => '/actions/barangay.php',
+	'/skillCat' => '/actions/get_skill_cat.php',
+	'/skillType' => '/actions/get_skill_type.php',
 	'/personal' => '/actions/personal.php',
 	'/family' => '/actions/fam_back.php',
-	'/Bfamily' => '/actions/save_family.php',
 	'/skills' => '/actions/special_skills.php',
 	'/educ' => '/actions/educations.php',
+	'/license' => '/actions/eligibility.php',
 
 	//FORMS
 	'/save_personal' => '/actions/save_personal.php',
+	'/Bfamily' => '/actions/save_family.php',
+	'/SSkills' => '/actions/save_skills.php',
+	'/education' => '/actions/save_education.php',
 
 
 	//PAGES
 	'/fam' => '/pages/family_background.php',
 	'/skill' => '/pages/special_skills.php',
-	'/education' => '/pages/education.php'
+	'/education' => '/pages/education.php',
+	'/eligibility' => '/pages/eligibility.php'
 
 	
 ];

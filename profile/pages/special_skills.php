@@ -36,7 +36,7 @@
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="eligibility">
                       <p>
                         <i class="icofont icofont-certificate-alt-1"></i> Eligibility/Licenses
                       </p>
@@ -177,27 +177,14 @@
                           </div>
                         </div>
                         <div class="edit-profile">
-                          <button class="btn btn-default btn-mini" data-toggle="modal" data-target="#Family-<?=$empno?>"><i class="icofont icofont-pencil-alt-2"></i> Edit Special Skills</button>
+                          <button class="btn btn-default btn-mini" data-toggle="modal" data-target="#Skill-<?=$empno?>"><i class="icofont icofont-pencil-alt-2"></i> Edit Special Skills</button>
                         </div>  
                       </div>
                     </div>
                     <div id="skills"></div>
-                    <script>
-                    fetch('skills')
-                        .then(response => {
-                            if (!response.ok) {
-                                throw new Error('Network response was not ok: ' + response.statusText);
-                            }
-                            return response.text(); // Since we're expecting HTML
-                        })
-                        .then(data => {
-                            document.getElementById("skills").innerHTML = data; // Set the inner HTML
-                        })
-                        .catch(error => console.error('Error fetching data:', error));
-                    </script>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<script type="text/javascript" src="../assets/js/fam_back.js"></script>
+<script type="text/javascript" src="../assets/js/skills.js"></script>

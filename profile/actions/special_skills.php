@@ -103,6 +103,45 @@ try {
       //END SKILLS
       echo'</div>';  
       echo'</div>';
+
+      //MODAL EDIT SKILLS START
+        echo '<div class="modal fade" id="Skill-' . htmlspecialchars($user_id) . '" tabindex="-1" role="dialog">
+                  <div class="modal-dialog modal-lg" role="document">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                              <h4 class="modal-title"></h4>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true"><i style="font-size: 30px;" class="fa fa-times-circle"></i></span>
+                              </button>
+                          </div>
+                          <div class="modal-body" style="padding: 5px !important;">
+                            <p> Please provide accurate and complete information in all fields. This information is required for reference purposes only within the company and will not be used for any illegal purposes. All personal data will be securely stored and handled in accordance with company privacy policies and applicable data protection laws. It will not be shared externally without your consent.</p>
+
+                            <div id="personal-form">
+                                <div id="pers-name">
+                                    <label style="width:50% !important;">Category<span id="required">*</span> 
+                                        <select id="skillCategory" name="Scategory">
+                                          <option value="">Select Skill Category</option>
+                                        </select>
+                                    </label>
+                                    <label style="width:50% !important;">Type<span id="required">*</span> 
+                                        <select id="skillType" name="Stype">
+                                          <option value="">Select Skill Type</option>
+                                        </select>
+                                        <input class="form-control" type="text" name="Others" id="othersInput" value="" style="display:none;" placeholder="Specify Other Type"/>
+                                    </label>
+                                </div>      
+                            </div>
+                            <div id="alert-message" class="alert" style="display: none;"></div>
+                          </div>
+                          <div class="modal-footer" id="footer">
+                              <button type="button" class="btn btn-default btn-mini waves-effect " data-dismiss="modal">Close</button>
+                              <button type="button" id="save-skills" class="btn btn-primary btn-mini waves-effect waves-light ">Save changes</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>';
+        //MODAL EDIT SKILLS END
     }else {
             
     }

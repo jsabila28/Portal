@@ -545,189 +545,189 @@ try {
         }
     } else {
         //MODAL EDIT PROFILE START
-                echo '<div class="modal fade" id="Personal-' . htmlspecialchars($user_id) . '" tabindex="-1" role="dialog">
-                          <div class="modal-dialog modal-lg" role="document">
-                              <div class="modal-content">
-                                  <div class="modal-header">
-                                      <h4 class="modal-title"></h4>
-                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                          <span aria-hidden="true"><i style="font-size: 30px;" class="fa fa-times-circle"></i></span>
-                                      </button>
-                                  </div>
-                                  <div class="modal-body" style="padding: 5px !important;">
-                                    <p> Please provide accurate and complete information in all fields. This information is required for reference purposes only within the company and will not be used for any illegal purposes. All personal data will be securely stored and handled in accordance with company privacy policies and applicable data protection laws. It will not be shared externally without your consent.</p>
-
-                                    <div id="personal-form">';
-                                        $deptSql = "SELECT jrec_department 
-                                                    FROM tbl201_jobrec
-                                                    WHERE jrec_empno = :employeeId";
-                                        $deptStmt = $port_db->prepare($deptSql);
-                                        $deptStmt->execute(['employeeId' => $user_id]);
-                                        
-                                        $department = $deptStmt->fetchColumn();
-                                        $year = date('y');
-                                        $month = date('m');
-                                        
-                                        if (!$department) {
-                                            throw new Exception("No department found for employee ID $employeeId");
-                                        }
-
-                                        $sql = "SELECT pers_id FROM tbl201_persinfo WHERE pers_id LIKE :pattern ORDER BY pers_id DESC LIMIT 1";
-                                        $stmt = $port_db->prepare($sql);
-                                        $stmt->execute(['pattern' => "$year-$month-%-$department"]);
-
-                                        $lastId = $stmt->fetchColumn();
-
-                                        if ($lastId) {
-                                            $lastSequence = (int)substr($lastId, 6, 3);
-                                            $nextSequence = str_pad($lastSequence + 1, 3, '0', STR_PAD_LEFT); 
-                                        } else {
-                                            $nextSequence = '001';
-                                        }
-
-                                        $newId = "$year-$month-$nextSequence-$department";
-
-                                        echo '<input class="form-control" type="hidden" name="pers_id"  value="' . htmlspecialchars($newId) . '"/>';
-
-                                            echo'<div id="pers-name">
-                                                <label>Last Name<span id="required">*</span> 
-                                                    <input class="form-control" type="text" name="lastname"  value=""/>
-                                                </label>
-                                                <label>Middle Name 
-                                                    <input class="form-control" type="text" name="midname" value=""/>
-                                                </label>
-                                                <label>First Name<span id="required">*</span> 
-                                                    <input class="form-control" type="text" name="firstname"  value=""/>
-                                                </label>
-                                                <label>Maiden Name 
-                                                    <input class="form-control" type="text" name="maidenname" value=""/>
-                                                </label>
-                                            </div>';
-                                            
-                                            echo'<div id="pers-name">
-                                                <label>Personal Contact<span id="required">*</span> 
-                                                    <input class="form-control" type="text" name="person_num"  value=""/>
-                                                </label>
-                                                <label>Company Contact 
-                                                    <input class="form-control" type="text" name="company_num" value=""/>
-                                                </label>
-                                                <label>Email<span id="required">*</span> 
-                                                    <input class="form-control" type="email" name="email"  value=""/>
-                                                </label>
-                                                <label>Telephone 
-                                                    <input class="form-control" type="text" name="telephone" value=""/>
-                                                </label>
-                                            </div>';
-                                            echo'<div id="pers-name">
-                                                <label>SSS Number<span id="required">*</span> 
-                                                    <input class="form-control" type="text" name="sss" value=""  />
-                                                </label>
-                                                <label>Pagibig Number<span id="required">*</span> 
-                                                    <input class="form-control" type="text" name="pagibig" value=""  />
-                                                </label>
-                                                <label>Philhealth Number<span id="required">*</span> 
-                                                    <input class="form-control" type="text" name="philhealth" value=""  />
-                                                </label>
-                                                <label>Tin Number<span id="required">*</span> 
-                                                    <input class="form-control" type="text" name="tin" value=""  />
-                                                </label>
-                                            </div>';
-                                            echo'<div id="pers-name">
-                                                <label>Permanent Address </label>
-                                                <label> 
-                                                    <select class="form-control" id="province-perm2" name="Pprovince">
-                                                        <option value="">Select Province</option>
-                                                    </select>
-                                                </label>
-                                                <label> 
-                                                    <select class="form-control" id="municipal-perm2" name="Pmunicipal">
-                                                        <option value="">Select Municipality</option>
-                                                    </select>
-                                                </label>
-                                                <label> 
-                                                    <select class="form-control" id="brngy-perm2" name="Pbrngy">
-                                                        <option value="">Select Barangay</option>
-                                                    </select>
-                                                </label>
-                                            </div>
-                                            <div id="pers-name">
-                                                <label>Current Address </label>
-                                                <label> 
-                                                    <select class="form-control" id="province-cur2" name="Cprovince">
-                                                        <option>Select Province</option>
-                                                    </select>
-                                                </label>
-                                                <label> 
-                                                    <select class="form-control" id="municipal-cur2" name="Cmunicipal">
-                                                        <option>Select Municipality</option>
-                                                    </select>
-                                                </label>
-                                                <label> 
-                                                    <select class="form-control" id="brngy-cur2" name="Cbrngy">
-                                                        <option>Select Barangay</option>
-                                                    </select>
-                                                </label>
-                                            </div>
-                                            <div id="pers-name">
-                                                <label>Place of Birth </label>
-                                                <label> 
-                                                    <select class="form-control" id="province-birth2" name="Bprovince">
-                                                        <option>Select Province</option>
-                                                    </select>
-                                                </label>
-                                                <label> 
-                                                    <select class="form-control" id="municipal-birth2" name="Bmunicipal">
-                                                        <option>Select Municipality</option>
-                                                    </select>
-                                                </label>
-                                                <label> 
-                                                    <select class="form-control" id="brngy-birth2" name="Bbrngy">
-                                                        <option>Select Barangay</option>
-                                                    </select>
-                                                </label>
-                                            </div>';
-                                            echo'<div id="pers-name">
-                                                <label>Birth Date<span id="required">*</span> 
-                                                    <input class="form-control" type="date" name="birthdate" value="" />
-                                                </label>
-                                                <label>Civil Status<span id="required">*</span> 
-                                                    <input class="form-control" type="text" name="civilstat"  value=""/>
-                                                </label>
-                                                <label>Sex<span id="required">*</span> <br>';
-                                                  echo'<div id="sex"><input type="radio" id="gender" name="sex" value="Male"/> <p>Male</p> </div>';
-                                                  echo'<div id="sex"><input type="radio" id="gender" name="sex" value="Female"/> <p>Female</p></div>';
-                                                    
-                                                echo'</label>
-                                                <label>Religion 
-                                                    <input class="form-control" type="text" name="religion" value=""/>
-                                                </label>
-                                            </div>
-                                            <div id="pers-name">
-                                                <label>Height(cm) 
-                                                    <input class="form-control" type="text" name="height" value=""/>
-                                                </label>
-                                                <label>Weight(kg) 
-                                                    <input class="form-control" type="text" name="weight" value=""/>
-                                                </label>
-                                                <label>Blood Type 
-                                                    <input class="form-control" type="text" name="bloodtype" value=""/>
-                                                </label>
-                                            </div>
-                                            <div id="pers-name">
-                                                <label>Dialect
-                                                    <input class="form-control" type="text" name="dialect" value=""/>
-                                                </label>
-                                            </div>
-                                    </div>
-                                  </div>
-                                  <div class="modal-footer" id="footer">
-                                      <button type="button" class="btn btn-default btn-mini waves-effect " data-dismiss="modal">Close</button>
-                                      <button type="button" id="save-personal" class="btn btn-primary btn-mini waves-effect waves-light ">Save changes</button>
-                                  </div>
-                              </div>
+        echo '<div class="modal fade" id="Personal-' . htmlspecialchars($user_id) . '" tabindex="-1" role="dialog">
+                  <div class="modal-dialog modal-lg" role="document">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                              <h4 class="modal-title"></h4>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true"><i style="font-size: 30px;" class="fa fa-times-circle"></i></span>
+                              </button>
                           </div>
-                      </div>';
-                //MODAL EDIT PROFILE END
+                          <div class="modal-body" style="padding: 5px !important;">
+                            <p> Please provide accurate and complete information in all fields. This information is required for reference purposes only within the company and will not be used for any illegal purposes. All personal data will be securely stored and handled in accordance with company privacy policies and applicable data protection laws. It will not be shared externally without your consent.</p>
+
+                            <div id="personal-form">';
+                                $deptSql = "SELECT jrec_department 
+                                            FROM tbl201_jobrec
+                                            WHERE jrec_empno = :employeeId";
+                                $deptStmt = $port_db->prepare($deptSql);
+                                $deptStmt->execute(['employeeId' => $user_id]);
+                                
+                                $department = $deptStmt->fetchColumn();
+                                $year = date('y');
+                                $month = date('m');
+                                
+                                if (!$department) {
+                                    throw new Exception("No department found for employee ID $employeeId");
+                                }
+
+                                $sql = "SELECT pers_id FROM tbl201_persinfo WHERE pers_id LIKE :pattern ORDER BY pers_id DESC LIMIT 1";
+                                $stmt = $port_db->prepare($sql);
+                                $stmt->execute(['pattern' => "$year-$month-%-$department"]);
+
+                                $lastId = $stmt->fetchColumn();
+
+                                if ($lastId) {
+                                    $lastSequence = (int)substr($lastId, 6, 3);
+                                    $nextSequence = str_pad($lastSequence + 1, 3, '0', STR_PAD_LEFT); 
+                                } else {
+                                    $nextSequence = '001';
+                                }
+
+                                $newId = "$year-$month-$nextSequence-$department";
+
+                                echo '<input class="form-control" type="hidden" name="pers_id"  value="' . htmlspecialchars($newId) . '"/>';
+
+                                    echo'<div id="pers-name">
+                                        <label>Last Name<span id="required">*</span> 
+                                            <input class="form-control" type="text" name="lastname"  value=""/>
+                                        </label>
+                                        <label>Middle Name 
+                                            <input class="form-control" type="text" name="midname" value=""/>
+                                        </label>
+                                        <label>First Name<span id="required">*</span> 
+                                            <input class="form-control" type="text" name="firstname"  value=""/>
+                                        </label>
+                                        <label>Maiden Name 
+                                            <input class="form-control" type="text" name="maidenname" value=""/>
+                                        </label>
+                                    </div>';
+                                    
+                                    echo'<div id="pers-name">
+                                        <label>Personal Contact<span id="required">*</span> 
+                                            <input class="form-control" type="text" name="person_num"  value=""/>
+                                        </label>
+                                        <label>Company Contact 
+                                            <input class="form-control" type="text" name="company_num" value=""/>
+                                        </label>
+                                        <label>Email<span id="required">*</span> 
+                                            <input class="form-control" type="email" name="email"  value=""/>
+                                        </label>
+                                        <label>Telephone 
+                                            <input class="form-control" type="text" name="telephone" value=""/>
+                                        </label>
+                                    </div>';
+                                    echo'<div id="pers-name">
+                                        <label>SSS Number<span id="required">*</span> 
+                                            <input class="form-control" type="text" name="sss" value=""  />
+                                        </label>
+                                        <label>Pagibig Number<span id="required">*</span> 
+                                            <input class="form-control" type="text" name="pagibig" value=""  />
+                                        </label>
+                                        <label>Philhealth Number<span id="required">*</span> 
+                                            <input class="form-control" type="text" name="philhealth" value=""  />
+                                        </label>
+                                        <label>Tin Number<span id="required">*</span> 
+                                            <input class="form-control" type="text" name="tin" value=""  />
+                                        </label>
+                                    </div>';
+                                    echo'<div id="pers-name">
+                                        <label>Permanent Address </label>
+                                        <label> 
+                                            <select class="form-control" id="province-perm2" name="Pprovince">
+                                                <option value="">Select Province</option>
+                                            </select>
+                                        </label>
+                                        <label> 
+                                            <select class="form-control" id="municipal-perm2" name="Pmunicipal">
+                                                <option value="">Select Municipality</option>
+                                            </select>
+                                        </label>
+                                        <label> 
+                                            <select class="form-control" id="brngy-perm2" name="Pbrngy">
+                                                <option value="">Select Barangay</option>
+                                            </select>
+                                        </label>
+                                    </div>
+                                    <div id="pers-name">
+                                        <label>Current Address </label>
+                                        <label> 
+                                            <select class="form-control" id="province-cur2" name="Cprovince">
+                                                <option>Select Province</option>
+                                            </select>
+                                        </label>
+                                        <label> 
+                                            <select class="form-control" id="municipal-cur2" name="Cmunicipal">
+                                                <option>Select Municipality</option>
+                                            </select>
+                                        </label>
+                                        <label> 
+                                            <select class="form-control" id="brngy-cur2" name="Cbrngy">
+                                                <option>Select Barangay</option>
+                                            </select>
+                                        </label>
+                                    </div>
+                                    <div id="pers-name">
+                                        <label>Place of Birth </label>
+                                        <label> 
+                                            <select class="form-control" id="province-birth2" name="Bprovince">
+                                                <option>Select Province</option>
+                                            </select>
+                                        </label>
+                                        <label> 
+                                            <select class="form-control" id="municipal-birth2" name="Bmunicipal">
+                                                <option>Select Municipality</option>
+                                            </select>
+                                        </label>
+                                        <label> 
+                                            <select class="form-control" id="brngy-birth2" name="Bbrngy">
+                                                <option>Select Barangay</option>
+                                            </select>
+                                        </label>
+                                    </div>';
+                                    echo'<div id="pers-name">
+                                        <label>Birth Date<span id="required">*</span> 
+                                            <input class="form-control" type="date" name="birthdate" value="" />
+                                        </label>
+                                        <label>Civil Status<span id="required">*</span> 
+                                            <input class="form-control" type="text" name="civilstat"  value=""/>
+                                        </label>
+                                        <label>Sex<span id="required">*</span> <br>';
+                                          echo'<div id="sex"><input type="radio" id="gender" name="sex" value="Male"/> <p>Male</p> </div>';
+                                          echo'<div id="sex"><input type="radio" id="gender" name="sex" value="Female"/> <p>Female</p></div>';
+                                            
+                                        echo'</label>
+                                        <label>Religion 
+                                            <input class="form-control" type="text" name="religion" value=""/>
+                                        </label>
+                                    </div>
+                                    <div id="pers-name">
+                                        <label>Height(cm) 
+                                            <input class="form-control" type="text" name="height" value=""/>
+                                        </label>
+                                        <label>Weight(kg) 
+                                            <input class="form-control" type="text" name="weight" value=""/>
+                                        </label>
+                                        <label>Blood Type 
+                                            <input class="form-control" type="text" name="bloodtype" value=""/>
+                                        </label>
+                                    </div>
+                                    <div id="pers-name">
+                                        <label>Dialect
+                                            <input class="form-control" type="text" name="dialect" value=""/>
+                                        </label>
+                                    </div>
+                            </div>
+                          </div>
+                          <div class="modal-footer" id="footer">
+                              <button type="button" class="btn btn-default btn-mini waves-effect " data-dismiss="modal">Close</button>
+                              <button type="button" id="save-personal" class="btn btn-primary btn-mini waves-effect waves-light ">Save changes</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>';
+        //MODAL EDIT PROFILE END
         }
 
 } catch (PDOException $e) {
