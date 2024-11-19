@@ -76,11 +76,126 @@ $government = Portal::GetGovAnn($yearMonth);
                         <!-- MEMO -->
                         <?php require_once($main_root."/pages/memo.php"); ?>
                         <hr>
-                        <!-- LEVE/OFFSET -->
-                        <?php require_once($main_root."/pages/leave.php"); ?>
+                        <ul class="nav nav-tabs  tabs" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#home1" role="tab">Leave/Offset</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#profile1" role="tab">Resigning</a>
+                            </li>
+                        </ul>
+                        <!-- Tab panes -->
+                        <div class="tab-content tabs card-block">
+                            <div class="tab-pane active" id="home1" role="tabpanel">
+                                <div id="memo"> 
+                                    <div class="m-portlet__body">
+                                        <div class="tab-content">
+                                            <div class="tab-pane active" id="m_widget4_tab1_content">
+                                                <div class="m-widget4 m-widget4--progress">
+                                                    <?php
+                                                         if (!empty($ongoingleave)) {
+                                                              foreach ($ongoingleave as $ol) {
+                                                    ?>
+                                                    <div class="m-widget4__item"style="display:flex;justify-content: space-between;">
+                                                        <div class="m-widget4__img m-widget4__img--pic">
+                                                            <img style="width:30px; height:30px; border-radius:50%" src="assets/image/img/<?=$ol['la_empno'].'.jpg'?>" alt="">
+                                                        </div>
+                                                        <div class="m-widget4__info">
+                                                            <span class="m-widget4__title">
+                                                                <strong ><?=$ol['bi_empfname'].' '.$ol['bi_emplname']?></strong>
+                                                            </span>
+                                                            <br>
+                                                            <span class="m-widget4__sub">
+                                                                <strong class="text-muted"><?=$ol['Dept_Name']?></strong>
+                                                            </span>
+                                                        </div>
+                                                        <div class="m-widget4__progress">
+                                                            <div class="m-widget4__progress-wrapper">
+                                                                <span class="m-widget17__progress-number">
+                                                                   <strong>start: <?= date("M d, Y", strtotime($ol['la_start'])) ?></strong>
+                                                                </span><br>
+                                                                <span class="m-widget17__progress-label">
+                                                                   <strong>return: <?= date("M d, Y", strtotime($ol['la_return'])) ?></strong>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="m-widget4__ext">
+                                                            <label class="label label-inverse-danger"><?=$ol['la_type']?></label>
+                                                        </div>
+                                                    </div>
+                                                    <?php }} ?>
+                                                    <?php
+                                                         if (!empty($leave)) {
+                                                              foreach ($leave as $lv) {
+                                                    ?>
+                                                    <div class="m-widget4__item"style="display:flex;justify-content: space-between;">
+                                                        <div class="m-widget4__img m-widget4__img--pic">
+                                                            <img style="width:30px; height:30px; border-radius:50%" src="assets/image/img/<?=$lv['la_empno'].'.jpg'?>" alt="">
+                                                        </div>
+                                                        <div class="m-widget4__info"style="width: 120px;">
+                                                            <span class="m-widget4__title">
+                                                                <strong ><?=$lv['bi_empfname'].' '.$lv['bi_emplname']?></strong>
+                                                            </span>
+                                                            <br>
+                                                            <span class="m-widget4__sub">
+                                                                <strong class="text-muted"><?=$lv['Dept_Name']?></strong>
+                                                            </span>
+                                                        </div>
+                                                        <div class="m-widget4__progress">
+                                                            <div class="m-widget4__progress-wrapper">
+                                                                <span class="m-widget17__progress-number">
+                                                                   <strong>start: <?= date("M d, Y", strtotime($lv['la_start'])) ?></strong>
+                                                                </span><br>
+                                                                <span class="m-widget17__progress-label">
+                                                                   <strong>return: <?= date("M d, Y", strtotime($lv['la_return'])) ?></strong>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="m-widget4__ext" style="width: 50px;">
+                                                            <label class="label label-inverse-danger"><?=$lv['la_type']?></label>
+                                                        </div>
+                                                    </div>
+                                                    <?php }} ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="profile1" role="tabpanel">
+                                <div id="memo"> 
+                                    <div class="comment-wrapper">
+                                        <div class="panel panel-info">
+                                            <div class="panel-body">
+                                                <ul class="media-list">
+                                                    <?php
+                                                        if (!empty($resigning)) {
+                                                            foreach ($resigning as $rs) {
+                                                    ?>
+                                                    <li class="media">
+                                                        <a href="#" class="pull-left">
+                                                            <img src="assets/image/img/<?=$rs['xintvw_empno'].'.jpg'?>" alt="" class="img-circle">
+                                                        </a>
+                                                        <div class="media-body">
+                                                            <span class="text-muted pull-right">
+                                                                <strong>Last day: <?= date("F j, Y", strtotime($rs['xintvw_lastday'])) ?></strong>
+                                                            </span>
+                                                            <strong ><?=$rs['bi_emplname'].', '.$rs['bi_empfname'] ?></strong>
+                                                            <p>
+                                                                <strong class="text-muted"><?=$rs['jd_title']?></strong>
+                                                            </p>
+                                                            <strong class="text-muted"><?=$rs['C_Name']?></strong>
+                                                        </div>
+                                                    </li>
+                                                    <?php }} ?>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <hr>
-                        <!-- RESIGNING -->
-                        <?php require_once($main_root."/pages/resign.php"); ?>
                     </div>
                 </div>
             </div>
@@ -217,29 +332,45 @@ $(document).ready(function() {
 });
 
 function saveComment() {
-    // Get the values from the inputs
-    const comment = document.querySelector("input[name='Mycomment']").value;
-    const postId = document.querySelector("input[name='post-id']").value;
+    const commentInput = document.querySelector('#input-default');
+    const comId = document.querySelector('input[name="com-id"]').value;
+    const comment = commentInput.value;
 
-    // Create an AJAX request
-    const xhr = new XMLHttpRequest();
-    xhr.open("POST", "save_comment", true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    if (comment.trim() === '') {
+        alert('Comment cannot be empty!');
+        return;
+    }
 
-    // Send the data as POST parameters
-    xhr.send("Mycomment=" + encodeURIComponent(comment) + "&post-id=" + encodeURIComponent(postId));
-
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            const response = JSON.parse(xhr.responseText);
-            if (response.success) {
-                alert(response.success);
-            } else {
-                alert(response.error);
-            }
+    // Send AJAX request to save comment
+    fetch('save_comment', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: `com_id=${encodeURIComponent(comId)}&Mycomment=${encodeURIComponent(comment)}&user_id=${encodeURIComponent('<?php echo $user_id; ?>')}`
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            commentInput.value = ''; // Clear the input field
+            reloadComments(comId); // Reload comments
+        } else {
+            alert(data.message || 'An error occurred while saving the comment.');
         }
-    };
+    })
+    .catch(error => console.error('Error:', error));
 }
+
+function reloadComments(comId) {
+    // Fetch the updated comment list
+    fetch(`comment?com_id=${encodeURIComponent(comId)}`)
+    .then(response => response.text())
+    .then(html => {
+        const commentSection = document.querySelector('#comment-section'); // Adjust selector as needed
+        commentSection.innerHTML = html; // Replace with updated comments
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+
 
 
 </script>

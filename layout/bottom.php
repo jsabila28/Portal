@@ -148,6 +148,7 @@
 
     <link rel="stylesheet" type="text/css" href="/Portal/assets/js/postfeed.js">
     <link rel="stylesheet" type="text/css" href="/Portal/assets/js/atd_maintenance.js">
+    <link rel="stylesheet" type="text/css" href="/Portal/assets/js/home.js">
 </body> 
 
 </html>

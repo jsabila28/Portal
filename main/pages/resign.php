@@ -1,5 +1,4 @@
 <div id="memo"> 
-    <span><a href="#"><h6>Resigning</h6></a></span>
     <div class="comment-wrapper">
         <div class="panel panel-info">
             <div class="panel-body">

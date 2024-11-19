@@ -346,17 +346,20 @@ try {
                                         echo '<input class="form-control" type="hidden" name="pers_id"  value="' . htmlspecialchars($newId) . '"/>';
 
                                             echo'<div id="pers-name">
-                                                <label>Last Name<span id="required">*</span> 
+                                                <label style="width:22% !important">Last Name<span id="required">*</span> 
                                                     <input class="form-control" type="text" name="lastname" required value="' . htmlspecialchars($p['pers_lastname']) . '"/>
                                                 </label>
-                                                <label>Middle Name 
+                                                <label style="width:22% !important">Middle Name 
                                                     <input class="form-control" type="text" name="midname" value="' . htmlspecialchars($p['pers_midname']) . '"/>
                                                 </label>
-                                                <label>First Name<span id="required">*</span> 
+                                                <label style="width:22% !important">First Name<span id="required">*</span> 
                                                     <input class="form-control" type="text" name="firstname" required value="' . htmlspecialchars($p['pers_firstname']) . '"/>
                                                 </label>
-                                                <label>Maiden Name 
+                                                <label style="width:22% !important">Maiden Name 
                                                     <input class="form-control" type="text" name="maidenname" value="' . htmlspecialchars($p['pers_maidenname']) . '"/>
+                                                </label>
+                                                <label style="width:10% !important">Suffix 
+                                                    <input class="form-control" type="text" name="maidenname" value="' . htmlspecialchars($p['pers_prefname']) . '"/>
                                                 </label>
                                             </div>';
                                             $stmt = $port_db->prepare("SELECT * FROM tbl201_contact WHERE cont_empno = ?");
@@ -590,17 +593,20 @@ try {
                                 echo '<input class="form-control" type="hidden" name="pers_id"  value="' . htmlspecialchars($newId) . '"/>';
 
                                     echo'<div id="pers-name">
-                                        <label>Last Name<span id="required">*</span> 
+                                        <label style="width:22% !important">Last Name<span id="required">*</span> 
                                             <input class="form-control" type="text" name="lastname"  value=""/>
                                         </label>
-                                        <label>Middle Name 
+                                        <label style="width:22% !important">Middle Name 
                                             <input class="form-control" type="text" name="midname" value=""/>
                                         </label>
-                                        <label>First Name<span id="required">*</span> 
+                                        <label style="width:22% !important">First Name<span id="required">*</span> 
                                             <input class="form-control" type="text" name="firstname"  value=""/>
                                         </label>
-                                        <label>Maiden Name 
+                                        <label style="width:22% !important">Maiden Name 
                                             <input class="form-control" type="text" name="maidenname" value=""/>
+                                        </label>
+                                        <label style="width:10% !important">Suffix
+                                            <input class="form-control" type="text" name="prefixname" value=""/>
                                         </label>
                                     </div>';
                                     

@@ -16,11 +16,14 @@ try {
     $lastname = $_POST['lastname'] ?? '';
     $midname = $_POST['midname'] ?? '';
     $firstname = $_POST['firstname'] ?? '';
+    $suffix = $_POST['suffix'] ?? '';
     $maidenname = $_POST['maidenname'] ?? '';
     $relationship = $_POST['relationship'] ?? '';
     $contact = $_POST['person_num'] ?? '';
     $birthdate = $_POST['birthdate'] ?? '';
     $occupation = $_POST['occupation'] ?? '';
+    $workplace = $_POST['workplace'] ?? '';
+    $workadd = $_POST['workadd'] ?? '';
     $sex = $_POST['sex'] ?? '';
     $stats = '1';
 
@@ -36,15 +39,18 @@ try {
             fam_firstname = :firstname,
             fam_midname = :midname,
             fam_maidenname = :maidenname,
+            fam_suffix = :suffix,
             fam_contact = :contact,
             fam_birthdate = :birthdate,
             fam_sex = :sex,
             fam_occupation = :occupation,
+            fam_workplace = :workplace,
+            fam_workadd = :workadd,
             status = :stat
             WHERE fam_empno = :employee AND fam_relationship = :relationship");
     } else {
-        $stmt = $port_db->prepare("INSERT INTO tbl201_family (fam_empno, fam_relationship, fam_lastname, fam_firstname, fam_midname, fam_maidenname, fam_contact, fam_birthdate, fam_sex, fam_occupation, status) 
-            VALUES (:employee, :relationship, :lastname, :firstname, :midname, :maidenname, :contact, :birthdate, :sex, :occupation, :stat)");
+        $stmt = $port_db->prepare("INSERT INTO tbl201_family (fam_empno, fam_relationship, fam_lastname, fam_firstname, fam_midname, fam_maidenname, fam_suffix, fam_contact, fam_birthdate, fam_sex, fam_occupation, fam_workplace, fam_workadd, status) 
+            VALUES (:employee, :relationship, :lastname, :firstname, :midname, :maidenname, :suffix, :contact, :birthdate, :sex, :occupation, :workplace, :workadd, :stat)");
     }
 
     $stmt->bindParam(':employee', $user_id);
@@ -53,9 +59,12 @@ try {
     $stmt->bindParam(':firstname', $firstname);
     $stmt->bindParam(':midname', $midname);
     $stmt->bindParam(':maidenname', $maidenname);
+    $stmt->bindParam(':suffix', $suffix);
     $stmt->bindParam(':contact', $contact);
     $stmt->bindParam(':birthdate', $birthdate);
     $stmt->bindParam(':occupation', $occupation);
+    $stmt->bindParam(':workplace', $workplace);
+    $stmt->bindParam(':workadd', $workadd);
     $stmt->bindParam(':sex', $sex);
     $stmt->bindParam(':stat', $stats);
 

@@ -24,6 +24,7 @@ try {
             LEFT JOIN tbl201_basicinfo b ON a.`ann_approvedby` = b.`bi_empno`
             WHERE a.`ann_type` = 'LOCAL'
             AND DATE_FORMAT(a.`ann_timestatmp`, '%Y') = ?
+            GROUP BY a.`ann_id`
             ORDER BY ann_timestatmp DESC");
         $stmt->execute([$currentYear]);
         $data = $stmt->fetchAll(PDO::FETCH_ASSOC);    
@@ -256,6 +257,10 @@ try {
                     echo '</div>'; // Close cardbox-base-comment
                 }
             }
+            echo'<div id="comment-section">
+                
+            </div>';
+
 
             // Add new comment input section
             echo '<div class="cardbox-base-comment">';
@@ -265,7 +270,8 @@ try {
             echo '</div>';
             echo '<div class="media-body" id="comment">';
             echo '<div class="textarea-wrapper">';
-            echo '<input type="text" name="Mycomment" value="" placeholder="Write a comment..." id="input-default" class="emojiable-option"></input>';
+            echo '<input type="hidden" name="com-id" value="' .htmlspecialchars($row['ann_id']). '" />';
+            echo '<input type="text" name="Mycomment" placeholder="Write a comment..." id="input-default" class="emojiable-option"></input>';
             echo '<i class="ti-face-smile icon emoji-icon"></i>';
             echo '</div>'; // Close textarea-wrapper
             echo '<a href="#" id="saveComment" onclick="saveComment()"><img src="assets/img/send_icon.png" height="30" width="30"/></a>';

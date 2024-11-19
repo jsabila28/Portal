@@ -36,14 +36,6 @@ try {
                     WHERE fam_empno = ?");
                 $stmt->execute([$user_id]);
                 $member = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-                echo '<div class="contact" style="margin-bottom:10px;">';
-                echo '<div class="numbers">
-                        <div class="content">
-                          <p style="font-size: 14px !important;">Own family</p>
-                        </div>
-                      </div>';
-                echo'</div>';
                 
                 echo '<div class="contact">'; // Start the spouse contact section
                 
@@ -133,11 +125,11 @@ try {
                         foreach ($child as $c) {
                             echo '<div class="contact" style="margin-top: 20px;">';
                             
-                            echo '<div class="numbers">
-                                    <div class="icon">
-                                      <i class="icofont icofont-user-alt-1"></i>
-                                    </div>
-                                    <div class="content">
+                            echo '<div class="numbers">';
+                              echo '<div class="icon">
+                                      <i class="fa fa-child"></i>
+                                    </div>';
+                            echo'   <div class="content">
                                       <p>' . htmlspecialchars($c['full_name']) . '</p><br> 
                                       <span>Child Full Name</span>
                                     </div>
@@ -250,13 +242,6 @@ try {
                   $momdad = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                   if (!empty($momdad)) {
-                        echo '<div class="contact" style="margin-bottom:10px;">';
-                        echo '<div class="numbers">
-                                <div class="content">
-                                  <p style="font-size: 14px !important;">Family of Origin</p>
-                                </div>
-                              </div>';
-                        echo'</div>';
                       foreach ($momdad as $md) {
                           echo '<div class="contact">'; // contact start
                           if (!empty($md['Mother'])) {
@@ -279,6 +264,9 @@ try {
                                   </div>
                                 </div>';
                           echo '<div class="numbers">
+                                  <div class="icon">
+                                    <i class="icofont icofont-labour"></i>
+                                  </div>
                                   <div class="content">
                                     <p>' . htmlspecialchars($md['occupationM']) . '</p><br> 
                                     <span>Occupation</span>
@@ -330,6 +318,9 @@ try {
                                   </div>
                                 </div>';
                           echo '<div class="numbers">
+                                  <div class="icon">
+                                    <i class="icofont icofont-labour"></i>
+                                  </div>
                                   <div class="content">
                                     <p>' . htmlspecialchars($md['occupationF']) . '</p><br> 
                                     <span>Occupation</span>
@@ -381,11 +372,17 @@ try {
                         foreach ($siblings as $sibling) {
                             echo '<div class="contact" style="margin-top: 20px;">';
                             
-                            echo '<div class="numbers">
-                                    <div class="icon">
-                                      <i class="icofont icofont-user-alt-1"></i>
-                                    </div>
-                                    <div class="content">
+                            echo '<div class="numbers">';
+                            if ($sibling['fam_sex'] == 'Male') {
+                              echo'<div class="icon">
+                                      <i class="icofont icofont-boy"></i>
+                                   </div>';
+                            }else{
+                              echo'<div class="icon">
+                                      <i class="icofont icofont-woman-in-glasses"></i>
+                                   </div>';
+                            }
+                            echo '<div class="content">
                                       <p>' . htmlspecialchars($sibling['full_name']) . '</p><br> 
                                       <span>Sibling Full Name</span>
                                     </div>
@@ -402,11 +399,11 @@ try {
                             
                             echo '<div class="numbers">
                                     <div class="icon">
-                                      <i class="zmdi zmdi-male-female"></i>
+                                      <i class="icofont icofont-labour"></i>
                                     </div>
                                     <div class="content">
-                                      <p>' . htmlspecialchars($sibling['fam_sex'] ?? 'NA') . '</p><br> 
-                                      <span>Sex</span>
+                                      <p>' . htmlspecialchars($sibling['fam_occupation'] ?? 'NA') . '</p><br> 
+                                      <span>Occupation</span>
                                     </div>
                                   </div>';
                             
@@ -488,27 +485,30 @@ try {
                           <div class="modal-body" style="padding: 5px !important;">
                               
                               <!-- Alert Message -->
-                              <div id="alert-message" class="alert" style="display:none;"></div>
+                              <div id="family-message" class="alert" style="display:none;"></div>
                               
                               <p>Please provide accurate and complete information...</p>
 
                               <div id="personal-form">
                                   <div id="pers-name">
                                       <label>Last Name<span id="required">*</span> 
-                                          <input class="form-control" type="text" id="lastname" value=""/>
+                                          <input class="form-control" type="text" id="Famlastname" value=""/>
                                       </label>
                                       <label>Middle Name 
-                                          <input class="form-control" type="text" id="midname" value=""/>
+                                          <input class="form-control" type="text" id="Fammidname" value=""/>
                                       </label>
                                       <label>First Name<span id="required">*</span> 
-                                          <input class="form-control" type="text" id="firstname" value=""/>
+                                          <input class="form-control" type="text" id="Famfirstname" value=""/>
                                       </label>
-                                      <label>Maiden Name 
-                                          <input class="form-control" type="text" id="maidenname" value=""/>
+                                      <label>Suffix 
+                                          <input class="form-control" type="text" id="Famsuffixname" value=""/>
                                       </label>
                                   </div>
                                   
                                   <div id="pers-name">
+                                      <label>Maiden Name 
+                                          <input class="form-control" type="text" id="Fammaidenname" value=""/>
+                                      </label>
                                       <label>Relationship<span id="required">*</span> 
                                           <select id="relationship">
                                               <option>Select Relation</option>
@@ -523,27 +523,33 @@ try {
                                           </select>
                                       </label>
                                       <label>Contact Number<span id="required">*</span> 
-                                          <input class="form-control" type="text" id="person_num" value=""/>
+                                          <input class="form-control" type="text" id="Famperson_num" value=""/>
                                       </label>
                                       <label>Birthdate 
-                                          <input class="form-control" type="date" id="birthdate" value=""/>
-                                      </label>
-                                      <label>Occupation 
-                                          <input class="form-control" type="text" id="occupation" value=""/>
+                                          <input class="form-control" type="date" id="Fambirthdate" value=""/>
                                       </label>
                                   </div>
                                   
                                   <div id="pers-name">
+                                      <label>Occupation 
+                                          <input class="form-control" type="text" id="Famoccupation" value=""/>
+                                      </label>
+                                      <label>Work Place 
+                                          <input class="form-control" type="text" id="Famworkplace" value=""/>
+                                      </label>
+                                      <label>Work Address 
+                                          <input class="form-control" type="text" id="Famworkadd" value=""/>
+                                      </label>
                                       <label>Sex<span id="required">*</span>
-                                          <div id="sex"><input id="gender" type="radio" name="sex" value="Male" /> <p>Male</p> </div>
-                                          <div id="sex"><input id="gender" type="radio" name="sex" value="Female" /> <p>Female</p></div>
+                                          <div id="sex"><input id="Famgender" type="radio" name="Famsex" value="Male" /> <p>Male</p> </div>
+                                          <div id="sex"><input id="Famgender" type="radio" name="Famsex" value="Female" /> <p>Female</p></div>
                                       </label>
                                   </div>
                               </div>
                           </div>
                           <div class="modal-footer" id="footer">
                               <button type="button" class="btn btn-default btn-mini waves-effect" data-dismiss="modal">Close</button>
-                              <button type="button" id="save-personal" class="btn btn-primary btn-mini waves-effect waves-light">Save changes</button>
+                              <button type="button" id="save-family" class="btn btn-primary btn-mini waves-effect waves-light">Save changes</button>
                           </div>
                       </div>
                   </div>
@@ -563,23 +569,23 @@ try {
                         <div class="modal-body" style="padding: 5px !important;">
                             
                             <!-- Alert Message -->
-                            <div id="alert-message" class="alert" style="display:none;"></div>
+                            <div id="family-message" class="alert" style="display:none;"></div>
                             
                             <p>Please provide accurate and complete information...</p>
 
                             <div id="personal-form">
                                 <div id="pers-name">
                                     <label>Last Name<span id="required">*</span> 
-                                        <input class="form-control" type="text" id="lastname" value=""/>
+                                        <input class="form-control" type="text" id="Famlastname" value=""/>
                                     </label>
                                     <label>Middle Name 
-                                        <input class="form-control" type="text" id="midname" value=""/>
+                                        <input class="form-control" type="text" id="Fammidname" value=""/>
                                     </label>
                                     <label>First Name<span id="required">*</span> 
-                                        <input class="form-control" type="text" id="firstname" value=""/>
+                                        <input class="form-control" type="text" id="Famfirstname" value=""/>
                                     </label>
                                     <label>Maiden Name 
-                                        <input class="form-control" type="text" id="maidenname" value=""/>
+                                        <input class="form-control" type="text" id="Fammaidenname" value=""/>
                                     </label>
                                 </div>
                                 
@@ -598,27 +604,27 @@ try {
                                         </select>
                                     </label>
                                     <label>Contact Number<span id="required">*</span> 
-                                        <input class="form-control" type="text" id="person_num" value=""/>
+                                        <input class="form-control" type="text" id="Famperson_num" value=""/>
                                     </label>
                                     <label>Birthdate 
-                                        <input class="form-control" type="date" id="birthdate" value=""/>
+                                        <input class="form-control" type="date" id="Fambirthdate" value=""/>
                                     </label>
                                     <label>Occupation 
-                                        <input class="form-control" type="text" id="occupation" value=""/>
+                                        <input class="form-control" type="text" id="Famoccupation" value=""/>
                                     </label>
                                 </div>
                                 
                                 <div id="pers-name">
                                     <label>Sex<span id="required">*</span>
-                                        <div id="sex"><input id="gender" type="radio" name="sex" value="Male" /> <p>Male</p> </div>
-                                        <div id="sex"><input id="gender" type="radio" name="sex" value="Female" /> <p>Female</p></div>
+                                        <div id="sex"><input id="Famgender" type="radio" name="Famsex" value="Male" /> <p>Male</p> </div>
+                                        <div id="sex"><input id="Famgender" type="radio" name="Famsex" value="Female" /> <p>Female</p></div>
                                     </label>
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer" id="footer">
                             <button type="button" class="btn btn-default btn-mini waves-effect" data-dismiss="modal">Close</button>
-                            <button type="button" id="save-personal" class="btn btn-primary btn-mini waves-effect waves-light">Save changes</button>
+                            <button type="button" id="save-family" class="btn btn-primary btn-mini waves-effect waves-light">Save changes</button>
                         </div>
                     </div>
                 </div>

@@ -13,6 +13,7 @@ $routes = [
 	'/reaction' => 'main/actions/save_reaction.php',
 	'/save_comment' => 'main/actions/save_comment.php',
 	'/postnews' => 'main/actions/post_news.php',
+	'/comment' => 'main/actions/comment.php',
 
 	// DASHBOARD
 	'/holiday' => 'main/actions/holiday.php',
@@ -27,7 +28,7 @@ $uri = rtrim(str_replace("/Portal", "", $uri), "#");
 if(isset($routes[$uri]) 
 	&& strpos($routes[$uri], "main/pages/") !== false 
 	&& $_SERVER['REQUEST_URI'] != '/Portal/login') {
-	include_once($portal_root."/layout/top.php");
+	include_once($portal_root."/layout/atd_top.php");
 }
 
 // Check if the requested URI exists in the routes array

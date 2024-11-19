@@ -18,7 +18,7 @@
                                 echo $username;
                             ?>
                             </span>
-                             <p><?php
+                            <p><?php
                                 echo $position;
                             ?></p>
                             <p><?php
@@ -27,17 +27,14 @@
                           </div>
                         </div>
                         <div class="edit-profile">
-                          <button class="btn btn-default btn-mini" id="profileButton" data-toggle="modal" data-target="#Personal-<?=$empno?>"><i class="icofont icofont-pencil-alt-2"></i> Edit Profile</button>
-                        </div> 
+                          <button class="btn btn-default btn-mini" data-toggle="modal" data-target="#IntCert-<?=$empno?>"><i class="icofont icofont-pencil-alt-2"></i> Add Certificate</button>
+                        </div>  
                       </div>
                     </div>
-                    <div class="content-div" id="personal" style="display: block;"></div>
-                   
+                    <div id="int-cert"></div>
                 </div>
             </div>
         </div>
     </div>
-</div> 
-<script type="text/javascript" src="../assets/js/address.js"></script>
-<script type="text/javascript" src="../assets/js/personal_profile.js"></script>
-
+</div>
+<script type="text/javascript" src="../assets/js/inter_cert.js"></script>

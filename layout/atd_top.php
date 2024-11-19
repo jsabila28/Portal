@@ -46,7 +46,7 @@
     <link href="/Portal/admin_template/assets/pages/jquery.filer/css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet">
     <!-- Menu-Search css -->
     <link rel="stylesheet" type="text/css" href="/Portal/admin_template/assets/pages/menu-search/css/component.css">
-	<script src="https://jscolor.com/release/2.4.5/jscolor.js"></script>
+	<!-- <script src="https://jscolor.com/release/2.4.5/jscolor.js"></script> -->
 	<!-- Data Table Css -->
     <link rel="stylesheet" type="text/css" href="/Portal/admin_template/bower_components/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" type="text/css" href="/Portal/admin_template/assets/pages/data-table/css/buttons.dataTables.min.css">
@@ -122,7 +122,7 @@
 						</a>
 						<a href="/Portal">
 							<a href="/Portal">
-							<img class="img-fluid" style="float: left;margin-left: 15px;" src="https://teamtngc.com/hris2/pages/hricon.ico" width="20%" alt="Theme-Logo">
+							<img class="img-fluid" style="float: left;margin-left: 15px;" src="https://teamtngc.com/hris2/pages/hricon.ico" width="40px" alt="Theme-Logo">
 							<!-- <b>PORTAL</b> -->
 						</a>
 						</a>

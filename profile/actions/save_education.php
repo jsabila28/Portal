@@ -1,46 +1,63 @@
-<?php
+<?php 
 require_once($sr_root . "/db/db.php");
+header('Content-Type: application/json');
 
 if (!isset($_SESSION['user_id'])) {
-    echo json_encode(['error' => 'User not authenticated']);
+    echo json_encode(['success' => false, 'error' => 'User not authenticated']);
     exit;
 }
-error_log(print_r($_POST, true));
-
-$user_id = $_SESSION['user_id'];
 
 try {
     $port_db = Database::getConnection('port');
-    $hr_db = Database::getConnection('hr');
-    
-    $levelSchool = $_POST['levelSchool'] ?? '';
-    $Degree = $_POST['Degree'] ?? '';
-    $Major = $_POST['Major'] ?? '';
-    $School = $_POST['School'] ?? '';
-    $SchoolAdd = $_POST['SchoolAdd'] ?? '';
-    $DateGrad = $_POST['DateGrad'] ?? '';
-    $CurrentStatus = $_POST['Status'] ?? '';
-    $stat = '1';
+    $user_id = $_SESSION['user_id'];
 
-    
-    // Insert data into the database
-    $stmt = $port_db->prepare("INSERT INTO tbl201_education (educ_empno, educ_level, educ_degreetitle, educ_major, educ_school, educ_schooladd, educ_yeargrad, educ_currStatus, status)
-                          VALUES (:educ_empno, :educ_level, :educ_degreetitle, :educ_major, :educ_school, :educ_schooladd, :educ_yeargrad, :educ_currStatus, :status)");
-    
-    $stmt->bindParam(':educ_empno', $user_id);
-    $stmt->bindParam(':educ_level', $levelSchool);
-    $stmt->bindParam(':educ_degreetitle', $Degree);
-    $stmt->bindParam(':educ_major', $Major);
-    $stmt->bindParam(':educ_school', $School);
-    $stmt->bindParam(':educ_schooladd', $SchoolAdd);
-    $stmt->bindParam(':educ_yeargrad', $DateGrad);
-    $stmt->bindParam(':educ_currStatus', $CurrentStatus);
-    $stmt->bindParam(':status', $stat);
-    
-    $stmt->execute();
-    
-    echo json_encode(["success" => true]);
+    $level = $_POST['level'] ?? '';
+    $degree = $_POST['degree'] ?? '';
+    $major = $_POST['major'] ?? '';
+    $school = $_POST['school'] ?? '';
+    $schooladdress = $_POST['schooladdress'] ?? '';
+    $dategrad = $_POST['dategrad'] ?? '';
+    $currstatus = $_POST['currstatus'] ?? '';
+    $stats = '1';
+
+    // Check if the record already exists
+    $check_stmt = $port_db->prepare("SELECT COUNT(*) FROM tbl201_education WHERE educ_empno = :employee AND educ_level = :level");
+    $check_stmt->bindParam(':employee', $user_id);
+    $check_stmt->bindParam(':level', $level);
+    $check_stmt->execute();
+
+    if ($check_stmt->fetchColumn() > 0) {
+        // Update existing record
+        $stmt = $port_db->prepare("UPDATE tbl201_education SET 
+            educ_degreetitle = :degree,
+            educ_major = :major,
+            educ_school = :school,
+            educ_schooladd = :schooladdress,
+            educ_yeargrad = :dategrad,
+            educ_currStatus = :currstatus
+            WHERE educ_empno = :employee AND educ_level = :level");
+    } else {
+        // Insert new record
+        $stmt = $port_db->prepare("INSERT INTO tbl201_education (educ_empno, educ_level, educ_degreetitle, educ_major, educ_school, educ_schooladd, educ_yeargrad, educ_currStatus, status) 
+            VALUES (:employee, :level, :degree, :major, :school, :schooladdress, :dategrad, :currstatus, :status)");
+        $stmt->bindParam(':status', $stats);
+    }
+
+    $stmt->bindParam(':employee', $user_id);
+    $stmt->bindParam(':level', $level);
+    $stmt->bindParam(':degree', $degree);
+    $stmt->bindParam(':major', $major);
+    $stmt->bindParam(':school', $school);
+    $stmt->bindParam(':schooladdress', $schooladdress);
+    $stmt->bindParam(':dategrad', $dategrad);
+    $stmt->bindParam(':currstatus', $currstatus);
+
+    if ($stmt->execute()) {
+        echo json_encode(['success' => true, 'message' => 'Data saved successfully!']);
+    } else {
+        echo json_encode(['success' => false, 'error' => 'Error saving data.']);
+    }
 } catch (PDOException $e) {
-    echo json_encode(["success" => false, "error" => "Database error: " . $e->getMessage()]);
+    echo json_encode(['success' => false, 'error' => 'Database error: ' . $e->getMessage()]);
 }
 ?>

@@ -15,6 +15,7 @@ $sr_root = $portal_root."/profile";
 
 // sidenav
 $sidenav = $sr_root."/layout/sidenav.php";
+$profsidenav = $sr_root."/layout/profilesidebar.php";
 
 // layout + route
 include_once($sr_root."/routes/route.php");

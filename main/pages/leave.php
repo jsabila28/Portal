@@ -1,5 +1,4 @@
 <div id="memo"> 
-    <span><a href="#"><h6>Leave / Offset</h6></a></span>
         <div class="m-portlet__body">
             <div class="tab-content">
                 <div class="tab-pane active" id="m_widget4_tab1_content">
@@ -73,18 +72,3 @@
             </div>
         </div>
 </div>
-<script>
-    document.querySelectorAll('.view-more-btn').forEach(button => {
-        button.addEventListener('click', function() {
-            const empId = this.getAttribute('data-id');
-            const detailsDiv = document.getElementById(`details-${empId}`);
-            if (detailsDiv.style.display === "none" || detailsDiv.style.display === "") {
-                detailsDiv.style.display = "block";
-                this.textContent = "View Less";
-            } else {
-                detailsDiv.style.display = "none";
-                this.textContent = "View More";
-            }
-        });
-    });
-</script>
