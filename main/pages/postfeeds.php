@@ -88,6 +88,34 @@
         </div>
     </div>
 </div>
+<?php
+    if (!empty($birthday)) {
+?>
+<div id="memo" style="margin-bottom: 5px; border-radius: 40px;"> 
+    <div class="comment-wrapper">
+        <div class="panel panel-info">
+            <div id="scroll">
+                <ul>
+                    <li class="media" style="margin-left: 10px;">
+                        <?php 
+                            foreach ($birthday as $b) {
+                        ?>
+                        <a href="#" class="pull-left" style="position: relative;width: 55px;margin-right: 60px;">
+                            <img src="https://i.pinimg.com/originals/bf/3d/00/bf3d00d1a24f8fc914acfc01df437c98.gif" alt="" style="width: 50px;height: 50px;">
+                            <!-- Mood icon at the top right corner -->
+                            <div class="right-birthday">
+                                 <strong><?=$b['bi_empfname'].' '.$b['bi_emplname']?></strong><br>
+                                 <small>Birthday Today!</small>
+                            </div>
+                        </a>
+                        <?php } ?>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<?php } ?>
 <div id="memo" style="margin-bottom: 5px; border-radius: 40px;"> 
     <div class="comment-wrapper">
 
@@ -140,7 +168,7 @@
                                                         </div> -->
                                                         <div id="add-photo-video" class="hide-image">
                                                             <div class="image-video" id="image-video" style="background-image: url('assets/img/upload.png');" onclick="document.getElementById('file-input').click();">
-                                                                <i id="close" onclick="toggleDiv()" style="cursor: pointer;" class="fa fa-times-circle"></i>
+                                                                <!-- <i id="close" onclick="toggleDiv()" style="cursor: pointer;" class="fa fa-times-circle"></i> -->
                                                                 <!-- <div>
                                                                     <img src="assets/img/upload.png" width="100" height="100">
                                                                 </div> -->

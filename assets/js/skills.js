@@ -35,7 +35,7 @@ $(document).ready(function() {
 
     // Show or hide "Others" input
     $('#skillCategory').on('change', function() {
-        if ($(this).val() === "Others") {
+        if ($(this).val() === "7") {
             $('#othersInput').show();
             $('#skillType').hide();
         } else {
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(response => response.json())
         .then(data => {
-            const alertMessage = document.getElementById('alert-message');
+            const alertMessage = document.getElementById('skill-message');
 
             if (data.success) {
                 // Display success message

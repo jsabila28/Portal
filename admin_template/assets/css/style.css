@@ -232,7 +232,7 @@ Card-Layout css start
 
 
 #center{
-  margin-left: 400px; /* Equal to the width of the left-side div */
+  margin-left: 30%; /* Equal to the width of the left-side div */
   /*margin-right: 200px;  Equal to the width of the right-side div */
 }
 #req-list{
@@ -5723,7 +5723,7 @@ table thead .border-bottom-info th {
       display: flex;
       float: left;
       height: 3.5rem;
-      justify-content: center;
+      /*justify-content: center;*/
       text-align: center;
       /*text-transform: uppercase;*/
       width: 235px; }

@@ -3,6 +3,8 @@ require_once($main_root."/actions/memo.php");
 // $user_id = '045-2022-013';
 $date = date("Y-m-d");
 $Year = date("Y");
+$Month = date("m");
+$Day = date("d");
 $yearMonth = date("Y-m");
 $memos = Portal::GetMemo($Year);
 $memoAll = Portal::GetAllMemo($Year);
@@ -10,6 +12,7 @@ $leave = Portal::GetLeave($date);
 $ongoingleave = Portal::GetOngoingLeave($date);
 $resigning = Portal::GetResigning($date);
 $government = Portal::GetGovAnn($yearMonth);
+$birthday = Portal::GetBirthday($Month,$Day);
 ?>
 <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
 <div class="page-wrapper">
@@ -238,25 +241,25 @@ $(document).ready(function () {
                 var reactionImage;
                 switch (reactionType) {
                     case 'like':
-                        reactionImage = '<img src="https://i.pinimg.com/564x/dc/12/46/dc124679726a20dc2cad0aaefdfdb312.jpg" class="img-fluid rounded-circle" alt="Like">';
+                        reactionImage = '<img src="/Portal/assets/reactions/likes.WEBP" class="img-fluid rounded-circle" alt="Like">';
                         break;
                     case 'heart':
-                        reactionImage = '<img src="https://i.pinimg.com/564x/f0/1b/91/f01b919c68c353f95d58b174761e5df5.jpg" class="img-fluid rounded-circle" alt="Heart">';
+                        reactionImage = '<img src="/Portal/assets/reactions/love.WEBP" class="img-fluid rounded-circle" alt="Heart">';
                         break;
                     case 'love':
                         reactionImage = '<img src="https://i.pinimg.com/564x/1e/b9/ab/1eb9abce88c9859c08e70330ef8495dc.jpg" class="img-fluid rounded-circle" alt="Love">';
                         break;
                     case 'cry':
-                        reactionImage = '<img src="https://i.pinimg.com/736x/7f/3f/f7/7f3ff7ab44c80e30adefdf6b16c3910d.jpg" class="img-fluid rounded-circle" alt="Cry">';
+                        reactionImage = '<img src="/Portal/assets/reactions/cry.WEBP" class="img-fluid rounded-circle" alt="Cry">';
                         break;
                     case 'haha':
-                        reactionImage = '<img src="https://i.pinimg.com/564x/d5/8a/76/d58a766054d451198a197c3c6f127b2e.jpg" class="img-fluid rounded-circle" alt="Haha">';
+                        reactionImage = '<img src="/Portal/assets/reactions/lough.WEBP" class="img-fluid rounded-circle" alt="Haha">';
                         break;
-                    case 'money':
-                        reactionImage = '<img src="https://i.pinimg.com/564x/ee/c6/a1/eec6a14275d6dd51f0592276d74fc35b.jpg" class="img-fluid rounded-circle" alt="Money">';
+                    case 'wow':
+                        reactionImage = '<img src="/Portal/assets/reactions/shock.WEBP" class="img-fluid rounded-circle" alt="Money">';
                         break;
                     case 'angry':
-                        reactionImage = '<img src="https://i.pinimg.com/564x/0e/b2/75/0eb275a0b969571ca235168b176949ed.jpg" class="img-fluid rounded-circle" alt="Angry">';
+                        reactionImage = '<img src="/Portal/assets/reactions/sadness.WEBP" class="img-fluid rounded-circle" alt="Angry">';
                         break;
                     case 'eey':
                         reactionImage = '<img src="https://i.pinimg.com/564x/cc/12/e0/cc12e02e7eed4491de74e05ea8a019a5.jpg" class="img-fluid rounded-circle" alt="Eey">';
@@ -331,44 +334,87 @@ $(document).ready(function() {
 
 });
 
-function saveComment() {
-    const commentInput = document.querySelector('#input-default');
-    const comId = document.querySelector('input[name="com-id"]').value;
-    const comment = commentInput.value;
+function saveComment(postId) {
+    // Locate the comment input field and hidden input for the given post
+    const commentInput = document.getElementById(`Mycomment-${postId}`);
+    const comIdInput = document.querySelector(`input[name="com-id"][value="${postId}"]`);
 
-    if (comment.trim() === '') {
+    if (!commentInput || !comIdInput) {
+        alert('Unable to find input fields for this post.');
+        return;
+    }
+
+    const comment = commentInput.value.trim();
+    const comId = comIdInput.value;
+
+    if (comment === '') {
         alert('Comment cannot be empty!');
         return;
     }
 
-    // Send AJAX request to save comment
+    // Send the comment to the server
     fetch('save_comment', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: `com_id=${encodeURIComponent(comId)}&Mycomment=${encodeURIComponent(comment)}&user_id=${encodeURIComponent('<?php echo $user_id; ?>')}`
+        body: `com_id=${encodeURIComponent(comId)}&Mycomment=${encodeURIComponent(comment)}`
     })
     .then(response => response.json())
     .then(data => {
         if (data.status === 'success') {
             commentInput.value = ''; // Clear the input field
-            reloadComments(comId); // Reload comments
+            reloadComments(postId); // Reload the comments for the post
         } else {
             alert(data.message || 'An error occurred while saving the comment.');
         }
     })
-    .catch(error => console.error('Error:', error));
+    .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred. Please try again.');
+    });
 }
 
-function reloadComments(comId) {
-    // Fetch the updated comment list
-    fetch(`comment?com_id=${encodeURIComponent(comId)}`)
-    .then(response => response.text())
-    .then(html => {
-        const commentSection = document.querySelector('#comment-section'); // Adjust selector as needed
-        commentSection.innerHTML = html; // Replace with updated comments
-    })
-    .catch(error => console.error('Error:', error));
+function reloadComments(postId) {
+    $.ajax({
+        url: 'comment', // Endpoint for fetching the latest comment
+        type: 'POST',
+        data: { post_id: postId },
+        dataType: 'json',
+        success: function (response) {
+            if (response.success) {
+                const comment = response.comment;
+
+                // Create HTML structure for the new comment
+                const newCommentHTML = `
+                    <div class="cardbox-base-comment">
+                        <div class="media m-1">
+                            <div class="d-flex mr-1" style="margin-left: 20px;">
+                                <a href=""><img class="img-fluid rounded-circle" src="https://e-classtngcacademy.s3.ap-southeast-1.amazonaws.com/e-class/Thumbnail/img/${comment.bi_empno}.JPG" alt="User"></a>
+                            </div>
+                            <div class="media-body">
+                                <p class="m-0">${comment.bi_empfname} ${comment.bi_emplname}</p>
+                                <small><span><i class="icon ion-md-pin"></i> ${comment.com_content}</span></small>
+                                <div class="comment-reply">
+                                    <small><a href="#">12m</a></small>
+                                    <small><a style="cursor: pointer;">Reply</a></small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                // Append the new comment to the comment section
+                $(`#prof-${postId} #comment-section`).append(newCommentHTML);
+            } else {
+                console.error(response.message);
+            }
+        },
+        error: function (xhr, status, error) {
+            console.error('Error fetching the new comment:', error);
+        }
+    });
 }
+
+
 
 
 

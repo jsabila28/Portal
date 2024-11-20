@@ -91,7 +91,7 @@ if (!empty($certificate)) {
                                   </label>
                               </div>
                           </div>
-                          <div id="certificate-message" class="alert" style="display: none;"></div>
+                          <div id="intc-message" class="alert" style="display: none;"></div>
                         </div>
                         <div class="modal-footer" id="footer">
                             <button type="button" class="btn btn-default btn-mini waves-effect " data-dismiss="modal">Close</button>
@@ -139,7 +139,7 @@ if (!empty($certificate)) {
                                   </label>
                               </div>
                           </div>
-                          <div id="certificate-message" class="alert" style="display: none;"></div>
+                          <div id="intc-message" class="alert" style="display: none;"></div>
                         </div>
                         <div class="modal-footer" id="footer">
                             <button type="button" class="btn btn-default btn-mini waves-effect " data-dismiss="modal">Close</button>

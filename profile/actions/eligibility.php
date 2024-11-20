@@ -98,7 +98,50 @@ if (!empty($license)) {
       //MODAL EDIT EDUCATION END
 
 }else{
+      //MODAL EDIT EDUCATION START
+      echo '<div class="modal fade" id="License-' . htmlspecialchars($user_id) . '" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title"></h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true"><i style="font-size: 30px;" class="fa fa-times-circle"></i></span>
+                            </button>
+                        </div>
+                        <div class="modal-body" style="padding: 5px !important;">
+                          <p> Please provide accurate and complete information in all fields. This information is required for reference purposes only within the company and will not be used for any illegal purposes. All personal data will be securely stored and handled in accordance with company privacy policies and applicable data protection laws. It will not be shared externally without your consent.</p>
 
+                          <div id="personal-form">
+                              <div id="pers-name">
+                                  <label style="width:30% !important;">License Type<span id="required">*</span>  
+                                      <input class="form-control" type="text" name="licensename" id="licenseInput" value="" placeholder="Ex. PRC;CSC"/>
+                                  </label>
+                                  <label style="width:30% !important;">Registration Date<span id="required">*</span> 
+                                      <input class="form-control" type="date" name="startdate" id="sdateInput" value=""/>
+                                  </label>
+                                  <label style="width:30% !important;">Valid Until<span id="required">*</span>  
+                                      <input class="form-control" type="date" name="enddate" id="edateInput" value=""/>
+                                  </label>
+                              </div>
+                              <div id="pers-name">
+                                  <label style="width:40% !important;">Profession  
+                                      <input class="form-control" type="text" name="licenseprof" id="profInput" value="" placeholder="Ex. Architect; Engineer; Teacher"/>
+                                  </label>
+                                  <label style="width:40% !important;">License Img<span id="required">*</span> 
+                                      <input class="form-control" type="file" name="licenseimg" id="limgInput" value=""/>
+                                  </label>
+                              </div>
+                          </div>
+                          <div id="license-message" class="alert" style="display: none;"></div>
+                        </div>
+                        <div class="modal-footer" id="footer">
+                            <button type="button" class="btn btn-default btn-mini waves-effect " data-dismiss="modal">Close</button>
+                            <button type="button" id="save-license" class="btn btn-primary btn-mini waves-effect waves-light ">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>';
+      //MODAL EDIT EDUCATION END
 }    
 
 } catch (PDOException $e) {

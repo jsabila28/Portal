@@ -20,6 +20,7 @@ $routes = [
 	'/license' => '/actions/eligibility.php',
 	'/certs' => '/actions/certificates.php',
 	'/certInter' => '/actions/inter_cert.php',
+	'/emps' => '/actions/employments.php',
 
 	//FORMS
 	'/save_personal' => '/actions/save_personal.php',
@@ -39,7 +40,8 @@ $routes = [
 	'/education' => '/pages/education.php',
 	'/eligibility' => '/pages/eligibility.php',
 	'/cert' => '/pages/certificate.php',
-	'/Intcert' => '/pages/internal_cert.php'
+	'/Intcert' => '/pages/internal_cert.php',
+	'/emp' => '/pages/employment.php'
 
 	
 ];

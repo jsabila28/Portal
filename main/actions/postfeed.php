@@ -49,6 +49,7 @@ try {
                 FROM tbl_post_comment 
                 WHERE com_post_id = ?
                 GROUP BY com_post_id
+                LIMIT 3
             ");
             $stmt->execute([$row['ann_id']]);
             $cm = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -122,15 +123,15 @@ try {
             // Check if the reaction type is 'heart'
             if ($ireact && $ireact['reaction_type'] == 'heart') {
                 echo '<a id="react-button-' . htmlspecialchars($row['ann_id']) . '" class="reaction-trigger">
-                        <img src="https://i.pinimg.com/564x/f0/1b/91/f01b919c68c353f95d58b174761e5df5.jpg" class="img-fluid rounded-circle">
+                        <img src="/Portal/assets/reactions/love.WEBP" class="img-fluid rounded-circle">
                       </a>';
             }elseif ($ireact && $ireact['reaction_type'] == 'like') {
                 echo '<a id="react-button-' . htmlspecialchars($row['ann_id']) . '" class="reaction-trigger">
-                        <img src="https://i.pinimg.com/564x/dc/12/46/dc124679726a20dc2cad0aaefdfdb312.jpg" class="img-fluid rounded-circle">
+                        <img src="/Portal/assets/reactions/likes.WEBP" class="img-fluid rounded-circle">
                       </a>';
             }elseif ($ireact && $ireact['reaction_type'] == 'love') {
                 echo '<a id="react-button-' . htmlspecialchars($row['ann_id']) . '" class="reaction-trigger">
-                        <img src="https://i.pinimg.com/564x/1e/b9/ab/1eb9abce88c9859c08e70330ef8495dc.jpg" class="img-fluid rounded-circle">
+                        <img src="/Portal/assets/reactions/care.WEBP" class="img-fluid rounded-circle">
                       </a>';
             }elseif ($ireact && $ireact['reaction_type'] == 'eey') {
                 echo '<a id="react-button-' . htmlspecialchars($row['ann_id']) . '" class="reaction-trigger">
@@ -138,19 +139,19 @@ try {
                       </a>';
             }elseif ($ireact && $ireact['reaction_type'] == 'cry') {
                 echo '<a id="react-button-' . htmlspecialchars($row['ann_id']) . '" class="reaction-trigger">
-                        <img src="https://i.pinimg.com/736x/7f/3f/f7/7f3ff7ab44c80e30adefdf6b16c3910d.jpg" class="img-fluid rounded-circle">
+                        <img src="/Portal/assets/reactions/cry.WEBP" class="img-fluid rounded-circle">
                       </a>';
             }elseif ($ireact && $ireact['reaction_type'] == 'haha') {
                 echo '<a id="react-button-' . htmlspecialchars($row['ann_id']) . '" class="reaction-trigger">
-                        <img src="https://i.pinimg.com/564x/d5/8a/76/d58a766054d451198a197c3c6f127b2e.jpg" class="img-fluid rounded-circle">
+                        <img src="/Portal/assets/reactions/lough.WEBP" class="img-fluid rounded-circle">
                       </a>';
-            }elseif ($ireact && $ireact['reaction_type'] == 'money') {
+            }elseif ($ireact && $ireact['reaction_type'] == 'wow') {
                 echo '<a id="react-button-' . htmlspecialchars($row['ann_id']) . '" class="reaction-trigger">
-                        <img src="https://i.pinimg.com/564x/ee/c6/a1/eec6a14275d6dd51f0592276d74fc35b.jpg" class="img-fluid rounded-circle">
+                        <img src="/Portal/assets/reactions/shock.WEBP" class="img-fluid rounded-circle">
                       </a>';
             }elseif ($ireact && $ireact['reaction_type'] == 'angry') {
                 echo '<a id="react-button-' . htmlspecialchars($row['ann_id']) . '" class="reaction-trigger">
-                        <img src="https://i.pinimg.com/564x/0e/b2/75/0eb275a0b969571ca235168b176949ed.jpg" class="img-fluid rounded-circle">
+                        <img src="/Portal/assets/reactions/sadness.WEBP" class="img-fluid rounded-circle">
                       </a>';
             } else {
                 echo '<a id="react-button-' . htmlspecialchars($row['ann_id']) . '" class="reaction-trigger">
@@ -160,14 +161,14 @@ try {
 
              echo '<input type="hidden" name="post-id" value="' .htmlspecialchars($row['ann_id']). '" />
             <div class="reaction-options">
-                <div name="reaction" class="reaction" data-reaction="like"><img width="50" height="50" src="https://i.pinimg.com/originals/fb/0e/29/fb0e291a63c613670dafb8bd2f75cc70.gif"></div>
+                <div name="reaction" class="reaction" data-reaction="like"><img style="max-width: 40px;max-height:40px;" src="/Portal/assets/reactions/like.gif"></div>
                 <div name="reaction" class="reaction" data-reaction="eey"><img width="50" height="60" src="https://i.pinimg.com/originals/58/91/52/58915204d17860c24d4c02be7425a830.gif"></div>
-                <div name="reaction" class="reaction" data-reaction="heart"><img width="50" height="50" src="https://i.pinimg.com/originals/9c/97/2b/9c972b76ac2edb9baccb38292b9a3d11.gif"></div>
+                <div name="reaction" class="reaction" data-reaction="heart"><img style="max-width: 40px;max-height:40px;" src="/Portal/assets/reactions/heart.gif"></div>
                 <div name="reaction" class="reaction" data-reaction="love"><img class="img" width="50" height="50" src="https://media1.tenor.com/m/63nE7vC84pIAAAAd/care-discord.gif"></div>
-                <div name="reaction" class="reaction" data-reaction="cry"><img width="50" height="50" src="https://i.pinimg.com/originals/d9/98/d1/d998d123da2480eb9fa1baded88830e1.gif"></div>
-                <div name="reaction" class="reaction" data-reaction="haha"><img width="50" height="50" src="https://i.pinimg.com/originals/cd/96/83/cd9683d1984b3d7fbc210417d41d0f3c.gif"></div>
-                <div name="reaction" class="reaction" data-reaction="money"><img width="50" height="50" src="https://i.pinimg.com/originals/18/08/0c/18080c89cbecb7ac434bfcd201e5ae5a.gif"></div>
-                <div name="reaction" class="reaction" data-reaction="angry"><img width="50" height="50" src="https://i.pinimg.com/originals/61/50/bd/6150bd0fd8198bd2bc50d87f36a7148a.gif"></div>
+                <div name="reaction" class="reaction" data-reaction="cry"><img style="max-width: 40px;max-height:40px;" src="/Portal/assets/reactions/sad.gif"></div>
+                <div name="reaction" class="reaction" data-reaction="haha"><img style="max-width: 40px;max-height:40px;" src="/Portal/assets/reactions/haha.gif"></div>
+                <div name="reaction" class="reaction" data-reaction="wow"><img style="max-width: 40px;max-height:40px;" src="/Portal/assets/reactions/woow.gif"></div>
+                <div name="reaction" class="reaction" data-reaction="angry"><img style="max-width: 40px;max-height:40px;" src="/Portal/assets/reactions/angry.gif"></div>
             </div>
             </div>
             </li>';
@@ -183,10 +184,10 @@ try {
             
             foreach ($reactions as $react) {
                 if ($react['reaction_type'] == 'like') {
-                    echo '<li><a href="#"><img src="https://i.pinimg.com/564x/dc/12/46/dc124679726a20dc2cad0aaefdfdb312.jpg" class="img-fluid rounded-circle"></a></li>';
+                    echo '<li><a href="#"><img src="/Portal/assets/reactions/likes.WEBP" class="img-fluid rounded-circle"></a></li>';
                 }
                 if ($react['reaction_type'] == 'heart') {
-                    echo '<li><a href="#"><img src="https://i.pinimg.com/564x/f0/1b/91/f01b919c68c353f95d58b174761e5df5.jpg" class="img-fluid rounded-circle"></a></li>';
+                    echo '<li><a href="#"><img src="/Portal/assets/reactions/love.WEBP" class="img-fluid rounded-circle"></a></li>';
                 }
                 if ($react['reaction_type'] == 'eey') {
                     echo '<li><a href="#"><img src="https://i.pinimg.com/564x/cc/12/e0/cc12e02e7eed4491de74e05ea8a019a5.jpg" class="img-fluid rounded-circle"></a></li>';
@@ -195,16 +196,16 @@ try {
                     echo '<li><a href="#"><img src="https://i.pinimg.com/564x/1e/b9/ab/1eb9abce88c9859c08e70330ef8495dc.jpg" class="img-fluid rounded-circle"></a></li>';
                 }
                 if ($react['reaction_type'] == 'cry') {
-                    echo '<li><a href="#"><img src="https://i.pinimg.com/736x/7f/3f/f7/7f3ff7ab44c80e30adefdf6b16c3910d.jpg" class="img-fluid rounded-circle"></a></li>';
+                    echo '<li><a href="#"><img src="/Portal/assets/reactions/cry.WEBP" class="img-fluid rounded-circle"></a></li>';
                 }
                 if ($react['reaction_type'] == 'haha') {
-                    echo '<li><a href="#"><img src="https://i.pinimg.com/564x/d5/8a/76/d58a766054d451198a197c3c6f127b2e.jpg" class="img-fluid rounded-circle"></a></li>';
+                    echo '<li><a href="#"><img src="/Portal/assets/reactions/lough.WEBP" class="img-fluid rounded-circle"></a></li>';
                 }
-                if ($react['reaction_type'] == 'money') {
-                    echo '<li><a href="#"><img src="https://i.pinimg.com/564x/ee/c6/a1/eec6a14275d6dd51f0592276d74fc35b.jpg" class="img-fluid rounded-circle"></a></li>';
+                if ($react['reaction_type'] == 'wow') {
+                    echo '<li><a href="#"><img src="/Portal/assets/reactions/shock.WEBP" class="img-fluid rounded-circle"></a></li>';
                 }
                 if ($react['reaction_type'] == 'angry') {
-                    echo '<li><a href="#"><img src="https://i.pinimg.com/564x/0e/b2/75/0eb275a0b969571ca235168b176949ed.jpg" class="img-fluid rounded-circle"></a></li>';
+                    echo '<li><a href="#"><img src="/Portal/assets/reactions/sadness.WEBP" class="img-fluid rounded-circle"></a></li>';
                 }
             }
 
@@ -266,18 +267,19 @@ try {
             echo '<div class="cardbox-base-comment">';
             echo '<div class="media m-1">';
             echo '<div class="d-flex mr-1" style="margin-left: 20px;">';
-            echo '<a href=""><img class="img-fluid rounded-circle" src="https://e-classtngcacademy.s3.ap-southeast-1.amazonaws.com/e-class/Thumbnail/img/' . $user_id . '.JPG" alt="User"></a>';
+            echo '<a href=""><img class="img-fluid rounded-circle" src="https://e-classtngcacademy.s3.ap-southeast-1.amazonaws.com/e-class/Thumbnail/img/' . htmlspecialchars($user_id) . '.JPG" alt="User"></a>';
             echo '</div>';
             echo '<div class="media-body" id="comment">';
             echo '<div class="textarea-wrapper">';
-            echo '<input type="hidden" name="com-id" value="' .htmlspecialchars($row['ann_id']). '" />';
-            echo '<input type="text" name="Mycomment" placeholder="Write a comment..." id="input-default" class="emojiable-option"></input>';
+            echo '<input type="hidden" name="com-id" value="' . htmlspecialchars($row['ann_id']) . '" />';
+            echo '<input type="text" name="Mycomment-' . htmlspecialchars($row['ann_id']) . '" placeholder="Write a comment..." id="Mycomment-' . htmlspecialchars($row['ann_id']) . '" class="emojiable-option"></input>';
             echo '<i class="ti-face-smile icon emoji-icon"></i>';
             echo '</div>'; // Close textarea-wrapper
-            echo '<a href="#" id="saveComment" onclick="saveComment()"><img src="assets/img/send_icon.png" height="30" width="30"/></a>';
+            echo '<a href="#" id="saveComment-' . htmlspecialchars($row['ann_id']) . '" onclick="saveComment(' . htmlspecialchars($row['ann_id']) . '); return false;"><img src="assets/img/send_icon.png" height="30" width="30"/></a>';
             echo '</div>'; // Close media-body
             echo '</div>'; // Close media
             echo '</div>'; // Close cardbox-base-comment
+
             // Add new comment input section
             echo '</div>'; // Close cardbox
             echo '</section>'; // Close profile-feed
@@ -329,15 +331,15 @@ try {
                                 // Check if the reaction type is 'heart'
                                 if ($ireact && $ireact['reaction_type'] == 'heart') {
                                     echo '<a id="react-button-' . htmlspecialchars($row['ann_id']) . '" class="reaction-trigger">
-                                            <img src="https://i.pinimg.com/564x/f0/1b/91/f01b919c68c353f95d58b174761e5df5.jpg" class="img-fluid rounded-circle">
+                                            <img src="/Portal/assets/reactions/love.WEBP" class="img-fluid rounded-circle">
                                           </a>';
                                 }elseif ($ireact && $ireact['reaction_type'] == 'like') {
                                     echo '<a id="react-button-' . htmlspecialchars($row['ann_id']) . '" class="reaction-trigger">
-                                            <img src="https://i.pinimg.com/564x/dc/12/46/dc124679726a20dc2cad0aaefdfdb312.jpg" class="img-fluid rounded-circle">
+                                            <img src="/Portal/assets/reactions/likes.WEBP" class="img-fluid rounded-circle">
                                           </a>';
                                 }elseif ($ireact && $ireact['reaction_type'] == 'love') {
                                     echo '<a id="react-button-' . htmlspecialchars($row['ann_id']) . '" class="reaction-trigger">
-                                            <img src="https://i.pinimg.com/564x/1e/b9/ab/1eb9abce88c9859c08e70330ef8495dc.jpg" class="img-fluid rounded-circle">
+                                            <img src="/Portal/assets/reactions/care.WEBP" class="img-fluid rounded-circle">
                                           </a>';
                                 }elseif ($ireact && $ireact['reaction_type'] == 'eey') {
                                     echo '<a id="react-button-' . htmlspecialchars($row['ann_id']) . '" class="reaction-trigger">
@@ -345,19 +347,19 @@ try {
                                           </a>';
                                 }elseif ($ireact && $ireact['reaction_type'] == 'cry') {
                                     echo '<a id="react-button-' . htmlspecialchars($row['ann_id']) . '" class="reaction-trigger">
-                                            <img src="https://i.pinimg.com/736x/7f/3f/f7/7f3ff7ab44c80e30adefdf6b16c3910d.jpg" class="img-fluid rounded-circle">
+                                            <img src="/Portal/assets/reactions/cry.WEBP" class="img-fluid rounded-circle">
                                           </a>';
                                 }elseif ($ireact && $ireact['reaction_type'] == 'haha') {
                                     echo '<a id="react-button-' . htmlspecialchars($row['ann_id']) . '" class="reaction-trigger">
-                                            <img src="https://i.pinimg.com/564x/d5/8a/76/d58a766054d451198a197c3c6f127b2e.jpg" class="img-fluid rounded-circle">
+                                            <img src="/Portal/assets/reactions/lough.WEBP" class="img-fluid rounded-circle">
                                           </a>';
-                                }elseif ($ireact && $ireact['reaction_type'] == 'money') {
+                                }elseif ($ireact && $ireact['reaction_type'] == 'wow') {
                                     echo '<a id="react-button-' . htmlspecialchars($row['ann_id']) . '" class="reaction-trigger">
-                                            <img src="https://i.pinimg.com/564x/ee/c6/a1/eec6a14275d6dd51f0592276d74fc35b.jpg" class="img-fluid rounded-circle">
+                                            <img src="/Portal/assets/reactions/shock.WEBP" class="img-fluid rounded-circle">
                                           </a>';
                                 }elseif ($ireact && $ireact['reaction_type'] == 'angry') {
                                     echo '<a id="react-button-' . htmlspecialchars($row['ann_id']) . '" class="reaction-trigger">
-                                            <img src="https://i.pinimg.com/564x/0e/b2/75/0eb275a0b969571ca235168b176949ed.jpg class="img-fluid rounded-circle">
+                                            <img src="/Portal/assets/reactions/sadness.WEBP class="img-fluid rounded-circle">
                                           </a>';
                                 } else {
                                     echo '<a id="react-button-' . htmlspecialchars($row['ann_id']) . '" class="reaction-trigger">
@@ -367,14 +369,14 @@ try {
 
                                  echo '<input type="hidden" name="post-id" value="' .htmlspecialchars($row['ann_id']). '" />
                                 <div class="reaction-options">
-                                    <div name="reaction" class="reaction" data-reaction="like"><img width="50" height="50" src="https://i.pinimg.com/originals/fb/0e/29/fb0e291a63c613670dafb8bd2f75cc70.gif"></div>
+                                    <div name="reaction" class="reaction" data-reaction="like"><img style="max-width: 40px;max-height:40px;" src="/Portal/assets/reactions/like.gif"></div>
                                     <div name="reaction" class="reaction" data-reaction="eey"><img width="50" height="60" src="https://i.pinimg.com/originals/58/91/52/58915204d17860c24d4c02be7425a830.gif"></div>
-                                    <div name="reaction" class="reaction" data-reaction="heart"><img width="50" height="50" src="https://i.pinimg.com/originals/9c/97/2b/9c972b76ac2edb9baccb38292b9a3d11.gif"></div>
+                                    <div name="reaction" class="reaction" data-reaction="heart"><img style="max-width: 40px;max-height:40px;" src="/Portal/assets/reactions/heart.gif"></div>
                                     <div name="reaction" class="reaction" data-reaction="love"><img class="img" width="50" height="50" src="https://media1.tenor.com/m/63nE7vC84pIAAAAd/care-discord.gif"></div>
-                                    <div name="reaction" class="reaction" data-reaction="cry"><img width="50" height="50" src="https://i.pinimg.com/originals/d9/98/d1/d998d123da2480eb9fa1baded88830e1.gif"></div>
-                                    <div name="reaction" class="reaction" data-reaction="haha"><img width="50" height="50" src="https://i.pinimg.com/originals/cd/96/83/cd9683d1984b3d7fbc210417d41d0f3c.gif"></div>
-                                    <div name="reaction" class="reaction" data-reaction="money"><img width="50" height="50" src="https://i.pinimg.com/originals/18/08/0c/18080c89cbecb7ac434bfcd201e5ae5a.gif"></div>
-                                    <div name="reaction" class="reaction" data-reaction="angry"><img width="50" height="50" src="https://i.pinimg.com/originals/61/50/bd/6150bd0fd8198bd2bc50d87f36a7148a.gif"></div>
+                                    <div name="reaction" class="reaction" data-reaction="cry"><img style="max-width: 40px;max-height:40px;" src="/Portal/assets/reactions/sad.gif"></div>
+                                    <div name="reaction" class="reaction" data-reaction="haha"><img style="max-width: 40px;max-height:40px;" src="/Portal/assets/reactions/haha.gif"></div>
+                                    <div name="reaction" class="reaction" data-reaction="wow"><img style="max-width: 40px;max-height:40px;" src="/Portal/assets/reactions/woow.gif"></div>
+                                    <div name="reaction" class="reaction" data-reaction="angry"><img style="max-width: 40px;max-height:40px;" src="/Portal/assets/reactions/angry.gif"></div>
                                 </div>
                                 </div>
                                 </li>';
@@ -390,28 +392,28 @@ try {
                                 
                                 foreach ($reactions as $react) {
                                     if ($react['reaction_type'] == 'like') {
-                                        echo '<li><a href="#"><img src="https://i.pinimg.com/564x/dc/12/46/dc124679726a20dc2cad0aaefdfdb312.jpg" class="img-fluid rounded-circle"></a></li>';
+                                        echo '<li><a href="#"><img src="/Portal/assets/reactions/likes.WEBP" class="img-fluid rounded-circle"></a></li>';
                                     }
                                     if ($react['reaction_type'] == 'heart') {
-                                        echo '<li><a href="#"><img src="https://i.pinimg.com/564x/f0/1b/91/f01b919c68c353f95d58b174761e5df5.jpg" class="img-fluid rounded-circle"></a></li>';
+                                        echo '<li><a href="#"><img src="/Portal/assets/reactions/love.WEBP" class="img-fluid rounded-circle"></a></li>';
                                     }
                                     if ($react['reaction_type'] == 'eey') {
                                         echo '<li><a href="#"><img src="https://i.pinimg.com/564x/9d/04/2c/9d042cb030e250961454adf7131f76b5.jpg" class="img-fluid rounded-circle"></a></li>';
                                     }
                                     if ($react['reaction_type'] == 'love') {
-                                        echo '<li><a href="#"><img src="https://i.pinimg.com/564x/1e/b9/ab/1eb9abce88c9859c08e70330ef8495dc.jpg" class="img-fluid rounded-circle"></a></li>';
+                                        echo '<li><a href="#"><img src="/Portal/assets/reactions/care.WEBP" class="img-fluid rounded-circle"></a></li>';
                                     }
                                     if ($react['reaction_type'] == 'cry') {
-                                        echo '<li><a href="#"><img src="https://i.pinimg.com/736x/7f/3f/f7/7f3ff7ab44c80e30adefdf6b16c3910d.jpg" class="img-fluid rounded-circle"></a></li>';
+                                        echo '<li><a href="#"><img src="/Portal/assets/reactions/cry.WEBP" class="img-fluid rounded-circle"></a></li>';
                                     }
                                     if ($react['reaction_type'] == 'haha') {
-                                        echo '<li><a href="#"><img src="https://i.pinimg.com/564x/d5/8a/76/d58a766054d451198a197c3c6f127b2e.jpg" class="img-fluid rounded-circle"></a></li>';
+                                        echo '<li><a href="#"><img src="/Portal/assets/reactions/lough.WEBP" class="img-fluid rounded-circle"></a></li>';
                                     }
-                                    if ($react['reaction_type'] == 'money') {
-                                        echo '<li><a href="#"><img src="https://i.pinimg.com/564x/ee/c6/a1/eec6a14275d6dd51f0592276d74fc35b.jpg" class="img-fluid rounded-circle"></a></li>';
+                                    if ($react['reaction_type'] == 'wow') {
+                                        echo '<li><a href="#"><img src="/Portal/assets/reactions/shock.WEBP" class="img-fluid rounded-circle"></a></li>';
                                     }
                                     if ($react['reaction_type'] == 'angry') {
-                                        echo '<li><a href="#"><img src="https://i.pinimg.com/564x/0e/b2/75/0eb275a0b969571ca235168b176949ed.jpg" class="img-fluid rounded-circle"></a></li>';
+                                        echo '<li><a href="#"><img src="/Portal/assets/reactions/sadness.WEBP" class="img-fluid rounded-circle"></a></li>';
                                     }
                                 }
 

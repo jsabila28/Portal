@@ -12,7 +12,7 @@ class Portal
     }
 
     public static function GetMemo($Year) {
-        $conn = self::getDatabaseConnection('port');
+        $conn = self::getDatabaseConnection('hr');
 
         if ($conn) {
             $stmt = $conn->prepare("SELECT * FROM tbl_memo WHERE LEFT(memo_date, 4) = ? ORDER BY memo_date DESC LIMIT 3");
@@ -24,7 +24,7 @@ class Portal
     }
 
     public static function GetAllMemo($Year) {
-        $conn = self::getDatabaseConnection('port');
+        $conn = self::getDatabaseConnection('hr');
 
         if ($conn) {
             $stmt = $conn->prepare("SELECT * FROM tbl_memo WHERE LEFT(memo_date, 4) = ? ORDER BY memo_date DESC");
@@ -36,7 +36,7 @@ class Portal
     }
 
     public static function GetLeave($date) {
-        $conn = self::getDatabaseConnection('port');
+        $conn = self::getDatabaseConnection('hr');
 
         if ($conn) {
             $stmt = $conn->prepare("SELECT * FROM tbl201_leave a
@@ -57,7 +57,7 @@ class Portal
         return [];
     }
     public static function GetOngoingLeave($date) {
-        $conn = self::getDatabaseConnection('port');
+        $conn = self::getDatabaseConnection('hr');
 
         if ($conn) {
             $stmt = $conn->prepare("SELECT * FROM tbl201_leave a
@@ -79,7 +79,7 @@ class Portal
         return [];
     }
     public static function GetResigning($date) {
-        $conn = self::getDatabaseConnection('port');
+        $conn = self::getDatabaseConnection('hr');
 
         if ($conn) {
             $stmt = $conn->prepare("SELECT 
@@ -112,13 +112,13 @@ class Portal
     }
 
     public static function GetGovAnn($yearMonth) {
-        $conn = self::getDatabaseConnection('port');
+        $conn = self::getDatabaseConnection('hr');
 
         if ($conn) {
             $stmt = $conn->prepare("SELECT * FROM tbl_announcement a
-            LEFT JOIN tbl201_basicinfo b ON a.ann_postby = b.bi_empno
+            LEFT JOIN tbl201_basicinfo b ON a.ann_approvedby = b.bi_empno
             WHERE a.ann_type = 'GOVERNMENT'
-            AND DATE_FORMAT(a.ann_to_date, '%Y-%m') >= ?
+            AND DATE_FORMAT(a.ann_end, '%Y-%m') >= ?
             GROUP BY a.`ann_id`
             ORDER BY a.`ann_id` DESC");
             $stmt->execute([$yearMonth]);
@@ -129,7 +129,7 @@ class Portal
     }
 
     public static function GetDepartments() {
-        $conn = self::getDatabaseConnection('port');
+        $conn = self::getDatabaseConnection('hr');
 
         if ($conn) {
             $stmt = $conn->prepare("SELECT * FROM tbl_department WHERE Dept_Stat = 'active' ORDER BY Dept_Name ASC");
@@ -141,7 +141,7 @@ class Portal
     }
 
     public static function GetCompany() {
-        $conn = self::getDatabaseConnection('port');
+        $conn = self::getDatabaseConnection('hr');
 
         if ($conn) {
             $stmt = $conn->prepare("SELECT * FROM tbl_company WHERE C_Remarks = 'active' ORDER BY C_Name ASC");
@@ -153,24 +153,46 @@ class Portal
     }
 
     public static function GetEmployee() {
-        $conn = self::getDatabaseConnection('port');
+        $conn = self::getDatabaseConnection('hr');
 
         if ($conn) {
             $stmt = $conn->prepare("SELECT * FROM tbl201_basicinfo a
-                                    LEFT JOIN tbl201_jobrec b
-                                    ON a.`bi_empno` = b.`jrec_empno`
-                                    LEFT JOIN tbl201_jobinfo c
-                                    ON c.`ji_empno` = b.`jrec_empno`
-                                    WHERE a.`datastat` = 'current'
-                                    AND b.`jrec_status` = 'Primary'
-                                    AND c.`ji_remarks` = 'Active'
-                                    GROUP BY a.`bi_empno` ORDER BY a.`bi_emplname` ASC");
+                    LEFT JOIN tbl201_jobrec b
+                    ON a.`bi_empno` = b.`jrec_empno`
+                    LEFT JOIN tbl201_jobinfo c
+                    ON c.`ji_empno` = b.`jrec_empno`
+                    WHERE a.`datastat` = 'current'
+                    AND b.`jrec_status` = 'Primary'
+                    AND c.`ji_remarks` = 'Active'
+                    GROUP BY a.`bi_empno` ORDER BY a.`bi_emplname` ASC");
             $stmt->execute();
 
             return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
         }
         return [];
     }
+
+    public static function GetBirthday($birthM,$birthD) {
+        $conn = self::getDatabaseConnection('hr');
+
+        if ($conn) {
+            $stmt = $conn->prepare("SELECT * FROM tbl201_persinfo a
+                    LEFT JOIN tbl201_basicinfo b
+                    ON b.`bi_empno` = a.`pi_empno`
+                    LEFT JOIN tbl201_jobrec c
+                    ON c.`jrec_empno` = b.`bi_empno`
+                    LEFT JOIN tbl201_jobinfo d
+                    ON d.`ji_empno` = c.`jrec_empno`
+                    WHERE MONTH(pi_dbirth) = ?
+                    AND DAY(pi_dbirth) = ?
+                    AND ji_remarks = 'Active'
+                    AND jrec_status = 'Primary'
+                    ");
+            $stmt->execute([$birthM,$birthD]);
+
+            return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
+        }
+    } 
 
 }
 ?>

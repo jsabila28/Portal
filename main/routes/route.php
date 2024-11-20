@@ -28,7 +28,7 @@ $uri = rtrim(str_replace("/Portal", "", $uri), "#");
 if(isset($routes[$uri]) 
 	&& strpos($routes[$uri], "main/pages/") !== false 
 	&& $_SERVER['REQUEST_URI'] != '/Portal/login') {
-	include_once($portal_root."/layout/atd_top.php");
+	include_once($portal_root."/layout/top.php");
 }
 
 // Check if the requested URI exists in the routes array

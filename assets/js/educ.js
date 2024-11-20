@@ -8,7 +8,6 @@ fetch('educ')
 .then(data => {
     document.getElementById("educ").innerHTML = data; // Set the inner HTML
 })
-.catch(error => console.error('Error fetching data:', error));
 //SAVING EDUCATION
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('save-education').addEventListener('click', function() {
@@ -23,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
         formData.append('Status', document.getElementById('statusInput').value);
 
         // Send the form data to PHP using AJAX
-        fetch('education', {
+        fetch('saveEduc', {
             method: 'POST',
             body: formData
         })

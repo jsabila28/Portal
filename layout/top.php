@@ -44,7 +44,7 @@
     <link href="/Portal/admin_template/assets/pages/jquery.filer/css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet">
     <!-- Menu-Search css -->
     <link rel="stylesheet" type="text/css" href="/Portal/admin_template/assets/pages/menu-search/css/component.css">
-	<script src="https://jscolor.com/release/2.4.5/jscolor.js"></script>
+	<!-- <script src="https://jscolor.com/release/2.4.5/jscolor.js"></script> -->
 	<!--color css-->
 	<!-- EMOJI -->
 	<script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
@@ -63,14 +63,16 @@
 	<link rel="stylesheet" type="text/css" href="/Portal/assets/css/memo.css">
 	<link rel="stylesheet" type="text/css" href="/Portal/assets/css/leave.css">
 	<link rel="stylesheet" type="text/css" href="/Portal/assets/css/post.css">
+	<link rel="stylesheet" type="text/css" href="/Portal/assets/css/profile.css">
+	<link rel="stylesheet" type="text/css" href="/Portal/assets/css/atd.css">
 	<link rel="stylesheet" type="text/css" href="/Portal/assets/css/events.css">
+
 
 
     <!-- Required Jqurey -->
     <!-- <script type="text/javascript" src="/Portal/admin_template/bower_components/jquery/js/jquery.min.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.0/xlsx.full.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.2.min.js"></script> -->
 	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/handsontable@9.0.0/dist/handsontable.full.min.css"> -->
 	<!-- <script src="https://cdn.jsdelivr.net/npm/handsontable@9.0.0/dist/handsontable.full.min.js"></script> -->
@@ -83,20 +85,15 @@
     <!-- Select2 Bootstrap Theme CSS -->
     <link href="https://cdn.jsdelivr.net/npm/select2-bootstrap-theme@0.1.0-beta.10/dist/select2-bootstrap.min.css" rel="stylesheet" />
     <!-- jQuery -->
-    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Bootstrap JS -->
     <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.5.1/js/bootstrap.min.js"></script> -->
-    <!-- Select2 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <!-- Select 2 css -->
+    <!-- <link rel="stylesheet" href="/Portal/admin_template/bower_components/select2/css/select2.min.css"> -->
+    <!-- Multi Select css -->
+    <link rel="stylesheet" type="text/css" href="/Portal/admin_template/bower_components/bootstrap-multiselect/css/bootstrap-multiselect.css">
+    <link rel="stylesheet" type="text/css" href="/Portal/admin_template/bower_components/multiselect/css/multi-select.css">
 
-
-    <!-- Bootstrap Multiselect CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/css/bootstrap-multiselect.css">
-    <!-- Bootstrap Multiselect JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.min.js"></script>
-
-   
-	<link rel="stylesheet" type="text/css" href="/Portal/assets/css/jquery.emojipicker.css">
 
 
 
@@ -122,7 +119,7 @@
 						</a>
 						<a href="/Portal">
 							<a href="/Portal">
-							<!-- <img class="img-fluid" style="float: left;margin-left: 15px;" src="https://teamtngc.com/hris2/pages/hricon.ico" width="20%" alt="Theme-Logo"> -->
+							<img class="img-fluid" style="float: left;margin-left: 15px;" src="https://teamtngc.com/hris2/pages/hricon.ico" width="40px" alt="Theme-Logo">
 							<!-- <b>PORTAL</b> -->
 						</a>
 						</a>
@@ -143,7 +140,7 @@
 							<ul class="nav-right">
                             	<li class="header-notification">
         							<a href="#" class="displayChatbox">
-        								<img src="/Portal/ATD/assets/img/menu.png" class="circle-img" width="30" height="30">
+        								<img src="/Portal/assets/img/menu.png" class="circle-img" width="30" height="30">
         							</a>
     							</li>
 								<?php
@@ -189,13 +186,68 @@
 								    $username = "Guest";
 								}
 								?>
-
+								
 								<li class="header-notification">
-        							<a href="#">
-        								<img src="/Portal/ATD/assets/img/notif.png" width="30" height="30">
+        							<a href="#" data-toggle="modal" data-target="#event-Modal">
+        								<img src="/Portal/assets/img/event.png" width="30" height="30">
         							</a>
     							</li>
+								<li class="header-notification">
+        							<a href="#">
+        								<img src="/Portal/assets/img/notif.png" width="30" height="30">
+        							</a>
+    							</li>
+    							<div class="modal fade" id="event-Modal" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h6 class="modal-title">Add Events</h6>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true"><i class="icofont icofont-close-circled"></i></span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body" style="padding: 5px;">
+                                                <div id="personal-form">
+                        						  <div id="pers-name">
+                        						      <label style="width:50% !important;">Event Title<span id="required">*</span>  
+                        						          <input class="form-control" type="text" name="eventname" id="eventInput" value=""/>
+                        						      </label>
+                        						      <label style="width:45% !important;">Event Date<span id="required">*</span> 
+                        						          <input class="form-control" type="date" name="eventdate" id="eventdateInput" value=""/>
+                        						      </label>
+                        						  </div>
+                        						  <div id="pers-name">
+                        						      <label style="width:50% !important;">Event Img<span id="required">*</span> 
+                        						          <input class="form-control" type="file" name="eventimg" id="eventimgInput" value=""/>
+                        						      </label>
+                        						      <label style="width:45% !important;">
+													      Sample Img<span id="required">*</span> 
+													      <input style="pointer-events: auto; cursor: pointer;" 
+													             type="text" 
+													             value="Click to view image" 
+													             readonly 
+													             class="clickable-input" 
+													             onclick="openImage()">
+													  </label>
+													  
+													  <script>
+													      function openImage() {
+													          console.log('Input clicked');
+													          window.open('https://i.pinimg.com/564x/b0/68/56/b06856d929b6066d2281c9f065a29e31.jpg', '_blank');
+													      }
+													  </script>
 
+                        						  </div>
+                        						</div>
+                        						<div id="event-message" class="alert" style="display: none;"></div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default btn-mini " data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary btn-mini waves-light" id="save-event">Save changes</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 								<li class="user-profile header-notification">
 									<a href="#!">
 										<img src="https://e-classtngcacademy.s3.ap-southeast-1.amazonaws.com/e-class/Thumbnail/img/<?= $empno ?>.JPG" alt="User-Profile-Image" style="border-radius: 50px;">
@@ -245,7 +297,7 @@
                                 </a>
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
-                                		<img src="assets/img/schedule2.png" width="45" height="45"><br>Schedule
+                                		<img src="assets/img/gatepass2.png" width="45" height="45"><br>Gatepass
                                 	</div>
                                 </a>
                                 <a class="media-left" href="/Portal/leave/" style="text-align: center;">
@@ -267,17 +319,17 @@
                                 </a>
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
+                                		<img src="assets/img/schedule2.png" width="45" height="45"><br>Schedule
+                                	</div>
+                                </a>
+                                <a class="media-left" href="#!" style="text-align: center;">
+                                	<div>
                                 		<img src="assets/img/offset2.png" width="45" height="45"><br>Offset
                                 	</div>
                                 </a>
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
                                 		<img src="assets/img/overtime2.png" width="45" height="45"><br>OT
-                                	</div>
-                                </a>
-                                <a class="media-left" href="#!" style="text-align: center;">
-                                	<div>
-                                		<img src="assets/img/gatepass2.png" width="45" height="45"><br>Gatepass
                                 	</div>
                                 </a>
                             </div>

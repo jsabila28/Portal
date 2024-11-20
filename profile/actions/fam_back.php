@@ -59,7 +59,7 @@ try {
                               <i class="icofont icofont-love"></i>
                             </div>
                             <div class="content">
-                              <p>' . htmlspecialchars($spouseName ?: 'NA') . '</p><br> 
+                              <p>' . htmlspecialchars($spouseName ?: 'None') . '</p><br> 
                               <span>Spouse Full Name</span>
                             </div>
                           </div>';
@@ -68,7 +68,7 @@ try {
                               <i class="icofont icofont-iphone"></i>
                             </div>
                             <div class="content">
-                              <p>' . htmlspecialchars($spousePhone ?: 'NA') . '</p><br> 
+                              <p>' . htmlspecialchars($spousePhone ?: 'None') . '</p><br> 
                               <span>Contact Number</span>
                             </div>
                           </div>';
@@ -78,7 +78,7 @@ try {
                               <i class="icofont icofont-labour"></i>
                             </div>
                             <div class="content">
-                              <p>' . htmlspecialchars($spouseWork ?: 'NA') . '</p><br> 
+                              <p>' . htmlspecialchars($spouseWork ?: 'None') . '</p><br> 
                               <span>Occupation</span>
                             </div>
                           </div>';
@@ -89,7 +89,7 @@ try {
                               <i class="fa fa-birthday-cake" aria-hidden="true"></i>
                             </div>
                             <div class="content">
-                              <p>' . htmlspecialchars($spouseBirth ?: 'NA') . '</p><br> 
+                              <p>' . htmlspecialchars($spouseBirth ?: 'None') . '</p><br> 
                               <span>Age</span>
                             </div>
                           </div>';
@@ -130,7 +130,7 @@ try {
                                       <i class="fa fa-child"></i>
                                     </div>';
                             echo'   <div class="content">
-                                      <p>' . htmlspecialchars($c['full_name']) . '</p><br> 
+                                      <p>' . htmlspecialchars($c['full_name'] ?: 'None') . '</p><br> 
                                       <span>Child Full Name</span>
                                     </div>
                                   </div>';
@@ -139,7 +139,7 @@ try {
                                       <i class="icofont icofont-iphone"></i>
                                     </div>
                                     <div class="content">
-                                      <p>' . htmlspecialchars($c['fam_contact'] ?? 'NA') . '</p><br> 
+                                      <p>' . htmlspecialchars($c['fam_contact'] ?: 'None') . '</p><br> 
                                       <span>Contact Number</span>
                                     </div>
                                   </div>';
@@ -149,13 +149,13 @@ try {
                                       <i class="zmdi zmdi-male-female"></i>
                                     </div>
                                     <div class="content">
-                                      <p>' . htmlspecialchars($c['fam_sex'] ?? 'NA') . '</p><br> 
+                                      <p>' . htmlspecialchars($c['fam_sex'] ?: 'None') . '</p><br> 
                                       <span>Sex</span>
                                     </div>
                                   </div>';
                             
                             // Calculate age if birthdate is available
-                            $age = !empty($c['fam_birthdate']) ? (date('Y') - date('Y', strtotime($c['fam_birthdate']))) : 'NA';
+                            $age = !empty($c['fam_birthdate']) ? (date('Y') - date('Y', strtotime($c['fam_birthdate']))) : 'None';
                             
                             echo '<div class="numbers">
                                     <div class="icon">
@@ -250,7 +250,7 @@ try {
                                       <i class="icofont icofont-girl-alt"></i>
                                   </div>
                                   <div class="content">
-                                    <p>' . htmlspecialchars($md['Mother']) . '</p><br> 
+                                    <p>' . htmlspecialchars($md['Mother'] ?: 'None') . '</p><br> 
                                     <span>Mother Full Maiden Name</span>
                                   </div>
                                 </div>';

@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     // Prepare and execute the SQL statement
-    $sql = "INSERT INTO tbl_announcement (ann_approvedby, ann_title, ann_receiver, ann_content) VALUES (:posted_by, :post_desc, :audience, :file_path)";
+    $sql = "INSERT INTO tbl_announcement (ann_postby, ann_title, ann_receiver, ann_content) VALUES (:posted_by, :post_desc, :audience, :file_path)";
     $stmt = $port->prepare($sql);
     $stmt->bindParam(':posted_by', $postedBy);
     $stmt->bindParam(':post_desc', $postDesc);

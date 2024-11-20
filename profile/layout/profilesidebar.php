@@ -49,7 +49,7 @@
                   <hr>
                   <div id="header"><label>Work</label></div>
                   <li>
-                    <a href="#">
+                    <a href="emp">
                       <p>
                         <i class="ion-briefcase"></i> Employment Record
                       </p>

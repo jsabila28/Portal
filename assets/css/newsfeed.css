@@ -229,6 +229,7 @@
     margin: 0px 0px 0px -8px !important;
     padding: 0px 0px 0px 0px !important;
     display: inline-block;
+    position: relative;
 }
 
 .cardbox-base-comment ul {
@@ -596,4 +597,18 @@
 /* Show tooltip on hover */
 .cardbox-base li:hover .tooltip {
     display: block;
+}
+.right-birthday{
+    position: absolute; 
+    top: 0; 
+    right: 0; 
+    background-color: white; 
+    color: white; 
+    padding: 2px;
+    left: 40px;
+    width: 300px;
+    height: 10px;
+}
+.right-birthday small{
+    color: gray;
 }

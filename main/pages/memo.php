@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="/Portal/assets/css/memo.css">
 <div id="memo"> 
     <span><a href="#" data-toggle="modal" data-target="#all_memo"><h6>Memo</h6></a></span>
     <div class="modal fade" id="all_memo" tabindex="-1" role="dialog">
@@ -17,7 +18,7 @@
                         ?>
                         <li>
                         <a href="#" data-toggle="modal" data-target="#memo<?=$ml['memo_no'];?>" style="text-decoration: none;">
-                          <strong><?=$ml['memo_subject'];?> <label class="badge badge-danger" style="float: right; margin-right: 10px;">unread</label></strong><br>
+                          <strong><?=$ml['memo_subject'];?></strong><br>
                           <small><?= date("F j, Y", strtotime($ml['memo_date'])) ?> | <?=$ml['memo_no'];?></small>
                         </a>
                         </li>
@@ -34,7 +35,7 @@
         ?>
         <li>
         <a href="#" data-toggle="modal" data-target="#memo<?=$memo['memo_no'];?>" style="text-decoration: none;">
-          <strong><?=$memo['memo_subject'];?> <label class="badge badge-danger" style="float: right;">unread</label></strong><br>
+          <strong><?=$memo['memo_subject'];?></strong><br>
           <small><?= date("F j, Y", strtotime($memo['memo_date'])) ?> | <?=$memo['memo_no'];?></small>
         </a>
         </li>
@@ -48,7 +49,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                      <iframe class="pdf" src="assets/memo/<?=$memo['memo_pdf'];?>" width="100%" height="500"></iframe>
+                      <iframe class="pdf" src="https://teamtngc.com/hris2/pages/memo/<?=$memo['memo_pdf'];?>" width="100%" height="500"></iframe>
                         <!-- <embed src="<?=$memo['memo_pdf'];?>"></embed> -->
                     </div>
                 </div>

@@ -40,8 +40,9 @@ if (!empty($skills)) {
             tbl201_skills a
             LEFT JOIN tbl_skill_type b
             ON b.`id` = a.`skill_type`
-            WHERE a.`skill_category` = ?");
-        $skillStmt->execute([$sk['skill_category']]);
+            WHERE a.`skill_category` = ?
+            AND skill_empno = ? ");
+        $skillStmt->execute([$sk['skill_category'], $user_id]);
         $skillTypes = $skillStmt->fetchAll(PDO::FETCH_ASSOC);
 
         if ($sk['skill_category'] <> '7') {

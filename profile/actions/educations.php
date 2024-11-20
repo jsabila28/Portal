@@ -226,7 +226,7 @@ if (!empty($education)) {
               </div>';
         //MODAL EDIT EDUCATION END
     }else{
-        //MODAL EDIT EDUCATION START
+         //MODAL EDIT EDUCATION START
         echo '<div class="modal fade" id="Educ-' . htmlspecialchars($user_id) . '" tabindex="-1" role="dialog">
                   <div class="modal-dialog modal-lg" role="document">
                       <div class="modal-content">
@@ -242,36 +242,36 @@ if (!empty($education)) {
                             <div id="personal-form">
                                 <div id="pers-name">
                                     <label style="width:30% !important;">Level<span id="required">*</span> 
-                                        <select id="SchLevel">
+                                        <select name="levelSchool" id="SchLevel">
                                           <option value="">Select Education Level</option>
-                                          <option value="">Primary</option>
-                                          <option value="">Secondary</option>
-                                          <option value="">Tertiary</option>
-                                          <option value="">Postgraduate</option>
-                                          <option value="">Vocational</option>
+                                          <option value="Primary">Primary</option>
+                                          <option value="Secondary">Secondary</option>
+                                          <option value="Tertiary">Tertiary</option>
+                                          <option value="Postgraduate">Postgraduate</option>
+                                          <option value="Vocational">Vocational</option>
                                         </select>
                                     </label>
                                     <label style="width:30% !important;">Degree Title 
-                                        <input class="form-control" type="text" id="degreeInput" value="" placeholder="Specify Other Type"/>
+                                        <input class="form-control" type="text" name="Degree" id="degreeInput" value="" placeholder="Specify Other Type"/>
                                     </label>
                                     <label style="width:30% !important;">Major 
-                                        <input class="form-control" type="text" id="majorInput" value="" placeholder="Specify Other Type"/>
+                                        <input class="form-control" type="text" name="Major" id="majorInput" value="" placeholder="Specify Other Type"/>
                                     </label>
                                 </div>
                                 <div id="pers-name">
                                     <label style="width:30% !important;">School<span id="required">*</span> 
-                                        <input class="form-control" type="text" id="schoolInput" value="" placeholder="Specify Other Type"/>
+                                        <input class="form-control" type="text" name="School" id="schoolInput" value="" placeholder="Specify Other Type"/>
                                     </label>
                                     <label style="width:30% !important;">School Address<span id="required">*</span> 
-                                        <input class="form-control" type="text" id="addressInput" value="" placeholder="Specify Other Type"/>
+                                        <input class="form-control" type="text" name="SchoolAdd" id="addressInput" value="" placeholder="Specify Other Type"/>
                                     </label>
                                     <label style="width:30% !important;">Year Graduated<span id="required">*</span> 
-                                        <input type="number" min="1900" max="2099" placeholder="YYYY" oninput="if(value.length > 4) value = value.slice(0, 4);" id="dateInput"/>
+                                        <input type="number" min="1900" max="2099" placeholder="YYYY" oninput="if(value.length > 4) value = value.slice(0, 4);" id="dateInput" name="DateGrad"/>
                                     </label>
                                 </div>
                                 <div id="pers-name">
                                     <label style="width:30% !important;">Current Status<span id="required">*</span> 
-                                        <select id="statusInput">
+                                        <select name="Status" id="statusInput">
                                             <option value="">Select Current Status</option>
                                             <option value="Graduate">Graduate</option>
                                             <option value="Completed">Completed</option>
@@ -291,7 +291,7 @@ if (!empty($education)) {
                       </div>
                   </div>
               </div>';
-        //MODAL EDIT EDUCATION END    
+        //MODAL EDIT EDUCATION END
     }
 
 } catch (PDOException $e) {
