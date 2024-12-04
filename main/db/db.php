@@ -10,6 +10,12 @@ class Database
 	public static function getConnection($name) {
 		if (!isset(self::$connections[$name])) {
 			$config = [
+				// "hr" => [
+    //                 "host" => "localhost",
+    //                 "dbname" => "tngc_hrd2",
+    //                 "username" => "root",
+    //                 "password" => ""
+    //             ],
                 "hr" => [
                     "host" => "13.213.190.95",
                     "dbname" => "tngc_hrd2",

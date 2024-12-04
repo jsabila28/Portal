@@ -34,6 +34,7 @@
                   foreach ($memos as $memo) {
         ?>
         <li>
+        <input type="hidden" name="memoIdInput" id="memoId" value="<?=$memo['memo_no']?>">
         <a href="#" data-toggle="modal" data-target="#memo<?=$memo['memo_no'];?>" style="text-decoration: none;">
           <strong><?=$memo['memo_subject'];?></strong><br>
           <small><?= date("F j, Y", strtotime($memo['memo_date'])) ?> | <?=$memo['memo_no'];?></small>

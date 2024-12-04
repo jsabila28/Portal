@@ -9,7 +9,7 @@
                                   foreach ($government as $gv) {
                         ?>
                         <div class="m-widget4__item" style="display: flex !important;">
-                            <div class="m-widget4__img m-widget4__img--pic" style="width: auto !important;">
+                            <div class="m-widget4__img m-widget4__img--pic" style="width: 40% !important;">
                                 <!-- <img src="assets/announcement/<?=$gv['ann_content']?>" class="thumbnail" id="thumbnail" style="cursor: pointer; border-radius: 10px !important;width:100px; height:120px;" onclick="openImageOverlay('assets/announcement/<?=$gv['ann_content']?>')"> -->
                                 <?php 
                                     if(strpos($gv['ann_content'], '<figure') !== false){
@@ -21,13 +21,13 @@
                                         $sources = $imageMatches[1];
 
                                         foreach ($sources as $imgv) {
-                                            echo '<img class="img-fluid" style="cursor: pointer; border-radius: 10px !important;width:100px; height:120px;" src="https://teamtngc.com/hris2/pages/announcement/' . htmlspecialchars($imgv) . '">';
+                                            echo '<img class="img-fluid" style="cursor: pointer; border-radius: 10px !important;width:100px; height:120px;"  src="https://teamtngc.com/hris2/pages/announcement/' . htmlspecialchars($imgv) . '" onclick="openImageOverlay("https://teamtngc.com/hris2/pages/announcement/' . htmlspecialchars($gv['ann_content']) . '")">';
                                         }
 
                                     }else if(strpos($gv['ann_content'], '<figure') !== false){
                                         echo str_replace('../announcement', 'https://teamtngc.com/hris2/pages/announcement', $gv['ann_content']);
                                     }else{
-                                        echo '<img class="img-fluid" style="cursor: pointer; border-radius: 10px !important;width:100px; height:120px;" src="https://teamtngc.com/hris2/pages/announcement/' . htmlspecialchars($gv['ann_content']) . '">';
+                                        echo '<img class="img-fluid" style="cursor: pointer; border-radius: 10px !important;width:100px; height:120px;" src="https://teamtngc.com/hris2/pages/announcement/' . htmlspecialchars($gv['ann_content']) . '" onclick="openImageOverlay("https://teamtngc.com/hris2/pages/announcement/' . htmlspecialchars($gv['ann_content']) . '")">';
                                     }
 
                                 ?>

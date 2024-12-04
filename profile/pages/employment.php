@@ -1,4 +1,4 @@
-\<script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
 <div class="page-wrapper">
     <div class="page-body">
         <div class="row">
@@ -27,7 +27,7 @@
                           </div>
                         </div>
                         <div class="edit-profile">
-                          <button class="btn btn-default btn-mini" data-toggle="modal" data-target="#Emp-<?=$empno?>"><i class="icofont icofont-pencil-alt-2"></i> Add Eligibility/License</button>
+                          <button class="btn btn-default btn-mini" data-toggle="modal" data-target="#Emp-<?=$empno?>"><i class="icofont icofont-pencil-alt-2"></i> Add Employment</button>
                         </div>  
                       </div>
                     </div>
@@ -37,4 +37,4 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="../assets/js/license.js"></script>
+<script type="text/javascript" src="../assets/js/employment.js"></script>

@@ -24,6 +24,11 @@ try {
             $stmt = $port_db->prepare("SELECT * FROM tbl201_contact WHERE cont_empno = ?");
             $stmt->execute([$user_id]);
             $contact = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            // Fetching contact info
+            $stmt = $port_db->prepare("SELECT * FROM tbl201_gov_req WHERE gov_empno = ?");
+            $stmt->execute([$user_id]);
+            $gov = $stmt->fetchAll(PDO::FETCH_ASSOC);
             
             foreach ($contact as $c) {
                 // CONTACT INFO START
@@ -121,7 +126,7 @@ try {
                       
                 echo '<div class="numbers">
                         <div class="icon">
-                          <i class="typcn typcn-location"></i>
+                          <i class="icofont icofont-location-pin"></i>
                         </div>
                         <div class="content">
                           <p>' . htmlspecialchars($a['current_city'] . ', ' . $a['current_province']) . '</p><br> 
@@ -192,7 +197,7 @@ try {
 
                 echo '<div class="numbers">
                         <div class="icon">
-                          <i class="typcn typcn-heart-half-outline"></i>
+                          <i class="icofont icofont-hand"></i>
                         </div>
                         <div class="content">
                           <p>' . htmlspecialchars($p['pers_civilstat']) . '</p><br>  
@@ -255,6 +260,7 @@ try {
                 //OTHER PERSONAL INFO END
 
                 #COMPLETE GOVERNMENT ID
+                foreach ($gov as $g) {
                 echo'<div class="card-block" id="prof-card">
                       <div class="contact">
                           <div class="numbers">
@@ -262,7 +268,7 @@ try {
                               <i class="icofont icofont-id-card"></i>
                             </div>
                             <div class="content">
-                              <p> 35-0017545-8</p><br> 
+                              <p>' . htmlspecialchars($g['gov_sss']) . '</p><br> 
                               <span>SSS</span>
                             </div>
                           </div>
@@ -272,7 +278,7 @@ try {
                               <i class="icofont icofont-id-card"></i>
                             </div>
                             <div class="content">
-                              <p> 1212-7646-3910</p><br> 
+                              <p>' . htmlspecialchars($g['gov_pagibig']) . '</p><br> 
                               <span>PAGIBIG</span>
                             </div>
                           </div>
@@ -282,7 +288,7 @@ try {
                               <i class="icofont icofont-id-card"></i>
                             </div>
                             <div class="content">
-                              <p> 382-592-170</p><br> 
+                              <p>' . htmlspecialchars($g['gov_tin']) . '</p><br> 
                               <span>TIN</span>
                             </div>
                           </div>
@@ -292,12 +298,13 @@ try {
                               <i class="icofont icofont-id-card"></i>
                             </div>
                             <div class="content">
-                              <p> 100253981606</p><br> 
+                              <p>' . htmlspecialchars($g['gov_philhealth']) . '</p><br> 
                               <span>PHILHEALTH</span>
                             </div>
                           </div>
                       </div>
                     </div>';
+                  }
                     #COMPLETE GOVERNMENT ID END-->
 
                 //MODAL EDIT PROFILE START
@@ -347,19 +354,19 @@ try {
 
                                             echo'<div id="pers-name">
                                                 <label style="width:22% !important">Last Name<span id="required">*</span> 
-                                                    <input class="form-control" type="text" name="lastname" required value="' . htmlspecialchars($p['pers_lastname']) . '"/>
-                                                </label>
-                                                <label style="width:22% !important">Middle Name 
-                                                    <input class="form-control" type="text" name="midname" value="' . htmlspecialchars($p['pers_midname']) . '"/>
+                                                    <input class="form-control" type="text" name="lastname" id="lastnameInput" required value="' . htmlspecialchars($p['pers_lastname']) . '"/>
                                                 </label>
                                                 <label style="width:22% !important">First Name<span id="required">*</span> 
-                                                    <input class="form-control" type="text" name="firstname" required value="' . htmlspecialchars($p['pers_firstname']) . '"/>
+                                                    <input class="form-control" type="text" name="firstname" id="firstnameInput" required value="' . htmlspecialchars($p['pers_firstname']) . '"/>
+                                                </label>
+                                                <label style="width:22% !important">Middle Name 
+                                                    <input class="form-control" type="text" name="midname" id="midnameInput" value="' . htmlspecialchars($p['pers_midname']) . '"/>
                                                 </label>
                                                 <label style="width:22% !important">Maiden Name 
-                                                    <input class="form-control" type="text" name="maidenname" value="' . htmlspecialchars($p['pers_maidenname']) . '"/>
+                                                    <input class="form-control" type="text" name="maidenname" id="maidnameInput" value="' . htmlspecialchars($p['pers_maidenname']) . '"/>
                                                 </label>
                                                 <label style="width:10% !important">Suffix 
-                                                    <input class="form-control" type="text" name="maidenname" value="' . htmlspecialchars($p['pers_prefname']) . '"/>
+                                                    <input class="form-control" type="text" name="suffix" id="suffixInput" value="' . htmlspecialchars($p['pers_prefname']) . '"/>
                                                 </label>
                                             </div>';
                                             $stmt = $port_db->prepare("SELECT * FROM tbl201_contact WHERE cont_empno = ?");
@@ -369,16 +376,16 @@ try {
                                             foreach ($contact as $c) {
                                             echo'<div id="pers-name">
                                                 <label>Personal Contact<span id="required">*</span> 
-                                                    <input class="form-control" type="text" name="person_num" required value="' . htmlspecialchars($c['cont_person_num']) . '"/>
+                                                    <input class="form-control" type="text" name="person_num" id="persnumInput" required value="' . htmlspecialchars($c['cont_person_num']) . '"/>
                                                 </label>
                                                 <label>Company Contact 
-                                                    <input class="form-control" type="text" name="company_num" value="' . htmlspecialchars($c['cont_company_num']) . '"/>
+                                                    <input class="form-control" type="text" name="company_num" id="compnameInput" value="' . htmlspecialchars($c['cont_company_num']) . '"/>
                                                 </label>
                                                 <label>Email<span id="required">*</span> 
-                                                    <input class="form-control" type="email" name="email" required value="' . htmlspecialchars($c['cont_email']) . '"/>
+                                                    <input class="form-control" type="email" name="email" id="emailInput" required value="' . htmlspecialchars($c['cont_email']) . '"/>
                                                 </label>
                                                 <label>Telephone 
-                                                    <input class="form-control" type="text" name="telephone" value="' . htmlspecialchars($c['cont_telephone']) . '"/>
+                                                    <input class="form-control" type="text" name="telephone" id="telphInput" value="' . htmlspecialchars($c['cont_telephone']) . '"/>
                                                 </label>
                                             </div>';
                                             }
@@ -389,16 +396,16 @@ try {
                                             foreach ($gov_num as $g) {
                                             echo'<div id="pers-name">
                                                 <label>SSS Number<span id="required">*</span> 
-                                                    <input class="form-control" type="text" name="sss" value="' . htmlspecialchars($g['gov_sss']) . '" required />
+                                                    <input class="form-control" type="text" name="sss" id="sssInput" value="' . htmlspecialchars($g['gov_sss']) . '" required />
                                                 </label>
                                                 <label>Pagibig Number<span id="required">*</span> 
-                                                    <input class="form-control" type="text" name="pagibig" value="' . htmlspecialchars($g['gov_pagibig']) . '" required />
+                                                    <input class="form-control" type="text" name="pagibig" id="pagibigInput" value="' . htmlspecialchars($g['gov_pagibig']) . '" required />
                                                 </label>
                                                 <label>Philhealth Number<span id="required">*</span> 
-                                                    <input class="form-control" type="text" name="philhealth" value="' . htmlspecialchars($g['gov_philhealth']) . '" required />
+                                                    <input class="form-control" type="text" name="philhealth" id="philInput" value="' . htmlspecialchars($g['gov_philhealth']) . '" required />
                                                 </label>
                                                 <label>Tin Number<span id="required">*</span> 
-                                                    <input class="form-control" type="text" name="tin" value="' . htmlspecialchars($g['gov_tin']) . '" required />
+                                                    <input class="form-control" type="text" name="tin" id="tinInput" value="' . htmlspecialchars($g['gov_tin']) . '" required />
                                                 </label>
                                             </div>';
                                             }
@@ -497,10 +504,10 @@ try {
                                           }
                                           echo'<div id="pers-name">
                                                 <label>Birth Date<span id="required">*</span> 
-                                                    <input class="form-control" type="date" name="birthdate" value="'. date('Y-m-d', strtotime($p['pers_birthdate'])) . '" required/>
+                                                    <input class="form-control" type="date" name="birthdate" id="birthdayInput" value="'. date('Y-m-d', strtotime($p['pers_birthdate'])) . '" required/>
                                                 </label>
                                                 <label>Civil Status<span id="required">*</span> 
-                                                    <input class="form-control" type="text" name="civilstat" required value="' . htmlspecialchars($p['pers_civilstat']) . '"/>
+                                                    <input class="form-control" type="text" name="civilstat" id="civilInput" required value="' . htmlspecialchars($p['pers_civilstat']) . '"/>
                                                 </label>
                                                 <label>Sex<span id="required">*</span> <br>';
                                                     if($p['pers_sex'] == 'Male'){
@@ -514,27 +521,28 @@ try {
                                                     
                                                 echo'</label>
                                                 <label>Religion 
-                                                    <input class="form-control" type="text" name="religion" value="' . htmlspecialchars($p['pers_religion']) . '"/>
+                                                    <input class="form-control" type="text" name="religion" id="religInput" value="' . htmlspecialchars($p['pers_religion']) . '"/>
                                                 </label>
                                             </div>
                                             <div id="pers-name">
                                                 <label>Height(cm) 
-                                                    <input class="form-control" type="text" name="height" value="' . htmlspecialchars($p['pers_height']) . '"/>
+                                                    <input class="form-control" type="text" name="height" id="heightInput" value="' . htmlspecialchars($p['pers_height']) . '"/>
                                                 </label>
                                                 <label>Weight(kg) 
-                                                    <input class="form-control" type="text" name="weight" value="' . htmlspecialchars($p['pers_weight']) . '"/>
+                                                    <input class="form-control" type="text" name="weight" id="weightInput" value="' . htmlspecialchars($p['pers_weight']) . '"/>
                                                 </label>
                                                 <label>Blood Type 
-                                                    <input class="form-control" type="text" name="bloodtype" value="' . htmlspecialchars($p['pers_bloodtype']) . '"/>
+                                                    <input class="form-control" type="text" name="bloodtype" id="bloodInput" value="' . htmlspecialchars($p['pers_bloodtype']) . '"/>
                                                 </label>
                                             </div>
                                             <div id="pers-name">
                                                 <label>Dialect
-                                                    <input class="form-control" type="text" name="dialect" value="' . htmlspecialchars($p['pers_dialect']) . '"/>
+                                                    <input class="form-control" type="text" name="dialect" id="dialectInput" value="' . htmlspecialchars($p['pers_dialect']) . '"/>
                                                 </label>
                                             </div>
                                     </div>
-                                    <div id="PersonalMessage" class="mt-3"></div>
+                                    <!-- Alert Message -->
+                                    <div id="personal-message" class="alert" style="display:none;"></div>
                                   </div>
                                   <div class="modal-footer" id="footer">
                                       <button type="button" class="btn btn-default btn-mini waves-effect " data-dismiss="modal">Close</button>
@@ -725,6 +733,7 @@ try {
                                         </label>
                                     </div>
                             </div>
+                            <div id="personal-message" class="alert" style="display:none;"></div>
                           </div>
                           <div class="modal-footer" id="footer">
                               <button type="button" class="btn btn-default btn-mini waves-effect " data-dismiss="modal">Close</button>

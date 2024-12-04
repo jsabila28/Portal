@@ -12,7 +12,7 @@ error_log(print_r($_POST, true));
 $user_id = $_SESSION['user_id'];
 
 // Gather and validate input data
-$pers_id = trim($_POST['pers_id']);
+// $pers_id = trim($_POST['pers_id']);
 $lastname = trim($_POST['lastname']) ? trim($_POST['lastname']) : null;
 $midname = trim($_POST['midname']);
 $firstname = trim($_POST['firstname']);
@@ -85,7 +85,7 @@ try {
             'pers_dialect' => $dialect, 
             'pers_height' => $height, 
             'pers_weight' => $weight,
-            'pers_id' => $pers_info['pers_id']
+            'pers_id' => $user_id
         ]);
     } else {
         // Insert new entry in tbl201_persinfo
@@ -121,7 +121,7 @@ try {
             :pers_weight)");
 
         $stmt->execute([
-            'pers_id' => $pers_id,
+            'pers_id' => $user_id,
             'pers_empno' => $user_id, 
             'pers_lastname' => $lastname, 
             'pers_midname' => $midname, 
@@ -138,7 +138,7 @@ try {
         ]);
 
         // Get the last inserted ID
-        $pers_id = $port_db->lastInsertId();
+        $user_id = $port_db->lastInsertId();
     }
 
     // Check if entry exists in tbl201_address

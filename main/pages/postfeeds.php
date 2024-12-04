@@ -101,7 +101,7 @@
                             foreach ($birthday as $b) {
                         ?>
                         <a href="#" class="pull-left" style="position: relative;width: 55px;margin-right: 60px;">
-                            <img src="https://i.pinimg.com/originals/bf/3d/00/bf3d00d1a24f8fc914acfc01df437c98.gif" alt="" style="width: 50px;height: 50px;">
+                            <img src="/Portal/assets/img/birthday.gif" alt="" style="width: 50px;height: 50px;">
                             <!-- Mood icon at the top right corner -->
                             <div class="right-birthday">
                                  <strong><?=$b['bi_empfname'].' '.$b['bi_emplname']?></strong><br>
@@ -323,22 +323,65 @@
 </div>
 <div id="myDiv"></div>
 <script>
-fetch('post')
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok: ' + response.statusText);
-        }
-        return response.text(); // Since we're expecting HTML
-    })
-    .then(data => {
-        document.getElementById("myDiv").innerHTML = data; // Set the inner HTML
-    })
-    .catch(error => console.error('Error fetching data:', error));
+// fetch('post')
+//     .then(response => {
+//         if (!response.ok) {
+//             throw new Error('Network response was not ok: ' + response.statusText);
+//         }
+//         return response.text(); // Since we're expecting HTML
+//     })
+//     .then(data => {
+//         document.getElementById("myDiv").innerHTML = data; // Set the inner HTML
+//     })
+//     .catch(error => console.error('Error fetching data:', error));
 
 
-    function hideProfile(empNo) {
-        const section = document.getElementById('prof-' + empNo);
-        if (section) section.style.display = 'none';
+//     function hideProfile(empNo) {
+//         const section = document.getElementById('prof-' + empNo);
+//         if (section) section.style.display = 'none';
+//     }
+
+$(document).ready(function() {
+    var offset = 0; // Start with 0 offset (beginning of the list)
+    var isLoading = false; // Prevent multiple AJAX requests at the same time
+
+    // Function to load more content
+    function loadMoreContent() {
+        if (isLoading) return; // Prevent additional requests while loading
+        isLoading = true;
+
+        // Make an AJAX request to load more content
+        $.ajax({
+            url: 'post',
+            type: 'GET',
+            data: { offset: offset }, // Pass the current offset to the PHP script
+            success: function(response) {
+                // Append the new content to the container
+                $('#myDiv').append(response);
+
+                // If content was loaded, increase the offset for the next request
+                if (response != 'No more content.') {
+                    offset += 10; // Adjust this according to the number of items per load
+                }
+
+                isLoading = false; // Allow new requests
+            },
+            error: function() {
+                alert('Error loading more content.');
+                isLoading = false; // Allow new requests if error occurs
+            }
+        });
     }
 
+    // Listen for scroll events to detect when the user reaches the bottom
+    $(window).scroll(function() {
+        if ($(window).scrollTop() + $(window).height() >= $(document).height() - 100) {
+            // Trigger load more when 100px from the bottom
+            loadMoreContent();
+        }
+    });
+
+    // Initial content load
+    loadMoreContent();
+});
 </script>

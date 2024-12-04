@@ -210,7 +210,6 @@ $birthday = Portal::GetBirthday($Month,$Day);
     <img id="overlayImage" src="" alt="Full-screen image">
 </div>
 <script type="text/javascript" src="/Portal/assets/js/post.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 $(document).ready(function () {
     $('.reaction-trigger').on('click', function () {
@@ -414,9 +413,15 @@ function reloadComments(postId) {
     });
 }
 
+document.addEventListener("DOMContentLoaded", function() {
+    window.openImageOverlay = function(src) {
+        document.getElementById('overlayImage').src = src;
+        document.getElementById('imageOverlay').style.display = 'flex';
+    }
 
-
-
-
+    window.closeImageOverlay = function() {
+        document.getElementById('imageOverlay').style.display = 'none';
+    }
+});
 
 </script>

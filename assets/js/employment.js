@@ -8,30 +8,28 @@ fetch('emps')
 .then(data => {
     document.getElementById("employ").innerHTML = data; // Set the inner HTML
 })
-//SAVING EDUCATION
+
 document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('save-Intcert').addEventListener('click', function() {
+    document.getElementById('save-empl').addEventListener('click', function() {
         // Create a new FormData object
         let formData = new FormData();
-        formData.append('certTitle', document.getElementById('certInput').value);
-        formData.append('certdate', document.getElementById('certdateInput').value);
-        formData.append('certlocation', document.getElementById('certlocInput').value);
-        formData.append('certspeak', document.getElementById('certspeakInput').value);
-        
-        // Append the file correctly
-        let fileInput = document.getElementById('certimgInput');
-        if (fileInput.files.length > 0) {
-            formData.append('certimage', fileInput.files[0]);  // Append the file object
-        }
+        formData.append('company', document.getElementById('companyInput').value);
+        formData.append('address', document.getElementById('addressInput').value);
+        formData.append('position', document.getElementById('positionInput').value);
+        formData.append('supervisor', document.getElementById('visorInput').value);
+        formData.append('contact', document.getElementById('contInput').value);
+        formData.append('sdate', document.getElementById('sdateInput').value);
+        formData.append('edate', document.getElementById('edateInput').value);
+        formData.append('reason', document.getElementById('reasonInput').value);
 
         // Send the form data to PHP using AJAX
-        fetch('saveIntCert', {
+        fetch('saveEmplo', {
             method: 'POST',
             body: formData
         })
         .then(response => response.json())
         .then(data => {
-            const alertMessage = document.getElementById('intc-message');
+            const alertMessage = document.getElementById('empl-message');
 
             if (data.success) {
                 // Display success message
@@ -39,11 +37,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 alertMessage.textContent = "Data saved successfully!";
                 
                 // Clear input values
-                document.getElementById('certInput').value = '';
-                document.getElementById('certdateInput').value = '';
-                document.getElementById('certlocInput').value = '';
-                document.getElementById('certspeakInput').value = '';
-                document.getElementById('certimgInput').value = '';
+                document.getElementById('companyInput').value = '';
+                document.getElementById('addressInput').value = '';
+                document.getElementById('positionInput').value = '';
+                document.getElementById('visorInput').value = '';
+                document.getElementById('contInput').value = '';
+                document.getElementById('sdateInput').value = '';
+                document.getElementById('edateInput').value = '';
+                document.getElementById('reasonInput').value = '';
             } else {
                 // Display error message
                 alertMessage.className = 'alert alert-danger';

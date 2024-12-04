@@ -31,7 +31,7 @@
                         </div> 
                       </div>
                     </div>
-                    <div class="content-div" id="personal" style="display: block;"></div>
+                    <div id="profile"></div>
                    
                 </div>
             </div>

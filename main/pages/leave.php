@@ -11,7 +11,7 @@
                             <div class="m-widget4__img m-widget4__img--pic">
                                 <img style="width:30px; height:30px; border-radius:50%" src="assets/image/img/<?=$ol['la_empno'].'.jpg'?>" alt="">
                             </div>
-                            <div class="m-widget4__info">
+                            <div class="m-widget4__info"style="width:40% !important;">
                                 <span class="m-widget4__title">
                                     <strong ><?=$ol['bi_empfname'].' '.$ol['bi_emplname']?></strong>
                                 </span>
@@ -20,7 +20,7 @@
                                     <strong class="text-muted"><?=$ol['Dept_Name']?></strong>
                                 </span>
                             </div>
-                            <div class="m-widget4__progress">
+                            <div class="m-widget4__progress"style="width:40% !important;">
                                 <div class="m-widget4__progress-wrapper">
                                     <span class="m-widget17__progress-number">
                                        <strong>start: <?= date("M d, Y", strtotime($ol['la_start'])) ?></strong>
@@ -30,7 +30,7 @@
                                     </span>
                                 </div>
                             </div>
-                            <div class="m-widget4__ext">
+                            <div class="m-widget4__ext"style="width:20% !important;">
                                 <label class="label label-inverse-danger"><?=$ol['la_type']?></label>
                             </div>
                         </div>

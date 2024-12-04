@@ -9604,7 +9604,8 @@ table.footable-paging-center > tfoot > tr.footable-paging > td {
       margin-right: -12px; }
 
 .user-card-block .card-block {
-  padding: 30px; }
+  /*padding: 30px; */
+}
   .user-card-block .card-block .card-contain h5 {
     font-size: 18px;
     font-weight: 600;
