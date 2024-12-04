@@ -63,21 +63,21 @@
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="payslip">
                       <p>
                         <i class="zmdi zmdi-accounts-list-alt"></i> Payslip
                       </p>
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="contract">
                       <p>
                         <i class="zmdi zmdi-accounts-list-alt"></i> Contracts
                       </p>
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="characterRef">
                       <p>
                         <i class="zmdi zmdi-accounts-list-alt"></i> Character Reference
                       </p>
@@ -86,42 +86,42 @@
                   <hr>
                   <div id="header"><label>Personality Test</label></div>
                   <li>
-                    <a href="#">
+                    <a href="inneg">
                       <p>
                         <i class="icofont icofont-brainstorming"></i> Enneagram
                       </p>
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="tapt">
                       <p>
                         <i class="icofont icofont-brainstorming"></i> TAPT
                       </p>
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="discs">
                       <p>
                         <i class="icofont icofont-brainstorming"></i> DISC
                       </p>
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="miqs">
                       <p>
                         <i class="icofont icofont-brain-alt"></i> Multiple Intelligent Quotient
                       </p>
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="colors">
                       <p>
                         <i class="icofont icofont-brainstorming"></i> What color are you?
                       </p>
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="vaks">
                       <p>
                         <i class="icofont icofont-brainstorming"></i> VAK
                       </p>

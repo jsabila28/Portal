@@ -26,19 +26,15 @@
                             ?></p>
                           </div>
                         </div>
+                        <div class="edit-profile">
+                          <button class="btn btn-default btn-mini" data-toggle="modal" data-target="#Char-<?=$empno?>"><i class="icofont icofont-pencil-alt-2"></i> Add Character Reference</button>
+                        </div>  
                       </div>
                     </div>
-                    <div id="payslip"></div>
+                    <div id="char"></div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div id="overlay" class="overlay">
-    <div class="overlay-content" id="div-payslip-info">
-        
-        
-    </div>
-</div>
-<iframe src="" id="printpdf" width="100%" hidden></iframe>
-<script type="text/javascript" src="../assets/js/payslip.js"></script>
+<script type="text/javascript" src="../assets/js/character.js"></script>

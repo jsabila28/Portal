@@ -192,6 +192,29 @@ class Portal
 
             return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
         }
+    }
+    public static function GetMood($date) {
+        $conn = self::getDatabaseConnection('port');
+
+        if ($conn) {
+            $stmt = $conn->prepare("SELECT * FROM tbl_mood WHERE DATE(m_date) = ?");
+            $stmt->execute([$date]);
+
+            return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
+        }
+    }
+
+    public static function GetMyMood($date,$user_id) {
+        $conn = self::getDatabaseConnection('port');
+
+        if ($conn) {
+            $stmt = $conn->prepare("SELECT * FROM tbl_mood 
+                WHERE DATE(m_date) = ?
+                AND m_empno = ?");
+            $stmt->execute([$date,$user_id]);
+
+            return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
+        }
     } 
 
 }

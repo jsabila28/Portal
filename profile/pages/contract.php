@@ -28,17 +28,10 @@
                         </div>
                       </div>
                     </div>
-                    <div id="payslip"></div>
+                    <div id="cont"></div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div id="overlay" class="overlay">
-    <div class="overlay-content" id="div-payslip-info">
-        
-        
-    </div>
-</div>
-<iframe src="" id="printpdf" width="100%" hidden></iframe>
-<script type="text/javascript" src="../assets/js/payslip.js"></script>
+<script type="text/javascript" src="../assets/js/contract.js"></script>

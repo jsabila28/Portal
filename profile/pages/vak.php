@@ -26,19 +26,21 @@
                             ?></p>
                           </div>
                         </div>
+                        <div class="edit-profile">
+                          <button class="btn btn-default btn-mini" data-toggle="modal" data-target="#COLOR"> Take VAK Test</button>
+                        </div> 
                       </div>
                     </div>
-                    <div id="payslip"></div>
+                    <div class="card-block" id="prof-card">
+                        <div id="personal-info">
+                            <div id="vak">
+                        
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div id="overlay" class="overlay">
-    <div class="overlay-content" id="div-payslip-info">
-        
-        
-    </div>
-</div>
-<iframe src="" id="printpdf" width="100%" hidden></iframe>
-<script type="text/javascript" src="../assets/js/payslip.js"></script>
+<script type="text/javascript" src="../assets/js/perstest.js"></script>

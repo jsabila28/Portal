@@ -9,39 +9,44 @@ if (!isset($_SESSION['user_id'])) {
 $user_id = $_SESSION['user_id'];
 
 try {
-    $offset = isset($_GET['offset']) ? intval($_GET['offset']) : 0; // Ensure offset is an integer
-    $limit = 10; // Set the limit as an integer
-
-    // Database connections
     $port_db = Database::getConnection('port');
     $hr_db = Database::getConnection('hr');
 
-    $cacheFile = 'cache/postfeeddata.json';
-    $cacheTime = 30 * 30; // Cache validity in seconds
+    // Cache file for each page
+    $page = isset($_POST['page']) ? (int) $_POST['page'] : 1;
+    $items_per_page = 5;
+    $offset = ($page - 1) * $items_per_page;
+    $cacheFile = "cache/postfeeddata_page_{$page}.json";
+    $cacheTime = 20 * 20; // 30 minutes
 
     if (file_exists($cacheFile) && (time() - filemtime($cacheFile)) < $cacheTime) {
-        // Use cached data
         $data = json_decode(file_get_contents($cacheFile), true);
-    } else { 
+    } else {
         $currentYear = date('Y');
 
-        // Build the SQL query dynamically with LIMIT and OFFSET directly embedded
+        // Prepare SQL query with pagination
         $stmt = $hr_db->prepare("
-            SELECT * FROM tbl_announcement a
-            LEFT JOIN tbl201_basicinfo b ON a.`ann_approvedby` = b.`bi_empno`
-            WHERE a.`ann_type` = 'LOCAL'
-            AND DATE_FORMAT(a.`ann_timestatmp`, '%Y') = :currentYear
-            GROUP BY a.`ann_id`
-            ORDER BY a.`ann_timestatmp` DESC
-            LIMIT $limit OFFSET $offset
+            SELECT *
+            FROM tbl_announcement a
+            LEFT JOIN tbl201_basicinfo b ON a.ann_approvedby = b.bi_empno
+            WHERE a.ann_type = 'LOCAL'
+            AND DATE_FORMAT(a.ann_timestatmp, '%Y') = :dates
+            GROUP BY a.ann_id
+            ORDER BY a.ann_timestatmp DESC
+            LIMIT :offset, :limit
         ");
 
-        // Execute the statement with the provided parameter
-        $stmt->execute([':currentYear' => $currentYear]);
-        $data = $stmt->fetchAll(PDO::FETCH_ASSOC);    
+        // Bind parameters
+        $stmt->bindValue(':dates', $currentYear, PDO::PARAM_STR);
+        $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+        $stmt->bindValue(':limit', $items_per_page, PDO::PARAM_INT);
+        $stmt->execute();
+        
+        $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        // Cache the fetched data
+        // Save posts to the cache file
         file_put_contents($cacheFile, json_encode($data));
+        
     }
 
     if (!empty($data)) {
@@ -56,24 +61,7 @@ try {
             $stmt->execute([$row['ann_id']]);
             $reaction = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            $stmt = $port_db->prepare("
-                SELECT com_post_id,COUNT(*) as comment_count 
-                FROM tbl_post_comment 
-                WHERE com_post_id = ?
-                GROUP BY com_post_id
-            ");
-            $stmt->execute([$row['ann_id']]);
-            $cm = $stmt->fetch(PDO::FETCH_ASSOC);
-
-            $stmt = $hr_db->prepare("
-                SELECT comment_onid,COUNT(*) as counts 
-                FROM tbl_comment 
-                WHERE comment_onid = ?
-                GROUP BY comment_onid
-            ");
-            $stmt->execute([$row['ann_id']]);
-            $comcount = $stmt->fetch(PDO::FETCH_ASSOC);
-
+            
             echo '<section class="profile-feed" id="prof-'. htmlspecialchars($row['ann_id']) .'">';
             echo '<div class="cardbox shadow-lg bg-white">';
             echo '<div class="cardbox-heading">';
@@ -241,95 +229,135 @@ try {
             }
             echo '</ul>';
             echo '<ul class="float-right">';
+            $stmt = $port_db->prepare("
+                SELECT com_post_id, COUNT(*) AS comment_count 
+                FROM tbl_post_comment 
+                WHERE com_post_id = ?
+                GROUP BY com_post_id
+                
+            ");
+            $stmt->execute([$row['ann_id']]);
+            $cm = $stmt->fetch(PDO::FETCH_ASSOC);
             
-            if (
-                ($cm !== false && isset($cm['comment_count'])) &&
-                ($comcount !== false && isset($comcount['counts']))
-            ) {
-                echo '<li><a style="cursor: pointer;" data-toggle="modal" data-target="#comment-Modal' . htmlspecialchars($cm['com_post_id']) . '">
-                        <span>' . htmlspecialchars((int)$cm['comment_count'] + (int)$comcount['counts']) . ' <i class="ti-comment"></i></span>
+            $stmt = $hr_db->prepare("
+                SELECT comment_onid, COUNT(*) AS counts 
+                FROM tbl_comment 
+                WHERE comment_onid = ?
+                GROUP BY comment_onid
+            ");
+            $stmt->execute([$row['ann_id']]);
+            $comcount = $stmt->fetch(PDO::FETCH_ASSOC);
+            
+            $totalComments = 0;
+            if ($cm !== false && isset($cm['comment_count'])) {
+                $totalComments += $cm['comment_count'];
+            }
+            if ($comcount !== false && isset($comcount['counts'])) {
+                $totalComments += $comcount['counts'];
+            }
+            
+            if ($totalComments > 0) {
+                echo '<li><a style="cursor: pointer;" data-toggle="modal" data-target="#comment-Modal' . htmlspecialchars($row['ann_id']) . '">
+                        <span>' . htmlspecialchars($totalComments) . ' <i class="ti-comment"></i></span>
                       </a></li>';
             } else {
                 echo '<li><a><span></span></a></li>';
             }
-
-             echo '</ul>';
+            echo '</ul>';
             echo '</div>';
             
-           $stmt = $port_db->prepare("
+            // Fetch comments from both databases and merge them
+            $comments = [];
+            
+            $stmt = $port_db->prepare("
                 SELECT 
-                  *
+                  a.*, b.bi_empfname, b.bi_emplname, b.bi_empno
                 FROM
                   tbl_post_comment a
                 LEFT JOIN tbl201_basicinfo b
-                ON b.`bi_empno` = a.`com_post_by`
-                WHERE a.`com_post_id` = ?
-                LIMIT 1");
+                ON b.bi_empno = a.com_post_by
+                WHERE a.com_post_id = ? 
+                ORDER BY a.`com_date` DESC
+                LIMIT 1
+            ");
             $stmt->execute([$row['ann_id']]);
-            $comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $comments = array_merge($comments, $stmt->fetchAll(PDO::FETCH_ASSOC));
             
-            // Loop through comments if available
-            if (!empty($comments)) {
-                foreach ($comments as $c) {
-                    // Existing comment display code...
-                    echo '<div class="cardbox-base-comment">';
-                    echo '<div class="media m-1">';
-                    echo '<div class="d-flex mr-1" style="margin-left: 20px;">';
-                    echo '<a href=""><img class="img-fluid rounded-circle" src="https://teamtngc.com/hris2/pages/empimg/' . htmlspecialchars($c['bi_empno']) . '.JPG" alt="User"></a>';
-                    echo '</div>';
-                    echo '<div class="media-body">';
-                    echo '<p class="m-0">' . htmlspecialchars($c['bi_empfname']) . ' ' . htmlspecialchars($c['bi_emplname']) . '</p>';
-                    echo '<small><span><i class="icon ion-md-pin"></i> ' . htmlspecialchars($c['com_content']) . '</span></small>';
-                    echo '<div class="comment-reply"><small><a>12m </a></small> <small><a style="cursor: pointer;">Reply</a></small></div>';
-                    echo '</div>'; // Close media-body
-                    echo '</div>'; // Close media
-                    echo '</div>'; // Close cardbox-base-comment
-                }
-            }
             $stmt = $hr_db->prepare("
                 SELECT 
-                bi_empno,
-                CONCAT(bi_empfname,' ',bi_emplname) AS Fullname,
-                comment_content,
-                comment_datetime
+                  bi_empno,
+                  comment_onid AS com_post_id,
+                  comment_content AS com_content,
+                  comment_datetime AS com_date,
+                  bi_empno,
+                  bi_empfname,
+                  bi_emplname
                 FROM tbl_comment
                 LEFT JOIN tbl_announcement ON ann_id = comment_onid
                 LEFT JOIN tbl_user2 ON U_ID = comment_by
                 LEFT JOIN tbl201_basicinfo ON bi_empno = Emp_No
                 WHERE comment_onid = ?
-                GROUP BY bi_empno, ann_id
-                LIMIT 2");
+                GROUP BY bi_empno,comment_onid,comment_content
+                ORDER BY comment_datetime DESC
+                LIMIT 2
+            ");
             $stmt->execute([$row['ann_id']]);
-            $comment = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $comments = array_merge($comments, $stmt->fetchAll(PDO::FETCH_ASSOC));
             
-            // Loop through comments if available
-            if (!empty($comment)) {
-                foreach ($comment as $v) {
-                    // Existing comment display code...
+            // Sort comments by date
+            usort($comments, function($a, $b) {
+                return strtotime($a['com_date']) - strtotime($b['com_date']);
+            });
+            
+            // Loop through comments and display them
+            if (!empty($comments)) {
+                foreach ($comments as $c) {
                     echo '<div class="cardbox-base-comment">';
                     echo '<div class="media m-1">';
                     echo '<div class="d-flex mr-1" style="margin-left: 20px;">';
-                    echo '<a href=""><img class="img-fluid rounded-circle" src="https://teamtngc.com/hris2/pages/empimg/' . htmlspecialchars($v['bi_empno']) . '.JPG" alt="User"></a>';
+                    echo '<a href=""><img class="img-fluid rounded-circle" src="https://teamtngc.com/hris2/pages/empimg/' . htmlspecialchars($c['bi_empno'])             . '.JPG" alt="User"></a>';
                     echo '</div>';
                     echo '<div class="media-body">';
-                    echo '<p class="m-0">' . htmlspecialchars($v['Fullname']) . '</p>';
-                    echo '<small><span><i class="icon ion-md-pin"></i> ' . htmlspecialchars($v['comment_content']) . '</span></small>';
-                    echo '<div class="comment-reply"><small><a>12m </a></small> <small><a style="cursor: pointer;">Reply</a></small></div>';
+                    echo '<p class="m-0">' . htmlspecialchars($c['bi_empfname']) . ' ' . htmlspecialchars($c['bi_emplname']) . '</p>';
+                    echo '<small><span><i class="icon ion-md-pin"></i> ' . htmlspecialchars($c['com_content']) . '</span></small>';
+            
+                    $commentTime = new DateTime($c['com_date']);
+                    $currentTime = new DateTime();
+                    $interval = $commentTime->diff($currentTime);
+            
+                    // Create a "time ago" string
+                    if ($interval->y > 0) {
+                        $timeAgo = $interval->y . ' y' . ($interval->y > 1 ? '' : '') . ' ago';
+                    } elseif ($interval->m > 0) {
+                        $timeAgo = $interval->m . ' mon' . ($interval->m > 1 ? ''  : '') . ' ago';
+                    } elseif ($interval->d > 0) {
+                        $timeAgo = $interval->d . ' d' . ($interval->d > 1 ? '' : '') . ' ago';
+                    } elseif ($interval->h > 0) {
+                        $timeAgo = $interval->h . ' hr' . ($interval->h > 1 ? '' : '') . ' ago';
+                    } elseif ($interval->i > 0) {
+                        $timeAgo = $interval->i . ' m' . ($interval->i > 1 ? '' : '') . ' ago';
+                    } else {
+                        $timeAgo = 'Just now';
+                    }
+            
+                    echo '<div class="comment-reply">
+                            <small><a>' . htmlspecialchars($timeAgo) . '</a></small>
+                            <small><a style="cursor: pointer;">Reply</a></small>
+                          </div>';
                     echo '</div>'; // Close media-body
                     echo '</div>'; // Close media
                     echo '</div>'; // Close cardbox-base-comment
                 }
             }
-            echo'<div id="comment-section">
-                
-            </div>';
+            echo '<div id="comment-section"></div>';
+            
 
 
             // Add new comment input section
             echo '<div class="cardbox-base-comment">';
             echo '<div class="media m-1">';
             echo '<div class="d-flex mr-1" style="margin-left: 20px;">';
-            echo '<a href=""><img class="img-fluid rounded-circle" src="https://e-classtngcacademy.s3.ap-southeast-1.amazonaws.com/e-class/Thumbnail/img/' . htmlspecialchars($user_id) . '.JPG" alt="User"></a>';
+            echo '<a href=""><img class="img-fluid rounded-circle" src="https://teamtngc.com/hris2/pages/empimg/' . htmlspecialchars($user_id) . '.JPG" alt="User"></a>';
             echo '</div>';
             echo '<div class="media-body" id="comment">';
             echo '<div class="textarea-wrapper">';
@@ -350,7 +378,7 @@ try {
                     <div class="modal-dialog modal-lg" role="document"style="margin-top:0px;">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" style="margin-left: 300px !important;color:black;">'. htmlspecialchars($row['bi_empfname']) . ' '. htmlspecialchars($row['bi_emplname']).' Post</h5>
+                                <h5 class="modal-title">'. htmlspecialchars($row['bi_empfname']) . ' '. htmlspecialchars($row['bi_emplname']).' Post</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true"><i class="fa fa-times-circle"style="font-size:24px;"></i></span>
                                 </button>
@@ -487,83 +515,123 @@ try {
                                 }
                                 echo '</ul>';
                                 echo '<ul class="float-right">';
+                                $stmt = $port_db->prepare("
+                                    SELECT com_post_id, COUNT(*) AS comment_count 
+                                    FROM tbl_post_comment 
+                                    WHERE com_post_id = ?
+                                    GROUP BY com_post_id
+                                    
+                                ");
+                                $stmt->execute([$row['ann_id']]);
+                                $cm = $stmt->fetch(PDO::FETCH_ASSOC);
                                 
-                                if (
-                                    ($cm !== false && isset($cm['comment_count'])) &&
-                                    ($comcount !== false && isset($comcount['counts']))
-                                ) {
-                                    echo '<li><a style="cursor: pointer;" data-toggle="modal" data-target="#comment-Modal' . htmlspecialchars($cm['com_post_id']) . '">
-                                            <span>' . htmlspecialchars((int)$cm['comment_count'] + (int)$comcount['counts']) . ' <i class="ti-comment"></i></span>
+                                $stmt = $hr_db->prepare("
+                                    SELECT comment_onid, COUNT(*) AS counts 
+                                    FROM tbl_comment 
+                                    WHERE comment_onid = ?
+                                    GROUP BY comment_onid
+                                ");
+                                $stmt->execute([$row['ann_id']]);
+                                $comcount = $stmt->fetch(PDO::FETCH_ASSOC);
+                                
+                                $totalComments = 0;
+                                if ($cm !== false && isset($cm['comment_count'])) {
+                                    $totalComments += $cm['comment_count'];
+                                }
+                                if ($comcount !== false && isset($comcount['counts'])) {
+                                    $totalComments += $comcount['counts'];
+                                }
+                                
+                                if ($totalComments > 0) {
+                                    echo '<li><a style="cursor: pointer;" data-toggle="modal" data-target="#comment-Modal' . htmlspecialchars($row['ann_id']) . '">
+                                            <span>' . htmlspecialchars($totalComments) . ' <i class="ti-comment"></i></span>
                                           </a></li>';
                                 } else {
                                     echo '<li><a><span></span></a></li>';
                                 }
-                                 echo '</ul>';
+                                echo '</ul>';
                                 echo '</div>';
                                 
-                               $stmt = $port_db->prepare("
+                                // Fetch comments from both databases and merge them
+                                $comments = [];
+                                
+                                $stmt = $port_db->prepare("
                                     SELECT 
-                                      *
+                                      a.*, b.bi_empfname, b.bi_emplname, b.bi_empno
                                     FROM
                                       tbl_post_comment a
                                     LEFT JOIN tbl201_basicinfo b
-                                    ON b.`bi_empno` = a.`com_post_by`
-                                    WHERE a.`com_post_id` = ?");
+                                    ON b.bi_empno = a.com_post_by
+                                    WHERE a.com_post_id = ?
+                                ");
                                 $stmt->execute([$row['ann_id']]);
-                                $comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                                $comments = array_merge($comments, $stmt->fetchAll(PDO::FETCH_ASSOC));
                                 
-                                // Loop through comments if available
-                                if (!empty($comments)) {
-                                    foreach ($comments as $c) {
-                                        // Existing comment display code...
-                                        echo '<div class="cardbox-base-comment">';
-                                        echo '<div class="media m-1">';
-                                        echo '<div class="d-flex mr-1" style="margin-left: 20px;">';
-                                        echo '<a href=""><img class="img-fluid rounded-circle" src="https://e-classtngcacademy.s3.ap-southeast-1.amazonaws.com/e-class/Thumbnail/img/' . htmlspecialchars($c['bi_empno']) . '.JPG" alt="User"></a>';
-                                        echo '</div>';
-                                        echo '<div class="media-body">';
-                                        echo '<p class="m-0">' . htmlspecialchars($c['bi_empfname']) . ' ' . htmlspecialchars($c['bi_emplname']) . '</p>';
-                                        echo '<small><span><i class="icon ion-md-pin"></i> ' . htmlspecialchars($c['com_content']) . '</span></small>';
-                                        echo '<div class="comment-reply"><small><a>12m </a></small> <small><a style="cursor: pointer;">Reply</a></small></div>';
-                                        echo '</div>'; // Close media-body
-                                        echo '</div>'; // Close media
-                                        echo '</div>'; // Close cardbox-base-comment
-                                    }
-                                }
-
                                 $stmt = $hr_db->prepare("
                                     SELECT 
-                                    bi_empno,
-                                    CONCAT(bi_empfname,' ',bi_emplname) AS Fullname,
-                                    comment_content,
-                                    comment_datetime
+                                      bi_empno,
+                                      comment_onid AS com_post_id,
+                                      comment_content AS com_content,
+                                      comment_datetime AS com_date,
+                                      bi_empno,
+                                      bi_empfname,
+                                      bi_emplname
                                     FROM tbl_comment
                                     LEFT JOIN tbl_announcement ON ann_id = comment_onid
                                     LEFT JOIN tbl_user2 ON U_ID = comment_by
                                     LEFT JOIN tbl201_basicinfo ON bi_empno = Emp_No
                                     WHERE comment_onid = ?
-                                    GROUP BY bi_empno, ann_id");
+                                    GROUP BY bi_empno,comment_onid,comment_content
+                                ");
                                 $stmt->execute([$row['ann_id']]);
-                                $comment = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                                $comments = array_merge($comments, $stmt->fetchAll(PDO::FETCH_ASSOC));
                                 
-                                // Loop through comments if available
-                                if (!empty($comment)) {
-                                    foreach ($comment as $v) {
-                                        // Existing comment display code...
+                                // Sort comments by date
+                                usort($comments, function($a, $b) {
+                                    return strtotime($a['com_date']) - strtotime($b['com_date']);
+                                });
+                                
+                                // Loop through comments and display them
+                                if (!empty($comments)) {
+                                    foreach ($comments as $c) {
                                         echo '<div class="cardbox-base-comment">';
                                         echo '<div class="media m-1">';
                                         echo '<div class="d-flex mr-1" style="margin-left: 20px;">';
-                                        echo '<a href=""><img class="img-fluid rounded-circle" src="https://teamtngc.com/hris2/pages/empimg/' . htmlspecialchars($v['bi_empno']) . '.JPG" alt="User"></a>';
+                                        echo '<a href=""><img class="img-fluid rounded-circle" src="https://teamtngc.com/hris2/pages/empimg/' . htmlspecialchars($c['bi_empno'])             . '.JPG" alt="User"></a>';
                                         echo '</div>';
                                         echo '<div class="media-body">';
-                                        echo '<p class="m-0">' . htmlspecialchars($v['Fullname']) . '</p>';
-                                        echo '<small><span><i class="icon ion-md-pin"></i> ' . htmlspecialchars($v['comment_content']) . '</span></small>';
-                                        echo '<div class="comment-reply"><small><a>12m </a></small> <small><a style="cursor: pointer;">Reply</a></small></div>';
+                                        echo '<p class="m-0">' . htmlspecialchars($c['bi_empfname']) . ' ' . htmlspecialchars($c['bi_emplname']) . '</p>';
+                                        echo '<small><span><i class="icon ion-md-pin"></i> ' . htmlspecialchars($c['com_content']) . '</span></small>';
+                                
+                                        $commentTime = new DateTime($c['com_date']);
+                                        $currentTime = new DateTime();
+                                        $interval = $commentTime->diff($currentTime);
+                                
+                                        // Create a "time ago" string
+                                        if ($interval->y > 0) {
+                                            $timeAgo = $interval->y . ' y' . ($interval->y > 1 ? '' : '') . ' ago';
+                                        } elseif ($interval->m > 0) {
+                                            $timeAgo = $interval->m . ' mon' . ($interval->m > 1 ? ''  : '') . ' ago';
+                                        } elseif ($interval->d > 0) {
+                                            $timeAgo = $interval->d . ' d' . ($interval->d > 1 ? '' : '') . ' ago';
+                                        } elseif ($interval->h > 0) {
+                                            $timeAgo = $interval->h . ' hr' . ($interval->h > 1 ? '' : '') . ' ago';
+                                        } elseif ($interval->i > 0) {
+                                            $timeAgo = $interval->i . ' m' . ($interval->i > 1 ? '' : '') . ' ago';
+                                        } else {
+                                            $timeAgo = 'Just now';
+                                        }
+                                
+                                        echo '<div class="comment-reply">
+                                                <small><a>' . htmlspecialchars($timeAgo) . '</a></small>
+                                                <small><a style="cursor: pointer;">Reply</a></small>
+                                              </div>';
                                         echo '</div>'; // Close media-body
                                         echo '</div>'; // Close media
                                         echo '</div>'; // Close cardbox-base-comment
                                     }
                                 }
+                                echo '<div id="comment-section"></div>';
 
                          echo '</div>';
                          echo '<div class="modal-footer">';
@@ -571,7 +639,7 @@ try {
                                 echo '<div class="cardbox-base-comment" style="width:100%;">';
                                 echo '<div class="media m-1">';
                                 echo '<div class="d-flex mr-1" style="margin-left: 20px;">';
-                                echo '<a href=""><img class="img-fluid rounded-circle" src="https://e-classtngcacademy.s3.ap-southeast-1.amazonaws.com/e-class/Thumbnail/img/' . $user_id . '.JPG" alt="User"></a>';
+                                echo '<a href=""><img class="img-fluid rounded-circle" src="https://teamtngc.com/hris2/pages/empimg/' . $user_id . '.JPG" alt="User"></a>';
                                 echo '</div>';
                                 echo '<div class="media-body" id="comment">';
                                 echo '<div class="textarea-wrapper">';

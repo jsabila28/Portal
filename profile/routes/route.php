@@ -5,8 +5,7 @@ $routes = [
 	'/' => '/pages/dashboard.php',
 	'/person' => '/pages/dashboard.php',
 	'/login' => '/Portal/main/pages/login.php',
-	'/sji' => '/pages/sji.php',
-	'/so' => '/pages/so.php',
+
 
 	'/province' => '/actions/province.php',
 	'/municipal' => '/actions/municipal.php',
@@ -16,11 +15,25 @@ $routes = [
 	'/personal' => '/actions/personal.php',
 	'/family' => '/actions/fam_back.php',
 	'/skills' => '/actions/special_skills.php',
+
 	'/educ' => '/actions/educations.php',
 	'/license' => '/actions/eligibility.php',
 	'/certs' => '/actions/certificates.php',
+
 	'/certInter' => '/actions/inter_cert.php',
 	'/emps' => '/actions/employments.php',
+	'/pslip' => '/actions/payslips.php',
+	'/contracts' => '/actions/get_contract.php',
+	'/characters' => '/actions/get_charac_ref.php',
+
+	'/innegram' => '/actions/get_innegram.php',
+	'/taptres' => '/actions/get_tapt.php',
+	'/disc' => '/actions/get_disc.php',
+	'/miq' => '/actions/get_miq.php',
+	'/color' => '/actions/get_color.php',
+	'/vak' => '/actions/get_vak.php',
+	'/enneagram' => '/actions/get_enneagram.php',
+
 
 	//FORMS
 	'/save_personal' => '/actions/save_personal.php',
@@ -32,6 +45,10 @@ $routes = [
 	'/saveIntCert' => '/actions/save_Intcert.php',
 	'/saveEvent' => '/actions/save_event.php',
 	'/saveEmplo' => '/actions/save_employment.php',
+	'/saveRef' => '/actions/save_reference.php',
+	'/saveEnneagram' => '/actions/save_enneagram.php',
+	'/saveTAPT' => '/actions/save_tapt.php',
+	'/saveMIQ' => '/actions/save_miq.php',
 
 
 
@@ -43,7 +60,17 @@ $routes = [
 	'/eligibility' => '/pages/eligibility.php',
 	'/cert' => '/pages/certificate.php',
 	'/Intcert' => '/pages/internal_cert.php',
-	'/emp' => '/pages/employment.php'
+	'/emp' => '/pages/employment.php',
+	'/payslip' => '/pages/payslip.php',
+	'/contract' => '/pages/contract.php',
+	'/characterRef' => '/pages/characterRef.php',
+	'/inneg' => '/pages/inneagram.php',
+	'/enneagram-result' => '/pages/enneagram-result.php',
+	'/tapt' => '/pages/tapt.php',
+	'/discs' => '/pages/disc.php',
+	'/miqs' => '/pages/miq.php',
+	'/colors' => '/pages/wh-color.php',
+	'/vaks' => '/pages/vak.php'
 
 	
 ];
@@ -53,7 +80,7 @@ $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $uri = rtrim(str_replace("/Portal/profile", "", $uri), "#");
 
 // top
-if(isset($routes[$uri]) && strpos($routes[$uri], "pages/") !== false) include_once($portal_root."/layout/top.php");
+if(isset($routes[$uri]) && strpos($routes[$uri], "pages/") !== false) include_once($portal_root."/layout/profiletop.php");
 
 // Check if the requested URI exists in the routes array
 if (array_key_exists($uri, $routes)) {

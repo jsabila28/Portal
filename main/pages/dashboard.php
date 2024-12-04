@@ -13,6 +13,8 @@ $ongoingleave = Portal::GetOngoingLeave($date);
 $resigning = Portal::GetResigning($date);
 $government = Portal::GetGovAnn($yearMonth);
 $birthday = Portal::GetBirthday($Month,$Day);
+$moods = Portal::GetMood($date);
+$MyMood = Portal::GetMyMood($date,$user_id);
 ?>
 <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
 <div class="page-wrapper">
@@ -212,11 +214,13 @@ $birthday = Portal::GetBirthday($Month,$Day);
 <script type="text/javascript" src="/Portal/assets/js/post.js"></script>
 <script>
 $(document).ready(function () {
-    $('.reaction-trigger').on('click', function () {
+    // Event delegation for reaction triggers
+    $(document).on('click', '.reaction-trigger', function () {
         $(this).siblings('.reaction-options').toggle();
     });
 
-    $('.reaction').on('click', function () {
+    // Event delegation for reactions
+    $(document).on('click', '.reaction', function () {
         var reactionType = $(this).data('reaction');
         var postBy = $(this).data('reacted_by');
         var postId = $(this).closest('.reaction-container').find('.reaction-trigger').attr('id').split('-')[2];
@@ -227,16 +231,9 @@ $(document).ready(function () {
             method: 'POST',
             data: { post_id: postId, reaction: reactionType, reacted_by: postBy },
             success: function (response) {
-                // alert('Reaction submitted: ' + reactionType);
-                
-                // Hide the reaction options for the specific post
                 $(this).closest('.reaction-container').find('.reaction-options').hide();
-                
-                // Hide the reaction trigger
                 $reactionTrigger.hide();
-                
-                // Change the display of the reaction trigger to show the clicked reaction
-                // Update with the appropriate reaction image or text
+
                 var reactionImage;
                 switch (reactionType) {
                     case 'like':
@@ -264,23 +261,20 @@ $(document).ready(function () {
                         reactionImage = '<img src="https://i.pinimg.com/564x/cc/12/e0/cc12e02e7eed4491de74e05ea8a019a5.jpg" class="img-fluid rounded-circle" alt="Eey">';
                         break;
                     default:
-                        reactionImage = ''; // Fallback if no match
+                        reactionImage = '';
                 }
 
-                // Set the reaction trigger to display the selected reaction
-                $reactionTrigger.html(reactionImage).show(); // Show it back if you want it visible
-            }.bind(this), // Bind 'this' to access the current reaction element
+                $reactionTrigger.html(reactionImage).show();
+            }.bind(this),
             error: function (xhr, status, error) {
                 console.error(error);
             }
         });
     });
-});
 
-
-$(document).ready(function() {
-    $('.post-btn').click(function(e) {
-        e.preventDefault(); 
+    // Handle new post creation
+    $('.post-btn').click(function (e) {
+        e.preventDefault();
 
         var postedBy = $('input[name="posted-by"]').val();
         var postDesc = $('#post-desc').val();
@@ -290,7 +284,7 @@ $(document).ready(function() {
         postContent.append('postedBy', postedBy);
         postContent.append('postDesc', postDesc);
         postContent.append('audience', audience);
-        
+
         var fileInput = $('#file-input')[0].files[0];
         if (fileInput) {
             postContent.append('file', fileInput);
@@ -300,41 +294,39 @@ $(document).ready(function() {
             url: 'postnews',
             type: 'POST',
             data: postContent,
-            processData: false, 
+            processData: false,
             contentType: false,
-            success: function(response) {
+            success: function (response) {
                 alert(response);
                 $('#default-Modal').modal('hide');
-                 resetModalForm();
+                resetModalForm();
             },
-            error: function(xhr, status, error) {
+            error: function (xhr, status, error) {
                 console.error(error);
             }
         });
     });
 
     function resetModalForm() {
-        $('#post-desc').val('');  // Clear the textarea
-        $('input[name="audience"]').prop('checked', false);  // Uncheck audience radio buttons
-        $('#file-input').val('');  // Clear file input
-        $('#image-video').css('background-image', 'url(assets/img/upload.png)');  // Reset image preview
-        $('.post-btn').prop('disabled', true);  // Disable post button again
-        $('#add-photo-video').addClass('hide-image');  // Hide the photo/video section
+        $('#post-desc').val('');
+        $('input[name="audience"]').prop('checked', false);
+        $('#file-input').val('');
+        $('#image-video').css('background-image', 'url(assets/img/upload.png)');
+        $('.post-btn').prop('disabled', true);
+        $('#add-photo-video').addClass('hide-image');
     }
 
-
-    $('#post-desc').on('input', function() {
+    $('#post-desc').on('input', function () {
         if ($(this).val().trim() !== '') {
             $('.post-btn').prop('disabled', false);
         } else {
             $('.post-btn').prop('disabled', true);
         }
     });
-
 });
 
+// Save comment function
 function saveComment(postId) {
-    // Locate the comment input field and hidden input for the given post
     const commentInput = document.getElementById(`Mycomment-${postId}`);
     const comIdInput = document.querySelector(`input[name="com-id"][value="${postId}"]`);
 
@@ -351,43 +343,41 @@ function saveComment(postId) {
         return;
     }
 
-    // Send the comment to the server
     fetch('save_comment', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: `com_id=${encodeURIComponent(comId)}&Mycomment=${encodeURIComponent(comment)}`
     })
-    .then(response => response.json())
-    .then(data => {
-        if (data.status === 'success') {
-            commentInput.value = ''; // Clear the input field
-            reloadComments(postId); // Reload the comments for the post
-        } else {
-            alert(data.message || 'An error occurred while saving the comment.');
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('An error occurred. Please try again.');
-    });
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                commentInput.value = '';
+                reloadComments(postId);
+            } else {
+                alert(data.message || 'An error occurred while saving the comment.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred. Please try again.');
+        });
 }
 
+// Reload comments
 function reloadComments(postId) {
     $.ajax({
-        url: 'comment', // Endpoint for fetching the latest comment
+        url: 'comment',
         type: 'POST',
         data: { post_id: postId },
         dataType: 'json',
         success: function (response) {
             if (response.success) {
                 const comment = response.comment;
-
-                // Create HTML structure for the new comment
                 const newCommentHTML = `
                     <div class="cardbox-base-comment">
                         <div class="media m-1">
                             <div class="d-flex mr-1" style="margin-left: 20px;">
-                                <a href=""><img class="img-fluid rounded-circle" src="https://e-classtngcacademy.s3.ap-southeast-1.amazonaws.com/e-class/Thumbnail/img/${comment.bi_empno}.JPG" alt="User"></a>
+                                <a href=""><img class="img-fluid rounded-circle" src="https://teamtngc.com/hris2/pages/empimg/${comment.bi_empno}.JPG" alt="User"></a>
                             </div>
                             <div class="media-body">
                                 <p class="m-0">${comment.bi_empfname} ${comment.bi_emplname}</p>
@@ -400,8 +390,6 @@ function reloadComments(postId) {
                         </div>
                     </div>
                 `;
-
-                // Append the new comment to the comment section
                 $(`#prof-${postId} #comment-section`).append(newCommentHTML);
             } else {
                 console.error(response.message);
@@ -412,16 +400,5 @@ function reloadComments(postId) {
         }
     });
 }
-
-document.addEventListener("DOMContentLoaded", function() {
-    window.openImageOverlay = function(src) {
-        document.getElementById('overlayImage').src = src;
-        document.getElementById('imageOverlay').style.display = 'flex';
-    }
-
-    window.closeImageOverlay = function() {
-        document.getElementById('imageOverlay').style.display = 'none';
-    }
-});
 
 </script>

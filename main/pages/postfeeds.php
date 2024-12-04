@@ -1,93 +1,44 @@
+<?php
+    if (!empty($moods)) {
+?>
 <div id="memo" style="margin-bottom: 5px; border-radius: 40px;"> 
     <div class="comment-wrapper">
         <div class="panel panel-info">
             <div id="scroll">
                 <ul>
                     <li class="media" style="margin-left: 10px;">
+                        <?php 
+                            foreach ($moods as $v) {
+                        ?>
                         <a href="#" class="pull-left" style="position: relative;width: 55px;">
-                            <img src="https://e-classtngcacademy.s3.ap-southeast-1.amazonaws.com/e-class/Thumbnail/img/<?= $empno ?>.JPG" alt="" class="img-circle">
+                            <img src="https://e-classtngcacademy.s3.ap-southeast-1.amazonaws.com/e-class/Thumbnail/img/<?= $v['m_empno'] ?>.JPG" alt="" class="img-circle">
                             <!-- Mood icon at the top right corner -->
                             <div style="position: absolute; top: 0; right: 0; background-color: white; color: white; padding: 2px; border-radius: 50%;">
-                                 <img id="img-emoji" src="/Portal/assets/img/hungry.png">
+                                <?php if ($v['m_mood'] == 'anger') {
+                                    echo'<img id="img-emoji" src="/Portal/assets/reactions/sadness.WEBP">';  
+                                }elseif ($v['m_mood'] == 'crying') {
+                                    echo'<img id="img-emoji" src="/Portal/assets/reactions/cry.WEBP">'; 
+                                }elseif ($v['m_mood'] == 'eyeroll') {
+                                    echo'<img id="img-emoji" src="/Portal/assets/reactions/ROLL.JPG">'; 
+                                }elseif ($v['m_mood'] == 'inlove') {
+                                    echo'<img id="img-emoji" src="/Portal/assets/reactions/inlove.JPG">'; 
+                                }elseif ($v['m_mood'] == 'sleepy') {
+                                    echo'<img id="img-emoji" src="/Portal/assets/reactions/sleep.JPG">'; 
+                                }elseif ($v['m_mood'] == 'tired') {
+                                    echo'<img id="img-emoji" src="/Portal/assets/reactions/Tireds.JPG">'; 
+                                }elseif ($v['m_mood'] == 'nuh') {
+                                    echo'<img id="img-emoji" src="/Portal/assets/reactions/lough.WEBP">'; 
+                                } ?>
                             </div>
                         </a>
-                        
-                        <a href="#" class="pull-left" style="position: relative;width: 55px;">
-                            <img src="https://e-classtngcacademy.s3.ap-southeast-1.amazonaws.com/e-class/Thumbnail/img/045-2022-002.JPG" alt="" class="img-circle">
-                            <!-- Mood icon at the top right corner -->
-                            <div style="position: absolute; top: 0; right: 0; background-color: white; color: white; padding: 2px; border-radius: 50%;">
-                                <img id="img-emoji" src="/Portal/assets/img/sleep.png">
-                            </div>
-                        </a>
-
-                        <a href="#" class="pull-left" style="position: relative;width: 55px;">
-                            <img src="https://e-classtngcacademy.s3.ap-southeast-1.amazonaws.com/e-class/Thumbnail/img/045-2017-068.JPG" alt="" class="img-circle">
-                            <!-- Mood icon at the top right corner -->
-                            <div style="position: absolute; top: 0; right: 0; background-color: white; color: white; padding: 2px; border-radius: 50%;">
-                                <img id="img-emoji" src="/Portal/assets/img/angry.png">
-                            </div>
-                        </a>
-
-                        <a href="#" class="pull-left" style="position: relative;width: 55px;">
-                            <img src="https://e-classtngcacademy.s3.ap-southeast-1.amazonaws.com/e-class/Thumbnail/img/045-2022-014.JPG" alt="" class="img-circle">
-                            <!-- Mood icon at the top right corner -->
-                            <div style="position: absolute; top: 0; right: 0; background-color: white; color: white; padding: 2px; border-radius: 50%;">
-                                <img id="img-emoji" src="/Portal/assets/img/vomit.png">
-                            </div>
-                        </a>
-
-                        <a href="#" class="pull-left" style="position: relative;width: 55px;">
-                            <img src="https://e-classtngcacademy.s3.ap-southeast-1.amazonaws.com/e-class/Thumbnail/img/045-2014-008.JPG" alt="" class="img-circle">
-                            <!-- Mood icon at the top right corner -->
-                            <div style="position: absolute; top: 0; right: 0; background-color: white; color: white; padding: 2px; border-radius: 50%;">
-                                <img id="img-emoji" src="/Portal/assets/img/sad.png">
-                            </div>
-                        </a>
-
-                        <a href="#" class="pull-left" style="position: relative;width: 55px;">
-                            <img src="https://e-classtngcacademy.s3.ap-southeast-1.amazonaws.com/e-class/Thumbnail/img/045-2022-016.JPG" alt="" class="img-circle">
-                            <!-- Mood icon at the top right corner -->
-                            <div style="position: absolute; top: 0; right: 0; background-color: white; color: white; padding: 2px; border-radius: 50%;">
-                                <img id="img-emoji" src="/Portal/assets/img/love.png">
-                            </div>
-                        </a>
-
-                        <a href="#" class="pull-left" style="position: relative;width: 55px;">
-                            <img src="https://e-classtngcacademy.s3.ap-southeast-1.amazonaws.com/e-class/Thumbnail/img/ZAM-2023-001.JPG" alt="" class="img-circle">
-                            <!-- Mood icon at the top right corner -->
-                            <div style="position: absolute; top: 0; right: 0; background-color: white; color: white; padding: 2px; border-radius: 50%;">
-                                <img id="img-emoji" src="/Portal/assets/img/happy.png">
-                            </div>
-                        </a>
-
-                        <a href="#" class="pull-left" style="position: relative;width: 55px;">
-                            <img src="https://teamtngc.com/hris2/pages/empimg/045-2024-001.jpg" alt="" class="img-circle">
-                            <!-- Mood icon at the top right corner -->
-                            <div style="position: absolute; top: 0; right: 0; background-color: white; color: white; padding: 2px; border-radius: 50%;">
-                                <img id="img-emoji" src="/Portal/assets/img/sleep.png">
-                            </div>
-                        </a>
-
-                        <a href="#" class="pull-left" style="position: relative;width: 55px;">
-                            <img src="https://e-classtngcacademy.s3.ap-southeast-1.amazonaws.com/e-class/Thumbnail/img/045-2001-001.JPG" alt="" class="img-circle">
-                            <!-- Mood icon at the top right corner -->
-                            <div style="position: absolute; top: 0; right: 0; background-color: white; color: white; padding: 2px; border-radius: 50%;">
-                                <img id="img-emoji" src="/Portal/assets/img/happy.png">
-                            </div>
-                        </a>
-
-                        <a href="#" class="pull-left" style="position: relative;width: 55px;">
-                            <img src="https://e-classtngcacademy.s3.ap-southeast-1.amazonaws.com/e-class/Thumbnail/img/045-2019-010.JPG" alt="" class="img-circle">
-                            <div style="position: absolute; top: 0; right: 0; background-color: white; color: white; padding: 2px; border-radius: 50%;">
-                                <img id="img-emoji" src="/Portal/assets/img/happy.png">
-                            </div>
-                        </a>
+                        <?php } ?>
                     </li>
                 </ul>
             </div>
         </div>
     </div>
 </div>
+<?php } ?>
 <?php
     if (!empty($birthday)) {
 ?>
@@ -322,7 +273,59 @@
     </div>
 </div>
 <div id="myDiv"></div>
+ <!-- <div>Loading more posts...</div> -->
+ <div id="loading" class="timeline-wrapper" style="display:none;">
+    <div class="timeline-item">
+        <div class="animated-background facebook">
+            <div class="background-masker header-top"></div>
+            <div class="background-masker header-left"></div>
+            <div class="background-masker header-right"></div>
+            <div class="background-masker header-bottom"></div>
+            <div class="background-masker subheader-left"></div>
+            <div class="background-masker subheader-right"></div>
+            <div class="background-masker subheader-bottom"></div>
+            <div class="background-masker content-top"></div>
+            <div class="background-masker content-first-end"></div>
+            <div class="background-masker content-second-line"></div>
+            <div class="background-masker content-second-end"></div>
+            <div class="background-masker content-third-line"></div>
+            <div class="background-masker content-third-end"></div>
+        </div>
+    </div>
+</div>
 <script>
+    let page = 1;
+
+    function loadMorePosts() {
+        $('#loading').show();
+        $.ajax({
+            url: 'post',
+            type: 'POST',
+            data: { page: page },
+            success: function(response) {
+                $('#loading').hide();
+                if (response.trim() !== '') {
+                    $('#myDiv').append(response);
+                    page++;
+                } else {
+                    $('#loading').html('No more posts available.');
+                }
+            }
+        });
+    }
+
+    // Initial load
+    $(document).ready(function() {
+        loadMorePosts();
+
+        // Detect when the user reaches the bottom of the page
+        $(window).scroll(function() {
+            if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
+                loadMorePosts();
+            }
+        });
+    });
+
 // fetch('post')
 //     .then(response => {
 //         if (!response.ok) {
@@ -341,47 +344,5 @@
 //         if (section) section.style.display = 'none';
 //     }
 
-$(document).ready(function() {
-    var offset = 0; // Start with 0 offset (beginning of the list)
-    var isLoading = false; // Prevent multiple AJAX requests at the same time
 
-    // Function to load more content
-    function loadMoreContent() {
-        if (isLoading) return; // Prevent additional requests while loading
-        isLoading = true;
-
-        // Make an AJAX request to load more content
-        $.ajax({
-            url: 'post',
-            type: 'GET',
-            data: { offset: offset }, // Pass the current offset to the PHP script
-            success: function(response) {
-                // Append the new content to the container
-                $('#myDiv').append(response);
-
-                // If content was loaded, increase the offset for the next request
-                if (response != 'No more content.') {
-                    offset += 10; // Adjust this according to the number of items per load
-                }
-
-                isLoading = false; // Allow new requests
-            },
-            error: function() {
-                alert('Error loading more content.');
-                isLoading = false; // Allow new requests if error occurs
-            }
-        });
-    }
-
-    // Listen for scroll events to detect when the user reaches the bottom
-    $(window).scroll(function() {
-        if ($(window).scrollTop() + $(window).height() >= $(document).height() - 100) {
-            // Trigger load more when 100px from the bottom
-            loadMoreContent();
-        }
-    });
-
-    // Initial content load
-    loadMoreContent();
-});
 </script>

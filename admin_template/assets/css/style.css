@@ -232,7 +232,7 @@ Card-Layout css start
 
 
 #center{
-  margin-left: 30%; /* Equal to the width of the left-side div */
+  margin-left: 400px; /* Equal to the width of the left-side div */
   /*margin-right: 200px;  Equal to the width of the right-side div */
 }
 #req-list{
@@ -247,6 +247,25 @@ Card-Layout css start
   overflow-y: hidden; 
 }
 /* Base styles for desktop (as above) */
+.modal-header {
+    display: flex;
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    position: relative;
+}
+
+.modal-title {
+    flex: 1; /* Ensures the title spans the full width for centering */
+    text-align: center; /* Aligns the text horizontally in the header */
+    font-size: 1.25rem;
+}
+
+.close {
+    position: absolute;
+    right: 15px; /* Adjust as needed */
+    top: 50%;
+    transform: translateY(-50%);
+}
 
 /* Responsive styles for mobile devices */
 @media screen and (max-width: 480px) {
@@ -254,6 +273,21 @@ Card-Layout css start
     position: relative;
     width: 100%; /* Make sidebars full width */
     height: auto; /* Adjust height to fit content */
+  }
+  .modal-title{
+    margin-left: 100px !important;
+  }
+
+  #prof-left{
+    display: none;
+  }
+
+  #prof-center{
+    width: 100%;
+  }
+
+  .pcoded-navbar{
+    display: block !important;
   }
 
   #center {
@@ -9604,8 +9638,7 @@ table.footable-paging-center > tfoot > tr.footable-paging > td {
       margin-right: -12px; }
 
 .user-card-block .card-block {
-  /*padding: 30px; */
-}
+  padding: 30px; }
   .user-card-block .card-block .card-contain h5 {
     font-size: 18px;
     font-weight: 600;
@@ -16776,7 +16809,7 @@ body.dark-layout {
     padding-right: 10px; }
 
 .pcoded-inner-navbar {
-  height: 100%; }
+  height: 100vh; }
 
 .pcoded[theme-layout="vertical"] .pcoded-header {
   width: 100%;
@@ -16967,7 +17000,8 @@ body.dark-layout {
   display: none; }
 .pcoded[theme-layout="vertical"] .pcoded-navbar {
   z-index: 1027;
-  height: 100%; }
+  height: 100vh;
+  overflow: auto; }
 .pcoded[theme-layout="vertical"] .pcoded-content {
   position: relative;
   display: block; }
