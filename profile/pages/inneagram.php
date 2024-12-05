@@ -35,7 +35,7 @@
                         <div class="card-block" id="inne">
                          
                         </div>
-                        <div class="card-block" id="inne">
+                        <div class="card-block">
                             <div class="col-lg-12 col-xl-12">
                                 <!-- <h6 class="sub-title">Tab With Icon</h6> -->
                                 <!-- <div class="sub-title">Tab With Icon</div>                                         -->

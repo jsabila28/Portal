@@ -4,6 +4,7 @@ $routes = [
 	'' => 'main/pages/dashboard.php',
 	'/' => 'main/pages/dashboard.php',
 	'/dashboard' => 'main/pages/dashboard.php',
+	'/mood' => 'main/pages/mood.php',
 	'/add_memo' => 'main/pages/add_memo.php',
 	'/login' => 'main/pages/login.php',
 	'/signIn' => 'main/actions/signIn.php',
@@ -15,10 +16,12 @@ $routes = [
 	'/postnews' => 'main/actions/post_news.php',
 	'/comment' => 'main/actions/comment.php',
 
+
 	// DASHBOARD
 	'/holiday' => 'main/actions/holiday.php',
 	'/post' => 'main/actions/postfeed.php',
-	'/legal' => 'main/actions/gov_ann.php'
+	'/legal' => 'main/actions/gov_ann.php',
+	'/save_mood' => 'main/actions/save_mood.php'
 
 ];
 // Get the current request URI (remove the base URL if needed)

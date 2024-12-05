@@ -1,6 +1,12 @@
 <?php
 require_once($main_root."/actions/memo.php");
-// $user_id = '045-2022-013';
+// if (!isset($_SESSION['user_id'])) {
+//     echo json_encode(['error' => 'User not authenticated']);
+//     exit;
+// }
+
+// $user_id = $_SESSION['user_id'];
+
 $date = date("Y-m-d");
 $Year = date("Y");
 $Month = date("m");
@@ -16,48 +22,13 @@ $birthday = Portal::GetBirthday($Month,$Day);
 $moods = Portal::GetMood($date);
 $MyMood = Portal::GetMyMood($date,$user_id);
 ?>
+<?php if (!empty($MyMood)) { ?>
 <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
 <div class="page-wrapper">
     <div class="page-body">
         <div class="row">
             <div class="col-md-3" id="left-side">
-                <ul class="sidebar-menu">
-                  <li>
-                    <a href="/Portal/ATD/">
-                      <p>
-                        <img src="assets/img/atd.png" width="40" height="40" style="margin-right: 5px;">Authority to Deduct
-                      </p>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#dashboard">
-                      <p>
-                        <img src="assets/img/rps.png" width="40" height="40" style="margin-right: 5px;">Requisition and Purchasing
-                      </p>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#dashboard">
-                      <p>
-                        <img src="assets/img/ris.png" width="40" height="40" style="margin-right: 5px;">Requisition / Issue Slip
-                      </p>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#dashboard">
-                      <p>
-                        <img src="assets/img/jrs.png" width="40" height="40" style="margin-right: 5px;">Jewellery Requisition
-                      </p>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#dashboard">
-                      <p>
-                        <img src="assets/img/abs.png" width="40" height="40" style="margin-right: 5px;">Annual Budget
-                      </p>
-                    </a>
-                  </li>
-                </ul>
+                <?php if (!empty($hotside)) include_once($hotside); ?>
                 <?php require_once($main_root."/pages/events.php"); ?>
             </div>
             <div class="col-xm-3">
@@ -80,126 +51,9 @@ $MyMood = Portal::GetMyMood($date,$user_id);
                         <hr>
                         <!-- MEMO -->
                         <?php require_once($main_root."/pages/memo.php"); ?>
-                        <hr>
-                        <ul class="nav nav-tabs  tabs" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" data-toggle="tab" href="#home1" role="tab">Leave/Offset</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#profile1" role="tab">Resigning</a>
-                            </li>
-                        </ul>
-                        <!-- Tab panes -->
-                        <div class="tab-content tabs card-block">
-                            <div class="tab-pane active" id="home1" role="tabpanel">
-                                <div id="memo"> 
-                                    <div class="m-portlet__body">
-                                        <div class="tab-content">
-                                            <div class="tab-pane active" id="m_widget4_tab1_content">
-                                                <div class="m-widget4 m-widget4--progress">
-                                                    <?php
-                                                         if (!empty($ongoingleave)) {
-                                                              foreach ($ongoingleave as $ol) {
-                                                    ?>
-                                                    <div class="m-widget4__item"style="display:flex;justify-content: space-between;">
-                                                        <div class="m-widget4__img m-widget4__img--pic">
-                                                            <img style="width:30px; height:30px; border-radius:50%" src="assets/image/img/<?=$ol['la_empno'].'.jpg'?>" alt="">
-                                                        </div>
-                                                        <div class="m-widget4__info">
-                                                            <span class="m-widget4__title">
-                                                                <strong ><?=$ol['bi_empfname'].' '.$ol['bi_emplname']?></strong>
-                                                            </span>
-                                                            <br>
-                                                            <span class="m-widget4__sub">
-                                                                <strong class="text-muted"><?=$ol['Dept_Name']?></strong>
-                                                            </span>
-                                                        </div>
-                                                        <div class="m-widget4__progress">
-                                                            <div class="m-widget4__progress-wrapper">
-                                                                <span class="m-widget17__progress-number">
-                                                                   <strong>start: <?= date("M d, Y", strtotime($ol['la_start'])) ?></strong>
-                                                                </span><br>
-                                                                <span class="m-widget17__progress-label">
-                                                                   <strong>return: <?= date("M d, Y", strtotime($ol['la_return'])) ?></strong>
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="m-widget4__ext">
-                                                            <label class="label label-inverse-danger"><?=$ol['la_type']?></label>
-                                                        </div>
-                                                    </div>
-                                                    <?php }} ?>
-                                                    <?php
-                                                         if (!empty($leave)) {
-                                                              foreach ($leave as $lv) {
-                                                    ?>
-                                                    <div class="m-widget4__item"style="display:flex;justify-content: space-between;">
-                                                        <div class="m-widget4__img m-widget4__img--pic">
-                                                            <img style="width:30px; height:30px; border-radius:50%" src="assets/image/img/<?=$lv['la_empno'].'.jpg'?>" alt="">
-                                                        </div>
-                                                        <div class="m-widget4__info"style="width: 120px;">
-                                                            <span class="m-widget4__title">
-                                                                <strong ><?=$lv['bi_empfname'].' '.$lv['bi_emplname']?></strong>
-                                                            </span>
-                                                            <br>
-                                                            <span class="m-widget4__sub">
-                                                                <strong class="text-muted"><?=$lv['Dept_Name']?></strong>
-                                                            </span>
-                                                        </div>
-                                                        <div class="m-widget4__progress">
-                                                            <div class="m-widget4__progress-wrapper">
-                                                                <span class="m-widget17__progress-number">
-                                                                   <strong>start: <?= date("M d, Y", strtotime($lv['la_start'])) ?></strong>
-                                                                </span><br>
-                                                                <span class="m-widget17__progress-label">
-                                                                   <strong>return: <?= date("M d, Y", strtotime($lv['la_return'])) ?></strong>
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="m-widget4__ext" style="width: 50px;">
-                                                            <label class="label label-inverse-danger"><?=$lv['la_type']?></label>
-                                                        </div>
-                                                    </div>
-                                                    <?php }} ?>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane" id="profile1" role="tabpanel">
-                                <div id="memo"> 
-                                    <div class="comment-wrapper">
-                                        <div class="panel panel-info">
-                                            <div class="panel-body">
-                                                <ul class="media-list">
-                                                    <?php
-                                                        if (!empty($resigning)) {
-                                                            foreach ($resigning as $rs) {
-                                                    ?>
-                                                    <li class="media">
-                                                        <a href="#" class="pull-left">
-                                                            <img src="assets/image/img/<?=$rs['xintvw_empno'].'.jpg'?>" alt="" class="img-circle">
-                                                        </a>
-                                                        <div class="media-body">
-                                                            <span class="text-muted pull-right">
-                                                                <strong>Last day: <?= date("F j, Y", strtotime($rs['xintvw_lastday'])) ?></strong>
-                                                            </span>
-                                                            <strong ><?=$rs['bi_emplname'].', '.$rs['bi_empfname'] ?></strong>
-                                                            <p>
-                                                                <strong class="text-muted"><?=$rs['jd_title']?></strong>
-                                                            </p>
-                                                            <strong class="text-muted"><?=$rs['C_Name']?></strong>
-                                                        </div>
-                                                    </li>
-                                                    <?php }} ?>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
+                        <?php require_once($main_root."/pages/leave.php"); ?>
+                        
                         <hr>
                     </div>
                 </div>
@@ -211,194 +65,8 @@ $MyMood = Portal::GetMyMood($date,$user_id);
     <span class="close-btn">&times;</span>
     <img id="overlayImage" src="" alt="Full-screen image">
 </div>
+<?php }else{
+    require_once($main_root."/pages/mood.php");
+} ?>
 <script type="text/javascript" src="/Portal/assets/js/post.js"></script>
-<script>
-$(document).ready(function () {
-    // Event delegation for reaction triggers
-    $(document).on('click', '.reaction-trigger', function () {
-        $(this).siblings('.reaction-options').toggle();
-    });
-
-    // Event delegation for reactions
-    $(document).on('click', '.reaction', function () {
-        var reactionType = $(this).data('reaction');
-        var postBy = $(this).data('reacted_by');
-        var postId = $(this).closest('.reaction-container').find('.reaction-trigger').attr('id').split('-')[2];
-        var $reactionTrigger = $(this).closest('.reaction-container').find('.reaction-trigger');
-
-        $.ajax({
-            url: 'reaction',
-            method: 'POST',
-            data: { post_id: postId, reaction: reactionType, reacted_by: postBy },
-            success: function (response) {
-                $(this).closest('.reaction-container').find('.reaction-options').hide();
-                $reactionTrigger.hide();
-
-                var reactionImage;
-                switch (reactionType) {
-                    case 'like':
-                        reactionImage = '<img src="/Portal/assets/reactions/likes.WEBP" class="img-fluid rounded-circle" alt="Like">';
-                        break;
-                    case 'heart':
-                        reactionImage = '<img src="/Portal/assets/reactions/love.WEBP" class="img-fluid rounded-circle" alt="Heart">';
-                        break;
-                    case 'love':
-                        reactionImage = '<img src="https://i.pinimg.com/564x/1e/b9/ab/1eb9abce88c9859c08e70330ef8495dc.jpg" class="img-fluid rounded-circle" alt="Love">';
-                        break;
-                    case 'cry':
-                        reactionImage = '<img src="/Portal/assets/reactions/cry.WEBP" class="img-fluid rounded-circle" alt="Cry">';
-                        break;
-                    case 'haha':
-                        reactionImage = '<img src="/Portal/assets/reactions/lough.WEBP" class="img-fluid rounded-circle" alt="Haha">';
-                        break;
-                    case 'wow':
-                        reactionImage = '<img src="/Portal/assets/reactions/shock.WEBP" class="img-fluid rounded-circle" alt="Money">';
-                        break;
-                    case 'angry':
-                        reactionImage = '<img src="/Portal/assets/reactions/sadness.WEBP" class="img-fluid rounded-circle" alt="Angry">';
-                        break;
-                    case 'eey':
-                        reactionImage = '<img src="https://i.pinimg.com/564x/cc/12/e0/cc12e02e7eed4491de74e05ea8a019a5.jpg" class="img-fluid rounded-circle" alt="Eey">';
-                        break;
-                    default:
-                        reactionImage = '';
-                }
-
-                $reactionTrigger.html(reactionImage).show();
-            }.bind(this),
-            error: function (xhr, status, error) {
-                console.error(error);
-            }
-        });
-    });
-
-    // Handle new post creation
-    $('.post-btn').click(function (e) {
-        e.preventDefault();
-
-        var postedBy = $('input[name="posted-by"]').val();
-        var postDesc = $('#post-desc').val();
-        var audience = $('input[name="audience"]:checked').val();
-        var postContent = new FormData();
-
-        postContent.append('postedBy', postedBy);
-        postContent.append('postDesc', postDesc);
-        postContent.append('audience', audience);
-
-        var fileInput = $('#file-input')[0].files[0];
-        if (fileInput) {
-            postContent.append('file', fileInput);
-        }
-
-        $.ajax({
-            url: 'postnews',
-            type: 'POST',
-            data: postContent,
-            processData: false,
-            contentType: false,
-            success: function (response) {
-                alert(response);
-                $('#default-Modal').modal('hide');
-                resetModalForm();
-            },
-            error: function (xhr, status, error) {
-                console.error(error);
-            }
-        });
-    });
-
-    function resetModalForm() {
-        $('#post-desc').val('');
-        $('input[name="audience"]').prop('checked', false);
-        $('#file-input').val('');
-        $('#image-video').css('background-image', 'url(assets/img/upload.png)');
-        $('.post-btn').prop('disabled', true);
-        $('#add-photo-video').addClass('hide-image');
-    }
-
-    $('#post-desc').on('input', function () {
-        if ($(this).val().trim() !== '') {
-            $('.post-btn').prop('disabled', false);
-        } else {
-            $('.post-btn').prop('disabled', true);
-        }
-    });
-});
-
-// Save comment function
-function saveComment(postId) {
-    const commentInput = document.getElementById(`Mycomment-${postId}`);
-    const comIdInput = document.querySelector(`input[name="com-id"][value="${postId}"]`);
-
-    if (!commentInput || !comIdInput) {
-        alert('Unable to find input fields for this post.');
-        return;
-    }
-
-    const comment = commentInput.value.trim();
-    const comId = comIdInput.value;
-
-    if (comment === '') {
-        alert('Comment cannot be empty!');
-        return;
-    }
-
-    fetch('save_comment', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: `com_id=${encodeURIComponent(comId)}&Mycomment=${encodeURIComponent(comment)}`
-    })
-        .then(response => response.json())
-        .then(data => {
-            if (data.status === 'success') {
-                commentInput.value = '';
-                reloadComments(postId);
-            } else {
-                alert(data.message || 'An error occurred while saving the comment.');
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('An error occurred. Please try again.');
-        });
-}
-
-// Reload comments
-function reloadComments(postId) {
-    $.ajax({
-        url: 'comment',
-        type: 'POST',
-        data: { post_id: postId },
-        dataType: 'json',
-        success: function (response) {
-            if (response.success) {
-                const comment = response.comment;
-                const newCommentHTML = `
-                    <div class="cardbox-base-comment">
-                        <div class="media m-1">
-                            <div class="d-flex mr-1" style="margin-left: 20px;">
-                                <a href=""><img class="img-fluid rounded-circle" src="https://teamtngc.com/hris2/pages/empimg/${comment.bi_empno}.JPG" alt="User"></a>
-                            </div>
-                            <div class="media-body">
-                                <p class="m-0">${comment.bi_empfname} ${comment.bi_emplname}</p>
-                                <small><span><i class="icon ion-md-pin"></i> ${comment.com_content}</span></small>
-                                <div class="comment-reply">
-                                    <small><a href="#">12m</a></small>
-                                    <small><a style="cursor: pointer;">Reply</a></small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                $(`#prof-${postId} #comment-section`).append(newCommentHTML);
-            } else {
-                console.error(response.message);
-            }
-        },
-        error: function (xhr, status, error) {
-            console.error('Error fetching the new comment:', error);
-        }
-    });
-}
-
-</script>
+<script type="text/javascript" src="/Portal/assets/js/portal.js"></script>

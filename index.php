@@ -12,6 +12,7 @@ $sr_root = $portal_root."/profile";
 
 // sidenav
  $sidenav = $main_root."/layout/sidenav.php";
+ $hotside = $main_root."/layout/hotside.php";
 
 // layout + route
 include_once($main_root."/routes/route.php");

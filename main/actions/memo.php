@@ -187,6 +187,7 @@ class Portal
                     AND DAY(pi_dbirth) = ?
                     AND ji_remarks = 'Active'
                     AND jrec_status = 'Primary'
+                    GROUP BY bi_empno
                     ");
             $stmt->execute([$birthM,$birthD]);
 
