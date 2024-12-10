@@ -274,7 +274,7 @@
 </div>
 <div id="myDiv"></div>
  <!-- <div>Loading more posts...</div> -->
- <div id="loading" class="timeline-wrapper" style="display:none;">
+<div id="loading" class="timeline-wrapper" style="display:none;">
     <div class="timeline-item">
         <div class="animated-background facebook">
             <div class="background-masker header-top"></div>

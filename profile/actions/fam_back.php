@@ -259,7 +259,7 @@ try {
                                       <i class="icofont icofont-iphone"></i>
                                   </div>
                                   <div class="content">
-                                    <p>' . htmlspecialchars($md['contactM']) . '</p><br> 
+                                    <p>' . htmlspecialchars($md['contactM'] ?: 'None') . '</p><br> 
                                     <span>Contact Number</span>
                                   </div>
                                 </div>';
@@ -268,7 +268,7 @@ try {
                                     <i class="icofont icofont-labour"></i>
                                   </div>
                                   <div class="content">
-                                    <p>' . htmlspecialchars($md['occupationM']) . '</p><br> 
+                                    <p>' . htmlspecialchars($md['occupationM'] ?: 'None') . '</p><br> 
                                     <span>Occupation</span>
                                   </div>
                                 </div>';
@@ -304,7 +304,7 @@ try {
                                           <i class="icofont icofont-business-man-alt-1"></i>
                                       </div>
                                       <div class="content">
-                                        <p>' . htmlspecialchars($md['Father']) . '</p><br> 
+                                        <p>' . htmlspecialchars($md['Father'] ?: 'None') . '</p><br> 
                                         <span>Father Full Name</span>
                                       </div>
                                     </div>';
@@ -313,7 +313,7 @@ try {
                                       <i class="icofont icofont-iphone"></i>
                                   </div>
                                   <div class="content">
-                                    <p>' . htmlspecialchars($md['contactF']) . '</p><br> 
+                                    <p>' . htmlspecialchars($md['contactF'] ?: 'None') . '</p><br> 
                                     <span>Contact Number</span>
                                   </div>
                                 </div>';
@@ -322,7 +322,7 @@ try {
                                     <i class="icofont icofont-labour"></i>
                                   </div>
                                   <div class="content">
-                                    <p>' . htmlspecialchars($md['occupationF']) . '</p><br> 
+                                    <p>' . htmlspecialchars($md['occupationF'] ?: 'None') . '</p><br> 
                                     <span>Occupation</span>
                                   </div>
                                 </div>';
@@ -370,7 +370,7 @@ try {
 
                     if (!empty($siblings)) {
                         foreach ($siblings as $sibling) {
-                            echo '<div class="contact" style="margin-top: 20px;">';
+                            echo '<div class="contact" style="margin-top: 5px;">';
                             
                             echo '<div class="numbers">';
                             if ($sibling['fam_sex'] == 'Male') {
@@ -383,7 +383,7 @@ try {
                                    </div>';
                             }
                             echo '<div class="content">
-                                      <p>' . htmlspecialchars($sibling['full_name']) . '</p><br> 
+                                      <p>' . htmlspecialchars($sibling['full_name'] ?: 'None') . '</p><br> 
                                       <span>Sibling Full Name</span>
                                     </div>
                                   </div>';
@@ -392,7 +392,7 @@ try {
                                       <i class="icofont icofont-iphone"></i>
                                     </div>
                                     <div class="content">
-                                      <p>' . htmlspecialchars($sibling['fam_contact'] ?? 'NA') . '</p><br> 
+                                      <p>' . htmlspecialchars($sibling['fam_contact'] ?? 'None') . '</p><br> 
                                       <span>Contact Number</span>
                                     </div>
                                   </div>';
@@ -402,13 +402,13 @@ try {
                                       <i class="icofont icofont-labour"></i>
                                     </div>
                                     <div class="content">
-                                      <p>' . htmlspecialchars($sibling['fam_occupation'] ?? 'NA') . '</p><br> 
+                                      <p>' . htmlspecialchars($sibling['fam_occupation'] ?? 'None') . '</p><br> 
                                       <span>Occupation</span>
                                     </div>
                                   </div>';
                             
                             // Calculate age if birthdate is available
-                            $age = !empty($sibling['fam_birthdate']) ? (date('Y') - date('Y', strtotime($sibling['fam_birthdate']))) : 'NA';
+                            $age = !empty($sibling['fam_birthdate']) ? (date('Y') - date('Y', strtotime($sibling['fam_birthdate']))) : 'None';
                             
                             echo '<div class="numbers">
                                     <div class="icon">
@@ -422,215 +422,104 @@ try {
                             
                             echo '</div>'; // End of sibling contact
                         }
-                    } else {
-                      echo '<div class="contact" style="margin-top: 20px;">'; 
-                      echo '<div class="numbers">
-                              <div class="icon">
-                                <i class="icofont icofont-user-alt-1"></i>
-                              </div>
-                              <div class="content">
-                                <p>NA</p><br> 
-                                <span>Sibling Full Name</span>
-                              </div>
-                            </div>';
-                      echo '<div class="numbers">
-                              <div class="icon">
-                                <i class="icofont icofont-iphone"></i>
-                              </div>
-                              <div class="content">
-                                <p>NA</p><br> 
-                                <span>Contact Number</span>
-                              </div>
-                            </div>';
-                      
-                      echo '<div class="numbers">
-                              <div class="icon">
-                                <i class="zmdi zmdi-male-female"></i>
-                              </div>
-                              <div class="content">
-                                <p>NA</p><br> 
-                                <span>Sex</span>
-                              </div>
-                            </div>';
-                      
-                      
-                      echo '<div class="numbers">
-                              <div class="icon">
-                                <i class="fa fa-birthday-cake" aria-hidden="true"></i>
-                              </div>
-                              <div class="content">
-                                <p>NA</p><br> 
-                                <span>Age</span>
-                              </div>
-                            </div>';
-                      
-                      echo '</div>'; // End of sibling contact
-                  }
+                    } 
                   // SIBLINGS END
 
                   echo '</div>';  // prof-card end
                       
                   //FAMILY INFO END
 
+        } 
                   //MODAL EDIT FAMILY BACKGROUND START
-                  echo '<div class="modal fade" id="Family-' . htmlspecialchars($user_id) . '" tabindex="-1" role="dialog">
-                  <div class="modal-dialog modal-lg" role="document">
-                      <div class="modal-content">
-                          <div class="modal-header">
-                              <h4 class="modal-title">Family Information</h4>
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                  <span aria-hidden="true"><i style="font-size: 30px;" class="fa fa-times-circle"></i></span>
-                              </button>
-                          </div>
-                          <div class="modal-body" style="padding: 5px !important;">
-                              
-                              <!-- Alert Message -->
-                              <div id="family-message" class="alert" style="display:none;"></div>
-                              
-                              <p>Please provide accurate and complete information...</p>
+                  echo '<div class="modal fade" id="Family" tabindex="-1" role="dialog">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Family Information</h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true"><i style="font-size: 30px;" class="fa fa-times-circle"></i></span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body" style="padding: 5px !important;">
+                                        
+                                        
+                                        <p>Please provide accurate and complete information...</p>
+                        
+                                        <div id="personal-form">
+                                            <div id="pers-name">
+                                                <label for="Famlastname">Last Name<span class="required">*</span> 
+                                                    <input class="form-control" type="text" id="Famlastname" />
+                                                </label>
+                                                <label for="Fammidname">Middle Name 
+                                                    <input class="form-control" type="text" id="Fammidname" />
+                                                </label>
+                                                <label for="Famfirstname">First Name<span class="required">*</span> 
+                                                    <input class="form-control" type="text" id="Famfirstname" />
+                                                </label>
+                                                <label for="Famsuffixname">Suffix 
+                                                    <input class="form-control" type="text" id="Famsuffixname" />
+                                                </label>
+                                            </div>
+                                            
+                                            <div id="pers-name">
+                                                <label for="Fammaidenname">Maiden Name 
+                                                    <input class="form-control" type="text" id="Fammaidenname" />
+                                                </label>
+                                                <label for="relationship">Relationship<span class="required">*</span> 
+                                                    <select id="relationship">
+                                                        <option>Select Relation</option>
+                                                        <option>Spouse</option>
+                                                        <option>Mother</option>
+                                                        <option>Father</option>
+                                                        <option>Son</option>
+                                                        <option>Daughter</option>
+                                                        <option>Sister</option>
+                                                        <option>Brother</option>
+                                                        <option>Live-in Partner</option>
+                                                    </select>
+                                                </label>
+                                                <label for="Famperson_num">Contact Number<span class="required">*</span> 
+                                                    <input class="form-control" type="text" id="Famperson_num" />
+                                                </label>
+                                                <label for="Fambirthdate">Birthdate 
+                                                    <input class="form-control" type="date" id="Fambirthdate" />
+                                                </label>
+                                            </div>
+                                            
+                                            <div id="pers-name">
+                                                <label for="Famoccupation">Occupation 
+                                                    <input class="form-control" type="text" id="Famoccupation" />
+                                                </label>
+                                                <label for="Famworkplace">Work Place 
+                                                    <input class="form-control" type="text" id="Famworkplace" />
+                                                </label>
+                                                <label for="Famworkadd">Work Address 
+                                                    <input class="form-control" type="text" id="Famworkadd" />
+                                                </label>
+                                                <label>Sex<span class="required">*</span>
+                                                    <div id="sex">
+                                                        <input id="FamgenderMale" type="radio" name="Famsex" value="Male" /> 
+                                                        <label for="FamgenderMale">Male</label>
+                                                    </div>
+                                                    <div id="sex">
+                                                        <input id="FamgenderFemale" type="radio" name="Famsex" value="Female" /> 
+                                                        <label for="FamgenderFemale">Female</label>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                              <div id="personal-form">
-                                  <div id="pers-name">
-                                      <label>Last Name<span id="required">*</span> 
-                                          <input class="form-control" type="text" id="Famlastname" value=""/>
-                                      </label>
-                                      <label>Middle Name 
-                                          <input class="form-control" type="text" id="Fammidname" value=""/>
-                                      </label>
-                                      <label>First Name<span id="required">*</span> 
-                                          <input class="form-control" type="text" id="Famfirstname" value=""/>
-                                      </label>
-                                      <label>Suffix 
-                                          <input class="form-control" type="text" id="Famsuffixname" value=""/>
-                                      </label>
-                                  </div>
-                                  
-                                  <div id="pers-name">
-                                      <label>Maiden Name 
-                                          <input class="form-control" type="text" id="Fammaidenname" value=""/>
-                                      </label>
-                                      <label>Relationship<span id="required">*</span> 
-                                          <select id="relationship">
-                                              <option>Select Relation</option>
-                                              <option>Spouse</option>
-                                              <option>Mother</option>
-                                              <option>Father</option>
-                                              <option>Son</option>
-                                              <option>Daughter</option>
-                                              <option>Sister</option>
-                                              <option>Brother</option>
-                                              <option>Live-in Partner</option>
-                                          </select>
-                                      </label>
-                                      <label>Contact Number<span id="required">*</span> 
-                                          <input class="form-control" type="text" id="Famperson_num" value=""/>
-                                      </label>
-                                      <label>Birthdate 
-                                          <input class="form-control" type="date" id="Fambirthdate" value=""/>
-                                      </label>
-                                  </div>
-                                  
-                                  <div id="pers-name">
-                                      <label>Occupation 
-                                          <input class="form-control" type="text" id="Famoccupation" value=""/>
-                                      </label>
-                                      <label>Work Place 
-                                          <input class="form-control" type="text" id="Famworkplace" value=""/>
-                                      </label>
-                                      <label>Work Address 
-                                          <input class="form-control" type="text" id="Famworkadd" value=""/>
-                                      </label>
-                                      <label>Sex<span id="required">*</span>
-                                          <div id="sex"><input id="Famgender" type="radio" name="Famsex" value="Male" /> <p>Male</p> </div>
-                                          <div id="sex"><input id="Famgender" type="radio" name="Famsex" value="Female" /> <p>Female</p></div>
-                                      </label>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="modal-footer" id="footer">
-                              <button type="button" class="btn btn-default btn-mini waves-effect" data-dismiss="modal">Close</button>
-                              <button type="button" id="save-family" class="btn btn-primary btn-mini waves-effect waves-light">Save changes</button>
-                          </div>
-                      </div>
-                  </div>
-                </div>';
-                //MODAL EDIT FAMILY BACKGROUND END
-        } else {
-                //MODAL EDIT FAMILY BACKGROUND START
-                echo '<div class="modal fade" id="Family-' . htmlspecialchars($user_id) . '" tabindex="-1" role="dialog">
-                <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title">Family Information</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true"><i style="font-size: 30px;" class="fa fa-times-circle"></i></span>
-                            </button>
-                        </div>
-                        <div class="modal-body" style="padding: 5px !important;">
-                            
-                            <!-- Alert Message -->
-                            <div id="family-message" class="alert" style="display:none;"></div>
-                            
-                            <p>Please provide accurate and complete information...</p>
-
-                            <div id="personal-form">
-                                <div id="pers-name">
-                                    <label>Last Name<span id="required">*</span> 
-                                        <input class="form-control" type="text" id="Famlastname" value=""/>
-                                    </label>
-                                    <label>Middle Name 
-                                        <input class="form-control" type="text" id="Fammidname" value=""/>
-                                    </label>
-                                    <label>First Name<span id="required">*</span> 
-                                        <input class="form-control" type="text" id="Famfirstname" value=""/>
-                                    </label>
-                                    <label>Maiden Name 
-                                        <input class="form-control" type="text" id="Fammaidenname" value=""/>
-                                    </label>
-                                </div>
-                                
-                                <div id="pers-name">
-                                    <label>Relationship<span id="required">*</span> 
-                                        <select id="relationship">
-                                            <option>Select Relation</option>
-                                            <option>Spouse</option>
-                                            <option>Mother</option>
-                                            <option>Father</option>
-                                            <option>Son</option>
-                                            <option>Daughter</option>
-                                            <option>Sister</option>
-                                            <option>Brother</option>
-                                            <option>Live-in Partner</option>
-                                        </select>
-                                    </label>
-                                    <label>Contact Number<span id="required">*</span> 
-                                        <input class="form-control" type="text" id="Famperson_num" value=""/>
-                                    </label>
-                                    <label>Birthdate 
-                                        <input class="form-control" type="date" id="Fambirthdate" value=""/>
-                                    </label>
-                                    <label>Occupation 
-                                        <input class="form-control" type="text" id="Famoccupation" value=""/>
-                                    </label>
-                                </div>
-                                
-                                <div id="pers-name">
-                                    <label>Sex<span id="required">*</span>
-                                        <div id="sex"><input id="Famgender" type="radio" name="Famsex" value="Male" /> <p>Male</p> </div>
-                                        <div id="sex"><input id="Famgender" type="radio" name="Famsex" value="Female" /> <p>Female</p></div>
-                                    </label>
+                                    <!-- Alert Message -->
+                                    <div id="family-message" class="alert" style="display:none;"></div>
+                                    <div class="modal-footer" id="footer">
+                                        <button type="button" class="btn btn-default btn-mini waves-effect" data-dismiss="modal">Close</button>
+                                        <button type="button" id="save-family" class="btn btn-primary btn-mini waves-effect waves-light">Save changes</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="modal-footer" id="footer">
-                            <button type="button" class="btn btn-default btn-mini waves-effect" data-dismiss="modal">Close</button>
-                            <button type="button" id="save-family" class="btn btn-primary btn-mini waves-effect waves-light">Save changes</button>
-                        </div>
-                    </div>
-                </div>
-            </div>';
-            //MODAL EDIT FAMILY BACKGROUND END
-    }
+                        </div>';
+                //MODAL EDIT FAMILY BACKGROUND END
 
 } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();

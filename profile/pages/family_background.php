@@ -27,7 +27,7 @@
                           </div>
                         </div>
                         <div class="edit-profile">
-                          <button class="btn btn-default btn-mini" data-toggle="modal" data-target="#Family-<?=$empno?>"><i class="icofont icofont-pencil-alt-2"></i> Edit Family Profile</button>
+                          <button class="btn btn-default btn-mini" data-toggle="modal" data-target="#Family"><i class="icofont icofont-pencil-alt-2"></i> Edit Family Profile</button>
                         </div>  
                       </div>
                     </div>

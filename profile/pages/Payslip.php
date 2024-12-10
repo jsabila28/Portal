@@ -34,11 +34,104 @@
         </div>
     </div>
 </div>
-<div id="overlay" class="overlay">
-    <div class="overlay-content" id="div-payslip-info">
-        
-        
+<div id="div-payslip-info" style="display:none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1000;">
+    <div style="position: relative; margin: auto; top: 10%; width: 80%; background: #fff; padding: 20px; border-radius: 8px;">
+        <!-- <button onclick="$('#div-payslip-info').hide();" style="position: absolute; top: 10px; right: 10px;">Close</button> -->
+        <span class="pull-right">
+            <button class="btn btn-default btn-sm" onclick="print_ps()"><i class="fa fa-print"></i></button>
+            <button class="btn btn-default btn-sm" onclick="close_ps()"><i class="fa fa-times"></i></button>
+        </span>
+        <div class="print-this">
+            <style type="text/css">
+                @media screen, print {
+
+                    /* body {
+                        margin-left: 50px;
+                        margin-right: 50px;
+                    } */
+
+                    #disp_ps table {
+                        border-collapse: collapse;
+                        print-color-adjust: exact;
+                        -webkit-print-color-adjust: exact;
+                    }
+
+                    #disp_ps td {
+                        color: black;
+                        margin: 0px;
+                        font-family: "Calibri";
+                        font-size: 11px;
+                    }
+
+                    #disp_ps #tbl-payslip td {
+                        border: #aaabad solid .1px;
+                        print-color-adjust: exact;
+                        -webkit-print-color-adjust: exact;
+                    }
+
+                    #disp_ps .btm-black {
+                        border-bottom: 1px solid black !important;
+                    }
+
+                    #disp_ps .text-right {
+                        text-align: right;
+                    }
+
+                    #disp_ps .text-center {
+                        text-align: center;
+                    }
+
+                    #disp_ps .text-white {
+                        color: white;
+                    }
+
+                    #disp_ps .tblheader {
+                        background-color: black;
+                        color: white;
+                        /*border: black solid .1px;*/
+                        font-weight: bold;
+                        padding: 3px;
+                    }
+
+                    #disp_ps .tblheader1 {
+                        background-color: yellow;
+                        /*border: black solid .1px;*/
+                        font-weight: bold;
+                        padding: 3px;
+                    }
+
+                    #disp_ps .tblblank {
+                        border: none;
+                        height: 20px;
+                    }
+
+                    #disp_ps .tblrow {
+                        background-color: lightyellow;
+                        text-align: right;
+                        /*border: black solid .1px;*/
+                        padding: 3px;
+                    }
+
+                    #disp_ps .tblnum {
+                        background-color: lightyellow;
+                        text-align: right;
+                        vertical-align: bottom;
+                        /*border: black solid .1px;*/
+                        padding: 3px;
+                    }
+
+                    #disp_ps .fontbold {
+                        font-weight: bold;
+                    }
+
+                    /* #disp_ps .tr1 {
+                        border: black solid 3px;
+                    } */
+
+                }
+            </style>
+            <div id="disp_ps">Loading...</div>
+        </div>
     </div>
 </div>
-<iframe src="" id="printpdf" width="100%" hidden></iframe>
 <script type="text/javascript" src="../assets/js/payslip.js"></script>

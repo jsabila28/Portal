@@ -10,7 +10,7 @@
 		if($test_score!=""){ ?>
 			<!-- <div class="container-fluid"> -->
 				<div class="col-lg-12 col-xl-12"> 
-					<div class="card-block" style="height: 380px; overflow:auto;">
+					<div class="card-block">
 					<div id="pers-res4" >
 						<div class="panel-body">
 							<div class="container-fluid" id="miqcard-container">
@@ -24,8 +24,12 @@
 							</div>
 	                    </div>
 					</div>
+				<br>
+					<img src="https://www.simplypsychology.org/wp-content/uploads/multiple-intelligences.jpg" style="width: 100%;">
 					</div>
 				</div>
+				<br><br>
+
 			<!-- </div> -->
 <?php	}
 ?>

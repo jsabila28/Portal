@@ -243,7 +243,7 @@
                                 <span>DTR Services</span>
                             </div>
                             <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
-                                <a class="media-left" href="#!" style="text-align: center;">
+                                <a class="media-left" href="/Portal/dtr" style="text-align: center;">
                                 	<div>
                                 		<img src="/Portal/ATD/assets/img/2.png" width="40" height="40"><br>DTR
                                 	</div>

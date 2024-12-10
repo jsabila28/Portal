@@ -65,14 +65,14 @@
                   <li>
                     <a href="payslip">
                       <p>
-                        <i class="zmdi zmdi-accounts-list-alt"></i> Payslip
+                        <i class="zmdi zmdi-receipt"></i> Payslip
                       </p>
                     </a>
                   </li>
                   <li>
                     <a href="contract">
                       <p>
-                        <i class="zmdi zmdi-accounts-list-alt"></i> Contracts
+                        <i class="zmdi zmdi-assignment"></i> Contracts
                       </p>
                     </a>
                   </li>
@@ -80,6 +80,43 @@
                     <a href="characterRef">
                       <p>
                         <i class="zmdi zmdi-accounts-list-alt"></i> Character Reference
+                      </p>
+                    </a>
+                  </li>
+                  <hr>
+                  <div id="header"><label>Compliance</label></div>
+                  <li>
+                    <a href="characterRef">
+                      <p>
+                        <i class="ti-write"></i> Phone Agreement
+                      </p>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="characterRef">
+                      <p>
+                        <i class="ti-write"></i> Clearance
+                      </p>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="characterRef">
+                      <p>
+                        <i class="ti-write"></i> IR
+                      </p>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="characterRef">
+                      <p>
+                        <i class="ti-write"></i> 13A
+                      </p>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="characterRef">
+                      <p>
+                        <i class="ti-write"></i> 13B
                       </p>
                     </a>
                   </li>

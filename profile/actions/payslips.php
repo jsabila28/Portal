@@ -37,14 +37,15 @@ try {
         echo '<div class="card-block" id="prof-card">'; // prof-card start
         echo '<div id="specialSkills" class="contact" style="margin-bottom:10px;">';
         foreach ($payslip as $ps) {
-            echo '<div class="skill" onclick="openOverlay(' . htmlspecialchars(json_encode($ps)) . ')">';
-            echo '<div class="image-skill" style="background-image: url(\'\');"></div>';
+            echo '<div class="skill" onclick="get_payslip(' . htmlspecialchars($ps['psl_from']) . ', ' . htmlspecialchars($ps['psl_to']) . ', ' . htmlspecialchars($ps['ps_empno']) . ')">';
+
+            // echo '<div class="image-skill" style="background-image: url(\'\');"></div>';
             echo '<div class="desc-skill">';
-            echo '
-                <div class="skill-title">
-                    <p id="title">Payslip</p>
-                </div>
-            ';
+            // echo '
+            //     <div class="skill-title">
+            //         <p id="title">Payslip</p>
+            //     </div>
+            // ';
             echo '<div class="skill-types">';
             echo '<p id="type"><i class="icofont icofont-calendar"></i> ';
             echo isset($ps['psl_paydate']) && !empty($ps['psl_paydate']) ? htmlspecialchars((new DateTime($ps['psl_paydate']))->format('F j, Y')) : 'Invalid date';

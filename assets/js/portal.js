@@ -168,7 +168,7 @@ function reloadComments(postId) {
                                 <p class="m-0">${comment.bi_empfname} ${comment.bi_emplname}</p>
                                 <small><span><i class="icon ion-md-pin"></i> ${comment.com_content}</span></small>
                                 <div class="comment-reply">
-                                    <small><a href="#">12m</a></small>
+                                    <small><a href="#">just now</a></small>
                                     <small><a style="cursor: pointer;">Reply</a></small>
                                 </div>
                             </div>

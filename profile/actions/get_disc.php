@@ -5,67 +5,66 @@
        </span>
      </div>
      <div class="basic-info">
-      <?php
-         require_once($sr_root . "/db/db.php");
-         
-         if (!isset($_SESSION['user_id'])) {
-             echo json_encode(['error' => 'User not authenticated']);
-             exit;
-         }
-         $user_id = $_SESSION['user_id'];
-         
-         try {
-             $port_db = Database::getConnection('port');
-             $hr_db = Database::getConnection('hr');
-      
-                $test_score=[];
-                $test_score1=[];
-                $sql_ptest="SELECT * FROM tbl201_disc WHERE disc_empno='$user_id' ORDER BY disc_id DESC limit 1";
+       <?php
+            require_once($sr_root . "/db/db.php");
+            
+            if (!isset($_SESSION['user_id'])) {
+                echo json_encode(['error' => 'User not authenticated']);
+                exit;
+            }
+            
+            $user_id = $_SESSION['user_id'];
+            
+            try {
+                $port_db = Database::getConnection('port');
+                $hr_db = Database::getConnection('hr');
+            
+                $test_score = [];
+                $test_score1 = [];
+                $sql_ptest = "SELECT * FROM tbl201_disc WHERE disc_empno='$user_id' ORDER BY disc_id DESC LIMIT 1";
                 foreach ($hr_db->query($sql_ptest) as $tval) {
-                    $test_score=[];
-                    $test_score1=[];
-                    $disc_cat_d=0;
-                    $disc_cat_i=0;
-                    $disc_cat_s=0;
-                    $disc_cat_c=0;
+                    $test_score = [];
+                    $test_score1 = [];
+                    $disc_cat_d = 0;
+                    $disc_cat_i = 0;
+                    $disc_cat_s = 0;
+                    $disc_cat_c = 0;
+            
                     foreach (explode(",", $tval['disc_ans']) as $discval) {
-                        $discval_r=explode("-", $discval);
-                        $disc_cat=explode("_", $discval_r[0]);
-                        if($disc_cat[1]==1){
-                            $disc_cat_d+=$discval_r[1];
-                        }else if($disc_cat[1]==2){
-                            $disc_cat_i+=$discval_r[1];
-                        }else if($disc_cat[1]==3){
-                            $disc_cat_s+=$discval_r[1];
-                        }else if($disc_cat[1]==4){
-                            $disc_cat_c+=$discval_r[1];
+                        $discval_r = explode("-", $discval);
+                        $disc_cat = explode("_", $discval_r[0]);
+                        if ($disc_cat[1] == 1) {
+                            $disc_cat_d += $discval_r[1];
+                        } else if ($disc_cat[1] == 2) {
+                            $disc_cat_i += $discval_r[1];
+                        } else if ($disc_cat[1] == 3) {
+                            $disc_cat_s += $discval_r[1];
+                        } else if ($disc_cat[1] == 4) {
+                            $disc_cat_c += $discval_r[1];
                         }
                     }
-
-                    // $test_score1["d"]=$tval['_d'];
-                    // $test_score1["i"]=$tval['_i'];
-                    // $test_score1["s"]=$tval['_s'];
-                    // $test_score1["c"]=$tval['_c'];
-
-                    $test_score1["d"]=$disc_cat_d;
-                    $test_score1["i"]=$disc_cat_i;
-                    $test_score1["s"]=$disc_cat_s;
-                    $test_score1["c"]=$disc_cat_c;
-
+            
+                    $test_score1["d"] = $disc_cat_d;
+                    $test_score1["i"] = $disc_cat_i;
+                    $test_score1["s"] = $disc_cat_s;
+                    $test_score1["c"] = $disc_cat_c;
+            
                     arsort($test_score1);
-                    $tmparr=array_keys($test_score1);
-                    $test_score[]=$tmparr[0];
-                    $test_score[]=$tmparr[1];
-                    if($tmparr[1]==$tmparr[2]){
-                        $test_score[]=$tmparr[2];
+                    $tmparr = array_keys($test_score1);
+                    $test_score[] = $tmparr[0];
+                    $test_score[] = $tmparr[1];
+                    if ($tmparr[1] == $tmparr[2]) {
+                        $test_score[] = $tmparr[2];
                     }
                 }
+            
                 require_once($sr_root."/pages/disc-result.php");
-      
-         } catch (PDOException $e) {
-             echo "Error: " . $e->getMessage();
-         }
-       ?>
+            
+            } catch (PDOException $e) {
+                echo "Error: " . $e->getMessage();
+            }
+        ?>
+
      </div>
  </div>
  <div class="modal fade" id="DISC" tabindex="-1" role="dialog">

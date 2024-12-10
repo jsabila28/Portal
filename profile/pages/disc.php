@@ -31,13 +31,21 @@
                         </div> 
                       </div>
                     </div>
-                    <div class="card-block" id="prof-card">
+                    <!-- <div class="card-block" id="prof-card">
                         <div id="personal-info">
                             <div id="disc">
                         
                             </div>
                         </div>
+                    </div> -->
+                </div>
+                <div class="card" style="height: 500px !important; overflow: auto !important;margin-bottom: 200px !important;">
+                    <div class="card-block" id="disc">
+                         
                     </div>
+                    <div class="card-block">
+                        
+                     </div>
                 </div>
             </div>
         </div>

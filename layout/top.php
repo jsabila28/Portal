@@ -217,11 +217,19 @@
                         						      </label>
                         						  </div>
                         						  <div id="pers-name">
+                        						      <label style="width:50% !important;">Start Date<span id="required">*</span>  
+                        						          <input class="form-control" type="date" name="startdate" id="sdateInput" value=""/>
+                        						      </label>
+                        						      <label style="width:45% !important;">End Date<span id="required">*</span> 
+                        						          <input class="form-control" type="date" name="enddate" id="edateInput" value=""/>
+                        						      </label>
+                        						  </div>
+                        						  <div id="pers-name">
                         						      <label style="width:50% !important;">Event Img<span id="required">*</span> 
                         						          <input class="form-control" type="file" name="eventimg" id="eventimgInput" value=""/>
                         						      </label>
                         						      <label style="width:45% !important;">
-													      Sample Img<span id="required">*</span> 
+													      Sample Img
 													      <input style="pointer-events: auto; cursor: pointer;" 
 													             type="text" 
 													             value="Click to view image" 
@@ -229,14 +237,6 @@
 													             class="clickable-input" 
 													             onclick="openImage()">
 													  </label>
-													  
-													  <script>
-													      function openImage() {
-													          console.log('Input clicked');
-													          window.open('https://i.pinimg.com/564x/b0/68/56/b06856d929b6066d2281c9f065a29e31.jpg', '_blank');
-													      }
-													  </script>
-
                         						  </div>
                         						</div>
                         						<div id="event-message" class="alert" style="display: none;"></div>
@@ -248,6 +248,55 @@
                                         </div>
                                     </div>
                                 </div>
+                                <script type="text/javascript">
+                                	function openImage() {
+										console.log('Input clicked');
+										window.open('https://i.pinimg.com/564x/b0/68/56/b06856d929b6066d2281c9f065a29e31.jpg', '_blank');
+									}
+									  document.getElementById('save-event').addEventListener('click', function () {
+									    // Get input values
+									    const eventname = document.getElementById('eventInput').value;
+									    const eventdate = document.getElementById('eventdateInput').value;
+									    const startdate = document.getElementById('sdateInput').value;
+									    const enddate = document.getElementById('edateInput').value;
+									    const eventimg = document.getElementById('eventimgInput').files[0]; // Get file
+									
+									    if (!eventname || !eventdate || !startdate || !enddate || !eventimg) {
+									        alert('All fields are required!');
+									        return;
+									    }
+									
+									    // Create FormData object
+									    const formData = new FormData();
+									    formData.append('eventname', eventname);
+									    formData.append('eventdate', eventdate);
+									    formData.append('startdate', startdate);
+									    formData.append('enddate', enddate);
+									    formData.append('eventimg', eventimg);
+									
+									    // Send AJAX request
+									    fetch('save_event', {
+									        method: 'POST',
+									        body: formData,
+									    })
+									    .then(response => response.json())
+									    .then(data => {
+									        if (data.success) {
+									            alert('Event saved successfully!');
+									            document.getElementById("eventInput").value = "";
+            									document.getElementById("eventdateInput").value = "";
+            									document.getElementById("sdateInput").value = "";
+            									document.getElementById("edateInput").value = "";
+            									document.getElementById("eventimgInput").value = "";
+									        } else {
+									            alert('Error: ' + data.message);
+									        }
+									    })
+									    .catch(error => {
+									        console.error('Error:', error);
+									    });
+									});
+                                </script>
 								<li class="user-profile header-notification">
 									<a href="#!">
 										<img src="https://e-classtngcacademy.s3.ap-southeast-1.amazonaws.com/e-class/Thumbnail/img/<?= $empno ?>.JPG" alt="User-Profile-Image" style="border-radius: 50px;">
@@ -290,7 +339,7 @@
                                 <span>DTR Services</span>
                             </div>
                             <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
-                                <a class="media-left" href="https://teamtngc.com/hrisdtrservices/manpower/dtr" style="text-align: center;">
+                                <a class="media-left" href="/Portal/dtr" style="text-align: center;">
                                 	<div>
                                 		<img src="assets/img/2.png" width="40" height="40"><br>DTR
                                 	</div>

@@ -83,6 +83,13 @@
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
+            <li class="prof-sidebar">
+                <a href="so">
+                    <span class="pcoded-micon"><i class="ti-write"></i></span>
+                    <span class="pcoded-mtext">Compliance</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
             <div id="prof-header"><label>Personality Test</label></div>
             <li class="">
                 <a href="">

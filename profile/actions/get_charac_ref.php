@@ -313,7 +313,6 @@ try {
                   </div>
                 </div>';
             //MODAL EDIT FAMILY BACKGROUND END
-    }
 
 } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();

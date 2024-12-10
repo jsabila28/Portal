@@ -27,7 +27,7 @@
                           </div>
                         </div>
                         <div class="edit-profile">
-                          <button class="btn btn-default btn-mini" data-toggle="modal" data-target="#COLOR"> Take VAK Test</button>
+                          <button class="btn btn-default btn-mini" data-toggle="modal" data-target="#VAK"> Take VAK Test</button>
                         </div> 
                       </div>
                     </div>

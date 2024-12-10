@@ -70,7 +70,8 @@ $routes = [
 	'/discs' => '/pages/disc.php',
 	'/miqs' => '/pages/miq.php',
 	'/colors' => '/pages/wh-color.php',
-	'/vaks' => '/pages/vak.php'
+	'/vaks' => '/pages/vak.php',
+	'/payslipdata' => '/pages/data_payslip.php'
 
 	
 ];

@@ -9,6 +9,7 @@ $portal_root = $_SERVER['DOCUMENT_ROOT']."/Portal";
 $main_root = $portal_root."/main";
 $atd_root = $portal_root."/ATD";
 $sr_root = $portal_root."/profile";
+$dtr_root = $portal_root."/dtr";
 
 // sidenav
  $sidenav = $main_root."/layout/sidenav.php";
