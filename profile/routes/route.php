@@ -33,6 +33,10 @@ $routes = [
 	'/color' => '/actions/get_color.php',
 	'/vak' => '/actions/get_vak.php',
 	'/enneagram' => '/actions/get_enneagram.php',
+	'/incidentReport' => '/actions/get_ir.php',
+	'/postIR' => '/actions/posted-ir.php',
+	'/draftIR' => '/actions/draft-ir.php',
+	'/solvedIR' => '/actions/resolved-ir.php',
 
 
 	//FORMS
@@ -71,7 +75,10 @@ $routes = [
 	'/miqs' => '/pages/miq.php',
 	'/colors' => '/pages/wh-color.php',
 	'/vaks' => '/pages/vak.php',
-	'/payslipdata' => '/pages/data_payslip.php'
+	'/payslipdata' => '/pages/data_payslip.php',
+	'/13A' => '/pages/13A.php',
+	'/IR' => '/pages/incident_report.php',
+	'/employee' => '/pages/employee.php'
 
 	
 ];

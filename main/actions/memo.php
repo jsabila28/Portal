@@ -49,7 +49,7 @@ class Portal
                 WHERE a.`la_status` NOT IN ('cancelled','draft','pending')
                 AND a.`la_start` >= ?
                 GROUP BY a.`la_empno`,a.`la_start`
-                ORDER BY a.`la_start` ASC LIMIT 3");
+                ORDER BY a.`la_start` ASC");
             $stmt->execute([$date]);
 
             return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
@@ -71,7 +71,7 @@ class Portal
                 AND a.`la_start` <= ?
                 AND a.`la_return` >= ?
                 GROUP BY a.`la_empno`,a.`la_start`
-                ORDER BY a.`la_start` ASC LIMIT 3");
+                ORDER BY a.`la_start` ASC");
             $stmt->execute([$date,$date]);
 
             return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
@@ -83,27 +83,25 @@ class Portal
 
         if ($conn) {
             $stmt = $conn->prepare("SELECT 
-                bi_emplname, 
-                bi_empfname, 
-                bi_empmname, 
-                jrec_department,
-                jd_title,
-                C_Name,
-                xintvw_lastday ,
-                xintvw_empno
-                FROM tbl201_exit_intvw a
-                LEFT JOIN tbl201_basicinfo b
-                ON b.`bi_empno` = a.`xintvw_empno`
-                LEFT JOIN tbl201_jobrec c
-                ON c.`jrec_empno` = b.`bi_empno`
-                LEFT JOIN tbl_jobdescription d
-                ON d.`jd_code` = c.`jrec_position`
-                LEFT JOIN tbl_company e
-                ON e.`C_Code` = c.`jrec_company`
-                WHERE c.`jrec_status` = 'Primary'
-                AND c.`jrec_type` = 'Primary'
-                AND a.`xintvw_lastday` >= ?
-                GROUP BY xintvw_empno LIMIT 3");
+            ji_empno,
+            CONCAT(bi_empfname,' ',bi_emplname) AS Fullname,
+            jd_title,
+            C_Name,
+            ji_resdate
+             FROM tbl201_jobinfo a
+            LEFT JOIN tbl201_basicinfo b 
+            ON b.`bi_empno` = a.`ji_empno`
+            LEFT JOIN tbl201_jobrec c
+            ON c.`jrec_empno` = b.`bi_empno`
+            LEFT JOIN tbl_jobdescription d
+            ON d.`jd_code` = c.`jrec_position`
+            LEFT JOIN tbl_company e
+            ON e.`C_Code` = c.`jrec_company`
+            WHERE a.`ji_resdate` != ''
+            AND jrec_status = 'Primary'
+            AND datastat = 'current'
+            AND ji_resdate >= ?
+            GROUP BY a.`ji_empno`");
             $stmt->execute([$date]);
 
             return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];

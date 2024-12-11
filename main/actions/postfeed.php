@@ -31,7 +31,7 @@ try {
             LEFT JOIN tbl201_basicinfo b ON a.ann_approvedby = b.bi_empno
             WHERE a.ann_type = 'LOCAL'
             AND DATE_FORMAT(a.ann_timestatmp, '%Y') = :dates
-            GROUP BY a.ann_id
+            -- GROUP BY a.ann_id
             ORDER BY a.ann_timestatmp DESC
             LIMIT :offset, :limit
         ");
@@ -95,7 +95,7 @@ try {
             echo '</div>'; // Close cardbox-heading
             
             // Cardbox Item
-            echo '<div class="cardbox-item">';
+            echo '<div class="cardbox-item" id="image-collage">';
             if(strpos($row['ann_content'], '<figure') !== false){
 
                 $imagePattern = '/<img\s+[^>]*src=["\']([^"\']+)["\']/i';

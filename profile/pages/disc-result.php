@@ -3,7 +3,7 @@ if (!empty($test_score)) {
     // Get the first value of the $test_score array
     $score = $test_score[0]; 
     ?>
-    <div class="col-lg-12 col-xl-12"> 
+    <div class="col-lg-12 col-xl-12" id="disc-row"> 
         <?php
         switch ($score) {
             case "d":
@@ -18,6 +18,24 @@ if (!empty($test_score)) {
                     </div>
                     <div class="scale" id="four" style="background-image: url(/Portal/assets/img/DISC/15.PNG);">
                     </div>
+                </div>
+                <div id="disc-square" style="margin-left: 5%">
+                    <span>Dominance</span>
+                    <p>Person places emphasis on accomplishing results, the bottom line, confidence</p><br>
+                    <span>Behavior</span>
+                    <p>- Sees the big picture</p>
+                    <p>- Can be blunt</p>
+                    <p>- Accepts challenges</p>
+                    <p>- Gets straight to the point</p>
+                </div>
+                <div id="disc-square" style="margin-left: 5%">
+                    <span>Influence</span>
+                    <p>Person places emphasis on influencing or persuading others, openness, relationships</p><br>
+                    <span>Behavior</span>
+                    <p>- Shows enthusiasm</p>
+                    <p>- Is optimistic</p>
+                    <p>- Likes to collaborate</p>
+                    <p>- Dislikes being ignored</p>
                 </div>
                 <?php 
                 break;
@@ -34,6 +52,25 @@ if (!empty($test_score)) {
                     <div class="scale" id="four" style="background-image: url(/Portal/assets/img/DISC/12.PNG);">
                     </div>
                 </div>
+                <div id="disc-square" style="margin-left: 5%">
+                    <span>Steadiness</span>
+                    <p>Person places emphasis on cooperation, sincerity, dependability</p><br>
+                    <span>Behavior</span>
+                    <p>- Doesn&#39;t like to be rushed</p>
+                    <p>- Calm manner</p>
+                    <p>- Calm approach</p>
+                    <p>- Supportive actions</p>
+                    <p>- Humility</p>
+                </div>
+                <div id="disc-square" style="margin-left: 5%">
+                    <span>Conscientiousness</span>
+                    <p>Person places emphasis on quality and accuracy, expertise, competency</p><br>
+                    <span>Behavior</span>
+                    <p>- Enjoys independence</p>
+                    <p>- Objective reasoning</p>
+                    <p>- Wants the details</p>
+                    <p>- Fears being wrong</p>
+                </div>
                 <?php 
                 break;
 
@@ -48,6 +85,24 @@ if (!empty($test_score)) {
                     </div>
                     <div class="scale" id="four" style="background-image: url(/Portal/assets/img/DISC/15.PNG);">
                     </div>
+                </div>
+                <div id="disc-square" style="margin-left: 5%">
+                    <span>Dominance</span>
+                    <p>Person places emphasis on accomplishing results, the bottom line, confidence</p><br>
+                    <span>Behavior</span>
+                    <p>- Sees the big picture</p>
+                    <p>- Can be blunt</p>
+                    <p>- Accepts challenges</p>
+                    <p>- Gets straight to the point</p>
+                </div>
+                <div id="disc-square" style="margin-left: 5%">
+                    <span>Conscientiousness</span>
+                    <p>Person places emphasis on quality and accuracy, expertise, competency</p><br>
+                    <span>Behavior</span>
+                    <p>- Enjoys independence</p>
+                    <p>- Objective reasoning</p>
+                    <p>- Wants the details</p>
+                    <p>- Fears being wrong</p>
                 </div>
                 <?php 
                 break;
@@ -64,6 +119,25 @@ if (!empty($test_score)) {
                     <div class="scale" id="four" style="background-image: url(/Portal/assets/img/DISC/12.PNG);">
                     </div>
                 </div>
+                <div id="disc-square" style="margin-left: 5%">
+                    <span>Dominance</span>
+                    <p>Person places emphasis on accomplishing results, the bottom line, confidence</p><br>
+                    <span>Behavior</span>
+                    <p>- Sees the big picture</p>
+                    <p>- Can be blunt</p>
+                    <p>- Accepts challenges</p>
+                    <p>- Gets straight to the point</p>
+                </div>
+                <div id="disc-square" style="margin-left: 5%">
+                    <span>Steadiness</span>
+                    <p>Person places emphasis on cooperation, sincerity, dependability</p><br>
+                    <span>Behavior</span>
+                    <p>- Doesn&#39;t like to be rushed</p>
+                    <p>- Calm manner</p>
+                    <p>- Calm approach</p>
+                    <p>- Supportive actions</p>
+                    <p>- Humility</p>
+                </div>
                 <?php 
                 break;
 
@@ -79,6 +153,25 @@ if (!empty($test_score)) {
                     <div class="scale" id="four" style="background-image: url(/Portal/assets/img/DISC/12.PNG);">
                     </div>
                 </div>
+                <div id="disc-square" style="margin-left: 5%">
+                    <span>Influence</span>
+                    <p>Person places emphasis on influencing or persuading others, openness, relationships</p><br>
+                    <span>Behavior</span>
+                    <p>- Shows enthusiasm</p>
+                    <p>- Is optimistic</p>
+                    <p>- Likes to collaborate</p>
+                    <p>- Dislikes being ignored</p>
+                </div>
+                <div id="disc-square" style="margin-left: 5%">
+                    <span>Steadiness</span>
+                    <p>Person places emphasis on cooperation, sincerity, dependability</p><br>
+                    <span>Behavior</span>
+                    <p>- Doesn&#39;t like to be rushed</p>
+                    <p>- Calm manner</p>
+                    <p>- Calm approach</p>
+                    <p>- Supportive actions</p>
+                    <p>- Humility</p>
+                </div>
                 <?php 
                 break;
 
@@ -93,6 +186,24 @@ if (!empty($test_score)) {
                     </div>
                     <div class="scale" id="four" style="background-image: url(/Portal/assets/img/DISC/15.PNG);">
                     </div>
+                </div>
+                <div id="disc-square" style="margin-left: 5%">
+                    <span>Influence</span>
+                    <p>Person places emphasis on influencing or persuading others, openness, relationships</p><br>
+                    <span>Behavior</span>
+                    <p>- Shows enthusiasm</p>
+                    <p>- Is optimistic</p>
+                    <p>- Likes to collaborate</p>
+                    <p>- Dislikes being ignored</p>
+                </div>
+                <div id="disc-square" style="margin-left: 5%">
+                    <span>Conscientiousness</span>
+                    <p>Person places emphasis on quality and accuracy, expertise, competency</p><br>
+                    <span>Behavior</span>
+                    <p>- Enjoys independence</p>
+                    <p>- Objective reasoning</p>
+                    <p>- Wants the details</p>
+                    <p>- Fears being wrong</p>
                 </div>
                 <?php 
                 break;

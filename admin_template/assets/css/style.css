@@ -9358,7 +9358,8 @@ div.DTFC_RightWrapper table.dataTable.no-footer {
 
 th,
 td {
-  white-space: nowrap; }
+  /*white-space: nowrap; */
+}
 
 /*===== Fixed-header data-table ===== */
 table.fixedHeader-floating {
@@ -9638,7 +9639,8 @@ table.footable-paging-center > tfoot > tr.footable-paging > td {
       margin-right: -12px; }
 
 .user-card-block .card-block {
-  padding: 30px; }
+  padding: 5px; 
+}
   .user-card-block .card-block .card-contain h5 {
     font-size: 18px;
     font-weight: 600;

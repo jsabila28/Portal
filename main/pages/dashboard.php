@@ -44,7 +44,7 @@ $MyMood = Portal::GetMyMood($date,$user_id);
             <div class="col-xm-1">
             </div>
             <div class="col-md-3" id="right-side">
-                <div class="user-card-block card">
+                <div class="user-card-block card" style="padding: 0px !important;">
                     <div class="card-block" id="right-bar">
                         <!-- GOVERNMENT -->
                         <?php require_once($main_root."/pages/gov.php"); ?>
@@ -101,7 +101,7 @@ $MyMood = Portal::GetMyMood($date,$user_id);
                                         ?>
                                         <div class="m-widget4__item"style="display:flex;justify-content: space-between;">
                                             <div class="m-widget4__img m-widget4__img--pic">
-                                                <img style="width:30px; height:30px; border-radius:50%" src="assets/image/img/<?=$lv['la_empno'].'.jpg'?>" alt="">
+                                                <img style="width:30px; height:30px; border-radius:50%" src="https://teamtngc.com/hris2/pages/empimg/<?=$lv['la_empno'].'.jpg'?>" alt="">
                                             </div>
                                             <div class="m-widget4__info"style="width: 120px;">
                                                 <span class="m-widget4__title">
@@ -130,33 +130,40 @@ $MyMood = Portal::GetMyMood($date,$user_id);
                                     </div>
                                 </div>
                                 <div class="tab-pane" id="profile1" role="tabpanel">
-                                    <div class="comment-wrapper">
-                                        <div class="panel panel-info">
-                                            <div class="panel-body">
-                                                <ul class="media-list">
-                                                    <?php
-                                                        if (!empty($resigning)) {
-                                                            foreach ($resigning as $rs) {
-                                                    ?>
-                                                    <li class="media">
-                                                        <a href="#" class="pull-left">
-                                                            <img src="assets/image/img/<?=$rs['xintvw_empno'].'.jpg'?>" alt="" class="img-circle">
-                                                        </a>
-                                                        <div class="media-body">
-                                                            <span class="text-muted pull-right">
-                                                                <strong>Last day: <?= date("F j, Y", strtotime($rs['xintvw_lastday'])) ?></strong>
-                                                            </span>
-                                                            <strong ><?=$rs['bi_emplname'].', '.$rs['bi_empfname'] ?></strong>
-                                                            <p>
-                                                                <strong class="text-muted"><?=$rs['jd_title']?></strong>
-                                                            </p>
-                                                            <strong class="text-muted"><?=$rs['C_Name']?></strong>
-                                                        </div>
-                                                    </li>
-                                                    <?php }} ?>
-                                                </ul>
+                                    <div class="m-widget4 m-widget4--progress">
+                                        <?php
+                                            if (!empty($resigning)) {
+                                                foreach ($resigning as $rs) {
+                                        ?>
+                                        <div class="m-widget4__item"style="display:flex;justify-content: space-between;">
+                                            <div class="m-widget4__img m-widget4__img--pic">
+                                                <img style="width:30px; height:30px; border-radius:50%" src="https://teamtngc.com/hris2/pages/empimg/<?=$rs['ji_empno'].'.jpg'?>" alt="">
+                                            </div>
+                                            <div class="m-widget4__info"style="width: 120px;">
+                                                <span class="m-widget4__title">
+                                                    <strong ><?=$rs['Fullname'] ?></strong>
+                                                </span>
+                                                <br>
+                                                <span class="m-widget4__sub">
+                                                    <strong class="text-muted"><?=$rs['jd_title']?></strong>
+                                                </span>
+                                                <br>
+                                                <span class="m-widget4__sub">
+                                                    <strong class="text-muted"><?=$rs['C_Name']?></strong>
+                                                </span>
+                                            </div>
+                                            <div class="m-widget4__progress">
+                                                <div class="m-widget4__progress-wrapper">
+                                                    <span class="m-widget17__progress-number">
+                                                       <strong>last day: <?= date("F j, Y", strtotime($rs['ji_resdate'])) ?></strong>
+                                                    </span><br>
+                                                </div>
+                                            </div>
+                                            <div class="m-widget4__ext" style="width: 50px;">
+                                                <label class="label label-inverse-danger">resigning</label>
                                             </div>
                                         </div>
+                                        <?php }} ?>
                                     </div>
                                 </div>
                             </div>

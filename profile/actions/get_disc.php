@@ -3,7 +3,7 @@
        <span id="userName">
        <b>D</b>ominance <b>I</b>nfluence <b>S</b>teadiness <b>C</b>onscientiousness Result
        </span>
-     </div>
+     </div><br><br>
      <div class="basic-info">
        <?php
             require_once($sr_root . "/db/db.php");

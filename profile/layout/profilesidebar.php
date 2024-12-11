@@ -86,35 +86,35 @@
                   <hr>
                   <div id="header"><label>Compliance</label></div>
                   <li>
-                    <a href="characterRef">
+                    <a href="#">
                       <p>
                         <i class="ti-write"></i> Phone Agreement
                       </p>
                     </a>
                   </li>
                   <li>
-                    <a href="characterRef">
+                    <a href="#">
                       <p>
                         <i class="ti-write"></i> Clearance
                       </p>
                     </a>
                   </li>
                   <li>
-                    <a href="characterRef">
+                    <a href="IR">
                       <p>
                         <i class="ti-write"></i> IR
                       </p>
                     </a>
                   </li>
                   <li>
-                    <a href="characterRef">
+                    <a href="13A">
                       <p>
                         <i class="ti-write"></i> 13A
                       </p>
                     </a>
                   </li>
                   <li>
-                    <a href="characterRef">
+                    <a href="#">
                       <p>
                         <i class="ti-write"></i> 13B
                       </p>
