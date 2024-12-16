@@ -15,6 +15,7 @@ try {
    
 $stmt = $port_db->prepare("
 	    SELECT 
+	    ir.ir_id,
 	    ir.ir_subject,
 	    ir.ir_date,
 	    CONCAT(bi_from.bi_empfname,' ',bi_from.bi_emplname) AS ir_from_fullname,
@@ -26,9 +27,11 @@ $stmt = $port_db->prepare("
 	LEFT JOIN 
 	    tbl201_basicinfo bi_to ON ir.ir_to = bi_to.bi_empno
 	WHERE ir.ir_stat = 'posted'
-	    -- WHERE ir_from = ?
+	AND bi_from.datastat = 'current'
+	AND ir_from = ?
+	GROUP BY ir.ir_id, bi_from.bi_empno
 	");
-$stmt->execute();
+$stmt->execute([$user_id]);
 $incident_report = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 if (!empty($incident_report)) {
@@ -52,7 +55,11 @@ if (!empty($incident_report)) {
      	echo "<td>" . htmlspecialchars($ir['ir_from_fullname']) . "</td>";
      	echo "<td>" . htmlspecialchars($ir['ir_to_fullname']) . "</td>";
      	echo "<td>" . htmlspecialchars($ir['ir_subject']) . "</td>";
-     	echo "<td><i class='zmdi zmdi-eye'></i></td>";
+     	echo "<td style='display:flex;justify-content: space-between;'>
+     		<a href='IRopen?irID=" . htmlspecialchars($ir['ir_id']) . "'><i class='icofont icofont-eye-alt' style='font-size:14px;'></i></a>
+     		<a href='#!'><i class='zmdi zmdi-edit' style='font-size:14px;'></i></i></a>
+     		<a href='#!'><i class='zmdi zmdi-edit' style='font-size:14px;'></i></i></a>
+     	</td>";
      	echo "</tr>";
       } 
     echo "<tbody>"; 

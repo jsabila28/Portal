@@ -153,6 +153,7 @@
     <link rel="stylesheet" type="text/css" href="/Portal/assets/js/atd_maintenance.js">
     <link rel="stylesheet" type="text/css" href="/Portal/assets/js/home.js">
     <link rel="stylesheet" type="text/css" href="/Portal/assets/js/event.js">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
 </body> 
 
 </html>

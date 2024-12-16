@@ -37,6 +37,7 @@ $routes = [
 	'/postIR' => '/actions/posted-ir.php',
 	'/draftIR' => '/actions/draft-ir.php',
 	'/solvedIR' => '/actions/resolved-ir.php',
+	'/explIR' => '/actions/explain-ir.php',
 
 
 	//FORMS
@@ -53,6 +54,9 @@ $routes = [
 	'/saveEnneagram' => '/actions/save_enneagram.php',
 	'/saveTAPT' => '/actions/save_tapt.php',
 	'/saveMIQ' => '/actions/save_miq.php',
+	'/saveIR' => '/actions/save_ir.php',
+	'/savedraftIR' => '/actions/save_irdraft.php',
+
 
 
 
@@ -78,7 +82,8 @@ $routes = [
 	'/payslipdata' => '/pages/data_payslip.php',
 	'/13A' => '/pages/13A.php',
 	'/IR' => '/pages/incident_report.php',
-	'/employee' => '/pages/employee.php'
+	'/employee' => '/pages/employee.php',
+	'/IRopen' => '/pages/open-ir.php'
 
 	
 ];

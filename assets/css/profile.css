@@ -677,6 +677,7 @@ div#four{
   width: 100%;
   height: 300px; /* Adjust height as needed */
   overflow-y: auto;
+  
 }
 
 .sticky-table {

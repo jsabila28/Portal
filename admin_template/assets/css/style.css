@@ -19756,3 +19756,13 @@ ul.button-grid button:hover {
     background-color: #d9d7d7;
 }
 
+.selectpicker{
+  width: 100% !important;
+}
+#ccInput .selectpicker{
+  width: 100% !important;
+}
+textarea{
+  font-size: 14px;
+  width: 100%;
+}

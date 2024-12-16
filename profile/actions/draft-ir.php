@@ -15,6 +15,7 @@ try {
    
 $stmt = $port_db->prepare("
 	    SELECT 
+	    ir.ir_id,
 	    ir.ir_subject,
 	    ir.ir_date,
 	    CONCAT(bi_from.bi_empfname,' ',bi_from.bi_emplname) AS ir_from_fullname,
@@ -26,9 +27,11 @@ $stmt = $port_db->prepare("
 	LEFT JOIN 
 	    tbl201_basicinfo bi_to ON ir.ir_to = bi_to.bi_empno
 	WHERE ir.ir_stat = 'draft'
-	    -- WHERE ir_from = ?
+	AND bi_from.datastat = 'current'
+	AND ir_from = ?
+	GROUP BY ir.ir_id, bi_from.bi_empno
 	");
-$stmt->execute();
+$stmt->execute([$user_id]);
 $draft_ir = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 if (!empty($draft_ir)) {
@@ -52,7 +55,11 @@ if (!empty($draft_ir)) {
      	echo "<td>" . htmlspecialchars($dir['ir_from_fullname']) . "</td>";
      	echo "<td>" . htmlspecialchars($dir['ir_to_fullname']) . "</td>";
      	echo "<td>" . htmlspecialchars($dir['ir_subject']) . "</td>";
-     	echo "<td><a href='#!'><i class='zmdi zmdi-eye' style='font-size: 14px;'></i></a></td>";
+     	echo "<td style='display:flex;justify-content: space-between;'>
+     		<a href='IRopen?irID=" . htmlspecialchars($dir['ir_id']) . "'><i class='icofont icofont-eye-alt' style='font-size:14px;'></i></a>
+     		<a href='#!'><i class='icofont icofont-ui-edit' style='font-size:14px;'></i></a>
+     		<a href='#!'><i class='icofont icofont-ui-close' style='font-size:14px;'></i></a>
+     	</td>";
      	echo "</tr>";
       } 
     echo "<tbody>"; 

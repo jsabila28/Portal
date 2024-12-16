@@ -26,9 +26,11 @@ $stmt = $port_db->prepare("
 	LEFT JOIN 
 	    tbl201_basicinfo bi_to ON ir.ir_to = bi_to.bi_empno
 	WHERE ir.ir_stat = 'resolved'
-	    -- WHERE ir_from = ?
+	AND bi_from.datastat = 'current'
+	AND ir_from = ?
+	GROUP BY ir.ir_id, bi_from.bi_empno
 	");
-$stmt->execute();
+$stmt->execute([$user_id]);
 $incident_report = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 if (!empty($incident_report)) {

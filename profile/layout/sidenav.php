@@ -4,21 +4,21 @@
         <ul class="pcoded-item pcoded-left-item">
             <div id="prof-header"><label>Profile</label></div>
             <li class="">
-                <a href="">
+                <a href="/Portal/profile/">
                     <span class="pcoded-micon"><i class="icon-user-female"></i></span>
                     <span class="pcoded-mtext">Profile</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
             <li class="prof-sidebar">
-                <a href="sji">
+                <a href="fam">
                     <span class="pcoded-micon"><i class="ion-ios-people"></i></span>
                     <span class="pcoded-mtext">Family Background</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
             <li class="prof-sidebar">
-                <a href="so">
+                <a href="skill">
                     <span class="pcoded-micon"><i class="zmdi zmdi-favorite"></i></span>
                     <span class="pcoded-mtext">Special Skills</span>
                     <span class="pcoded-mcaret"></span>
@@ -27,21 +27,21 @@
 
             <div id="prof-header"><label>Education</label></div>
             <li class="">
-                <a href="">
+                <a href="education">
                     <span class="pcoded-micon"><i class="icon-graduation"></i></span>
                     <span class="pcoded-mtext">Education</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
             <li class="prof-sidebar">
-                <a href="sji">
+                <a href="eligibility">
                     <span class="pcoded-micon"><i class="icofont icofont-certificate-alt-1"></i></span>
                     <span class="pcoded-mtext">Eligibility/Licenses</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
             <li class="prof-sidebar">
-                <a href="so">
+                <a href="cert">
                     <span class="pcoded-micon"><i class="icofont icofont-certificate-alt-2"></i></span>
                     <span class="pcoded-mtext">Certificate</span>
                     <span class="pcoded-mcaret"></span>
@@ -49,90 +49,127 @@
             </li>
             <div id="prof-header"><label>Work</label></div>
             <li class="">
-                <a href="">
+                <a href="emp">
                     <span class="pcoded-micon"><i class="ion-briefcase"></i></span>
                     <span class="pcoded-mtext">Employment Record</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
             <li class="prof-sidebar">
-                <a href="sji">
+                <a href="Intcert">
                     <span class="pcoded-micon"><i class="icofont icofont-certificate-alt-2"></i></span>
                     <span class="pcoded-mtext">Internal Certificate</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
             <li class="prof-sidebar">
-                <a href="so">
+                <a href="payslip">
                     <span class="pcoded-micon"><i class="zmdi zmdi-accounts-list-alt"></i></span>
                     <span class="pcoded-mtext">Payslip</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
             <li class="prof-sidebar">
-                <a href="so">
+                <a href="contract">
                     <span class="pcoded-micon"><i class="zmdi zmdi-accounts-list-alt"></i></span>
                     <span class="pcoded-mtext">Contracts</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
             <li class="prof-sidebar">
-                <a href="so">
+                <a href="characterRef">
                     <span class="pcoded-micon"><i class="zmdi zmdi-accounts-list-alt"></i></span>
                     <span class="pcoded-mtext">Character Reference</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
+            <div id="prof-header"><label>Compliance</label></div>
             <li class="prof-sidebar">
-                <a href="so">
+                <a href="#">
                     <span class="pcoded-micon"><i class="ti-write"></i></span>
-                    <span class="pcoded-mtext">Compliance</span>
+                    <span class="pcoded-mtext">Phone Agreement</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+            <li class="prof-sidebar">
+                <a href="#">
+                    <span class="pcoded-micon"><i class="ti-write"></i></span>
+                    <span class="pcoded-mtext">Clearance</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+            <li class="prof-sidebar">
+                <a href="IR">
+                    <span class="pcoded-micon"><i class="ti-write"></i></span>
+                    <span class="pcoded-mtext">IR</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+            <li class="prof-sidebar">
+                <a href="13A">
+                    <span class="pcoded-micon"><i class="ti-write"></i></span>
+                    <span class="pcoded-mtext">13A</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+            <li class="prof-sidebar">
+                <a href="#">
+                    <span class="pcoded-micon"><i class="ti-write"></i></span>
+                    <span class="pcoded-mtext">13B</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
             <div id="prof-header"><label>Personality Test</label></div>
             <li class="">
-                <a href="">
+                <a href="inneg">
                     <span class="pcoded-micon"><i class="icofont icofont-brainstorming"></i></span>
                     <span class="pcoded-mtext">Enneagram</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
             <li class="prof-sidebar">
-                <a href="sji">
+                <a href="tapt">
                     <span class="pcoded-micon"><i class="icofont icofont-brainstorming"></i></span>
                     <span class="pcoded-mtext">TAPT</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
             <li class="prof-sidebar">
-                <a href="so">
+                <a href="discs">
                     <span class="pcoded-micon"><i class="icofont icofont-brainstorming"></i></span>
                     <span class="pcoded-mtext">DISC</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
             <li class="">
-                <a href="">
+                <a href="miqs">
                     <span class="pcoded-micon"><i class="icofont icofont-brain-alt"></i></span>
                     <span class="pcoded-mtext">Multiple Intelligent Quotient</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
             <li class="prof-sidebar">
-                <a href="sji">
+                <a href="colors">
                     <span class="pcoded-micon"><i class="icofont icofont-brainstorming"></i></span>
                     <span class="pcoded-mtext">What color are you?</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
             <li class="prof-sidebar">
-                <a href="so">
+                <a href="vaks">
                     <span class="pcoded-micon"><i class="icofont icofont-brainstorming"></i></span>
                     <span class="pcoded-mtext">VAK</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
+            <div id="prof-header"><label>TNGC @ 2024</label></div>
+            <li class="prof-sidebar">
+                <a href="#">
+                    <span class="pcoded-micon"></span>
+                    <span class="pcoded-mtext"></span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>c
         </ul>
     </div>
 </nav>
