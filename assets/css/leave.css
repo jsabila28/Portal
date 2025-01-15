@@ -1819,7 +1819,7 @@
 }
 
 .m-widget4.m-widget4--progress{
-    height: 250px;
+    max-height: 250px;
     overflow: auto;
     scrollbar-width: none; /* For Firefox */
     -ms-overflow-style: none;  /* For Internet Explorer */

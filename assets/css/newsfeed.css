@@ -6,13 +6,16 @@
     margin: 0px !important;
     /*padding: 10px !important;*/
     /*border-top: 2px solid #6d706e;*/
-    margin-bottom: 10px;
+    /*margin-bottom: 20px;*/
 }
 
 .cardbox {
-    border-radius: 3px;
-    /*margin-bottom: 20px;*/
+    margin-bottom: 10px;
     padding: 0px !important;
+    border: 1px solid #d7d2d2;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
 }
 
 

@@ -83,42 +83,6 @@
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
-            <div id="prof-header"><label>Compliance</label></div>
-            <li class="prof-sidebar">
-                <a href="#">
-                    <span class="pcoded-micon"><i class="ti-write"></i></span>
-                    <span class="pcoded-mtext">Phone Agreement</span>
-                    <span class="pcoded-mcaret"></span>
-                </a>
-            </li>
-            <li class="prof-sidebar">
-                <a href="#">
-                    <span class="pcoded-micon"><i class="ti-write"></i></span>
-                    <span class="pcoded-mtext">Clearance</span>
-                    <span class="pcoded-mcaret"></span>
-                </a>
-            </li>
-            <li class="prof-sidebar">
-                <a href="IR">
-                    <span class="pcoded-micon"><i class="ti-write"></i></span>
-                    <span class="pcoded-mtext">IR</span>
-                    <span class="pcoded-mcaret"></span>
-                </a>
-            </li>
-            <li class="prof-sidebar">
-                <a href="13A">
-                    <span class="pcoded-micon"><i class="ti-write"></i></span>
-                    <span class="pcoded-mtext">13A</span>
-                    <span class="pcoded-mcaret"></span>
-                </a>
-            </li>
-            <li class="prof-sidebar">
-                <a href="#">
-                    <span class="pcoded-micon"><i class="ti-write"></i></span>
-                    <span class="pcoded-mtext">13B</span>
-                    <span class="pcoded-mcaret"></span>
-                </a>
-            </li>
             <div id="prof-header"><label>Personality Test</label></div>
             <li class="">
                 <a href="inneg">

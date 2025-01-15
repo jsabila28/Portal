@@ -31,6 +31,8 @@
                         </div> 
                       </div>
                     </div>
+                </div>
+                <div class="card" id="enne-card">
                     <div class="card-block" id="prof-card">
                         <div id="personal-info">
                             <div id="vak">

@@ -11,12 +11,12 @@ class Portal
         }
     }
 
-    public static function GetMemo($Year) {
+    public static function GetMemo() {
         $conn = self::getDatabaseConnection('hr');
 
         if ($conn) {
-            $stmt = $conn->prepare("SELECT * FROM tbl_memo WHERE LEFT(memo_date, 4) = ? ORDER BY memo_date DESC LIMIT 3");
-            $stmt->execute([$Year]);
+            $stmt = $conn->prepare("SELECT * FROM tbl_memo ORDER BY memo_date DESC LIMIT 3");
+            $stmt->execute([]);
 
             return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
         }
@@ -211,6 +211,23 @@ class Portal
                 WHERE DATE(m_date) = ?
                 AND m_empno = ?");
             $stmt->execute([$date,$user_id]);
+
+            return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
+        }
+    }
+
+    public static function GetEvents($date) {
+        $conn = self::getDatabaseConnection('port');
+
+        if ($conn) {
+            $stmt = $conn->prepare("SELECT 
+                DAY(event_date) AS days,
+                MONTHNAME(event_date) AS months,
+                event_file
+                FROM tbl_events 
+                WHERE event_dateend >= ?
+                ORDER BY event_date");
+            $stmt->execute([$date]);
 
             return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
         }

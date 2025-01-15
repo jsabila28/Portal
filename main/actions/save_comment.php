@@ -1,5 +1,6 @@
 <?php
 require_once($sr_root . "/db/db.php");
+header('Content-Type: text/html; charset=utf-8');
 
 if (!isset($_SESSION['user_id'])) {
     echo json_encode(['error' => 'User not authenticated']);
@@ -7,7 +8,8 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 $com_id = htmlspecialchars($_POST['com_id']);
-$comment = htmlspecialchars($_POST['Mycomment']);
+$comment = $_POST['Mycomment'];
+$comment = htmlspecialchars($comment, ENT_QUOTES, 'UTF-8');
 $user_id = $_SESSION['user_id'];
 
 try {

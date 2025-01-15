@@ -9,7 +9,7 @@
                         ?>
                         <div class="m-widget4__item"style="display:flex;justify-content: space-between;">
                             <div class="m-widget4__img m-widget4__img--pic">
-                                <img style="width:30px; height:30px; border-radius:50%" src="assets/image/img/<?=$ol['la_empno'].'.jpg'?>" alt="">
+                                <img style="width:30px; height:30px; border-radius:50%" src="https://teamtngc.com/hris2/pages/empimg/<?=$ol['la_empno'].'.jpg'?>" alt="">
                             </div>
                             <div class="m-widget4__info"style="width:40% !important;">
                                 <span class="m-widget4__title">
@@ -41,7 +41,7 @@
                         ?>
                         <div class="m-widget4__item"style="display:flex;justify-content: space-between;">
                             <div class="m-widget4__img m-widget4__img--pic">
-                                <img style="width:30px; height:30px; border-radius:50%" src="assets/image/img/<?=$lv['la_empno'].'.jpg'?>" alt="">
+                                <img style="width:30px; height:30px; border-radius:50%" src="https://teamtngc.com/hris2/pages/empimg/<?=$lv['la_empno'].'.jpg'?>" alt="">
                             </div>
                             <div class="m-widget4__info"style="width: 120px;">
                                 <span class="m-widget4__title">

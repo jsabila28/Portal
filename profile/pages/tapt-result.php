@@ -8,7 +8,7 @@
                     <div class="event">
                         <ul id="event-list">
                             <li>
-                                <div class="times" style="background-color: #306b85">
+                                <div class="times" style="background-color: #12672c">
                                     <h2>
                                         E
                                     </h2>
@@ -20,7 +20,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         S 
                                     </h2>
@@ -32,7 +32,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         T 
                                     </h2>
@@ -44,7 +44,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times" style="background-color: #306b85">
+                                <div class="times" style="background-color: #12672c">
                                     <h2>
                                         J 
                                     </h2>
@@ -60,7 +60,7 @@
                     <div class="event">
                         <ul id="event-list">
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         I
                                     </h2>
@@ -72,7 +72,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times"style="background-color: #306b85">
+                                <div class="times"style="background-color: #12672c">
                                     <h2>
                                         N 
                                     </h2>
@@ -84,7 +84,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times" style="background-color: #306b85">
+                                <div class="times" style="background-color: #12672c">
                                     <h2>
                                         F 
                                     </h2>
@@ -96,7 +96,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         P 
                                     </h2>
@@ -293,7 +293,7 @@
                     <div class="event">
                         <ul id="event-list">
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         E
                                     </h2>
@@ -305,7 +305,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         S 
                                     </h2>
@@ -317,7 +317,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         T 
                                     </h2>
@@ -329,7 +329,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times" style="background-color: #306b85">
+                                <div class="times" style="background-color: #12672c">
                                     <h2>
                                         J 
                                     </h2>
@@ -345,7 +345,7 @@
                     <div class="event">
                         <ul id="event-list">
                             <li>
-                                <div class="times" style="background-color: #306b85">
+                                <div class="times" style="background-color: #12672c">
                                     <h2>
                                         I
                                     </h2>
@@ -357,7 +357,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times"style="background-color: #306b85">
+                                <div class="times"style="background-color: #12672c">
                                     <h2>
                                         N 
                                     </h2>
@@ -369,7 +369,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times" style="background-color: #306b85">
+                                <div class="times" style="background-color: #12672c">
                                     <h2>
                                         F 
                                     </h2>
@@ -381,7 +381,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         P 
                                     </h2>
@@ -565,7 +565,7 @@
                     <div class="event">
                         <ul id="event-list">
                             <li>
-                                <div class="times" style="background-color: #306b85">
+                                <div class="times" style="background-color: #12672c">
                                     <h2>
                                         E
                                     </h2>
@@ -577,7 +577,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         S 
                                     </h2>
@@ -589,7 +589,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         T 
                                     </h2>
@@ -601,7 +601,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         J 
                                     </h2>
@@ -617,7 +617,7 @@
                     <div class="event">
                         <ul id="event-list">
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         I
                                     </h2>
@@ -629,7 +629,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times"style="background-color: #306b85">
+                                <div class="times"style="background-color: #12672c">
                                     <h2>
                                         N 
                                     </h2>
@@ -641,7 +641,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times" style="background-color: #306b85">
+                                <div class="times" style="background-color: #12672c">
                                     <h2>
                                         F 
                                     </h2>
@@ -653,7 +653,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times" style="background-color: #306b85">
+                                <div class="times" style="background-color: #12672c">
                                     <h2>
                                         P 
                                     </h2>
@@ -872,7 +872,7 @@
                     <div class="event">
                         <ul id="event-list">
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         E
                                     </h2>
@@ -884,7 +884,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         S 
                                     </h2>
@@ -896,7 +896,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         T 
                                     </h2>
@@ -908,7 +908,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         J 
                                     </h2>
@@ -924,7 +924,7 @@
                     <div class="event">
                         <ul id="event-list">
                             <li>
-                                <div class="times" style="background-color: #306b85">
+                                <div class="times" style="background-color: #12672c">
                                     <h2>
                                         I
                                     </h2>
@@ -936,7 +936,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times"style="background-color: #306b85">
+                                <div class="times"style="background-color: #12672c">
                                     <h2>
                                         N 
                                     </h2>
@@ -948,7 +948,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times" style="background-color: #306b85">
+                                <div class="times" style="background-color: #12672c">
                                     <h2>
                                         F 
                                     </h2>
@@ -960,7 +960,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times" style="background-color: #306b85">
+                                <div class="times" style="background-color: #12672c">
                                     <h2>
                                         P 
                                     </h2>
@@ -1132,7 +1132,7 @@
                     <div class="event">
                         <ul id="event-list">
                             <li>
-                                <div class="times" style="background-color: #306b85">
+                                <div class="times" style="background-color: #12672c">
                                     <h2>
                                         E
                                     </h2>
@@ -1144,7 +1144,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         S 
                                     </h2>
@@ -1156,7 +1156,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times" style="background-color: #306b85">
+                                <div class="times" style="background-color: #12672c">
                                     <h2>
                                         T 
                                     </h2>
@@ -1168,7 +1168,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times" style="background-color: #306b85">
+                                <div class="times" style="background-color: #12672c">
                                     <h2>
                                         J 
                                     </h2>
@@ -1184,7 +1184,7 @@
                     <div class="event">
                         <ul id="event-list">
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         I
                                     </h2>
@@ -1196,7 +1196,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times"style="background-color: #306b85">
+                                <div class="times"style="background-color: #12672c">
                                     <h2>
                                         N 
                                     </h2>
@@ -1208,7 +1208,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         F 
                                     </h2>
@@ -1220,7 +1220,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         P 
                                     </h2>
@@ -1397,7 +1397,7 @@
                     <div class="event">
                         <ul id="event-list">
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         E
                                     </h2>
@@ -1409,7 +1409,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         S 
                                     </h2>
@@ -1421,7 +1421,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times" style="background-color: #306b85">
+                                <div class="times" style="background-color: #12672c">
                                     <h2>
                                         T 
                                     </h2>
@@ -1433,7 +1433,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times" style="background-color: #306b85">
+                                <div class="times" style="background-color: #12672c">
                                     <h2>
                                         J 
                                     </h2>
@@ -1449,7 +1449,7 @@
                     <div class="event">
                         <ul id="event-list">
                             <li>
-                                <div class="times" style="background-color: #306b85">
+                                <div class="times" style="background-color: #12672c">
                                     <h2>
                                         I
                                     </h2>
@@ -1461,7 +1461,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times"style="background-color: #306b85">
+                                <div class="times"style="background-color: #12672c">
                                     <h2>
                                         N 
                                     </h2>
@@ -1473,7 +1473,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         F 
                                     </h2>
@@ -1485,7 +1485,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         P 
                                     </h2>
@@ -1685,7 +1685,7 @@
                     <div class="event">
                         <ul id="event-list">
                             <li>
-                                <div class="times" style="background-color: #306b85">
+                                <div class="times" style="background-color: #12672c">
                                     <h2>
                                         E
                                     </h2>
@@ -1697,7 +1697,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         S 
                                     </h2>
@@ -1709,7 +1709,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times" style="background-color: #306b85">
+                                <div class="times" style="background-color: #12672c">
                                     <h2>
                                         T 
                                     </h2>
@@ -1721,7 +1721,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         J 
                                     </h2>
@@ -1737,7 +1737,7 @@
                     <div class="event">
                         <ul id="event-list">
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         I
                                     </h2>
@@ -1749,7 +1749,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times"style="background-color: #306b85">
+                                <div class="times"style="background-color: #12672c">
                                     <h2>
                                         N 
                                     </h2>
@@ -1761,7 +1761,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         F 
                                     </h2>
@@ -1773,7 +1773,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times" style="background-color: #306b85">
+                                <div class="times" style="background-color: #12672c">
                                     <h2>
                                         P 
                                     </h2>
@@ -1944,7 +1944,7 @@
                     <div class="event">
                         <ul id="event-list">
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         E
                                     </h2>
@@ -1956,7 +1956,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         S 
                                     </h2>
@@ -1968,7 +1968,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times" style="background-color: #306b85">
+                                <div class="times" style="background-color: #12672c">
                                     <h2>
                                         T 
                                     </h2>
@@ -1980,7 +1980,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         J 
                                     </h2>
@@ -1996,7 +1996,7 @@
                     <div class="event">
                         <ul id="event-list">
                             <li>
-                                <div class="times" style="background-color: #306b85">
+                                <div class="times" style="background-color: #12672c">
                                     <h2>
                                         I
                                     </h2>
@@ -2008,7 +2008,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times"style="background-color: #306b85">
+                                <div class="times"style="background-color: #12672c">
                                     <h2>
                                         N 
                                     </h2>
@@ -2020,7 +2020,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         F 
                                     </h2>
@@ -2032,7 +2032,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times" style="background-color: #306b85">
+                                <div class="times" style="background-color: #12672c">
                                     <h2>
                                         P 
                                     </h2>
@@ -2241,7 +2241,7 @@
                     <div class="event">
                         <ul id="event-list">
                             <li>
-                                <div class="times" style="background-color: #306b85">
+                                <div class="times" style="background-color: #12672c">
                                     <h2>
                                         E
                                     </h2>
@@ -2253,7 +2253,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         S 
                                     </h2>
@@ -2265,7 +2265,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         T 
                                     </h2>
@@ -2277,7 +2277,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times" style="background-color: #306b85">
+                                <div class="times" style="background-color: #12672c">
                                     <h2>
                                         J 
                                     </h2>
@@ -2293,7 +2293,7 @@
                     <div class="event">
                         <ul id="event-list">
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         I
                                     </h2>
@@ -2305,7 +2305,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times"style="background-color: #306b85">
+                                <div class="times"style="background-color: #12672c">
                                     <h2>
                                         N 
                                     </h2>
@@ -2317,7 +2317,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times" style="background-color: #306b85">
+                                <div class="times" style="background-color: #12672c">
                                     <h2>
                                         F 
                                     </h2>
@@ -2329,7 +2329,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         P 
                                     </h2>
@@ -2524,7 +2524,7 @@
                     <div class="event">
                         <ul id="event-list">
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         E
                                     </h2>
@@ -2536,7 +2536,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times" style="background-color: #306b85">
+                                <div class="times" style="background-color: #12672c">
                                     <h2>
                                         S 
                                     </h2>
@@ -2548,7 +2548,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times" style="background-color: #306b85">
+                                <div class="times" style="background-color: #12672c">
                                     <h2>
                                         T 
                                     </h2>
@@ -2560,7 +2560,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times" style="background-color: #306b85">
+                                <div class="times" style="background-color: #12672c">
                                     <h2>
                                         J 
                                     </h2>
@@ -2576,7 +2576,7 @@
                     <div class="event">
                         <ul id="event-list">
                             <li>
-                                <div class="times" style="background-color: #306b85">
+                                <div class="times" style="background-color: #12672c">
                                     <h2>
                                         I
                                     </h2>
@@ -2588,7 +2588,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         N 
                                     </h2>
@@ -2600,7 +2600,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         F 
                                     </h2>
@@ -2612,7 +2612,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         P 
                                     </h2>
@@ -2844,7 +2844,7 @@
                     <div class="event">
                         <ul id="event-list">
                             <li>
-                                <div class="times" style="background-color: #306b85">
+                                <div class="times" style="background-color: #12672c">
                                     <h2>
                                         E
                                     </h2>
@@ -2856,7 +2856,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times" style="background-color: #306b85">
+                                <div class="times" style="background-color: #12672c">
                                     <h2>
                                         S 
                                     </h2>
@@ -2868,7 +2868,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         T 
                                     </h2>
@@ -2880,7 +2880,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times" style="background-color: #306b85">
+                                <div class="times" style="background-color: #12672c">
                                     <h2>
                                         J 
                                     </h2>
@@ -2896,7 +2896,7 @@
                     <div class="event">
                         <ul id="event-list">
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         I
                                     </h2>
@@ -2908,7 +2908,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         N 
                                     </h2>
@@ -2920,7 +2920,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times" style="background-color: #306b85">
+                                <div class="times" style="background-color: #12672c">
                                     <h2>
                                         F 
                                     </h2>
@@ -2932,7 +2932,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         P 
                                     </h2>
@@ -3172,7 +3172,7 @@
                     <div class="event">
                         <ul id="event-list">
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         E
                                     </h2>
@@ -3184,7 +3184,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times" style="background-color: #306b85">
+                                <div class="times" style="background-color: #12672c">
                                     <h2>
                                         S 
                                     </h2>
@@ -3196,7 +3196,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         T 
                                     </h2>
@@ -3208,7 +3208,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times" style="background-color: #306b85">
+                                <div class="times" style="background-color: #12672c">
                                     <h2>
                                         J 
                                     </h2>
@@ -3224,7 +3224,7 @@
                     <div class="event">
                         <ul id="event-list">
                             <li>
-                                <div class="times" style="background-color: #306b85">
+                                <div class="times" style="background-color: #12672c">
                                     <h2>
                                         I
                                     </h2>
@@ -3236,7 +3236,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         N 
                                     </h2>
@@ -3248,7 +3248,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times" style="background-color: #306b85">
+                                <div class="times" style="background-color: #12672c">
                                     <h2>
                                         F 
                                     </h2>
@@ -3260,7 +3260,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         P 
                                     </h2>
@@ -3448,7 +3448,7 @@
                     <div class="event">
                         <ul id="event-list">
                             <li>
-                                <div class="times" style="background-color: #306b85">
+                                <div class="times" style="background-color: #12672c">
                                     <h2>
                                         E
                                     </h2>
@@ -3460,7 +3460,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times" style="background-color: #306b85">
+                                <div class="times" style="background-color: #12672c">
                                     <h2>
                                         S 
                                     </h2>
@@ -3472,7 +3472,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times" style="background-color: #306b85">
+                                <div class="times" style="background-color: #12672c">
                                     <h2>
                                         T 
                                     </h2>
@@ -3484,7 +3484,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         J 
                                     </h2>
@@ -3500,7 +3500,7 @@
                     <div class="event">
                         <ul id="event-list">
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         I
                                     </h2>
@@ -3512,7 +3512,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         N 
                                     </h2>
@@ -3524,7 +3524,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         F 
                                     </h2>
@@ -3536,7 +3536,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times" style="background-color: #306b85">
+                                <div class="times" style="background-color: #12672c">
                                     <h2>
                                         P 
                                     </h2>
@@ -3747,7 +3747,7 @@
                     <div class="event">
                         <ul id="event-list">
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         E
                                     </h2>
@@ -3759,7 +3759,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times" style="background-color: #306b85">
+                                <div class="times" style="background-color: #12672c">
                                     <h2>
                                         S 
                                     </h2>
@@ -3771,7 +3771,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times" style="background-color: #306b85">
+                                <div class="times" style="background-color: #12672c">
                                     <h2>
                                         T 
                                     </h2>
@@ -3783,7 +3783,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         J 
                                     </h2>
@@ -3799,7 +3799,7 @@
                     <div class="event">
                         <ul id="event-list">
                             <li>
-                                <div class="times" style="background-color: #306b85">
+                                <div class="times" style="background-color: #12672c">
                                     <h2>
                                         I
                                     </h2>
@@ -3811,7 +3811,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         N 
                                     </h2>
@@ -3823,7 +3823,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         F 
                                     </h2>
@@ -3835,7 +3835,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times" style="background-color: #306b85">
+                                <div class="times" style="background-color: #12672c">
                                     <h2>
                                         P 
                                     </h2>
@@ -4015,7 +4015,7 @@
                     <div class="event">
                         <ul id="event-list">
                             <li>
-                                <div class="times" style="background-color: #306b85">
+                                <div class="times" style="background-color: #12672c">
                                     <h2>
                                         E
                                     </h2>
@@ -4027,7 +4027,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times" style="background-color: #306b85">
+                                <div class="times" style="background-color: #12672c">
                                     <h2>
                                         S 
                                     </h2>
@@ -4039,7 +4039,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         T 
                                     </h2>
@@ -4051,7 +4051,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         J 
                                     </h2>
@@ -4067,7 +4067,7 @@
                     <div class="event">
                         <ul id="event-list">
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         I
                                     </h2>
@@ -4079,7 +4079,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         N 
                                     </h2>
@@ -4091,7 +4091,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times" style="background-color: #306b85">
+                                <div class="times" style="background-color: #12672c">
                                     <h2>
                                         F 
                                     </h2>
@@ -4103,7 +4103,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times" style="background-color: #306b85">
+                                <div class="times" style="background-color: #12672c">
                                     <h2>
                                         P 
                                     </h2>
@@ -4293,7 +4293,7 @@
                     <div class="event">
                         <ul id="event-list">
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         E
                                     </h2>
@@ -4305,7 +4305,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times" style="background-color: #306b85">
+                                <div class="times" style="background-color: #12672c">
                                     <h2>
                                         S 
                                     </h2>
@@ -4317,7 +4317,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         T 
                                     </h2>
@@ -4329,7 +4329,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         J 
                                     </h2>
@@ -4345,7 +4345,7 @@
                     <div class="event">
                         <ul id="event-list">
                             <li>
-                                <div class="times" style="background-color: #306b85">
+                                <div class="times" style="background-color: #12672c">
                                     <h2>
                                         I
                                     </h2>
@@ -4357,7 +4357,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times">
+                                <div class="times" style="background-color: #262626ab;" >
                                     <h2>
                                         N 
                                     </h2>
@@ -4369,7 +4369,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times" style="background-color: #306b85">
+                                <div class="times" style="background-color: #12672c">
                                     <h2>
                                         F 
                                     </h2>
@@ -4381,7 +4381,7 @@
                                 <div style="clear: both;"></div>
                             </li>
                             <li>
-                                <div class="times" style="background-color: #306b85">
+                                <div class="times" style="background-color: #12672c">
                                     <h2>
                                         P 
                                     </h2>

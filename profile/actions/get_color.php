@@ -1,7 +1,7 @@
 <div id="personal-info1">
      <div class="basic-info">
        <span id="userName">
-       MULTIPLE INTELLIGENCE QUOTIENT Result
+       WHAT COLOR ARE YOU?
        </span>
      </div>
      <div class="basic-info">

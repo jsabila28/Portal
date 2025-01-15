@@ -10,6 +10,9 @@ $main_root = $portal_root."/main";
 $atd_root = $portal_root."/ATD";
 $sr_root = $portal_root."/profile";
 $dtr_root = $portal_root."/dtr";
+$com_root = $portal_root."/compliance";
+$lv_root = $portal_root."/leave";
+
 
 // sidenav
  $sidenav = $main_root."/layout/sidenav.php";

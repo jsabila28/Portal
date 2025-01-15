@@ -116,3 +116,33 @@ function updateFileContent() {
         reader.readAsDataURL(file);
     }
 }
+
+document.getElementById("submitBtn").addEventListener("click", function (event) {
+  // Prevent default behavior if inside a form
+  event.preventDefault();
+
+  // Get the selected radio button
+  const selectedOption = document.querySelector('input[name="audience"]:checked');
+  
+  if (selectedOption) {
+    // Get the custom data attributes
+    const newText = selectedOption.getAttribute("data-text");
+    const newIcon = selectedOption.getAttribute("data-icon");
+    
+    // Update the span and icon
+    document.getElementById("resultText").textContent = newText;
+    const resultIcon = document.getElementById("resultIcon");
+    resultIcon.className = newIcon; // Update icon class
+
+    // Optional: Hide optionsDiv if needed
+    // document.getElementById("optionsDiv").style.display = "none";
+  } else {
+    alert("Please select an option!");
+    return; // Exit function if no selection is made
+  }
+
+  // Update wrapper classes and display sections
+  document.querySelector('.wrapper').classList.remove('wrapper-active');
+  postAudienceSection.style.display = 'none'; 
+  createPostSection.style.display = 'block';
+});

@@ -105,7 +105,7 @@ function resetForm() {
 function start_signature() {
     $("#sig-dataUrl").hide();
     $('#sign-box').show();
-    resizeCanvas();
+    // resizeCanvas();
 }
         
 function signed(){

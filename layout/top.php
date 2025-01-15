@@ -95,7 +95,8 @@
     <link rel="stylesheet" type="text/css" href="/Portal/admin_template/bower_components/multiselect/css/multi-select.css">
 
 
-
+	<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@joeattardi/emoji-button/dist/index.css"> -->
+	<!-- <script src="https://cdn.jsdelivr.net/npm/@joeattardi/emoji-button@5.4.0/dist/emoji-button.min.js"></script> -->
 
 </head>
 
@@ -225,7 +226,7 @@
                         						      </label>
                         						  </div>
                         						  <div id="pers-name">
-                        						      <label style="width:50% !important;">Event Img<span id="required">*</span> 
+                        						      <label style="width:50% !important;">Event Img(563x286 px)<span id="required">*</span> 
                         						          <input class="form-control" type="file" name="eventimg" id="eventimgInput" value=""/>
                         						      </label>
                         						      <label style="width:45% !important;">
@@ -422,23 +423,23 @@
                                 		<img src="assets/img/eei2.png" width="45" height="45"><br>EEI
                                 	</div>
                                 </a>
-                                <a class="media-left" href="#!" style="text-align: center;">
+                               <!--  <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
                                 		<img src="assets/img/employee2.png" width="45" height="45"><br>Employees
                                 	</div>
-                                </a>
+                                </a> -->
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
                                 		<img src="assets/img/pa2.png" width="45" height="45"><br>PA
                                 	</div>
                                 </a>
-                                <a class="media-left" href="#!" style="text-align: center;">
+                                <!-- <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
                                 		<img src="assets/img/hiring2.png" width="45" height="45"><br>Hiring
                                 	</div>
-                                </a>
+                                </a> -->
                             </div>
-                            <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
+                            <!-- <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
                                 		<img src="assets/img/report2.png" width="45" height="45"><br>Reports
@@ -449,17 +450,55 @@
                                 		<img src="assets/img/announcement2.png" width="45" height="45"><br>Post
                                 	</div>
                                 </a>
-                            </div>
+                            </div> -->
                             
+                            
+                            <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" data-placement="left" title="Josephin Doe">
+                                <span>Compliance</span>
+                            </div>
+                            <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
+                                <a class="media-left" href="/Portal/compliance/phoneA" style="text-align: center;">
+                                	<div>
+                                		<img src="assets/img/phone-agreement.png" width="45" height="45"><br>Phone Agreement
+                                	</div>
+                                </a>
+                                <a class="media-left" href="#!" style="text-align: center;">
+                                	<div>
+                                		<img src="assets/img/employee2.png" width="45" height="45"><br>Clearance
+                                	</div>
+                                </a>
+                                <a class="media-left" href="#!" style="text-align: center;">
+                                	<div>
+                                		<img src="assets/img/contract.png" width="45" height="45"><br>Device Contract
+                                	</div>
+                                </a>
+                            </div>
+                            <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
+                                <a class="media-left" href="/Portal/compliance/ir" style="text-align: center;">
+                                	<div>
+                                		<img src="assets/img/ir.png" width="45" height="45"><br>IR
+                                	</div>
+                                </a>
+                                <a class="media-left" href="/Portal/compliance/13A" style="text-align: center;">
+                                	<div>
+                                		<img src="assets/img/13a.png" width="45" height="45"><br>13A
+                                	</div>
+                                </a>
+                                <a class="media-left" href="/Portal/compliance/13B" style="text-align: center;">
+                                	<div>
+                                		<img src="assets/img/13b.png" width="45" height="45"><br>13B
+                                	</div>
+                                </a>
+                            </div>
                             <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" data-placement="left" title="Josephin Doe">
                                 <span>Systems</span>
                             </div>
                             <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
-                                <!-- <a class="media-left" href="#!" style="text-align: center;">
+                                <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
                                 		<img src="assets/img/atd.png" width="40" height="40"><br>ATD
                                 	</div>
-                                </a> -->
+                                </a>
                             </div>
                         </div>
                     </div>

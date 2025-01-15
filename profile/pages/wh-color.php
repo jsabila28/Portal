@@ -32,7 +32,7 @@
                       </div>
                     </div>
                 </div>
-                <div class="card" style="height: 500px !important; overflow: auto !important;margin-bottom: 200px !important;">
+                <div class="card" style="height: 700px !important; overflow: auto !important;padding-bottom: 200px !important;">
                     <div class="card-block" id="color">
                          
                     </div>

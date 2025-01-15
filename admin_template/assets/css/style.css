@@ -1364,7 +1364,7 @@ Tabs css start
     color: #1b8bf9; }
   .md-tabs .nav-item, .md-tabs .main-menu .main-menu-content .nav-item .tree-1 a, .main-menu .main-menu-content .nav-item .tree-1 .md-tabs a, .md-tabs .main-menu .main-menu-content .nav-item .tree-2 a, .main-menu .main-menu-content .nav-item .tree-2 .md-tabs a, .md-tabs .main-menu .main-menu-content .nav-item .tree-3 a, .main-menu .main-menu-content .nav-item .tree-3 .md-tabs a, .md-tabs .main-menu .main-menu-content .nav-item .tree-4 a, .main-menu .main-menu-content .nav-item .tree-4 .md-tabs a {
     background-color: #fff;
-    width: calc(100% / 4);
+    width: calc(100% / 9);
     text-align: center; }
   .md-tabs .nav-link:focus,
   .md-tabs .nav-link:hover {
@@ -1405,11 +1405,12 @@ Tabs css start
     border-bottom: 1px solid #ddd; }
   .md-tabs .nav-item a, .md-tabs .main-menu .main-menu-content .nav-item .tree-1 a a, .main-menu .main-menu-content .nav-item .tree-1 .md-tabs a a, .md-tabs .main-menu .main-menu-content .nav-item .tree-2 a a, .main-menu .main-menu-content .nav-item .tree-2 .md-tabs a a, .md-tabs .main-menu .main-menu-content .nav-item .tree-3 a a, .main-menu .main-menu-content .nav-item .tree-3 .md-tabs a a, .md-tabs .main-menu .main-menu-content .nav-item .tree-4 a a, .main-menu .main-menu-content .nav-item .tree-4 .md-tabs a a {
     padding: 20px 0 !important;
-    color: #207334; }
+    /*color: #207334;*/
+     }
 
 .nav-tabs .slide {
   background: #0073aa;
-  width: calc(100% / 4);
+  width: calc(100% / 9);
   height: 4px;
   position: absolute;
   -webkit-transition: left 0.3s ease-out;
@@ -2687,7 +2688,8 @@ Panels and wells css start
 ========================= */
 .panel {
   background-color: #fff;
-  border: 1px solid transparent;
+  /*padding: 5px;*/
+  border: 1px solid #d7d2d2;
   border-radius: 4px;
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05); }
@@ -7169,7 +7171,8 @@ body.menu-sidebar .navbar-wrapper {
   border-radius: 2px;
   text-transform: capitalize;
   font-size: 15px;
-  padding: 10px 19px; }
+  /*padding: 10px 19px; */
+}
 
 .button-page .card-block {
   margin-bottom: -20px; }
@@ -15687,7 +15690,7 @@ span.value {
 
   .pcoded-main-container {
     margin-top: 56px !important; 
-    /*background-color: #da92a5;*/
+    /*background-color: #888;*/
   }
 
   .card-title {
@@ -19617,7 +19620,7 @@ body.menu-bottom .navbar-wrapper {
 /* Change background color of buttons on hover */
 .tab button:hover {
   background-color: #61cf91;
-  color: #207334;
+  /*color: #207334;*/
 }
 
 /* Create an active/current "tab button" class */
@@ -19765,4 +19768,16 @@ ul.button-grid button:hover {
 textarea{
   font-size: 14px;
   width: 100%;
+}
+#IR{
+  padding-left: 40px;
+  padding-right: 50px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+#_13A{
+  padding-left: 40px;
+  padding-right: 50px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }

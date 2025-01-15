@@ -1,5 +1,5 @@
-<div id="personal-info1">
-     <div class="basic-info">
+<div id="personal-info1" style="width: 100%;">
+     <div class="basic-info" style="margin-bottom: 20px;">
        <span id="userName">
        VAK Result
        </span>

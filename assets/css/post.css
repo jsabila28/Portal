@@ -413,7 +413,7 @@ url(https://static.xx.fbcdn.net/rsrc.php/v3/yX/r/QryT_9DQQgy.png);
 }
 
 .fa-user {
-    padding: 1rem 1.1rem;
+    /*padding: 1rem 1.1rem;*/
 }
 
 .fa-lock {
@@ -569,4 +569,7 @@ url(https://static.xx.fbcdn.net/rsrc.php/v3/yX/r/QryT_9DQQgy.png);
 .emoji-card span:hover {
   background-color: #f0f0f0;
   border-radius: 5px;
+}
+.icon{
+    cursor: pointer;
 }

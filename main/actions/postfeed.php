@@ -30,7 +30,8 @@ try {
             FROM tbl_announcement a
             LEFT JOIN tbl201_basicinfo b ON a.ann_approvedby = b.bi_empno
             WHERE a.ann_type = 'LOCAL'
-            AND DATE_FORMAT(a.ann_timestatmp, '%Y') = :dates
+            AND DATE_FORMAT(a.ann_end, '%Y') = :dates
+            AND ann_status = 'Approved'
             -- GROUP BY a.ann_id
             ORDER BY a.ann_timestatmp DESC
             LIMIT :offset, :limit
@@ -77,7 +78,7 @@ try {
             echo '</div>'; // Close dropdown
             echo '<div class="media m-0">';
             echo '<div class="d-flex mr-3">';
-            echo '<a href=""><img class="img-fluid rounded-circle" src="assets/image/img/'. htmlspecialchars($row['bi_empno']) .'.jpg'.'" onerror="this.onerror=null; this.src="https://i.pinimg.com/736x/6e/db/e7/6edbe770213e7d6885240b2c91e9dd86.jpg";"></a>';
+            echo '<a href=""><img class="img-fluid rounded-circle" src="https://teamtngc.com/hris2/pages/empimg/'. htmlspecialchars($row['bi_empno']) .'.jpg'.'" onerror="this.onerror=null; this.src="https://i.pinimg.com/736x/6e/db/e7/6edbe770213e7d6885240b2c91e9dd86.jpg";"></a>';
             echo '</div>';
             echo '<div class="media-body">';
             echo '<p class="m-0" style="font-weight: 500px;">'. htmlspecialchars($row['bi_empfname']) . ' '. htmlspecialchars($row['bi_emplname']).'</p>';
@@ -268,6 +269,8 @@ try {
             
             // Fetch comments from both databases and merge them
             $comments = [];
+            $port_db->exec("SET NAMES 'utf8mb4'");
+            $hr_db->exec("SET NAMES 'utf8mb4'");
             
             $stmt = $port_db->prepare("
                 SELECT 
@@ -311,42 +314,50 @@ try {
             
             // Loop through comments and display them
             if (!empty($comments)) {
-                foreach ($comments as $c) {
-                    echo '<div class="cardbox-base-comment">';
-                    echo '<div class="media m-1">';
-                    echo '<div class="d-flex mr-1" style="margin-left: 20px;">';
-                    echo '<a href=""><img class="img-fluid rounded-circle" src="https://teamtngc.com/hris2/pages/empimg/' . htmlspecialchars($c['bi_empno'])             . '.JPG" alt="User"></a>';
-                    echo '</div>';
-                    echo '<div class="media-body">';
-                    echo '<p class="m-0">' . htmlspecialchars($c['bi_empfname']) . ' ' . htmlspecialchars($c['bi_emplname']) . '</p>';
-                    echo '<small><span><i class="icon ion-md-pin"></i> ' . htmlspecialchars($c['com_content']) . '</span></small>';
-            
-                    $commentTime = new DateTime($c['com_date']);
-                    $currentTime = new DateTime();
+            foreach ($comments as $c) {
+                echo '<div class="cardbox-base-comment">';
+                echo '<div class="media m-1">';
+                echo '<div class="d-flex mr-1" style="margin-left: 20px;">';
+                echo '<a href=""><img class="img-fluid rounded-circle" src="https://teamtngc.com/hris2/pages/empimg/' . htmlspecialchars($c['bi_empno']) . '.JPG" alt="User"></a>';
+                echo '</div>';
+                echo '<div class="media-body">';
+                echo '<p class="m-0">' . htmlspecialchars($c['bi_empfname']) . ' ' . htmlspecialchars($c['bi_emplname']) . '</p>';
+                echo '<small><span><i class="icon ion-md-pin"></i> ' . htmlspecialchars_decode($c['com_content'])  . '</span></small>';
+
+                try {
+                    // Set the timezone explicitly
+                    $timezone = new DateTimeZone('Asia/Manila'); // Adjust to your timezone
+                
+                    $commentTime = new DateTime($c['com_date'], $timezone);
+                    $currentTime = new DateTime('now', $timezone); // Use the same timezone
+                
                     $interval = $commentTime->diff($currentTime);
-            
-                    // Create a "time ago" string
+                
+                    // Generate "time ago" string
                     if ($interval->y > 0) {
-                        $timeAgo = $interval->y . ' y' . ($interval->y > 1 ? '' : '') . ' ago';
+                        $timeAgo = $interval->y . ' year' . ($interval->y > 1 ? 's' : '') . ' ago';
                     } elseif ($interval->m > 0) {
-                        $timeAgo = $interval->m . ' mon' . ($interval->m > 1 ? ''  : '') . ' ago';
+                        $timeAgo = $interval->m . ' month' . ($interval->m > 1 ? 's' : '') . ' ago';
                     } elseif ($interval->d > 0) {
-                        $timeAgo = $interval->d . ' d' . ($interval->d > 1 ? '' : '') . ' ago';
+                        $timeAgo = $interval->d . ' day' . ($interval->d > 1 ? 's' : '') . ' ago';
                     } elseif ($interval->h > 0) {
-                        $timeAgo = $interval->h . ' hr' . ($interval->h > 1 ? '' : '') . ' ago';
+                        $timeAgo = $interval->h . ' hour' . ($interval->h > 1 ? 's' : '') . ' ago';
                     } elseif ($interval->i > 0) {
-                        $timeAgo = $interval->i . ' m' . ($interval->i > 1 ? '' : '') . ' ago';
+                        $timeAgo = $interval->i . ' min' . ($interval->i > 1 ? 's' : '') . ' ago';
                     } else {
                         $timeAgo = 'Just now';
                     }
-            
-                    echo '<div class="comment-reply">
-                            <small><a>' . htmlspecialchars($timeAgo) . '</a></small>
-                            <small><a style="cursor: pointer;">Reply</a></small>
-                          </div>';
-                    echo '</div>'; // Close media-body
-                    echo '</div>'; // Close media
-                    echo '</div>'; // Close cardbox-base-comment
+                } catch (Exception $e) {
+                    $timeAgo = 'Invalid date'; // Fallback in case of parsing issues
+                }
+
+
+                echo '<div class="comment-reply">
+                        <small><a>' . htmlspecialchars($timeAgo) . '</a></small>
+                      </div>';
+                echo '</div>'; // Close media-body
+                echo '</div>'; // Close media
+                echo '</div>'; // Close cardbox-base-comment
                 }
             }
             echo '<div id="comment-section"></div>';
@@ -363,12 +374,34 @@ try {
             echo '<div class="textarea-wrapper">';
             echo '<input type="hidden" name="com-id" value="' . htmlspecialchars($row['ann_id']) . '" />';
             echo '<input type="text" name="Mycomment-' . htmlspecialchars($row['ann_id']) . '" placeholder="Write a comment..." id="Mycomment-' . htmlspecialchars($row['ann_id']) . '" class="emojiable-option"></input>';
-            echo '<i class="ti-face-smile icon emoji-icon"></i>';
+            echo '<i class="ti-face-smile icon emoji-icon" onclick="showDiv(' . $row['ann_id'] . ')"></i>';
             echo '</div>'; // Close textarea-wrapper
             echo '<a href="#" id="saveComment-' . htmlspecialchars($row['ann_id']) . '" onclick="saveComment(' . htmlspecialchars($row['ann_id']) . '); return false;"><img src="assets/img/send_icon.png" height="30" width="30"/></a>';
             echo '</div>'; // Close media-body
             echo '</div>'; // Close media
             echo '</div>'; // Close cardbox-base-comment
+
+            // Add new comment input section
+            echo '<div class="cardbox-base-comment" id="hidden-div-' . $row['ann_id'] . '" style="width:100%; display:none;">';
+            echo '<div class="m-1">';
+            $emojis = [
+                   '&#128512;', '&#128513;', '&#128514;', '&#128515;', '&#128516;', '&#128517;', '&#128518;', '&#128519;',
+                   '&#128520;', '&#128521;', '&#128522;', '&#128523;', '&#128524;', '&#128525;', '&#128526;', '&#128527;',
+                   '&#128528;', '&#128529;', '&#128530;', '&#128531;', '&#128532;', '&#128533;', '&#128534;', '&#128535;',
+                   '&#128536;', '&#128537;', '&#128538;', '&#128539;', '&#128540;', '&#128541;', '&#128542;', '&#128543;',
+                   '&#128544;', '&#128545;', '&#128546;', '&#128547;', '&#128548;', '&#128549;', '&#128550;', '&#128551;',
+                   '&#128552;', '&#128553;', '&#128554;', '&#128555;', '&#128556;', '&#128557;', '&#128558;', '&#128559;',
+                   '&#128560;', '&#128561;', '&#128562;', '&#128563;', '&#128564;', '&#128565;', '&#128566;', '&#128567;', 
+                   '&#127872;', '&#127873;', '&#127874;', '&#127878;', '&#127879;', '&#127880;', '&#127881;', '&#127882;', 
+                   '&#128147;', '&#128148;', '&#128149;', '&#128150;', '&#128151;', '&#128152;', '&#128153;', '&#128154;', 
+                   '&#128155;', '&#128156;', '&#128157;', '&#128158;', '&#128159;', '&#128420;', '&#129293;', '&#129294;'
+               ];
+               
+               foreach ($emojis as $emoji) {
+                   echo '<span class="emoji" onclick="insertEmoji(\'Mycomment-' . htmlspecialchars($row['ann_id']) . '\', \'' . htmlspecialchars($emoji) . '\')">' . htmlspecialchars_decode($emoji) . '</span>';
+               }
+            echo '</div>';
+            echo '</div>';
 
             // Add new comment input section
             echo '</div>'; // Close cardbox
@@ -593,74 +626,140 @@ try {
                                 
                                 // Loop through comments and display them
                                 if (!empty($comments)) {
-                                    foreach ($comments as $c) {
-                                        echo '<div class="cardbox-base-comment">';
-                                        echo '<div class="media m-1">';
-                                        echo '<div class="d-flex mr-1" style="margin-left: 20px;">';
-                                        echo '<a href=""><img class="img-fluid rounded-circle" src="https://teamtngc.com/hris2/pages/empimg/' . htmlspecialchars($c['bi_empno'])             . '.JPG" alt="User"></a>';
-                                        echo '</div>';
-                                        echo '<div class="media-body">';
-                                        echo '<p class="m-0">' . htmlspecialchars($c['bi_empfname']) . ' ' . htmlspecialchars($c['bi_emplname']) . '</p>';
-                                        echo '<small><span><i class="icon ion-md-pin"></i> ' . htmlspecialchars($c['com_content']) . '</span></small>';
-                                
-                                        $commentTime = new DateTime($c['com_date']);
-                                        $currentTime = new DateTime();
+                                foreach ($comments as $c) {
+
+                                    echo '<div class="cardbox-base-comment">';
+                                    echo '<div class="media m-1">';
+                                    echo '<div class="d-flex mr-1" style="margin-left: 20px;">';
+                                    echo '<a href=""><img class="img-fluid rounded-circle" src="https://teamtngc.com/hris2/pages/empimg/' . htmlspecialchars($c['bi_empno']) . '.JPG" alt="User"></a>';
+                                    echo '</div>';
+                                    echo '<div class="media-body">';
+                                    echo '<p class="m-0">' . htmlspecialchars($c['bi_empfname']) . ' ' . htmlspecialchars($c['bi_emplname']) . '</p>';
+                                    echo '<small><span><i class="icon ion-md-pin"></i> ' . htmlspecialchars_decode($c['com_content']) . '</span></small>';
+
+                                    try {
+                                        // Set the timezone explicitly
+                                        $timezone = new DateTimeZone('Asia/Manila'); // Adjust to your timezone
+                                    
+                                        $commentTime = new DateTime($c['com_date'], $timezone);
+                                        $currentTime = new DateTime('now', $timezone); // Use the same timezone
+                                    
                                         $interval = $commentTime->diff($currentTime);
-                                
-                                        // Create a "time ago" string
+                                    
+                                        // Generate "time ago" string
                                         if ($interval->y > 0) {
-                                            $timeAgo = $interval->y . ' y' . ($interval->y > 1 ? '' : '') . ' ago';
+                                            $timeAgo = $interval->y . ' year' . ($interval->y > 1 ? 's' : '') . ' ago';
                                         } elseif ($interval->m > 0) {
-                                            $timeAgo = $interval->m . ' mon' . ($interval->m > 1 ? ''  : '') . ' ago';
+                                            $timeAgo = $interval->m . ' month' . ($interval->m > 1 ? 's' : '') . ' ago';
                                         } elseif ($interval->d > 0) {
-                                            $timeAgo = $interval->d . ' d' . ($interval->d > 1 ? '' : '') . ' ago';
+                                            $timeAgo = $interval->d . ' day' . ($interval->d > 1 ? 's' : '') . ' ago';
                                         } elseif ($interval->h > 0) {
-                                            $timeAgo = $interval->h . ' hr' . ($interval->h > 1 ? '' : '') . ' ago';
+                                            $timeAgo = $interval->h . ' hour' . ($interval->h > 1 ? 's' : '') . ' ago';
                                         } elseif ($interval->i > 0) {
-                                            $timeAgo = $interval->i . ' m' . ($interval->i > 1 ? '' : '') . ' ago';
+                                            $timeAgo = $interval->i . ' min' . ($interval->i > 1 ? 's' : '') . ' ago';
                                         } else {
                                             $timeAgo = 'Just now';
                                         }
-                                
-                                        echo '<div class="comment-reply">
-                                                <small><a>' . htmlspecialchars($timeAgo) . '</a></small>
-                                                <small><a style="cursor: pointer;">Reply</a></small>
-                                              </div>';
-                                        echo '</div>'; // Close media-body
-                                        echo '</div>'; // Close media
-                                        echo '</div>'; // Close cardbox-base-comment
+                                    } catch (Exception $e) {
+                                        $timeAgo = 'Invalid date'; // Fallback in case of parsing issues
+                                    }
+
+                                    echo '<div class="comment-reply">
+                                            <small><a>' . htmlspecialchars($timeAgo) . '</a></small>
+                                          </div>';
+                                    echo '</div>'; // Close media-body
+                                    echo '</div>'; // Close media
+                                    echo '</div>'; // Close cardbox-base-comment
                                     }
                                 }
+                                // <small><a style="cursor: pointer;">Reply</a></small>
+
                                 echo '<div id="comment-section"></div>';
 
                          echo '</div>';
                          echo '<div class="modal-footer">';
-                                // Add new comment input section
-                                echo '<div class="cardbox-base-comment" style="width:100%;">';
-                                echo '<div class="media m-1">';
-                                echo '<div class="d-flex mr-1" style="margin-left: 20px;">';
-                                echo '<a href=""><img class="img-fluid rounded-circle" src="https://teamtngc.com/hris2/pages/empimg/' . $user_id . '.JPG" alt="User"></a>';
-                                echo '</div>';
-                                echo '<div class="media-body" id="comment">';
-                                echo '<div class="textarea-wrapper">';
-                                echo '<input type="text" name="Mycomment" value="" placeholder="Write a comment..." id="input-default" class="emojiable-option"></input>';
-                                echo '<i class="ti-face-smile icon emoji-icon"></i>';
-                                echo '</div>'; // Close textarea-wrapper
-                                echo '<a href="#" id="saveComment" onclick="saveComment()"><img src="assets/img/send_icon.png" height="30" width="30"/></a>';
-                                echo '</div>'; // Close media-body
-                                echo '</div>'; // Close media
-                                echo '</div>'; // Close cardbox-base-comment
-                                // Add new comment input section
+                         // Add new comment input section
+                         echo '<div class="cardbox-base-comment" id="hidden-div" style="width:100%;">';
+                         echo '<div class="media m-1">';
+                         echo '<div class="d-flex mr-1" style="margin-left: 20px;">';
+                         echo '<a href=""><img class="img-fluid rounded-circle" src="https://teamtngc.com/hris2/pages/empimg/' . htmlspecialchars($user_id) . '.JPG" alt="User"></a>';
+                         echo '</div>';
+                         echo '<div class="media-body" id="comment">';
+                         echo '<div class="textarea-wrapper">';
+                         echo '<input type="hidden" name="com-id" value="' . htmlspecialchars($row['ann_id']) . '" />';
+                         echo '<input type="text" name="SMycomment-' . htmlspecialchars($row['ann_id']) . '" placeholder="Write a comment..." id="SMycomment-' . htmlspecialchars($row['ann_id']) . '" class="emojiable-option"></input>';
+                         echo '<i class="ti-face-smile icon emoji-icon" onclick="showEmoji(' . $row['ann_id'] . ')"></i>';
+                         echo '</div>'; // Close textarea-wrapper
+                         echo '<a href="#" id="saveComment-' . htmlspecialchars($row['ann_id']) . '" onclick="saveComment(' . htmlspecialchars($row['ann_id']) . '); return false;"><img src="assets/img/send_icon.png" height="30" width="30"/></a>';
+                         echo '</div>'; // Close media-body
+                         echo '</div>'; // Close media
+                         echo '</div>'; // Close cardbox-base-comment
+                         //Add new comment input section
+                               
                         echo '</div>';
+                        //footer end
+
+                        echo '<div class="modal-footer">';
+                         // Add new comment input section
+                         echo '<div class="cardbox-base-comment" id="emoji-div-' . $row['ann_id'] . '" style="width:100%; display:none;">';
+                         echo '<div class="m-1">';
+                         $emojis = [
+                                '&#128512;', '&#128513;', '&#128514;', '&#128515;', '&#128516;', '&#128517;', '&#128518;', '&#128519;',
+                                '&#128520;', '&#128521;', '&#128522;', '&#128523;', '&#128524;', '&#128525;', '&#128526;', '&#128527;',
+                                '&#128528;', '&#128529;', '&#128530;', '&#128531;', '&#128532;', '&#128533;', '&#128534;', '&#128535;',
+                                '&#128536;', '&#128537;', '&#128538;', '&#128539;', '&#128540;', '&#128541;', '&#128542;', '&#128543;',
+                                '&#128544;', '&#128545;', '&#128546;', '&#128547;', '&#128548;', '&#128549;', '&#128550;', '&#128551;',
+                                '&#128552;', '&#128553;', '&#128554;', '&#128555;', '&#128556;', '&#128557;', '&#128558;', '&#128559;',
+                                '&#128560;', '&#128561;', '&#128562;', '&#128563;', '&#128564;', '&#128565;', '&#128566;', '&#128567;', 
+                                '&#127872;', '&#127873;', '&#127874;', '&#127878;', '&#127879;', '&#127880;', '&#127881;', '&#127882;', 
+                                '&#128147;', '&#128148;', '&#128149;', '&#128150;', '&#128151;', '&#128152;', '&#128153;', '&#128154;', 
+                                '&#128155;', '&#128156;', '&#128157;', '&#128158;', '&#128159;', '&#128420;', '&#129293;', '&#129294;'
+                            ];
+                            
+                            foreach ($emojis as $emoji) {
+                                echo '<span class="emoji" onclick="insertEmoji(\'SMycomment-' . htmlspecialchars($row['ann_id']) . '\', \'' . htmlspecialchars($emoji) . '\')">' . $emoji . '</span>';
+
+                            }
+                         echo '</div>';
+                         echo '</div>';      
+                        echo '</div>';
+                        //footer end
+
                      echo '</div>';
                 echo '</div>';
             echo '</div>';
         }
-    } else {
-        echo "No data available.";
     }
 
 } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();
 }
 ?>
+<script>
+function showDiv(uniqueId) {
+    const hiddenDiv = document.getElementById('hidden-div-' + uniqueId);
+    if (hiddenDiv) {
+        hiddenDiv.style.display = hiddenDiv.style.display === 'none' ? 'block' : 'none';
+    }
+}
+function showEmoji(emojiId) {
+    const emojiDiv = document.getElementById('emoji-div-' + emojiId);
+    if (emojiDiv) {
+        emojiDiv.style.display = emojiDiv.style.display === 'none' ? 'block' : 'none';
+    }
+}
+function insertEmoji(inputId, emojiCode) {
+    const inputField = document.getElementById(inputId);
+
+    // Decode the emoji code to get the actual emoji
+    const tempElement = document.createElement('span');
+    tempElement.innerHTML = emojiCode;
+    const emoji = tempElement.textContent || tempElement.innerText;
+
+    if (inputField) {
+        inputField.value += emoji; // Append the actual emoji to the input field
+    } else {
+        console.error('Input field not found:', inputId);
+    }
+}
+</script>

@@ -11,7 +11,7 @@
                             foreach ($moods as $v) {
                         ?>
                         <a href="#" class="pull-left" style="position: relative;width: 55px;">
-                            <img src="https://e-classtngcacademy.s3.ap-southeast-1.amazonaws.com/e-class/Thumbnail/img/<?= $v['m_empno'] ?>.JPG" alt="" class="img-circle">
+                            <img src="https://teamtngc.com/hris2/pages/empimg/<?= $v['m_empno'] ?>.JPG" alt="" class="img-circle">
                             <!-- Mood icon at the top right corner -->
                             <div style="position: absolute; top: 0; right: 0; background-color: white; color: white; padding: 2px; border-radius: 50%;">
                                 <?php if ($v['m_mood'] == 'anger') {
@@ -84,7 +84,7 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h6 class="modal-title" style="text-align: center; width: 100%;">Create Post</h6>
+                                        <h6 class="modal-title" style="text-align: center; width: 100%;color: black !important;"><b>Create Post</b></h6>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true"><i style="cursor: pointer;font-size: 30px;" class="fa fa-times-circle"></i></span>
                                         </button>
@@ -101,22 +101,24 @@
                                                             <div class="full-name"><?php echo $username; ?></div> 
                                                             <input type="hidden" name="posted-by" value="<?= $user_id ?>">
                                                             <div class="post-audience"> 
-                                                                <div class="friends-icon"></div> 
-                                                                <span class="audience-text">Only Me</span> 
+                                                                <!-- <i id="resultText" class="fa fa-user"></i> -->
+                                                                <!-- <span id="resultIcon" class="audience-text">Only Me</span>  -->
+                                                                <i id="resultIcon" class="fa fa-user"></i>
+                                                                <span id="resultText">Only Me</span>
                                                                 <div class="drop-down"><i class="icofont icofont-caret-down"></i></div> 
                                                             </div> 
                                                         </div> 
                                                     </div> 
                                                     <div class="post-content"> 
                                                         <textarea name="post-desc" id="post-desc" cols="30" rows="5" placeholder="What's on you mind ?"></textarea> 
-                                                        <!-- <div class="custom-pick">
+                                                        <div class="custom-pick">
                                                             <div class="background-picker"> 
                                                                 <img height="38" alt="" class="xz74otr" referrerpolicy="origin-when-cross-origin" src="assets/img/foto.png">
                                                             </div>
                                                             <div class="emoji-picker"> 
                                                                 <img height="38" alt="" class="xz74otr" referrerpolicy="origin-when-cross-origin" src="assets/img/emoji.png">
                                                             </div>
-                                                        </div> -->
+                                                        </div>
                                                         <div id="add-photo-video" class="hide-image">
                                                             <div class="image-video" id="image-video" style="background-image: url('assets/img/upload.png');" onclick="document.getElementById('file-input').click();">
                                                                 <!-- <i id="close" onclick="toggleDiv()" style="cursor: pointer;" class="fa fa-times-circle"></i> -->
@@ -140,7 +142,7 @@
                                                         <button class="post-btn" disabled>Post</button> 
                                                     </div> 
                                                 </section> 
-                                                <section class="post-audience-section"> 
+                                                <section class="post-audience-section" id="optionsDiv"> 
                                                     <header class="post-audience-header"> 
                                                         <div class="arrow-left-icon"><i class="fa fa-arrow-circle-o-left"></i></div> 
                                                         <h6>Post Audience</h6> 
@@ -167,7 +169,7 @@
                                                             <div class="audience-option-right"> 
                                                                 <div class="radio-btn"> 
                                                                     <input type="radio" value="All" name="audience" 
-                                                                        class="audience-option-radio"> 
+                                                                        class="audience-option-radio" data-icon="fa fa-users" data-text="ALL"> 
                                                                 </div> 
                                                             </div> 
                                                         </div> 
@@ -183,7 +185,7 @@
                                                             <div class="audience-option-right"> 
                                                                 <div class="radio-btn"> 
                                                                     <input type="radio" value="TNGC" name="audience" 
-                                                                        class="audience-option-radio"> 
+                                                                        class="audience-option-radio" data-icon="fa fa-users" data-text="TNGC"> 
                                                                 </div> 
                                                             </div> 
                                                         </div> 
@@ -199,7 +201,7 @@
                                                             <div class="audience-option-right"> 
                                                                 <div class="radio-btn"> 
                                                                     <input type="radio" value="SJI" name="audience" 
-                                                                        class="audience-option-radio"> 
+                                                                        class="audience-option-radio" data-icon="fa fa-users" data-text="SJI"> 
                                                                 </div> 
                                                             </div> 
                                                         </div> 
@@ -217,7 +219,7 @@
                                                                 <div class="radio-btn"> 
                                                                     <input type="radio" value="DI" 
                                                                         name="audience" 
-                                                                        class="audience-option-radio"> 
+                                                                        class="audience-option-radio" data-icon="fa fa-users" data-text="DI"> 
                                                                 </div> 
                                                             </div> 
                                                         </div> 
@@ -232,7 +234,7 @@
                                                                 <div class="radio-btn"> 
                                                                     <input type="radio" value="QST" 
                                                                         name="audience" 
-                                                                        class="audience-option-radio"> 
+                                                                        class="audience-option-radio" data-icon="fa fa-users" data-text="QST"> 
                                                                 </div> 
                                                             </div> 
                                                         </div> 
@@ -249,14 +251,14 @@
                                                                 <div class="radio-btn"> 
                                                                     <input type="radio" value="Only Me" 
                                                                         name="audience" 
-                                                                        class="audience-option-radio"> 
+                                                                        class="audience-option-radio" data-icon="fa fa-user" data-text="Only Me"> 
                                                                 </div> 
                                                             </div> 
                                                         </div>
                                                     </div>
                                                     <div class="post-audience-options" style="text-align: right;">
                                                         <a id="cancel" style="text-decoration: none; font-size: 12px;margin-right: 5px;">Cancel</a>
-                                                        <button class="btn btn-primary btn-mini" style="font-size: 12px;">Done</button>
+                                                        <button type="button" class="btn btn-primary btn-mini" style="font-size: 12px;" id="submitBtn">Done</button>
                                                     </div> 
                                                 </section> 
                                             </div> 

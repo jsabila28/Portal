@@ -11,10 +11,10 @@ if(empty($_SESSION['user_id']) && !in_array($_SERVER['REQUEST_URI'], ['/Portal/l
 
 $portal_root = $_SERVER['DOCUMENT_ROOT']."/Portal";
 
-$sr_root = $portal_root."/ATD";
+$com_root = $portal_root."/ATD";
 
 // sidenav
-$sidenav = $sr_root."/layout/sidenav.php";
+$sidenav = $com_root."/layout/sidenav.php";
 
 // layout + route
-include_once($sr_root."/routes/route.php");
+include_once($com_root."/routes/route.php");

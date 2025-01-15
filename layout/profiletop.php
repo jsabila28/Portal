@@ -410,7 +410,44 @@
                                 	</div>
                                 </a>
                             </div>
-                            
+
+                            <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" data-placement="left" title="Josephin Doe">
+                                <span>Compliance</span>
+                            </div>
+                            <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
+                                <a class="media-left" href="/Portal/compliance/phoneA" style="text-align: center;">
+                                	<div>
+                                		<img src="/Portal/assets/img/phone-agreement.png" width="45" height="45"><br>Phone Agreement
+                                	</div>
+                                </a>
+                                <a class="media-left" href="#!" style="text-align: center;">
+                                	<div>
+                                		<img src="/Portal/assets/img/employee2.png" width="45" height="45"><br>Clearance
+                                	</div>
+                                </a>
+                                <a class="media-left" href="#!" style="text-align: center;">
+                                	<div>
+                                		<img src="/Portal/assets/img/contract.png" width="45" height="45"><br>Device Contract
+                                	</div>
+                                </a>
+                            </div>
+                            <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
+                                <a class="media-left" href="/Portal/compliance/ir" style="text-align: center;">
+                                	<div>
+                                		<img src="/Portal/assets/img/ir.png" width="45" height="45"><br>IR
+                                	</div>
+                                </a>
+                                <a class="media-left" href="/Portal/compliance/13A" style="text-align: center;">
+                                	<div>
+                                		<img src="/Portal/assets/img/13a.png" width="45" height="45"><br>13A
+                                	</div>
+                                </a>
+                                <a class="media-left" href="/Portal/compliance/13B" style="text-align: center;">
+                                	<div>
+                                		<img src="/Portal/assets/img/13b.png" width="45" height="45"><br>13B
+                                	</div>
+                                </a>
+                            </div>
                             <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" data-placement="left" title="Josephin Doe">
                                 <span>Systems</span>
                             </div>

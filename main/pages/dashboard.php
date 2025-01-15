@@ -12,7 +12,7 @@ $Year = date("Y");
 $Month = date("m");
 $Day = date("d");
 $yearMonth = date("Y-m");
-$memos = Portal::GetMemo($Year);
+$memos = Portal::GetMemo();
 $memoAll = Portal::GetAllMemo($Year);
 $leave = Portal::GetLeave($date);
 $ongoingleave = Portal::GetOngoingLeave($date);
@@ -21,6 +21,7 @@ $government = Portal::GetGovAnn($yearMonth);
 $birthday = Portal::GetBirthday($Month,$Day);
 $moods = Portal::GetMood($date);
 $MyMood = Portal::GetMyMood($date,$user_id);
+$events = Portal::GetEvents($date);
 ?>
 <?php if (!empty($MyMood)) { ?>
 <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
