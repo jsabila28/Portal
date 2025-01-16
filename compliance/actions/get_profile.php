@@ -82,6 +82,22 @@ class Profile
         }
         return [];
     }
+    public static function GetIRsign($irID) {
+        $conn = self::getDatabaseConnection('port');
+
+        if ($conn) {
+            $stmt = $conn->prepare("SELECT 
+                *
+            FROM tbl_ir
+            WHERE 
+                `ir_id` = ?
+                GROUP BY `ir_id`");
+            $stmt->execute([$irID]);
+
+            return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
+        }
+        return [];
+    }
     public static function GetPost13A($_13aID) {
         $conn = self::getDatabaseConnection('port');
 
@@ -157,6 +173,37 @@ class Profile
                 LEFT JOIN tbl201_basicinfo bi
                 ON bi.`bi_empno` = pa.`phone_custodian`");
             $stmt->execute();
+
+            return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
+        }
+        return [];
+    }
+    public static function GetirRemarks($irID) {
+        $conn = self::getDatabaseConnection('port');
+
+        if ($conn) {
+            $stmt = $conn->prepare("SELECT 
+                *
+                FROM
+                tbl_grievance_remarks
+                WHERE gr_type = 'ir'
+                AND gr_typeid = ?");
+            $stmt->execute([$irID]);
+
+            return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
+        }
+        return [];
+    }
+    public static function GetirRemarkssender($user) {
+        $conn = self::getDatabaseConnection('port');
+
+        if ($conn) {
+            $stmt = $conn->prepare("SELECT 
+                *
+                FROM
+                tbl201_basicinfo
+                WHERE bi_empno = ?");
+            $stmt->execute([$user]);
 
             return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
         }

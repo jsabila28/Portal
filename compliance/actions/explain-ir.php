@@ -15,6 +15,7 @@ try {
    
 $stmt = $port_db->prepare("
 	    SELECT 
+	    ir.ir_id,
 	    ir.ir_subject,
 	    ir.ir_date,
 	    CONCAT(bi_from.bi_empfname,' ',bi_from.bi_emplname) AS ir_from_fullname,
@@ -54,7 +55,10 @@ if (!empty($incident_report)) {
      	echo "<td>" . htmlspecialchars($ir['ir_from_fullname']) . "</td>";
      	echo "<td>" . htmlspecialchars($ir['ir_to_fullname']) . "</td>";
      	echo "<td>" . htmlspecialchars($ir['ir_subject']) . "</td>";
-     	echo "<td><i class='zmdi zmdi-eye'></i></td>";
+     	echo "<td style='display:flex;justify-content: space-between;'>
+     		<a href='IRopen?irID=" . htmlspecialchars($ir['ir_id']) . "'><i class='icofont icofont-eye-alt' style='font-size:14px;'></i></a>
+     		<a href='#!'><i class='zmdi zmdi-edit' style='font-size:14px;'></i></i></a>
+     	</td>";
      	echo "</tr>";
       } 
     echo "<tbody>"; 

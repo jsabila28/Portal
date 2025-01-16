@@ -110,15 +110,49 @@
                                                         </div> 
                                                     </div> 
                                                     <div class="post-content"> 
-                                                        <textarea name="post-desc" id="post-desc" cols="30" rows="5" placeholder="What's on you mind ?"></textarea> 
-                                                        <div class="custom-pick">
-                                                            <div class="background-picker"> 
+                                                        <textarea name="post-desc" id="post-desc" cols="30" rows="5" placeholder="What's on you mind ?"></textarea>
+                                                        <div id="add-text-post" class="">
+                                                            <textarea name="post-desc" id="post-desc2" cols="30" rows="5" placeholder="What's on you mind ?"></textarea>
+                                                        </div> 
+                                                        <div id="first-pick" class="custom-pick">
+                                                            <div id="first-picker" class="background-picker"> 
                                                                 <img height="38" alt="" class="xz74otr" referrerpolicy="origin-when-cross-origin" src="assets/img/foto.png">
                                                             </div>
                                                             <div class="emoji-picker"> 
                                                                 <img height="38" alt="" class="xz74otr" referrerpolicy="origin-when-cross-origin" src="assets/img/emoji.png">
                                                             </div>
                                                         </div>
+                                                        <!-- BACKGROUND SELECTION -->
+                                                        <div id="second-pick" class="custom-pick" style="display: none;">
+                                                            <div id="second-picker" class="background-picker"> 
+                                                                <img height="38" alt="" style="border-radius: 10px;" class="xz74otr" referrerpolicy="origin-when-cross-origin" src="assets/img/angle-left.png">
+                                                            </div>
+                                                            <div id="back-picker" class="background-picker"> 
+                                                                <img height="38" alt="" style="border-radius: 10px;" class="xz74otr" referrerpolicy="origin-when-cross-origin" src="assets/img/templates/8.png">
+                                                            </div>
+                                                            <div id="img-back" class="background-picker"> 
+                                                                <img height="38" alt="" class="xz74otr" data-bg="assets/img/templates/1.png" referrerpolicy="origin-when-cross-origin" src="assets/img/templates/bday1.png">
+                                                            </div>
+                                                            <div id="img-back" class="background-picker"> 
+                                                                <img height="38" alt="" class="xz74otr" data-bg="assets/img/templates/4.png" referrerpolicy="origin-when-cross-origin" src="assets/img/templates/bday3.png">
+                                                            </div>
+                                                            <div id="img-back" class="background-picker"> 
+                                                                <img height="38" alt="" class="xz74otr" data-bg="assets/img/templates/6.png" referrerpolicy="origin-when-cross-origin" src="assets/img/templates/bday5.png">
+                                                            </div>
+                                                            <div id="img-back" class="background-picker"> 
+                                                                <img height="38" alt="" class="xz74otr" data-bg="assets/img/templates/2.png" referrerpolicy="origin-when-cross-origin" src="assets/img/templates/ann2.png">
+                                                            </div>
+                                                            <div id="img-back" class="background-picker"> 
+                                                                <img height="38" alt="" class="xz74otr" data-bg="assets/img/templates/5.png" referrerpolicy="origin-when-cross-origin" src="assets/img/templates/ann4.png">
+                                                            </div>
+                                                            <div id="img-back" class="background-picker"> 
+                                                                <img height="38" alt="" class="xz74otr" data-bg="assets/img/templates/7.png" referrerpolicy="origin-when-cross-origin" src="assets/img/templates/ann6.png">
+                                                            </div>
+                                                            <div class="emoji-picker"> 
+                                                                <img height="38" alt="" class="xz74otr" referrerpolicy="origin-when-cross-origin" src="assets/img/emoji.png">
+                                                            </div>
+                                                        </div>
+                                                        <!-- BACKGROUND SELECTION -->
                                                         <div id="add-photo-video" class="hide-image">
                                                             <div class="image-video" id="image-video" style="background-image: url('assets/img/upload.png');" onclick="document.getElementById('file-input').click();">
                                                                 <!-- <i id="close" onclick="toggleDiv()" style="cursor: pointer;" class="fa fa-times-circle"></i> -->
@@ -139,7 +173,8 @@
                                                                 <!-- <div class="live-video"></div>  -->
                                                             </div> 
                                                         </div> 
-                                                        <button class="post-btn" disabled>Post</button> 
+                                                        <button class="post-btn" id="post-btn" disabled>Post</button> 
+                                                        <button class="post-btn" id="post-btn2" disabled style="display: none;">Post</button> 
                                                     </div> 
                                                 </section> 
                                                 <section class="post-audience-section" id="optionsDiv"> 
@@ -256,9 +291,9 @@
                                                             </div> 
                                                         </div>
                                                     </div>
-                                                    <div class="post-audience-options" style="text-align: right;">
-                                                        <a id="cancel" style="text-decoration: none; font-size: 12px;margin-right: 5px;">Cancel</a>
-                                                        <button type="button" class="btn btn-primary btn-mini" style="font-size: 12px;" id="submitBtn">Done</button>
+                                                    <div class="post-audience-options" style="display:flex;float: right;">
+                                                        <a id="cancel" class="btn btn-default btn-mini" style="text-decoration: none; font-size: 12px;margin-right: 5px;">Cancel</a>
+                                                        <a type="button" class="btn btn-primary btn-mini" style="font-size: 12px;color: white;" id="submitBtn">Done</a>
                                                     </div> 
                                                 </section> 
                                             </div> 
@@ -295,6 +330,7 @@
         </div>
     </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0/html2canvas.min.js"></script>
 <script>
     let page = 1;
 
@@ -328,23 +364,104 @@
         });
     });
 
-// fetch('post')
-//     .then(response => {
-//         if (!response.ok) {
-//             throw new Error('Network response was not ok: ' + response.statusText);
-//         }
-//         return response.text(); // Since we're expecting HTML
-//     })
-//     .then(data => {
-//         document.getElementById("myDiv").innerHTML = data; // Set the inner HTML
-//     })
-//     .catch(error => console.error('Error fetching data:', error));
+    // Get elements
+    const firstPick = document.getElementById('first-pick');
+    const secondPick = document.getElementById('second-pick');
+    const firstPicker = document.getElementById('first-picker');
+    const secondPicker = document.getElementById('second-picker');
+    const textpost = document.getElementById('post-desc');
+    const addTextPost = document.getElementById('add-text-post');
+    const image = document.getElementById('img-back');
+    const back = document.getElementById('back-picker');
+    const post = document.getElementById('post-btn');
+    const post2 = document.getElementById('post-btn2');
+    const textArea = document.getElementById('post-desc2');
 
+    firstPicker.addEventListener('click', () => {
+        firstPick.style.display = 'none';
+        secondPick.style.display = 'flex';
+    });
 
-//     function hideProfile(empNo) {
-//         const section = document.getElementById('prof-' + empNo);
-//         if (section) section.style.display = 'none';
-//     }
+    secondPicker.addEventListener('click', () => {
+        secondPick.style.display = 'none';
+        firstPick.style.display = 'flex';
+    });
 
+    image.addEventListener('click', () => {
+        textpost.style.display = 'none';
+        addTextPost.style.display = 'block';
+        post.style.display = 'none';
+        post2.style.display = 'block';
+    });
 
+    back.addEventListener('click', () => {
+        textpost.style.display = 'block';
+        addTextPost.style.display = 'none';
+        post.style.display = 'block';
+        post2.style.display = 'none';
+    });
+
+    // Set background image selection
+    document.querySelectorAll('#second-pick .background-picker img').forEach(image => {
+        image.addEventListener('click', () => {
+            const selectedBackground = image.getAttribute('data-bg');
+            if (selectedBackground) {
+                addTextPost.style.backgroundImage = `url('${selectedBackground}')`;
+                addTextPost.style.backgroundSize = 'cover';
+                addTextPost.style.backgroundPosition = 'center';
+            }
+        });
+    });
+
+    // Capture and save post content on button click
+    document.getElementById('post-btn2').addEventListener('click', (event) => {
+        event.preventDefault(); // Prevent form submission or page reload
+
+        // Debug: Check if addTextPost is accessible
+        console.log('addTextPost:', addTextPost);
+
+        // Capture the div with background and text using html2canvas
+        html2canvas(addTextPost).then(canvas => {
+            // Debug: Check if canvas was created correctly
+            console.log('Canvas created:', canvas);
+
+            const imageData = canvas.toDataURL('image/png'); // Convert to Base64 image
+            console.log('Generated Image Data:', imageData);
+
+            // Check if imageData is valid
+            if (!imageData) {
+                console.error('Failed to generate image data');
+                alert('Failed to generate image data');
+                return;
+            }
+
+            const content = textArea.value; // Get content from the textarea
+            console.log('Post Content:', content);
+
+            // Send data to server via AJAX
+            fetch('save_post', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    image: imageData,
+                    content: content
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Post saved successfully!');
+                } else {
+                    alert('Failed to save the post.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }).catch(error => {
+            console.error('Error capturing canvas:', error);
+        });
+    });
 </script>

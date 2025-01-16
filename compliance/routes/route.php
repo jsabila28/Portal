@@ -31,6 +31,7 @@ $routes = [
 	'/saveIR' => '/actions/save_ir.php',
 	'/savedraftIR' => '/actions/save_irdraft.php',
 	'/IRsign' => '/actions/sign-ir.php',
+	'/irRemark' => '/actions/save_ir_remark.php',
 	'/stateSave' => '/actions/save_statement.php'
 	
 ];

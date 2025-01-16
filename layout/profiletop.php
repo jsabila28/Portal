@@ -100,6 +100,7 @@
 	<script src="/Portal/assets/signature_pad-master/docs/js/signature_pad.umd.js"></script>
     <script src="/Portal/assets/signature_pad-master/docs/js/sign.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js" integrity="sha256-W+ivNvVjmQX6FTlF0S+SCDMjAuTVNKzH16+kQvRWcTg=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 </head>
 
 <body>

@@ -67,7 +67,7 @@
 	<link rel="stylesheet" type="text/css" href="/Portal/assets/css/atd.css">
 	<link rel="stylesheet" type="text/css" href="/Portal/assets/css/events.css">
 
-
+	<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
     <!-- Required Jqurey -->
     <!-- <script type="text/javascript" src="/Portal/admin_template/bower_components/jquery/js/jquery.min.js"></script> -->

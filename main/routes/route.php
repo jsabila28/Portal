@@ -23,6 +23,7 @@ $routes = [
 	'/legal' => 'main/actions/gov_ann.php',
 	'/save_mood' => 'main/actions/save_mood.php',
 	'/save_event' => 'main/actions/save_event.php',
+	'/save_post' => 'main/actions/save_cust_post.php',
 	'/emoji' => 'main/actions/emoji.php'
 
 

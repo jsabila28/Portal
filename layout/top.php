@@ -94,9 +94,10 @@
     <link rel="stylesheet" type="text/css" href="/Portal/admin_template/bower_components/bootstrap-multiselect/css/bootstrap-multiselect.css">
     <link rel="stylesheet" type="text/css" href="/Portal/admin_template/bower_components/multiselect/css/multi-select.css">
 
-
 	<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@joeattardi/emoji-button/dist/index.css"> -->
 	<!-- <script src="https://cdn.jsdelivr.net/npm/@joeattardi/emoji-button@5.4.0/dist/emoji-button.min.js"></script> -->
+
+	<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
 </head>
 

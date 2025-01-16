@@ -58,11 +58,12 @@ $(document).ready(function () {
     });
 
     // Handle new post creation
-    $('.post-btn').click(function (e) {
+    $('#post-btn').click(function (e) {
         e.preventDefault();
 
         var postedBy = $('input[name="posted-by"]').val();
         var postDesc = $('#post-desc').val();
+        var postDesc = $('#post-desc2').val();
         var audience = $('input[name="audience"]:checked').val();
         var postContent = new FormData();
 
@@ -94,6 +95,7 @@ $(document).ready(function () {
 
     function resetModalForm() {
         $('#post-desc').val('');
+        $('#post-desc2').val('');
         $('input[name="audience"]').prop('checked', false);
         $('#file-input').val('');
         $('#image-video').css('background-image', 'url(assets/img/upload.png)');
@@ -102,6 +104,13 @@ $(document).ready(function () {
     }
 
     $('#post-desc').on('input', function () {
+        if ($(this).val().trim() !== '') {
+            $('.post-btn').prop('disabled', false);
+        } else {
+            $('.post-btn').prop('disabled', true);
+        }
+    });
+    $('#post-desc2').on('input', function () {
         if ($(this).val().trim() !== '') {
             $('.post-btn').prop('disabled', false);
         } else {

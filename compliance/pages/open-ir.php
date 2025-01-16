@@ -73,6 +73,8 @@
     $irID = $_GET['irID'];
 
     $irInfo = Profile::GetIR($irID);
+    $signature = Profile::GetIRsign($irID); 
+    $IRremarks = Profile::GetirRemarks($irID); 
 
     }
 ?>
@@ -85,13 +87,13 @@
                       <div class="atdview">
                           <a href="/Portal/compliance/ir"><i class="icofont icofont-arrow-left" style="font-size: 24px;"></i></a>
                       </div>
-                      <?php if (!empty($irInfo)) { 
+                      <?php if (!empty($irInfo)) {
                           foreach ($irInfo as $l) {
                               $ir_date = $l['ir_date'];
                               $ir_incidentdate = $l['ir_incidentdate'];
                               $formatted_date = date('F j, Y', strtotime($ir_date));
                               $inci_date = date('F j, Y', strtotime($ir_incidentdate)); ?>
-                              <input type="hidden" name="IRid" value="<?=$l['ir_id']?>">
+                              <input type="hidden" name="IRid" id="IDir" value="<?=$l['ir_id']?>">
                               <p>To: <?=$l['headNAME']?></p>  
                               <p>CC: <?=$l['ccNAME']?></p>    
                               <p>From: <?=$l['fullname']?></p>  
@@ -235,7 +237,12 @@
                                             </div>
                                           </div>
                                           <div id="signature-image-container">
-                                            <img id="signature-image" width="150" alt="Signature will appear here" />
+                                            <?php if (!empty($signature)) { ?> 
+                                            <?php  foreach ($signature as $s) {?>
+                                            <img id="signature-image" src="<?=$s['ir_signature']?>" width="150" alt="Signature will appear here" />
+                                            <?php  }}else{
+                                              echo '<img id="signature-image" width="150" alt="Signature will appear here" />';
+                                            } ?>
                                           </div>
                                         </td>
                                       </tr>
@@ -248,13 +255,60 @@
                                       </tr>
                                     </tbody>
                                   </table>
-                                  <p></p>
+                                </div>
+                                <!-- <div id="ir-sign" style="display: flex;height: 60px;">
+                                  <button class="btn btn-success btn-mini">Resolved</button>
+                                  <button class="btn btn-danger btn-mini">Create 13A</button>
+                                  <button class="btn btn-primary btn-mini" data-toggle="modal" data-target="#default-Modal">Need Explanation</button>
+                                </div> -->
+                              </div>
+                              <div id="ir-bottom">
+                                <div class="col-md-9">
+                                  <div class="panel panel-default" style="border: 1px solid #a59e9e !important;">
+                                      <div class="panel-heading" style="background-color: #dfe2e3;color: #000000;">
+                                          Remarks
+                                      </div>
+                                      <div class="panel-body" style="padding: 10px;">
+                                          <?php if (!empty($IRremarks)) {
+                                          foreach ($IRremarks as $i) {
+                                            $user = $i['gr_empno'];
+                                            $sender = Profile::GetirRemarkssender($user); ?>
+                                            <?php if (!empty($sender)) {
+                                            foreach ($sender as $se) { ?>
+                                            <label><?=$se['bi_empfname'].' '.$se['bi_emplname']?>: <?=$i['gr_remarks']?></label>
+                                            <?php }}?> 
+                                          <?php }} ?>
+                                      </div>
+                                  </div>
                                 </div>
                                 <div id="ir-sign" style="display: flex;height: 60px;">
-                                  <button class="btn btn-success btn-mini" id="clear">Resolved</button>
-                                  <button class="btn btn-danger btn-mini" id="clear">Create 13A</button>
-                                  <button class="btn btn-primary btn-mini" id="clear">Need Explanation</button>
+                                  <button class="btn btn-success btn-mini">Resolved</button>
+                                  <button class="btn btn-danger btn-mini">Create 13A</button>
+                                  <?php if (!empty($IRremarks)) { ?>
+                                   <button class="btn btn-primary btn-mini" data-toggle="modal" data-target="#ir-remark">Reply</button>
+                                  <?php }else{ ?>
+                                  <button class="btn btn-primary btn-mini" data-toggle="modal" data-target="#ir-remark">Need Explanation</button>
+                                  <?php } ?>
                                 </div>
+                              </div>
+                              <div class="modal fade" id="ir-remark" tabindex="-1" role="dialog">
+                                  <div class="modal-dialog" role="document">
+                                      <div class="modal-content">
+                                          <div class="modal-header">
+                                              <h4 class="modal-title" style="text-align: left !important;">Remark</h4>
+                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                  <span aria-hidden="true">&times;</span>
+                                              </button>
+                                          </div>
+                                          <div class="modal-body" style="padding: 10px !important;">
+                                              <textarea class="form-control" name="remark-ir" id="ir-remark"></textarea>
+                                          </div>
+                                          <div class="modal-footer">
+                                              <button type="button" class="btn btn-default btn-mini " data-dismiss="modal">Close</button>
+                                              <button type="button" class="btn btn-primary btn-mini waves-light" id="save-irRemark">Save</button>
+                                          </div>
+                                      </div>
+                                  </div>
                               </div>
                       <?php } } ?> 
                   </div>
@@ -402,6 +456,45 @@ saveStatement.addEventListener('click', () => {
         }
     })
     .catch(error => console.error('Error:', error));
+});
+
+$('#save-irRemark').click(function() {
+    // Capture the input values
+    var id = $('#IDir').val();
+    var remark = $('#ir-remark').val();
+
+    // Perform validation if necessary
+    if (remark === '') {
+        alert('Please fill in all fields.');
+        return;
+    }
+
+    // Data to send to PHP
+    var data = {
+        id: id,
+        remark: remark
+    };
+
+    // AJAX request to PHP script
+    $.ajax({
+    url: 'irRemark',
+        type: 'POST',
+        data: data,
+        success: function(response) {
+            var responseData = JSON.parse(response);  // Parse the JSON response
+            if (responseData.success) {
+                alert('Remark saved successfully: ' + responseData.message);
+                
+            } else {
+                alert('Failed to save remark: ' + responseData.message);
+            }
+        },
+        error: function(xhr, status, error) {
+            console.log('Error:', status, error);
+            alert('Error saving data');
+        }
+    });
+
 });
 
 </script>
