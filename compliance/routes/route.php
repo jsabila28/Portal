@@ -11,6 +11,7 @@ $routes = [
 	'/13B' => '/pages/13B.php',
 	'/ircreate' => '/pages/create_ir.php',
 	'/_13Acreate' => '/pages/create_13A.php',
+	'/checked13a' => '/pages/open_checked13a.php',
 
 
 	'/13_a' => '/actions/get13A.php',
@@ -18,6 +19,8 @@ $routes = [
 	'/checked13_a' => '/actions/_13Achecked.php',
 	'/reviewed13_a' => '/actions/_13Areviewed.php',
 	'/issued13_a' => '/actions/_13Aissued.php',
+	'/needexp13_a' => '/actions/_13Aneedexp.php',
+	'/cancel13_a' => '/actions/_13Acancel.php',
 	'/13_b' => '/actions/get13B.php',
 	'/globe_pa' => '/actions/PA_globe.php',
 
@@ -32,6 +35,9 @@ $routes = [
 	'/savedraftIR' => '/actions/save_irdraft.php',
 	'/IRsign' => '/actions/sign-ir.php',
 	'/irRemark' => '/actions/save_ir_remark.php',
+	'/_13aRemark' => '/actions/save_13a_remark.php',
+	'/cancel' => '/actions/cancel_13a.php',
+	'/notedBysave' => '/actions/save_noted_by.php',
 	'/stateSave' => '/actions/save_statement.php'
 	
 ];

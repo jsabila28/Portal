@@ -1,74 +1,9 @@
 <?php
     require_once($com_root."/db/db.php");
     require_once($com_root."/actions/get_profile.php");
+    require_once($com_root."/actions/get_person.php");
     
-    $date = date("Y-m-d");
-    $Year = date("Y");
-    $Month = date("m");
-    $Day = date("d");
-    $yearMonth = date("Y-m");
-    $employee = Profile::GetEmployee();
-
-    try {
-        $hr_db = Database::getConnection('hr');
-    } catch (\PDOException $e) {
-        throw new \PDOException($e->getMessage(), (int)$e->getCode());
-    }
     
-    if (isset($_SESSION['user_id'])) {
-        $user_id = $_SESSION['user_id'];
-        
-        error_log("User ID: $user_id");
-
-        $stmt = $hr_db->prepare("SELECT 
-                a.bi_empno, 
-                CONCAT(a.bi_empfname, ' ', a.bi_empmname, ' ', a.bi_emplname) AS fullname, 
-                jd.jd_title, 
-                CONCAT(head.bi_emplname, ' ', head.bi_empfname) AS headNAME,
-                b.jrec_reportto,
-                b.`jrec_outlet`,
-                b.`jrec_department`,
-                b.`jrec_position`
-            FROM 
-                tbl201_basicinfo a
-            LEFT JOIN 
-                tbl201_jobrec b ON a.bi_empno = b.jrec_empno
-            LEFT JOIN 
-                tbl201_basicinfo head ON b.jrec_reportto = head.bi_empno
-            LEFT JOIN 
-                tbl_jobdescription jd ON jd.jd_code = b.jrec_position
-            LEFT JOIN 
-                tbl201_jobinfo ji ON ji.ji_empno = a.bi_empno
-            WHERE 
-                a.bi_empno = :user_id
-                AND a.datastat = 'current'
-                AND b.jrec_type = 'Primary'
-                AND b.jrec_status = 'Primary'
-                AND ji.ji_remarks = 'Active'
-            ");
-        $stmt->bindParam(':user_id', $user_id);
-        $stmt->execute();
-    
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
-    
-        if ($user) {
-            error_log("Query Result: " . print_r($user, true));
-            $username = $user['fullname'];
-            $empno = $user['bi_empno'];
-            $position = $user['jd_title'];
-            $reportto = $user['headNAME'];
-            $reportID = $user['jrec_reportto'];
-            $position = $user['jrec_position'];
-            $department = $user['jrec_department'];
-            $outlet = $user['jrec_outlet'];
-            $date = date('F j, Y');
-        } else {
-            error_log("No user found for ID: $user_id");
-            $username = "Guest";
-        }
-    } else {
-        $username = "Guest";
-    }
     if (isset($_GET['irID'])) {
     $irID = $_GET['irID'];
 
@@ -285,9 +220,9 @@
                                   <button class="btn btn-success btn-mini">Resolved</button>
                                   <button class="btn btn-danger btn-mini">Create 13A</button>
                                   <?php if (!empty($IRremarks)) { ?>
-                                   <button class="btn btn-primary btn-mini" data-toggle="modal" data-target="#ir-remark">Reply</button>
+                                   <button class="btn btn-outline-dark btn-mini" data-toggle="modal" data-target="#ir-remark">Reply</button>
                                   <?php }else{ ?>
-                                  <button class="btn btn-primary btn-mini" data-toggle="modal" data-target="#ir-remark">Need Explanation</button>
+                                  <button class="btn btn-outline-dark btn-mini" data-toggle="modal" data-target="#ir-remark">Need Explanation</button>
                                   <?php } ?>
                                 </div>
                               </div>
@@ -301,7 +236,8 @@
                                               </button>
                                           </div>
                                           <div class="modal-body" style="padding: 10px !important;">
-                                              <textarea class="form-control" name="remark-ir" id="ir-remark"></textarea>
+                                              <textarea class="form-control" name="remark-ir" id="remark"></textarea>
+                                              <input type="hidden" name="idremrk" id="remrkid" value="<?=$l['ir_id']?>">
                                           </div>
                                           <div class="modal-footer">
                                               <button type="button" class="btn btn-default btn-mini " data-dismiss="modal">Close</button>
@@ -458,43 +394,41 @@ saveStatement.addEventListener('click', () => {
     .catch(error => console.error('Error:', error));
 });
 
-$('#save-irRemark').click(function() {
-    // Capture the input values
-    var id = $('#IDir').val();
-    var remark = $('#ir-remark').val();
+$(document).ready(function () {
+    $('#save-irRemark').on('click', function () {
+        const remark = $('#remark').val().trim();
+        const id = $('#remrkid').val();
 
-    // Perform validation if necessary
-    if (remark === '') {
-        alert('Please fill in all fields.');
-        return;
-    }
-
-    // Data to send to PHP
-    var data = {
-        id: id,
-        remark: remark
-    };
-
-    // AJAX request to PHP script
-    $.ajax({
-    url: 'irRemark',
-        type: 'POST',
-        data: data,
-        success: function(response) {
-            var responseData = JSON.parse(response);  // Parse the JSON response
-            if (responseData.success) {
-                alert('Remark saved successfully: ' + responseData.message);
-                
-            } else {
-                alert('Failed to save remark: ' + responseData.message);
-            }
-        },
-        error: function(xhr, status, error) {
-            console.log('Error:', status, error);
-            alert('Error saving data');
+        if (remark === '') {
+            alert('Please enter a remark.');
+            return;
         }
-    });
 
+        $.ajax({
+            url: 'irRemark',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                id: id,
+                remark: remark
+            },
+            success: function (response) {
+                if (response.success) {
+                    alert(response.message);
+                    location.reload(); 
+                } else if (response.error) {
+                    alert(response.error);
+                } else {
+                    alert('An unexpected error occurred.');
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
+                alert('An error occurred while saving. Please try again.');
+            }
+        });
+    });
 });
+
 
 </script>

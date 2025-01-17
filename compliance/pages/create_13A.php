@@ -29,7 +29,7 @@
               </div>
               <div class="form-group row" id="_13Arow">
                 <label for="fullName" class="col-sm-1 col-form-label text-left">CC:</label>
-                <div class="col-sm-6">
+                <div class="col-sm-3">
                   <select class="selectpicker" multiple data-live-search="true" name="ccnames" id="ccInput">
                     <?php if (!empty($employee)) { 
                         foreach ($employee as $k) { ?>

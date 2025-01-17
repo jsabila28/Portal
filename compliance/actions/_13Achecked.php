@@ -15,6 +15,7 @@ try {
    
 $stmt = $port_db->prepare("
 	    SELECT 
+	    	_13A.13a_id,
 		    _13A.13a_memo_no,
 		    _13A.13a_cc,
 		    CONCAT(bi_from.bi_empfname,' ',bi_from.bi_emplname) AS issued_by_name,
@@ -60,7 +61,7 @@ if (!empty($incident_report)) {
      	echo "<td>" . htmlspecialchars($ir['to_name']) . "</td>";
      	echo "<td>" . htmlspecialchars($ir['13a_regarding']) . "</td>";
      	echo "<td style='display:flex;justify-content: space-between;'>
-     		<a href='_13Aopen?_13aID=" . htmlspecialchars($ir['13a_memo_no']) . "'><i class='icofont icofont-eye-alt' style='font-size:14px;'></i></a>
+     		<a href='checked13a?_13aID=" . htmlspecialchars($ir['13a_id']) . "'><i class='icofont icofont-eye-alt' style='font-size:14px;'></i></a>
      		<a href='#!'><i class='zmdi zmdi-edit' style='font-size:14px;'></i></i></a>
      	</td>";
      	echo "</tr>";

@@ -103,14 +103,17 @@ class Profile
 
         if ($conn) {
             $stmt = $conn->prepare("SELECT 
+                _13A.13a_id,
                 _13A.13a_memo_no,
                 _13A.13a_cc,
                 _13A.13a_place,
                 _13A.13a_penalty,
                 _13A.13a_offense,
                 _13A.13a_offensetype,
+                _13A.13a_from,
                 CONCAT(bi_from.bi_empfname,' ',bi_from.bi_emplname) AS issued_by_name,
                 GROUP_CONCAT(DISTINCT bi_cc.bi_empfname,' ',bi_cc.bi_emplname) AS cc_names,
+                GROUP_CONCAT(DISTINCT bi_noted.bi_empfname,' ',bi_noted.bi_emplname) AS noted_names,
                 13a_date AS 1_3ADate,
                 13a_datetime AS 1_3ADateTime,
                 CONCAT(bi_to.bi_empfname,' ',bi_to.bi_emplname) AS to_name,
@@ -118,8 +121,8 @@ class Profile
                 jdesc_to.`jd_title` AS 13a_to_position,
                 jre_to.jrec_company AS company,
                 _13A.13a_regarding,
-                jdesc_from.jd_title AS pos_from
-                
+                jdesc_from.jd_title AS pos_from,
+                GROUP_CONCAT(DISTINCT jdesc_noted.jd_title) AS noted_by_positions
             FROM 
                 tbl_13a _13A
             LEFT JOIN 
@@ -135,10 +138,16 @@ class Profile
             LEFT JOIN 
                 tbl_department dept_to ON dept_to.`Dept_Code` = jre_to.`jrec_department` 
             LEFT JOIN 
-                tbl_jobdescription jdesc_to ON jdesc_to.`jd_code` = jre_to.`jrec_position`  
+                tbl_jobdescription jdesc_to ON jdesc_to.`jd_code` = jre_to.`jrec_position`
+            LEFT JOIN 
+                tbl201_basicinfo bi_noted ON _13A.13a_notedby REGEXP CONCAT('(^|,)', bi_noted.bi_empno, '(,|$)')
+            LEFT JOIN 
+                tbl201_jobrec jre_noted ON jre_noted.`jrec_empno` = bi_noted.bi_empno
+            LEFT JOIN 
+                tbl_jobdescription jdesc_noted ON jdesc_noted.`jd_code` = jre_noted.`jrec_position`
             LEFT JOIN 
                 tbl201_basicinfo bi_cc ON _13A.13a_cc REGEXP CONCAT('(^|,)', bi_cc.bi_empno, '(,|$)')
-            WHERE _13A.13a_memo_no = ?
+            WHERE  _13A.13a_id = ?
             AND jre_to.jrec_status = 'Primary'
             AND jre_from.jrec_status = 'Primary'
             GROUP BY 
@@ -186,8 +195,7 @@ class Profile
                 *
                 FROM
                 tbl_grievance_remarks
-                WHERE gr_type = 'ir'
-                AND gr_typeid = ?");
+                WHERE gr_typeid = ?");
             $stmt->execute([$irID]);
 
             return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
@@ -209,7 +217,23 @@ class Profile
         }
         return [];
     }
+    public static function GetGrievanceSign($user,$_13aID,$type) {
+        $conn = self::getDatabaseConnection('port');
 
+        if ($conn) {
+            $stmt = $conn->prepare("SELECT 
+                *
+                FROM
+                tbl_grievance_sign
+                WHERE gs_empno = ?
+                AND gs_typeid = ?
+                AND gs_type = ?");
+            $stmt->execute([$user,$_13aID,$type]);
+
+            return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
+        }
+        return [];
+    }
     
 
 }

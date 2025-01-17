@@ -12,13 +12,12 @@ try {
     $hr_db = Database::getConnection('hr');
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'], $_POST['remark'])) {
-        $type = 'ir';
+        $type = '13a';
         $user_id = $_SESSION['user_id'];
-        $id = htmlspecialchars($_POST['id']); // Sanitize input
-        $remark = htmlspecialchars($_POST['remark']); // Sanitize input
-        $status = 'needs explanation';
+        $id = htmlspecialchars($_POST['id']);
+        $remark = htmlspecialchars($_POST['remark']); 
+        $status = 'need explanation';
 
-        // Insert into tbl_grievance_remarks
         $sqlInsert = "INSERT INTO tbl_grievance_remarks (gr_type, gr_typeid, gr_remarks, gr_empno) 
                       VALUES (:gr_type, :gr_typeid, :gr_remarks, :gr_empno)";
         $stmtInsert = $port_db->prepare($sqlInsert);
@@ -29,9 +28,8 @@ try {
 
         $stmtInsert->execute();
 
-        // Update tbl_grievance_status
-        $sqlUpdate = "UPDATE tbl_ir SET ir_stat = :status
-                      WHERE ir_id = :grievance_id";
+        $sqlUpdate = "UPDATE tbl_13a SET 13a_stat = :status
+                      WHERE 13a_id = :grievance_id";
         $stmtUpdate = $port_db->prepare($sqlUpdate);
         $stmtUpdate->bindParam(':status', $status);
         $stmtUpdate->bindParam(':grievance_id', $id);

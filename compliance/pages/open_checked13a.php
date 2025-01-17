@@ -153,21 +153,30 @@ if (!empty($_13A)) {
                 <tbody>
                   <tr>
                     <td>
-                      <div id="signature-container1" style="display: none;">
-                        <canvas id="signature-pad1"></canvas>
+                      <div id="signature-container" style="display: none;">
+                        <canvas id="signature-pad"></canvas>
                         <div class="buttons">
-                          <button class="btn btn-default btn-mini" id="clear1">Clear</button>
-                          <button class="btn btn-primary btn-mini" id="save1">Save</button>
+                          <button class="btn btn-default btn-mini" id="clear">Clear</button>
+                          <button class="btn btn-primary btn-mini" id="save">Save</button>
                         </div>
                       </div>
                       <div id="signature-image-container">
-                        <img id="signature-image1" width="150" />
+                        <?php
+                        if (!empty($signatures)) {
+                            foreach ($signatures as $s) {
+                        ?>
+                        <?=$s['gs_sign']?>
+                        <?php }}else{?>
+                          <img id="signature-image1" src="" width="150" />
+                        <?php } ?>
                       </div>
                     </td>
                   </tr>
                   <tr>
                     <td style="text-transform:uppercase;"><?=$k['issued_by_name']?></td>
-                    <!-- <td><a id="show-signature-pad1" class="btn btn-mini">sign</a></td> -->
+                    <?php if (empty($signatures)) { ?>
+                    <td><a id="show-signature-pad" class="btn btn-outline-dark btn-mini">sign</a></td>
+                    <?php } ?>
                   </tr>
                   <tr style="border-top: 1px solid black;">
                     <td><?=$k['pos_from']?></td>
@@ -199,15 +208,11 @@ if (!empty($_13A)) {
                   <?php if (!empty($k['noted_names'])) { ?>
                   <tr>
                       <td style="text-transform:uppercase;"><?=$k["noted_names"]?></td>
-                      <!-- <td><a id="show-signature-pad" class="btn btn-outline-dark btn-mini">sign</a></td> -->
                   </tr>
                   <tr style="border-top: 1px solid black;">
                     <td><?=$k["noted_by_positions"]?></td>
                   </tr>
                   <?php }else{ ?>
-                  <tr>
-                      <td><a id="show-signature-pad" class="btn btn-outline-dark btn-mini" data-toggle="modal" data-target="#_13a-noted">Add</a></td>
-                  </tr>
                   <tr style="border-top: 1px solid black;">
                     <td></td>
                   </tr>
@@ -216,39 +221,10 @@ if (!empty($_13A)) {
               </table>
               <p></p>
             </div>
-            <div id="ir-sign" style="display: flex;height: 60px;">
-              <button type="button" class="btn btn-danger btn-mini waves-effect waves-light" onclick="cancel13A(<?=$k['13a_id']?>, 'cancelled')">Cancel</button>
-              <?php if (!empty($_13Aremarks)) { ?>
-              <button class="btn btn-outline-dark btn-mini" data-toggle="modal" data-target="#_13a-remark">Reply</button>
-              <?php }else{ ?>
-              <button class="btn btn-outline-dark btn-mini" data-toggle="modal" data-target="#_13a-remark">Need Explanation</button>
-              <?php } ?>
-              <?php if (!empty($k['noted_names'])) { ?>
-              <button type="button" class="btn btn-primary btn-mini waves-effect waves-light" onclick="check13A(<?=$k['13a_id']?>, 'checked')">Checked</button>
-              <?php }else{ ?>
-              <button type="button" class="btn btn-primary btn-mini waves-effect waves-light">Checked</button> 
-              <?php } ?> 
-              <button type="button" class="btn btn-success btn-mini waves-effect waves-light">Attach IR</button>
-            </div>
           </div>
           <div class="ir-bottom">
-            <div class="col-md-9">
-              <div class="panel panel-default" style="border: 1px solid #a59e9e !important;">
-                  <div class="panel-heading" style="background-color: #dfe2e3;color: #000000;">
-                      Remarks
-                  </div>
-                  <div class="panel-body" style="padding: 10px;">
-                      <?php if (!empty($_13Aremarks)) {
-                      foreach ($_13Aremarks as $i) {
-                        $user = $i['gr_empno'];
-                        $sender = Profile::GetirRemarkssender($user); ?>
-                        <?php if (!empty($sender)) {
-                        foreach ($sender as $se) { ?>
-                        <label><?=$se['bi_empfname'].' '.$se['bi_emplname']?>: <?=$i['gr_remarks']?></label>
-                        <?php }}?> 
-                      <?php }} ?>
-                  </div>
-              </div>
+            <div id="ir-sign" style="display: flex;height: 100px;padding: 20px;">
+              <button type="button" class="btn btn-primary btn-mini waves-effect waves-light" style="width: 50%;">Attach IR</button>
             </div>
           </div>
         </div>
@@ -256,50 +232,8 @@ if (!empty($_13A)) {
     </div>
   </div>
 </div>
-<div class="modal fade" id="_13a-remark" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" style="text-align: left !important;">Remark</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body" style="padding: 10px !important;">
-                <textarea class="form-control" name="remark-ir" id="remark"></textarea>
-                <input type="hidden" name="idremrk" id="remrkid" value="<?=$k['13a_id']?>">
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default btn-mini " data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary btn-mini waves-light" id="save-13aRemark">Save</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="_13a-noted" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" style="text-align: left !important;">Add Noted By</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body" style="padding: 10px !important;">
-                <!-- <input type="hidden" name="idremrk" id="remrkid" value="<?=$k['13a_id']?>"> -->
-                <select class="selectpicker" multiple data-live-search="true" name="noted_by" id="nbInput">
-                    <?php if (!empty($employee)) { 
-                        foreach ($employee as $k) { ?>
-                            <option value="<?=$k['bi_empno']?>"><?=$k['bi_emplname'].' '.$k['bi_empfname']?></option>       
-                    <?php } } ?>
-                </select>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default btn-mini " data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary btn-mini waves-light" id="save-notedby">Save</button>
-            </div>
-        </div>
-    </div>
-</div>
 <?php }} ?>
+<script type="text/javascript">
+  
+</script>
 <script type="text/javascript" src="../assets/js/_13A.js"></script>

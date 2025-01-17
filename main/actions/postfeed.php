@@ -112,7 +112,7 @@ try {
             }else if(strpos($row['ann_content'], '<figure') !== false){
                 echo str_replace('../announcement', 'https://teamtngc.com/hris2/pages/announcement', $row['ann_content']);
             }else{
-                echo '<img class="img-fluid" style="max-height: 500px !important;cursor: pointer;" src="https://teamtngc.com/hris2/pages/announcement/' . htmlspecialchars($row['ann_content']) . '">';
+                echo '<img class="img-fluid" style="max-height: 500px !important;cursor: pointer;" src="' . htmlspecialchars($row['ann_content']) . '">';
             }
             // echo "".$row['ann_content']."";
             echo '</div>'; // Close cardbox-item

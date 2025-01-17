@@ -160,12 +160,45 @@
                 </div>
                 <div class="tab-pane" id="issued" role="tabpanel"><br>
                     <div class="card">
-                    <div class="card-block">
-                    <div class="table-container" id="_13Aissued">
-                        
-                    </div>
+                        <div class="card-block">
+                        <div class="table-container" id="_13Aissued">
+                            
+                        </div>
+                        </div>
                     </div>
                 </div>
+                <div class="tab-pane" id="received" role="tabpanel"><br>
+                    <div class="card">
+                        <div class="card-block">
+                        <div class="table-container" id="_13Areceived">
+                            
+                        </div>
+                        </div>
+                    </div>
+                </div><div class="tab-pane" id="refused" role="tabpanel"><br>
+                    <div class="card">
+                        <div class="card-block">
+                        <div class="table-container" id="_13Arefused">
+                            
+                        </div>
+                        </div>
+                    </div>
+                </div><div class="tab-pane" id="explain" role="tabpanel"><br>
+                    <div class="card">
+                        <div class="card-block">
+                        <div class="table-container" id="_13Aexplain">
+                            
+                        </div>
+                        </div>
+                    </div>
+                </div><div class="tab-pane" id="cancel" role="tabpanel"><br>
+                    <div class="card">
+                        <div class="card-block">
+                        <div class="table-container" id="_13Acancel">
+                            
+                        </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

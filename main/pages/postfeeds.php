@@ -131,34 +131,30 @@
                                                                 <img height="38" alt="" style="border-radius: 10px;" class="xz74otr" referrerpolicy="origin-when-cross-origin" src="assets/img/templates/8.png">
                                                             </div>
                                                             <div id="img-back" class="background-picker"> 
-                                                                <img height="38" alt="" class="xz74otr" data-bg="assets/img/templates/1.png" referrerpolicy="origin-when-cross-origin" src="assets/img/templates/bday1.png">
+                                                                <img height="38"  style="border-radius: 10px;" class="xz74otr" data-bg="assets/img/templates/1.png" referrerpolicy="origin-when-cross-origin" src="assets/img/templates/bday1.png">
                                                             </div>
                                                             <div id="img-back" class="background-picker"> 
-                                                                <img height="38" alt="" class="xz74otr" data-bg="assets/img/templates/4.png" referrerpolicy="origin-when-cross-origin" src="assets/img/templates/bday3.png">
+                                                                <img height="38"  style="border-radius: 10px;" class="xz74otr" data-bg="assets/img/templates/4.png" referrerpolicy="origin-when-cross-origin" src="assets/img/templates/bday3.png">
                                                             </div>
                                                             <div id="img-back" class="background-picker"> 
-                                                                <img height="38" alt="" class="xz74otr" data-bg="assets/img/templates/6.png" referrerpolicy="origin-when-cross-origin" src="assets/img/templates/bday5.png">
+                                                                <img height="38"  style="border-radius: 10px;" class="xz74otr" data-bg="assets/img/templates/6.png" referrerpolicy="origin-when-cross-origin" src="assets/img/templates/bday5.png">
                                                             </div>
                                                             <div id="img-back" class="background-picker"> 
-                                                                <img height="38" alt="" class="xz74otr" data-bg="assets/img/templates/2.png" referrerpolicy="origin-when-cross-origin" src="assets/img/templates/ann2.png">
+                                                                <img height="38"  style="border-radius: 10px;" class="xz74otr" data-bg="assets/img/templates/2.png" referrerpolicy="origin-when-cross-origin" src="assets/img/templates/ann2.png">
                                                             </div>
                                                             <div id="img-back" class="background-picker"> 
-                                                                <img height="38" alt="" class="xz74otr" data-bg="assets/img/templates/5.png" referrerpolicy="origin-when-cross-origin" src="assets/img/templates/ann4.png">
+                                                                <img height="38"  style="border-radius: 10px;" class="xz74otr" data-bg="assets/img/templates/5.png" referrerpolicy="origin-when-cross-origin" src="assets/img/templates/ann4.png">
                                                             </div>
                                                             <div id="img-back" class="background-picker"> 
-                                                                <img height="38" alt="" class="xz74otr" data-bg="assets/img/templates/7.png" referrerpolicy="origin-when-cross-origin" src="assets/img/templates/ann6.png">
+                                                                <img height="38"  style="border-radius: 10px;" class="xz74otr" data-bg="assets/img/templates/7.png" referrerpolicy="origin-when-cross-origin" src="assets/img/templates/ann6.png">
                                                             </div>
                                                             <div class="emoji-picker"> 
-                                                                <img height="38" alt="" class="xz74otr" referrerpolicy="origin-when-cross-origin" src="assets/img/emoji.png">
+                                                                <img height="38"  style="border-radius: 10px;" class="xz74otr" referrerpolicy="origin-when-cross-origin" src="assets/img/emoji.png">
                                                             </div>
                                                         </div>
                                                         <!-- BACKGROUND SELECTION -->
                                                         <div id="add-photo-video" class="hide-image">
                                                             <div class="image-video" id="image-video" style="background-image: url('assets/img/upload.png');" onclick="document.getElementById('file-input').click();">
-                                                                <!-- <i id="close" onclick="toggleDiv()" style="cursor: pointer;" class="fa fa-times-circle"></i> -->
-                                                                <!-- <div>
-                                                                    <img src="assets/img/upload.png" width="100" height="100">
-                                                                </div> -->
                                                             </div>
                                                             <input type="file" id="file-input" name="post-content[]" style="display: none;" onchange="updateFileContent()" multiple>
                                                         </div>
