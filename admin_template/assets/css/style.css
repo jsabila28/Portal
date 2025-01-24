@@ -15940,7 +15940,10 @@ span.value {
 @media only screen and (max-width: 640px) {
   .dt-button {
     margin-bottom: 5px; }
-
+  #right-div{
+    margin-left: 250px;
+    padding-left: 0px !important;
+  }
   .email-read .card-header h6 {
     float: none;
     margin-top: 10px; }
@@ -15954,9 +15957,19 @@ span.value {
       margin-bottom: 0; } }
 @media only screen and (max-width: 573px) {
   .md-tabs {
-    display: initial; }
+    /*display: initial; */
+  }
+  #right-div{
+    margin-left: 0px;
+    padding-left: 0px !important;
+  }
+  #cardblock{
+    padding-left: 0px !important;
+  }
     .md-tabs .nav-item, .md-tabs .main-menu .main-menu-content .nav-item .tree-1 a, .main-menu .main-menu-content .nav-item .tree-1 .md-tabs a, .md-tabs .main-menu .main-menu-content .nav-item .tree-2 a, .main-menu .main-menu-content .nav-item .tree-2 .md-tabs a, .md-tabs .main-menu .main-menu-content .nav-item .tree-3 a, .main-menu .main-menu-content .nav-item .tree-3 .md-tabs a, .md-tabs .main-menu .main-menu-content .nav-item .tree-4 a, .main-menu .main-menu-content .nav-item .tree-4 .md-tabs a {
       width: calc(100% / 1); }
+  }
+  }
 
   .nav-tabs .slide {
     display: none; }
@@ -15968,7 +15981,8 @@ span.value {
     width: 100%; }
 
   .nav-tabs.tabs {
-    display: inherit; }
+    /*display: inherit; */
+  }
 
   .nav-tabs .nav-item.show .nav-link, .nav-tabs .main-menu .main-menu-content .nav-item .tree-1 a.show .nav-link, .main-menu .main-menu-content .nav-item .tree-1 .nav-tabs a.show .nav-link, .nav-tabs .main-menu .main-menu-content .nav-item .tree-2 a.show .nav-link, .main-menu .main-menu-content .nav-item .tree-2 .nav-tabs a.show .nav-link, .nav-tabs .main-menu .main-menu-content .nav-item .tree-3 a.show .nav-link, .main-menu .main-menu-content .nav-item .tree-3 .nav-tabs a.show .nav-link, .nav-tabs .main-menu .main-menu-content .nav-item .tree-4 a.show .nav-link, .main-menu .main-menu-content .nav-item .tree-4 .nav-tabs a.show .nav-link,
   .nav-tabs .nav-link.active {
@@ -16076,7 +16090,13 @@ span.value {
   .blog-page hr {
     margin-top: 20px;
     margin-bottom: 20px; }
-
+  #right-div{
+    margin-left: 0px;
+    padding-left: 0px !important;
+  }
+  #cardblock{
+    padding-left: 0px !important;
+  }
   .main-body .page-wrapper {
     padding: 0; }
 
@@ -16179,7 +16199,13 @@ span.value {
 @media only screen and (max-width: 460px) {
   .fc-toolbar .fc-right .fc-button-group {
     margin-right: 0; }
-
+  #right-div{
+    margin-left: 0px;
+    padding-left: 0px !important;
+  }
+  #cardblock{
+    padding-left: 0px !important;
+  }
   .social-msg a {
     margin-bottom: 10px; }
     .social-msg a:last-child {
@@ -16206,7 +16232,13 @@ span.value {
     left: 0;
     right: auto;
     width: auto; }
-
+  #right-div{
+    margin-left: 0px;
+    padding-left: 0px !important;
+  }
+  #cardblock{
+    padding-left: 0px !important;
+  }
   .header-navbar .navbar-wrapper .navbar-container .header-notification .profile-notification, .header-navbar .navbar-wrapper .navbar-container .mega-menu-top .profile-notification {
     left: auto;
     right: 0; }
@@ -16219,7 +16251,14 @@ span.value {
     margin-bottom: 5px; } }
 @media only screen and (min-width: 801px) and (max-width: 915px) {
   .grid figure {
-    min-width: auto; } }
+    min-width: auto; }
+    #right-div{
+    margin-left: 250px;
+  } 
+#cardblock{
+    padding-left: 1.25rem !important;
+  }
+  }
 @media only screen and (min-width: 1200px) and (max-width: 1258px) {
   .user-head {
     text-align: center; }
@@ -16233,7 +16272,12 @@ span.value {
     display: inline-block; }
     .similar-job .media .media-body {
       margin-top: 20px; }
-
+      #right-div{
+    margin-left: 250px;
+  }
+  #cardblock{
+    padding-left: 1.25rem !important;
+  }
   /* Job details Css End */ }
 @media only screen and (min-width: 1279px) and (max-width: 1500px) {
   .cd-horizontal-timeline {
@@ -16262,7 +16306,14 @@ span.value {
 
   /* Job details Css End */
   .card .card-header .card-header-right i {
-    margin: 0 10px; } }
+    margin: 0 10px; } 
+  #right-div{
+    margin-left: 250px;
+  }
+  #cardblock{
+    padding-left: 1.25rem !important;
+  }
+}
 /**  =====================
       Dark-Layout css start
 ==========================  **/
@@ -19783,4 +19834,18 @@ textarea{
 }
 .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
   width: 100% !important;
+}
+.dropdown-menu{
+  max-height: 354px !important;
+  overflow: auto !important;
+  min-height: 154px !important;
+  min-width: 300px !important;
+  position: absolute !important;
+  will-change: transform !important;
+  top: 0px !important;
+  left: 100px !important;
+  transform: translate3d(-100px, 52px, 0px) !important;
+}
+#emoji-tabs{
+  width: calc(100% / 4) !important;
 }

@@ -11,7 +11,10 @@ $routes = [
 	'/13B' => '/pages/13B.php',
 	'/ircreate' => '/pages/create_ir.php',
 	'/_13Acreate' => '/pages/create_13A.php',
+	'/_13Bcreate' => '/pages/create_13B.php',
 	'/checked13a' => '/pages/open_checked13a.php',
+	'/phoneSetting' => '/pages/phone-setting.php',
+	'/mobileAcc' => '/pages/phone-mobile-acc.php',
 
 
 	'/13_a' => '/actions/get13A.php',
@@ -22,7 +25,11 @@ $routes = [
 	'/needexp13_a' => '/actions/_13Aneedexp.php',
 	'/cancel13_a' => '/actions/_13Acancel.php',
 	'/13_b' => '/actions/get13B.php',
+	'/phoneAgree' => '/actions/get_phone_agree.php',
+	'/phoneSet' => '/actions/get_phone_set.php',
+	'/phoneMobile' => '/actions/get_phone_mobile.php',
 	'/globe_pa' => '/actions/PA_globe.php',
+	'/smart_pa' => '/actions/PA_smart.php',
 
 	'/incidentReport' => '/actions/get_ir.php',
 	'/postIR' => '/actions/posted-ir.php',
@@ -38,7 +45,9 @@ $routes = [
 	'/_13aRemark' => '/actions/save_13a_remark.php',
 	'/cancel' => '/actions/cancel_13a.php',
 	'/notedBysave' => '/actions/save_noted_by.php',
-	'/stateSave' => '/actions/save_statement.php'
+	'/stateSave' => '/actions/save_statement.php',
+	'/PhoneforSign' => '/actions/phone_stat.php'
+	
 	
 ];
 

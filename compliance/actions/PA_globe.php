@@ -1,63 +1,172 @@
 <?php
-if (!empty($globe)) {
-?>
-<div class="card">
-    <div class="card-header">
-        <h5>GLOBE</h5>
-    </div>
-    <div class="card-block">
-        <div class="dt-responsive table-responsive">
-            <table id="multi-colum-dt" class="table table-striped table-bordered nowrap">
-                <thead>
-                    <tr>
-                        <th scope="col"></th>
-                        <th scope="col"></th>
-                        <th scope="col">Company</th>
-                        <th scope="col">Dept/Outlet</th>
-                        <th scope="col">Custodian</th>
-                        <th scope="col">ACC No</th>
-                        <th scope="col">ACC Name</th>
-                        <th scope="col">SIM No</th>
-                        <th scope="col">SIM Serial No</th>
-                        <th scope="col">SIM Type</th>
-                        <th scope="col">Plan Type</th>
-                        <th scope="col">Plan Features</th>
-                        <th scope="col">Monthly Service Fee</th>
-                        <th scope="col">Authorized By</th>
-                        <th scope="col">QRPH</th>
-                        <th scope="col">Merchant Desc</th>
-                        <th scope="col">Model</th>
-                        <th scope="col">IMEI 1</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($globe as $l) { ?>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td><?= htmlspecialchars($l['phone_custodiancompany'], ENT_QUOTES, 'UTF-8') ?></td>
-                        <td><?= htmlspecialchars($l['phone_deptol'], ENT_QUOTES, 'UTF-8') ?></td>
-                        <td><?= htmlspecialchars($l['Custodian'], ENT_QUOTES, 'UTF-8') ?></td>
-                        <td><?= htmlspecialchars($l['phone_accountno'], ENT_QUOTES, 'UTF-8') ?></td>
-                        <td><?= htmlspecialchars($l['phone_accountname'], ENT_QUOTES, 'UTF-8') ?></td>
-                        <td><?= htmlspecialchars($l['phone_sim'], ENT_QUOTES, 'UTF-8') ?></td>
-                        <td><?= htmlspecialchars($l['phone_sim_serial'], ENT_QUOTES, 'UTF-8') ?></td>
-                        <td><?= htmlspecialchars($l['phone_simtype'], ENT_QUOTES, 'UTF-8') ?></td>
-                        <td><?= htmlspecialchars($l['phone_plan'], ENT_QUOTES, 'UTF-8') ?></td>
-                        <td><?= htmlspecialchars($l['phone_planfeatures'], ENT_QUOTES, 'UTF-8') ?></td>
-                        <td><?= htmlspecialchars($l['phone_total_msf'], ENT_QUOTES, 'UTF-8') ?></td>
-                        <td><?= htmlspecialchars($l['phone_authorized'], ENT_QUOTES, 'UTF-8') ?></td>
-                        <td>N/A</td>
-                        <td>N/A</td>
-                        <td><?= htmlspecialchars($l['phone_model'], ENT_QUOTES, 'UTF-8') ?></td>
-                        <td><?= htmlspecialchars($l['phone_imei1'], ENT_QUOTES, 'UTF-8') ?></td>
-                    </tr>
-                    <?php } ?>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-<?php
+require_once($com_root . "/db/db.php");
+
+if (!isset($_SESSION['user_id'])) {
+    echo json_encode(['error' => 'User not authenticated']);
+    exit;
+}
+
+$user_id = $_SESSION['user_id'];
+
+try {
+    $port_db = Database::getConnection('port');
+    $hr_db = Database::getConnection('hr');
+
+   
+$stmt = $port_db->prepare("
+        SELECT * FROM
+            tbl_account_agreement
+            WHERE `acca_account_desc` = 'Globe Postpaid'
+    ");
+$stmt->execute();
+$phone_agreement = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+if (!empty($phone_agreement)) {
+
+echo '<button class="btn btn-inverse btn-outline-inverse btn-mini" id="forsign">Batch For Signature</button>';
+echo '<button style="margin-left: 10px;" class="btn btn-inverse btn-outline-inverse btn-mini" id="forrelease">Batch Release Signing</button>';
+echo "<div class='table-wrapper' style='max-height:400px; overflow:auto;'>";
+echo "<table class='sticky-table' id='filterable-table' style='width:100%; border-collapse:collapse;'>";
+echo "<thead style='position:sticky; top:0; background-color:#f9f9f9; z-index:1;'>";
+echo "<tr>";
+echo '<th></th>';
+echo '<th></th>';
+echo '<th>Company</th>';
+echo '<th>Dept/Outlet</th>';
+echo '<th>Custodian</th>';
+echo '<th>ACC No</th>';
+echo '<th>ACC Name</th>';
+echo '<th>SIM No</th>';
+echo '<th>SIM Serial No</th>';
+echo '<th>SIM Type</th>';
+echo '<th>Plan Type</th>';
+echo '<th>Plan Features</th>';
+echo '<th>Monthly Service Fee</th>';
+echo '<th>Authorized By</th>';
+echo '<th>QRPH</th>';
+echo '<th>Merchant Desc</th>';
+echo '<th>Model</th>';
+echo '<th>IMEI 1</th>';
+echo '<th>IMEI 2</th>';
+echo '<th>Unit Serial No</th>';
+echo '<th>Accessories</th>';
+echo '<th>Date Issued</th>';
+echo '<th>Date Returned </th>';
+echo '<th>Remarks</th>';
+echo '<th></th>';
+echo "</tr>";
+echo "</thead>";
+echo "<tbody>";
+foreach ($phone_agreement as $p) {
+    echo "<tr>";
+    echo "<td></td>";
+    echo "<td><input type='checkbox' class='row-checkbox' data-accountno='".$p['acca_id']."'></td>";
+    echo "<td>".$p['acca_custodiancompany']."</td>";
+    echo "<td>".$p['acca_deptol']."</td>";
+    // echo "<td>".$p['acca_custodian']."</td>";
+    echo "<td>" . htmlspecialchars(
+    is_array($decoded = json_decode($p['acca_custodian'], true)) 
+        ? implode(', ', array_filter($decoded)) 
+        : ''
+) . "</td>";
+
+    echo "<td>".$p['acca_accountno']."</td>";
+    echo "<td>".$p['acca_accountname']."</td>";
+    echo "<td>".$p['acca_sim']."</td>";
+    echo "<td>".$p['acca_simserialno']."</td>";
+    echo "<td>".$p['acca_simtype']."</td>";
+    echo "<td>".$p['acca_plantype']."</td>";
+    echo "<td>".$p['acca_planfeatures']."</td>";
+    echo "<td>".$p['acca_msf']."</td>";
+    echo "<td>".$p['acca_authorized']."</td>";
+    echo "<td></td>";
+    echo "<td></td>";
+    echo "<td>".$p['acca_model']."</td>";
+    echo "<td>".$p['acca_imei1']."</td>";
+    echo "<td>".$p['acca_imei2']."</td>";
+    echo "<td>".$p['acca_serial']."</td>";
+    echo "<td>".$p['acca_accessories']."</td>";
+    echo "<td>".$p['acca_dtissued']."</td>";
+    echo "<td>".$p['acca_dtreturned']."</td>";
+    echo "<td>".$p['acca_remarks']."</td>";
+    echo "<td>
+            <a class='btn btn-default btn-mini'><i class='zmdi zmdi-eye'></i></a>
+            <a class='btn btn-default btn-mini'><i class='fa fa-edit'></i></a>
+            <a class='btn btn-outline-danger btn-mini'><i class='fa fa-trash-o'></i></a>
+    </td>";
+    echo "</tr>";
+}
+echo "</tbody>";
+echo "</table>";
+echo "</div>";
+
+}   
+
+} catch (PDOException $e) {
+    echo "Error: " . $e->getMessage();
 }
 ?>
+<script type="text/javascript">
+    $(document).ready(function () {
+    // Handle button click for updating the status
+    $('#forsign').on('click', function () {
+        // Get all checked rows
+        const selectedRows = [];
+        $('.row-checkbox:checked').each(function () {
+            selectedRows.push($(this).data('accountno')); // Collect the account numbers
+        });
+
+        if (selectedRows.length === 0) {
+            alert('No rows selected!');
+            return;
+        }
+
+        // Send AJAX request to update the status
+        $.ajax({
+            url: 'PhoneforSign', // PHP script to handle the update
+            method: 'POST',
+            data: {
+                accountnos: selectedRows,
+                action: 'forsign' // Identify the action
+            },
+            success: function (response) {
+                alert(response); // Display success message
+                location.reload(); // Reload the page to reflect changes
+            },
+            error: function (xhr, status, error) {
+                console.error('AJAX Error: ', error);
+                alert('Failed to update the status.');
+            }
+        });
+    });
+
+    $('#forrelease').on('click', function () {
+        const selectedRows = [];
+        $('.row-checkbox:checked').each(function () {
+            selectedRows.push($(this).data('accountno'));
+        });
+
+        if (selectedRows.length === 0) {
+            alert('No rows selected!');
+            return;
+        }
+
+        $.ajax({
+            url: 'PhoneforSign',
+            method: 'POST',
+            data: {
+                accountnos: selectedRows,
+                action: 'forrelease'
+            },
+            success: function (response) {
+                alert(response);
+                location.reload();
+            },
+            error: function (xhr, status, error) {
+                console.error('AJAX Error: ', error);
+                alert('Failed to update the status.');
+            }
+        });
+    });
+});
+</script>

@@ -30,6 +30,22 @@ class Profile
         }
         return [];
     }
+    public static function GetMyIR($user_id) {
+        $conn = self::getDatabaseConnection('port');
+
+        if ($conn) {
+            $stmt = $conn->prepare("SELECT 
+                *
+            FROM 
+            tbl_ir
+            WHERE `ir_from` = ?
+            GROUP BY `ir_id`");
+            $stmt->execute([$user_id]);
+
+            return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
+        }
+        return [];
+    }
     public static function GetIR($irID) {
         $conn = self::getDatabaseConnection('port');
 
@@ -58,7 +74,7 @@ class Profile
             FROM 
             tbl_ir ir
             LEFT JOIN 
-        tbl201_basicinfo a ON a.`bi_empno` = ir.`ir_from`
+            tbl201_basicinfo a ON a.`bi_empno` = ir.`ir_from`
             LEFT JOIN 
                 tbl201_jobrec b ON a.bi_empno = b.jrec_empno
             LEFT JOIN 
@@ -111,6 +127,7 @@ class Profile
                 _13A.13a_offense,
                 _13A.13a_offensetype,
                 _13A.13a_from,
+                _13A.13a_stat,
                 CONCAT(bi_from.bi_empfname,' ',bi_from.bi_emplname) AS issued_by_name,
                 GROUP_CONCAT(DISTINCT bi_cc.bi_empfname,' ',bi_cc.bi_emplname) AS cc_names,
                 GROUP_CONCAT(DISTINCT bi_noted.bi_empfname,' ',bi_noted.bi_emplname) AS noted_names,
@@ -234,7 +251,20 @@ class Profile
         }
         return [];
     }
-    
+    public static function GetGrievanceStat($_13aID) {
+        $conn = self::getDatabaseConnection('port');
+
+        if ($conn) {
+            $stmt = $conn->prepare("SELECT * FROM
+            tbl_grievance_sign
+            WHERE `gs_type` = '13a'
+            AND `gs_typeid` = ?");
+            $stmt->execute([$_13aID]);
+
+            return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
+        }
+        return [];
+    }
 
 }
 ?>

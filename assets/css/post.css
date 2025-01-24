@@ -144,7 +144,7 @@ https://static.xx.fbcdn.net/rsrc.php/v3/yY/r/fCbUcoRfiez.png);
 }
 
 .post-content {
-    padding: 0 1.5rem 1.5rem 1.5rem;
+    padding: 10px;
 }
 
 #post-desc {
@@ -160,22 +160,26 @@ https://static.xx.fbcdn.net/rsrc.php/v3/yY/r/fCbUcoRfiez.png);
 #post-desc2 {
     font-family: 'Facebook Letter Faces', sans-serif;
     /*font-size: 20px;*/
-    max-width: 80%;
+    max-width: 100%;
     border: none;
     resize: none;
     outline: none;
-    /*line-height: 1rem;*/
+    line-height: 1rem;
     height: auto;
     text-align: center; 
-    background-color: 
-    transparent;color: #1d1e1f;
-    font-size: 24px!important;
+    background-color: transparent;
+    color: #ffffff;
+    font-size: 20px!important;
+    margin-bottom: 100px;
+    padding: 20px;
 }
 .custom-pick{
     display: flex;
     margin-bottom: 1rem;
     position: relative;
-    justify-content: space-between;
+    /*justify-content: space-between;*/
+    max-width: 100% !important;
+    overflow: auto !important;
 }
 .custom-pick .background-picker {
     text-align: left;
@@ -517,6 +521,30 @@ url(https://static.xx.fbcdn.net/rsrc.php/v3/yX/r/QryT_9DQQgy.png);
     overflow: auto;
     padding: 5px;
     display: none;
+}
+.add-photos-video{
+    width: 100%;
+    height: auto; 
+    display: flex;
+    /*border: 1px solid #797a7a;*/
+    /*justify-content: center;*/
+    /*align-items: center;*/
+    flex-wrap: wrap; /* Allow multiple images to wrap */
+    gap: 5px; /* Space between images */
+}
+.add-photos-video img{
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain; /* Ensures the image fits inside without being cropped */
+}
+.image-preview{
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain; /* Ensures the image fits inside without being cropped */
+}
+.add-photos-video.multiple img {
+    width: calc(50% - 5px) !important; /* Half the container width for grid layout */
+    height: calc(50% - 5px) !important; /* Adjust height proportionally */
 }
 /*#comment {
     font-size: 12px;

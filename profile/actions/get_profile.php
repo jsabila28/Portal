@@ -78,6 +78,39 @@ class Profile
         return [];
     }
 
+    public static function GetProvince() {
+        $conn = self::getDatabaseConnection('port');
+
+        if ($conn) {
+            $stmt = $conn->prepare("SELECT * FROM tbl_province");
+            $stmt->execute();
+
+            return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
+        }
+        return [];
+    }
+    public static function GetMunicipal() {
+        $conn = self::getDatabaseConnection('port');
+
+        if ($conn) {
+            $stmt = $conn->prepare("SELECT * FROM tbl_province");
+            $stmt->execute();
+
+            return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
+        }
+        return [];
+    }
+    public static function GetBrngy() {
+        $conn = self::getDatabaseConnection('port');
+
+        if ($conn) {
+            $stmt = $conn->prepare("SELECT * FROM tbl_province");
+            $stmt->execute();
+
+            return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
+        }
+        return [];
+    }
     
 
 }

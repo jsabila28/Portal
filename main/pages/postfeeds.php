@@ -104,13 +104,14 @@
                                                                 <!-- <i id="resultText" class="fa fa-user"></i> -->
                                                                 <!-- <span id="resultIcon" class="audience-text">Only Me</span>  -->
                                                                 <i id="resultIcon" class="fa fa-user"></i>
-                                                                <span id="resultText">Only Me</span>
+                                                                <span id="resultText">Audience</span>
                                                                 <div class="drop-down"><i class="icofont icofont-caret-down"></i></div> 
                                                             </div> 
                                                         </div> 
                                                     </div> 
                                                     <div class="post-content"> 
-                                                        <textarea name="post-desc" id="post-desc" cols="30" rows="5" placeholder="What's on you mind ?"></textarea>
+                                                        <textarea name="post-desc1" id="post-desc" cols="30" rows="5" placeholder="What's on you mind ?"></textarea>
+                                                        <div id="previewContainer" class="add-photos-video" style="display: none;"></div> 
                                                         <div id="add-text-post" class="">
                                                             <textarea name="post-desc" id="post-desc2" cols="30" rows="5" placeholder="What's on you mind ?"></textarea>
                                                         </div> 
@@ -118,50 +119,49 @@
                                                             <div id="first-picker" class="background-picker"> 
                                                                 <img height="38" alt="" class="xz74otr" referrerpolicy="origin-when-cross-origin" src="assets/img/foto.png">
                                                             </div>
-                                                            <div class="emoji-picker"> 
+                                                            <!-- <div class="emoji-picker"> 
                                                                 <img height="38" alt="" class="xz74otr" referrerpolicy="origin-when-cross-origin" src="assets/img/emoji.png">
-                                                            </div>
+                                                            </div> -->
                                                         </div>
                                                         <!-- BACKGROUND SELECTION -->
                                                         <div id="second-pick" class="custom-pick" style="display: none;">
                                                             <div id="second-picker" class="background-picker"> 
-                                                                <img height="38" alt="" style="border-radius: 10px;" class="xz74otr" referrerpolicy="origin-when-cross-origin" src="assets/img/angle-left.png">
+                                                                <img height="38" alt="" style="border-radius: 10px;cursor: pointer;" class="xz74otr" referrerpolicy="origin-when-cross-origin" src="assets/img/angle-left.png">
                                                             </div>
                                                             <div id="back-picker" class="background-picker"> 
-                                                                <img height="38" alt="" style="border-radius: 10px;" class="xz74otr" referrerpolicy="origin-when-cross-origin" src="assets/img/templates/8.png">
+                                                                <img height="38" alt="" style="border-radius: 10px;cursor: pointer;" class="xz74otr" referrerpolicy="origin-when-cross-origin" src="assets/img/templates/8.png">
                                                             </div>
                                                             <div id="img-back" class="background-picker"> 
-                                                                <img height="38"  style="border-radius: 10px;" class="xz74otr" data-bg="assets/img/templates/1.png" referrerpolicy="origin-when-cross-origin" src="assets/img/templates/bday1.png">
+                                                                <img height="38"  style="border-radius: 10px;cursor: pointer;" class="xz74otr" data-bg="assets/img/templates/1.png" referrerpolicy="origin-when-cross-origin" src="assets/img/templates/bday1.png">
                                                             </div>
                                                             <div id="img-back" class="background-picker"> 
-                                                                <img height="38"  style="border-radius: 10px;" class="xz74otr" data-bg="assets/img/templates/4.png" referrerpolicy="origin-when-cross-origin" src="assets/img/templates/bday3.png">
+                                                                <img height="38"  style="border-radius: 10px;cursor: pointer;" class="xz74otr" data-bg="assets/img/templates/2.png" referrerpolicy="origin-when-cross-origin" src="assets/img/templates/bday2.png">
                                                             </div>
                                                             <div id="img-back" class="background-picker"> 
-                                                                <img height="38"  style="border-radius: 10px;" class="xz74otr" data-bg="assets/img/templates/6.png" referrerpolicy="origin-when-cross-origin" src="assets/img/templates/bday5.png">
+                                                                <img height="38"  style="border-radius: 10px;cursor: pointer;" class="xz74otr" data-bg="assets/img/templates/3.png" referrerpolicy="origin-when-cross-origin" src="assets/img/templates/ann1.png">
                                                             </div>
                                                             <div id="img-back" class="background-picker"> 
-                                                                <img height="38"  style="border-radius: 10px;" class="xz74otr" data-bg="assets/img/templates/2.png" referrerpolicy="origin-when-cross-origin" src="assets/img/templates/ann2.png">
+                                                                <img height="38"  style="border-radius: 10px;cursor: pointer;" class="xz74otr" data-bg="assets/img/templates/4.png" referrerpolicy="origin-when-cross-origin" src="assets/img/templates/ann2.png">
                                                             </div>
                                                             <div id="img-back" class="background-picker"> 
-                                                                <img height="38"  style="border-radius: 10px;" class="xz74otr" data-bg="assets/img/templates/5.png" referrerpolicy="origin-when-cross-origin" src="assets/img/templates/ann4.png">
+                                                                <img height="38"  style="border-radius: 10px;cursor: pointer;" class="xz74otr" data-bg="assets/img/templates/5.png" referrerpolicy="origin-when-cross-origin" src="assets/img/templates/party.png">
                                                             </div>
                                                             <div id="img-back" class="background-picker"> 
-                                                                <img height="38"  style="border-radius: 10px;" class="xz74otr" data-bg="assets/img/templates/7.png" referrerpolicy="origin-when-cross-origin" src="assets/img/templates/ann6.png">
+                                                                <img height="38"  style="border-radius: 10px;cursor: pointer;" class="xz74otr" data-bg="assets/img/templates/6.png" referrerpolicy="origin-when-cross-origin" src="assets/img/templates/summer.png">
                                                             </div>
-                                                            <div class="emoji-picker"> 
+                                                            <div id="img-back" class="background-picker"> 
+                                                                <img height="38"  style="border-radius: 10px;cursor: pointer;" class="xz74otr" data-bg="assets/img/templates/7.png" referrerpolicy="origin-when-cross-origin" src="assets/img/templates/christmas.png">
+                                                            </div>
+                                                            <!-- <div class="emoji-picker"> 
                                                                 <img height="38"  style="border-radius: 10px;" class="xz74otr" referrerpolicy="origin-when-cross-origin" src="assets/img/emoji.png">
-                                                            </div>
+                                                            </div> -->
                                                         </div>
                                                         <!-- BACKGROUND SELECTION -->
-                                                        <div id="add-photo-video" class="hide-image">
-                                                            <div class="image-video" id="image-video" style="background-image: url('assets/img/upload.png');" onclick="document.getElementById('file-input').click();">
-                                                            </div>
-                                                            <input type="file" id="file-input" name="post-content[]" style="display: none;" onchange="updateFileContent()" multiple>
-                                                        </div>
+                                                        <input type="file" id="imageInput" multiple accept="image/*" style="display: none;">
                                                         <div class="add-to-your-post"> 
                                                             <p class="add-to-post-text">Add to your post</p> 
                                                             <div class="add-to-post-icons"> 
-                                                                <div class="photo-video" id="showIcon" onclick="toggleDiv()"></div> 
+                                                                <div class="photo-video" id="showIcon"></div> 
                                                                 <div class="tag-people"></div> 
                                                                 <div class="feeling-activity"></div> 
                                                                 <!-- <div class="check-in"></div>  -->
@@ -409,32 +409,35 @@
         });
     });
 
-    // Capture and save post content on button click
-    document.getElementById('post-btn2').addEventListener('click', (event) => {
-        event.preventDefault(); // Prevent form submission or page reload
+document.getElementById('post-btn2').addEventListener('click', (event) => {
+    event.preventDefault();
 
-        // Debug: Check if addTextPost is accessible
-        console.log('addTextPost:', addTextPost);
+    const selectedAudience = document.querySelector('input[name="audience"]:checked');
+    const audienceValue = selectedAudience ? selectedAudience.value : null;
 
-        // Capture the div with background and text using html2canvas
-        html2canvas(addTextPost).then(canvas => {
-            // Debug: Check if canvas was created correctly
-            console.log('Canvas created:', canvas);
+    if (!audienceValue) {
+        alert('Please select an audience before posting.');
+        return;
+    }
 
-            const imageData = canvas.toDataURL('image/png'); // Convert to Base64 image
-            console.log('Generated Image Data:', imageData);
-
-            // Check if imageData is valid
+    // Ensure fonts are loaded before rendering
+    document.fonts.ready.then(() => {
+        const dpi = window.devicePixelRatio || 1;
+        html2canvas(addTextPost, {
+            scale: 10, // Increase scale for better resolution
+            useCORS: true, // Handle cross-origin resources
+            logging: true, // Enable debug logs
+        })
+        .then(canvas => {
+            const imageData = canvas.toDataURL('image/png');
+            // const imageData = canvas.toDataURL('image/png', 1.0);
             if (!imageData) {
-                console.error('Failed to generate image data');
-                alert('Failed to generate image data');
+                alert('Failed to generate image data.');
                 return;
             }
 
-            const content = textArea.value; // Get content from the textarea
-            console.log('Post Content:', content);
+            const content = textArea.value;
 
-            // Send data to server via AJAX
             fetch('save_post', {
                 method: 'POST',
                 headers: {
@@ -442,7 +445,8 @@
                 },
                 body: JSON.stringify({
                     image: imageData,
-                    content: content
+                    content: content,
+                    audience: audienceValue,
                 }),
             })
             .then(response => response.json())
@@ -456,8 +460,54 @@
             .catch(error => {
                 console.error('Error:', error);
             });
-        }).catch(error => {
+        })
+        .catch(error => {
             console.error('Error capturing canvas:', error);
         });
     });
+});
+const showIcon = document.getElementById('showIcon');
+    const imageInput = document.getElementById('imageInput');
+    const previewContainer = document.getElementById('previewContainer');
+
+    // Open file input when the fixed div is clicked
+    showIcon.addEventListener('click', () => {
+      imageInput.click();
+    });
+
+    // Handle file selection and preview
+    imageInput.addEventListener('change', function () {
+      const files = Array.from(this.files);
+
+      // Clear previous previews
+      previewContainer.innerHTML = '';
+
+      if (files.length > 0) {
+        // Show the preview container if images are selected
+        previewContainer.style.display = 'flex';
+
+        // Determine if it's single or multiple images
+        if (files.length === 1) {
+          previewContainer.className = 'add-photos-video'; // Single image
+        } else {
+          previewContainer.className = 'add-photos-video multiple'; // Grid for multiple images
+        }
+
+        // Preview images
+        files.forEach((file) => {
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            const img = document.createElement('img');
+            img.src = e.target.result;
+            img.className = 'image-preview';
+            previewContainer.appendChild(img);
+          };
+          reader.readAsDataURL(file);
+        });
+      } else {
+      }
+
+    });
+
+
 </script>

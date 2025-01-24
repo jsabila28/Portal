@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $targetFilePath = $targetDir . $fileName;
         
         if (move_uploaded_file($_FILES["file"]["tmp_name"], $targetFilePath)) {
-            $filePath = $fileName;
+            $filePath = 'assets/announcement/post_' . $fileName;
         } else {
             echo "Error uploading file.";
             exit;
@@ -29,12 +29,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     // Prepare and execute the SQL statement
-    $sql = "INSERT INTO tbl_announcement (ann_postby, ann_title, ann_receiver, ann_content) VALUES (:posted_by, :post_desc, :audience, :file_path)";
+    $sql = "INSERT INTO tbl_announcement (ann_title, ann_content, ann_receiver, ann_approvedby) VALUES (:ann_title, :ann_content, :ann_receiver, :ann_approvedby)";
     $stmt = $port->prepare($sql);
-    $stmt->bindParam(':posted_by', $postedBy);
-    $stmt->bindParam(':post_desc', $postDesc);
-    $stmt->bindParam(':audience', $audience);
-    $stmt->bindParam(':file_path', $filePath);
+    $stmt->bindParam(':ann_title', $postDesc);
+    $stmt->bindParam(':ann_content', $filePath);
+    $stmt->bindParam(':ann_receiver', $audience);
+    $stmt->bindParam(':ann_approvedby', $postedBy);
 
     if ($stmt->execute()) {
         echo "Post saved successfully.";

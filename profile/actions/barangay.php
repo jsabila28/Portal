@@ -1,24 +1,31 @@
 <?php
-require_once($sr_root . "/db/db.php");
-
 header('Content-Type: application/json');
 header('Content-Type: text/html; charset=UTF-8');
+$connection = new mysqli("localhost", "root", "", "portal_db");
 
-try {
-    $port_db = Database::getConnection('port');
-    $hr_db = Database::getConnection('hr');
-
-$municipalId = $_POST['municipal_id'];
-
-$stmt = $port_db->prepare("SELECT br_id, br_name FROM tbl_barangay WHERE br_city = ?");
-$stmt->execute([$municipalId]);
-
-$options = '<option value="">Select Barangay</option>';
-while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-    $options .= '<option value="'.$row['br_id'].'">'.$row['br_name'].'</option>';
+if ($connection->connect_error) {
+    die("Connection failed: " . $connection->connect_error);
 }
-echo $options;
-} catch (PDOException $e) {
-    echo json_encode(["error" => "Database error: " . $e->getMessage()]);
+
+// Fetch barangay based on municipality
+if (isset($_GET['municipality'])) {
+    $municipalityId = $_GET['municipality'];
+
+    $query = "SELECT * FROM tbl_barangay WHERE br_city = ?";
+    $stmt = $connection->prepare($query);
+    $stmt->bind_param("i", $municipalityId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+            echo "<option value=''>Select Barangay</option>";
+        while ($row = $result->fetch_assoc()) {
+            echo "<option value='" . $row['br_id'] . "'>" . $row['br_name'] . "</option>";
+        }
+    } else {
+        echo "<option value=''>No barangays found</option>";
+    }
 }
+
+$connection->close();
 ?>

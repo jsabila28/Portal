@@ -649,17 +649,17 @@ try {
                                     echo'<div id="pers-name">
                                         <label>Permanent Address </label>
                                         <label> 
-                                            <select class="form-control" id="province-perm2" name="Pprovince">
+                                            <select id="province" name="province">
                                                 <option value="">Select Province</option>
                                             </select>
                                         </label>
                                         <label> 
-                                            <select class="form-control" id="municipal-perm2" name="Pmunicipal">
+                                            <select id="municipality" name="municipality">
                                                 <option value="">Select Municipality</option>
                                             </select>
                                         </label>
                                         <label> 
-                                            <select class="form-control" id="brngy-perm2" name="Pbrngy">
+                                            <select id="barangay" name="barangay">
                                                 <option value="">Select Barangay</option>
                                             </select>
                                         </label>

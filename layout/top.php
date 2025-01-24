@@ -64,7 +64,7 @@
 	<link rel="stylesheet" type="text/css" href="/Portal/assets/css/leave.css">
 	<link rel="stylesheet" type="text/css" href="/Portal/assets/css/post.css">
 	<link rel="stylesheet" type="text/css" href="/Portal/assets/css/profile.css">
-	<link rel="stylesheet" type="text/css" href="/Portal/assets/css/atd.css">
+	<!-- <link rel="stylesheet" type="text/css" href="/Portal/assets/css/atd.css"> -->
 	<link rel="stylesheet" type="text/css" href="/Portal/assets/css/events.css">
 
 

@@ -1,25 +1,31 @@
 <?php
-require_once($sr_root . "/db/db.php");
-
 header('Content-Type: application/json');
 header('Content-Type: text/html; charset=UTF-8');
+$connection = new mysqli("localhost", "root", "", "portal_db");
 
-try {
-    $port_db = Database::getConnection('port');
-    $hr_db = Database::getConnection('hr');
-
-$provinceId = $_POST['pr_code'];
-
-$stmt = $port_db->prepare("SELECT ct_id, ct_name FROM tbl_municipality WHERE ct_province = ?");
-$stmt->execute([$provinceId]);
-
-$options = '<option value="">Select Municipality</option>';
-while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-    $options .= '<option value="'.$row['ct_id'].'">'.$row['ct_name'].'</option>';
+if ($connection->connect_error) {
+    die("Connection failed: " . $connection->connect_error);
 }
-echo $options;
 
-} catch (PDOException $e) {
-    echo json_encode(["error" => "Database error: " . $e->getMessage()]);
+// Fetch municipality based on province
+if (isset($_GET['province_id'])) {
+    $provinceId = $_GET['province_id'];
+
+    $query = "SELECT * FROM tbl_municipality WHERE ct_province = ?";
+    $stmt = $connection->prepare($query);
+    $stmt->bind_param("i", $provinceId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+            echo "<option value=''>Select Municipality</option>";
+        while ($row = $result->fetch_assoc()) {
+            echo "<option value='" . $row['ct_id'] . "'>" . $row['ct_name'] . "</option>";
+        }
+    } else {
+        echo "<option value=''>No municipalities found</option>";
+    }
 }
+
+$connection->close();
 ?>

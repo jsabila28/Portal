@@ -10,6 +10,7 @@ $routes = [
 	'/province' => '/actions/province.php',
 	'/municipal' => '/actions/municipal.php',
 	'/brngy' => '/actions/barangay.php',
+	
 	'/skillCat' => '/actions/get_skill_cat.php',
 	'/skillType' => '/actions/get_skill_type.php',
 	'/personal' => '/actions/personal.php',

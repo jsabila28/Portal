@@ -62,7 +62,7 @@ $(document).ready(function () {
         e.preventDefault();
 
         var postedBy = $('input[name="posted-by"]').val();
-        var postDesc = $('#post-desc').val();
+        var postDesc = $('.post-desc1').val();
         var postDesc = $('#post-desc2').val();
         var audience = $('input[name="audience"]:checked').val();
         var postContent = new FormData();
@@ -71,7 +71,7 @@ $(document).ready(function () {
         postContent.append('postDesc', postDesc);
         postContent.append('audience', audience);
 
-        var fileInput = $('#file-input')[0].files[0];
+        var fileInput = $('#imageInput')[0].files[0];
         if (fileInput) {
             postContent.append('file', fileInput);
         }

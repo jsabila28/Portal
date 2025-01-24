@@ -135,7 +135,9 @@
 	background-color: #ededed !important;
 	padding: 15px;
 	border-radius: 10px;
-	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+  /*border: 1px solid rgb(193, 190, 190);*/
+	/*box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);*/
+  margin-top: 20px;
 }
 #personal-form #pers-name{
 	display: flex;
@@ -691,6 +693,7 @@ div#four{
   border: 1px solid #ddd;
   padding: 8px;
   text-align: left;
+  min-width: 100px;
 }
 
 .sticky-table thead {
@@ -894,4 +897,33 @@ hr.new2 {
   .flex-item {
     flex: 1 1 100%;
   }
+}
+.table-wrapper {
+  max-height: 400px; /* Adjust the height as needed */
+  overflow-y: auto; /* Enables vertical scrolling */
+  overflow-x: auto; /* Enables horizontal scrolling */
+}
+
+.sticky-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.sticky-table th {
+  position: sticky;
+  top: 0;
+  background-color: #f9f9f9; /* Background color for the sticky header */
+  z-index: 2; /* Ensures header stays above the body content */
+  text-align: left;
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+.sticky-table td {
+  padding: 8px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+#col{
+  max-width: 100px;
 }

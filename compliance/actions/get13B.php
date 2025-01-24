@@ -1,83 +1,15 @@
 <?php
     require_once($com_root."/db/db.php");
     require_once($com_root."/actions/get_profile.php");
+    require_once($com_root."/actions/get_person.php");
     
-    $date = date("Y-m-d");
-    $Year = date("Y");
-    $Month = date("m");
-    $Day = date("d");
-    $yearMonth = date("Y-m");
-    $employee = Profile::GetEmployee();
-    
-    try {
-        // $scms_db = Database::getConnection('scms');
-        // $pi_db = Database::getConnection('pi');
-        $hr_db = Database::getConnection('hr');
-    } catch (\PDOException $e) {
-        throw new \PDOException($e->getMessage(), (int)$e->getCode());
-    }
-    
-    if (isset($_SESSION['user_id'])) {
-        $user_id = $_SESSION['user_id'];
-        
-        error_log("User ID: $user_id");
-
-        $stmt = $hr_db->prepare("SELECT 
-                a.bi_empno, 
-                CONCAT(a.bi_empfname, ' ', a.bi_empmname, ' ', a.bi_emplname) AS fullname, 
-                jd.jd_title, 
-                CONCAT(head.bi_emplname, ' ', head.bi_empfname) AS headNAME,
-                b.jrec_reportto,
-                b.`jrec_outlet`,
-                b.`jrec_department`,
-                b.`jrec_position`
-            FROM 
-                tbl201_basicinfo a
-            LEFT JOIN 
-                tbl201_jobrec b ON a.bi_empno = b.jrec_empno
-            LEFT JOIN 
-                tbl201_basicinfo head ON b.jrec_reportto = head.bi_empno
-            LEFT JOIN 
-                tbl_jobdescription jd ON jd.jd_code = b.jrec_position
-            LEFT JOIN 
-                tbl201_jobinfo ji ON ji.ji_empno = a.bi_empno
-            WHERE 
-                a.bi_empno = :user_id
-                AND a.datastat = 'current'
-                AND b.jrec_type = 'Primary'
-                AND b.jrec_status = 'Primary'
-                AND ji.ji_remarks = 'Active'
-            ");
-        $stmt->bindParam(':user_id', $user_id);
-        $stmt->execute();
-    
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
-    
-        if ($user) {
-            error_log("Query Result: " . print_r($user, true));
-            $username = $user['fullname'];
-            $empno = $user['bi_empno'];
-            $position = $user['jd_title'];
-            $reportto = $user['headNAME'];
-            $reportID = $user['jrec_reportto'];
-            $position = $user['jrec_position'];
-            $department = $user['jrec_department'];
-            $outlet = $user['jrec_outlet'];
-            $date = date('F j, Y');
-        } else {
-            error_log("No user found for ID: $user_id");
-            $username = "Guest";
-        }
-    } else {
-        $username = "Guest";
-    }
 ?>
 <div id="personal-info1" style="background-color: white; padding: 20px;">
      <div class="basic-info" style="display: flex;justify-content: space-between;">
        <span id="userName">
        13B
        </span>
-       <button class="btn btn-primary btn-mini" style="width: 10%;" data-toggle="modal" data-target="#IRmodal">create 13B</button>
+       <a href="_13Bcreate" class="btn btn-primary btn-mini" style="width: 10%;">create 13B</a>
      </div>
      <div class="basic-info">
         <div class="col-lg-12 col-xl-12">                                       
@@ -88,15 +20,27 @@
                     <div class="slide"></div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#posted" role="tab">Posted</a>
+                    <a class="nav-link" data-toggle="tab" href="#posted" role="tab">Pending</a>
                     <div class="slide"></div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#explain" role="tab">Need Explanation</a>
+                    <a class="nav-link" data-toggle="tab" href="#reviewed" role="tab">Reviewed</a>
                     <div class="slide"></div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#solved" role="tab">Resolved</a>
+                    <a class="nav-link" data-toggle="tab" href="#issued" role="tab">Issued</a>
+                    <div class="slide"></div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#received" role="tab">Received</a>
+                    <div class="slide"></div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#refused" role="tab">Refused</a>
+                    <div class="slide"></div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#cancelled" role="tab">Cancelled</a>
                     <div class="slide"></div>
                 </li>
             </ul>
@@ -120,7 +64,7 @@
                     </div>
                 </div>
                 </div>
-                <div class="tab-pane" id="explain" role="tabpanel"><br>
+                <div class="tab-pane" id="reviewed" role="tabpanel"><br>
                     <div class="card">
                     <div class="card-block">
                     <div class="table-container" id="IRexplain">
@@ -129,10 +73,37 @@
                     </div>
                 </div>
                 </div>
-                <div class="tab-pane" id="solved" role="tabpanel"><br>
+                <div class="tab-pane" id="issued" role="tabpanel"><br>
                     <div class="card">
                     <div class="card-block">
-                    <div class="table-container" id="IRsolved">
+                    <div class="table-container" id="IRissued">
+                        
+                    </div>
+                    </div>
+                </div>
+                </div>
+                <div class="tab-pane" id="received" role="tabpanel"><br>
+                    <div class="card">
+                    <div class="card-block">
+                    <div class="table-container" id="IRreceived">
+                        
+                    </div>
+                    </div>
+                </div>
+                </div>
+                <div class="tab-pane" id="refused" role="tabpanel"><br>
+                    <div class="card">
+                    <div class="card-block">
+                    <div class="table-container" id="IRrefused">
+                        
+                    </div>
+                    </div>
+                </div>
+                </div>
+                <div class="tab-pane" id="cancelled" role="tabpanel"><br>
+                    <div class="card">
+                    <div class="card-block">
+                    <div class="table-container" id="IRcancelled">
                         
                     </div>
                     </div>

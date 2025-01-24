@@ -12,7 +12,7 @@
   <body>
     <div class="container">
     <div id="alertPlaceholder"></div>
-  <div class="wrapper">
+    <div class="wrapper">
     <div class="title"><span><b>Sign In</b></span></div>
     <form action="" method="post" id="loginForm" class="sign-in-form">
       <div align="center">

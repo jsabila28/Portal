@@ -1,12 +1,6 @@
 <?php
-require_once($sr_root . "/db/db.php");
-
-if (!isset($_SESSION['user_id'])) {
-    echo json_encode(['error' => 'User not authenticated']);
-    exit;
-}
-
-$user_id = $_SESSION['user_id'];
+require_once($main_root . "/db/db.php");
+require_once($main_root . "/actions/get_personal.php");
 
 try {
     $port_db = Database::getConnection('port');
@@ -25,20 +19,23 @@ try {
         $currentYear = date('Y');
 
         // Prepare SQL query with pagination
-        $stmt = $hr_db->prepare("
+        $stmt = $port_db->prepare("
             SELECT *
             FROM tbl_announcement a
             LEFT JOIN tbl201_basicinfo b ON a.ann_approvedby = b.bi_empno
-            WHERE a.ann_type = 'LOCAL'
-            AND DATE_FORMAT(a.ann_end, '%Y') = :dates
-            AND ann_status = 'Approved'
-            -- GROUP BY a.ann_id
+            WHERE 
+        ann_status = 'Approved' AND 
+        (
+            FIND_IN_SET(:company, a.ann_receiver) > 0 OR
+            a.ann_receiver = 'Only Me' OR
+            a.ann_receiver = 'All'
+        )
             ORDER BY a.ann_timestatmp DESC
             LIMIT :offset, :limit
         ");
 
         // Bind parameters
-        $stmt->bindValue(':dates', $currentYear, PDO::PARAM_STR);
+        $stmt->bindValue(':company', $company, PDO::PARAM_STR);
         $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
         $stmt->bindValue(':limit', $items_per_page, PDO::PARAM_INT);
         $stmt->execute();
@@ -383,24 +380,130 @@ try {
 
             // Add new comment input section
             echo '<div class="cardbox-base-comment" id="hidden-div-' . $row['ann_id'] . '" style="width:100%; display:none;">';
-            echo '<div class="m-1">';
-            $emojis = [
-                   '&#128512;', '&#128513;', '&#128514;', '&#128515;', '&#128516;', '&#128517;', '&#128518;', '&#128519;',
-                   '&#128520;', '&#128521;', '&#128522;', '&#128523;', '&#128524;', '&#128525;', '&#128526;', '&#128527;',
-                   '&#128528;', '&#128529;', '&#128530;', '&#128531;', '&#128532;', '&#128533;', '&#128534;', '&#128535;',
-                   '&#128536;', '&#128537;', '&#128538;', '&#128539;', '&#128540;', '&#128541;', '&#128542;', '&#128543;',
-                   '&#128544;', '&#128545;', '&#128546;', '&#128547;', '&#128548;', '&#128549;', '&#128550;', '&#128551;',
-                   '&#128552;', '&#128553;', '&#128554;', '&#128555;', '&#128556;', '&#128557;', '&#128558;', '&#128559;',
-                   '&#128560;', '&#128561;', '&#128562;', '&#128563;', '&#128564;', '&#128565;', '&#128566;', '&#128567;', 
-                   '&#127872;', '&#127873;', '&#127874;', '&#127878;', '&#127879;', '&#127880;', '&#127881;', '&#127882;', 
-                   '&#128147;', '&#128148;', '&#128149;', '&#128150;', '&#128151;', '&#128152;', '&#128153;', '&#128154;', 
-                   '&#128155;', '&#128156;', '&#128157;', '&#128158;', '&#128159;', '&#128420;', '&#129293;', '&#129294;'
-               ];
+            echo ' <div class="emoji-tabs">
+                        <ul class="nav nav-tabs  tabs" role="tablist" style="display: inherit !important;height:40px;">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#face-' . $row['ann_id'] . '" role="tab">&#128578;</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#heart-' . $row['ann_id'] . '" role="tab">&#129293;</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#food-' . $row['ann_id'] . '" role="tab">&#127860;</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#plant-' . $row['ann_id'] . '" role="tab">&#127808;</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#weather-' . $row['ann_id'] . '" role="tab">&#127759;</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#symbols-' . $row['ann_id'] . '" role="tab">&#127881;</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content tabs card-block">
+                            <div class="tab-pane active" id="face-' . $row['ann_id'] . '" role="tabpanel">';
+                                $faces = [
+                                    '&#128512;', '&#128513;', '&#128514;', '&#128515;', '&#128516;', '&#128517;', '&#128518;', '&#128519;',
+                                    '&#129392;',
+                                    '&#129297;', '&#129303;', '&#129312;', '&#129319;', '&#129321;', '&#129395;', '&#129392;', '&#129327;',
+                                    '&#128520;', '&#128521;', '&#128522;', '&#128523;', '&#128524;', '&#128525;', '&#128526;', '&#128527;',
+                                    '&#128528;', '&#128529;', '&#128530;', '&#128531;', '&#128532;', '&#128533;', '&#128534;', '&#128535;',
+                                    '&#128536;', '&#128537;', '&#128538;', '&#128539;', '&#128540;', '&#128541;', '&#128542;', '&#128543;',
+                                    '&#128544;', '&#128545;', '&#128546;', '&#128547;', '&#128548;', '&#128549;', '&#128550;', '&#128551;',
+                                    '&#128552;', '&#128553;', '&#128554;', '&#128555;', '&#128556;', '&#128557;', '&#128558;', '&#128559;',
+                                    '&#128560;', '&#128561;', '&#128562;', '&#128563;', '&#128564;', '&#128565;', '&#128566;', '&#128567;',
+                                    '&#129305;', '&#129310;', '&#128079;', '&#128133;', '&#129309;', '&#9996;', '&#128077;','&#128400;'
+                                ];
+                                
+                                foreach ($faces as $fc) {
+                                    echo '<span class="emoji" onclick="insertEmoji(\'Mycomment-' . htmlspecialchars($row['ann_id']) . '\', \'' . htmlspecialchars($fc) . '\')">' . htmlspecialchars_decode($fc) . '</span>';
+                                }
+                        echo '</div>
+                            <div class="tab-pane" id="heart-' . $row['ann_id'] . '" role="tabpanel">';
+                                $heart = [ 
+                                    '&#10084;','&#128140;','&#10083;',
+                                    '&#128147;', '&#128148;', '&#128149;', '&#128150;', '&#128151;', '&#128152;', '&#128153;', '&#128154;', 
+                                    '&#128155;', '&#128156;', '&#128157;', '&#128158;', '&#128159;', '&#128420;', '&#129293;', '&#129294;'
+                                ];
+                                
+                                foreach ($heart as $hrt) {
+                                    echo '<span class="emoji" onclick="insertEmoji(\'Mycomment-' . htmlspecialchars($row['ann_id']) . '\', \'' . htmlspecialchars($hrt) . '\')">' . htmlspecialchars_decode($hrt) . '</span>';
+                                }
+                        echo '</div>
+                            <div class="tab-pane" id="food-' . $row['ann_id'] . '" role="tabpanel">';
+                                $food = [ 
+                                    '&#127838;','&#129360;','&#129366;','&#129391;','&#129374;','&#129479;','&#129472;','&#127830;',
+                                    '&#127831;','&#129385;','&#127828;','&#127839;','&#127789;','&#127829;','&#129386;','&#129747;',
+                                    '&#127790;','&#127791;','&#129372;','&#129478;','&#127837;','&#127836;','&#127829;','&#129368;',
+                                    '&#129367;','&#127835;','&#127834;','&#127843;','&#127844;','&#127845;','&#129382;','&#129748;',
+                                    '&#127846;','&#127847;','&#127848;','&#127849;','&#127850;','&#127874;','&#127856;','&#129473;',
+                                    '&#129383;','&#127851;','&#127852;','&#127853;','&#127854;','&#127855;','&#128006;','&#9749;',
+                                    '&#129749;','&#127861;','&#127862;','&#127867;','&#127863;','&#127864;','&#127865;','&#127866;',
+                                    '&#127867;','&#129380;','&#129749;','&#127860;','&#129379;','&#127869;','&#129475;',
+                                ];
+                                
+                                foreach ($food as $fd) {
+                                    echo '<span class="emoji" onclick="insertEmoji(\'Mycomment-' . htmlspecialchars($row['ann_id']) . '\', \'' . htmlspecialchars($fd) . '\')">' . htmlspecialchars_decode($fd) . '</span>';
+                                }
+                        echo '</div>
+                            <div class="tab-pane" id="plant-' . $row['ann_id'] . '" role="tabpanel">';
+                                $plant = [ 
+                                    '&#127793;','&#127794;','&#127795;','&#127796;','&#127797;','&#127806;','&#127807;','&#9752;',
+                                    '&#127808;','&#127809;','&#127810;','&#127811;','&#127799;','&#127800;','&#127801;','&#129344;',
+                                    '&#127802;','&#127803;','&#127804;','&#127806;','&#127805;','&#127807;','&#127812;','&#127883;',
+                                    '&#127885;','&#127815;','&#127816;','&#127817;','&#127818;','&#127819;','&#127820;','&#127821;',
+                                    '&#129389;','&#127822;','&#127823;','&#127824;','&#127825;','&#127826;','&#127827;','&#129744;',
+                                    '&#129373;','&#127813;','&#129381;','&#129361;','&#127814;','&#129364;','&#129365;','&#127805;',
+                                    '&#129362;','&#129388;','&#129382;','&#129476;','&#129477;','&#127812;','&#129745;'
+                                ];
+                                
+                                foreach ($plant as $plt) {
+                                    echo '<span class="emoji" onclick="insertEmoji(\'Mycomment-' . htmlspecialchars($row['ann_id']) . '\', \'' . htmlspecialchars($plt) . '\')">' . htmlspecialchars_decode($plt) . '</span>';
+                                }
+                        echo '</div>
+                            <div class="tab-pane" id="weather-' . $row['ann_id'] . '" role="tabpanel">';
+                                $weather = [ 
+                                    '&#9728;','&#127774;','&#9925;','&#127775;','&#127776;','&#127777;','&#127778;','&#127779;',
+                                    '&#9928;','&#127786;','&#127787;','&#127788;','&#10052;','&#9731;','&#127777;','&#127752;',
+                                    '&#9889;','&#127746;','&#9730;','&#128168;','&#127756;','&#127775;','&#127769;','&#127762;',
+                                    '&#127761;','&#11088;','&#9732;','&#127765;','&#127766;','&#127767;','&#127768;','&#127763;',
+                                    '&#127764;','&#127757;','&#127758;','&#127759;','&#129680;'
+                                ];
+                                
+                                foreach ($weather as $weath) {
+                                    echo '<span class="emoji" onclick="insertEmoji(\'Mycomment-' . htmlspecialchars($row['ann_id']) . '\', \'' . htmlspecialchars($weath) . '\')">' . htmlspecialchars_decode($weath) . '</span>';
+                                }
+                        echo '</div>
+                            <div class="tab-pane" id="symbols-' . $row['ann_id'] . '" role="tabpanel">';
+                                $symbols = [ 
+                                    '&#127881;','&#127882;','&#129395;','&#127880;','&#127874;','&#127873;','&#129665;','&#129681;',
+                                    '&#127879;','&#127878;','&#129512;','&#10024;','&#127775;','&#128171;','&#127925;','&#127926;',
+                                    '&#127908;','&#127911;','&#129668;','&#127942;','&#127935;','&#129351;','&#129352;','&#129353;',
+                                    '&#10013;','&#9770;','&#9784;','&#9775;','&#10017;','&#128303;','&#128329;','&#128720;',
+                                    '&#128334;','&#9774;','&#129418;','&#9851;','&#9884;','&#9888;','&#128696;','&#9940;',
+                                    '&#128683;','&#10060;','&#10004;','&#128308;','&#128309;','&#9898;','&#9899;','&#128312;',
+                                    '&#128311;'
+                                ];
+                                
+                                foreach ($symbols as $sym) {
+                                    echo '<span class="emoji" onclick="insertEmoji(\'Mycomment-' . htmlspecialchars($row['ann_id']) . '\', \'' . htmlspecialchars($sym) . '\')">' . htmlspecialchars_decode($sym) . '</span>';
+                                }
+                        echo '</div>
+                        </div>
+                    </div>';
+            // echo '<div class="m-1">';
+            // $emojis = [ 
+            //        '&#127872;', '&#127873;', '&#127874;', '&#127878;', '&#127879;', '&#127880;', '&#127881;', '&#127882;', 
+            //        '&#128147;', '&#128148;', '&#128149;', '&#128150;', '&#128151;', '&#128152;', '&#128153;', '&#128154;', 
+            //        '&#128155;', '&#128156;', '&#128157;', '&#128158;', '&#128159;', '&#128420;', '&#129293;', '&#129294;',
+            //        '&#129305;', '&#129310;', '&#128079;', '&#128133;', '&#129309;', '&#9996;', '&#128077;','&#128400;'
+            //    ];
                
-               foreach ($emojis as $emoji) {
-                   echo '<span class="emoji" onclick="insertEmoji(\'Mycomment-' . htmlspecialchars($row['ann_id']) . '\', \'' . htmlspecialchars($emoji) . '\')">' . htmlspecialchars_decode($emoji) . '</span>';
-               }
-            echo '</div>';
+            //    foreach ($emojis as $emoji) {
+            //        echo '<span class="emoji" onclick="insertEmoji(\'Mycomment-' . htmlspecialchars($row['ann_id']) . '\', \'' . htmlspecialchars($emoji) . '\')">' . htmlspecialchars_decode($emoji) . '</span>';
+            //    }
+            // echo '</div>';
             echo '</div>';
 
             // Add new comment input section
@@ -705,6 +808,8 @@ try {
                          echo '<div class="m-1">';
                          $emojis = [
                                 '&#128512;', '&#128513;', '&#128514;', '&#128515;', '&#128516;', '&#128517;', '&#128518;', '&#128519;',
+                   
+                                '&#129297;', '&#129303;', '&#129312;', '&#129319;', '&#129321;', '&#129395;', '&#129392;', '&#129327;',
                                 '&#128520;', '&#128521;', '&#128522;', '&#128523;', '&#128524;', '&#128525;', '&#128526;', '&#128527;',
                                 '&#128528;', '&#128529;', '&#128530;', '&#128531;', '&#128532;', '&#128533;', '&#128534;', '&#128535;',
                                 '&#128536;', '&#128537;', '&#128538;', '&#128539;', '&#128540;', '&#128541;', '&#128542;', '&#128543;',
@@ -713,7 +818,8 @@ try {
                                 '&#128560;', '&#128561;', '&#128562;', '&#128563;', '&#128564;', '&#128565;', '&#128566;', '&#128567;', 
                                 '&#127872;', '&#127873;', '&#127874;', '&#127878;', '&#127879;', '&#127880;', '&#127881;', '&#127882;', 
                                 '&#128147;', '&#128148;', '&#128149;', '&#128150;', '&#128151;', '&#128152;', '&#128153;', '&#128154;', 
-                                '&#128155;', '&#128156;', '&#128157;', '&#128158;', '&#128159;', '&#128420;', '&#129293;', '&#129294;'
+                                '&#128155;', '&#128156;', '&#128157;', '&#128158;', '&#128159;', '&#128420;', '&#129293;', '&#129294;',
+                                '&#129305;', '&#129310;', '&#128079;', '&#128133;', '&#129309;', '&#9996;', '&#128077;','&#128400;'
                             ];
                             
                             foreach ($emojis as $emoji) {
@@ -762,4 +868,21 @@ function insertEmoji(inputId, emojiCode) {
         console.error('Input field not found:', inputId);
     }
 }
+document.addEventListener('DOMContentLoaded', () => {
+  const tabs = document.querySelectorAll('.emoji-tab-btn');
+  const panels = document.querySelectorAll('.emoji-tab-panel');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      // Remove active class from all tabs and panels
+      tabs.forEach(t => t.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+
+      // Add active class to the clicked tab and corresponding panel
+      tab.classList.add('active');
+      const panelId = tab.getAttribute('data-tab');
+      document.getElementById(panelId).classList.add('active');
+    });
+  });
+});
 </script>

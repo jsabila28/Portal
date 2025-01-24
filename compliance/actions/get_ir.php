@@ -84,11 +84,11 @@
             <!-- Nav tabs -->
             <ul class="nav nav-tabs md-tabs" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" data-toggle="tab" href="#draft" role="tab">Draft</a>
+                    <a class="nav-link" data-toggle="tab" href="#draft" role="tab">Draft</a>
                     <div class="slide"></div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#posted" role="tab">Posted</a>
+                    <a class="nav-link active" data-toggle="tab" href="#posted" role="tab">Posted</a>
                     <div class="slide"></div>
                 </li>
                 <li class="nav-item">
@@ -102,7 +102,7 @@
             </ul>
             <!-- Tab panes -->
             <div class="tab-content card-block">
-                <div class="tab-pane active" id="draft" role="tabpanel"><br>
+                <div class="tab-pane" id="draft" role="tabpanel"><br>
                 <div class="card">
                     <div class="card-block">
                     <div class="table-container" id="IRdraft">
@@ -111,7 +111,7 @@
                     </div>
                 </div>
                 </div>
-                <div class="tab-pane" id="posted" role="tabpanel"><br>
+                <div class="tab-pane active" id="posted" role="tabpanel"><br>
                     <div class="card">
                     <div class="card-block">
                     <div class="table-container" id="IRposted">

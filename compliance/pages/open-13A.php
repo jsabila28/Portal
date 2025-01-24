@@ -9,13 +9,16 @@
     $type = '13a';
     $_13A = Profile::GetPost13A($_13aID);
     $_13Aremarks = Profile::GetirRemarks($irID);
+    $_13Astat = Profile::GetGrievanceStat($irID);
 
     }
+
 ?>
 <?php 
 if (!empty($_13A)) {
   foreach ($_13A as $k) {
   $signatures = Profile::GetGrievanceSign($user_id,$irID,$type);
+  $myIR = Profile::GetMyIR($user_id);
 ?>
 <div class="page-wrapper">
   <div class="page-body">
@@ -122,7 +125,7 @@ if (!empty($_13A)) {
               </div>
               <div class="form-group row" id="_13Arow">
                 <label for="fullName" class="col-sm-1 col-form-label text-left">Penalty/Punishment:</label>
-                <div class="col-sm-6">
+                <div class="col-sm-3">
                   <p><?=$k['13a_penalty']?></p>
                 </div>
                 <div class="col-sm-3">
@@ -144,6 +147,8 @@ if (!empty($_13A)) {
             <p>Failure to do so would mean that you are waiving your right to be heard and that appropriate action may be taken by the company based on the violation of the above cited policy/ies and procedures.</p>
             <p>For your compliance.</p>
           </div>
+          <!-- P-E-N-D-I-N-G -->
+          <?php if ($k['13a_stat'] == 'pending') { ?>
           <div id="ir-bottom" >
             <div id="ir-sign">
               <table>
@@ -228,9 +233,246 @@ if (!empty($_13A)) {
               <?php }else{ ?>
               <button type="button" class="btn btn-primary btn-mini waves-effect waves-light">Checked</button> 
               <?php } ?> 
-              <button type="button" class="btn btn-success btn-mini waves-effect waves-light">Attach IR</button>
+              <button type="button" class="btn btn-outline-success btn-mini waves-effect waves-light" data-toggle="modal" data-target="#_13a-ir">Attach IR</button>
             </div>
           </div>
+          <!-- P-E-N-D-I-N-G -->
+          <!-- C-H-E-C-K-E-D -->
+          <?php } elseif ($k['13a_stat'] == 'checked') { ?>
+          <div id="ir-bottom" >
+            <div id="ir-sign">
+              <table>
+                <thead>
+                  <tr><th style="background-color: white;">Issued by:</th></tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td style="text-transform:uppercase;"><?=$k['issued_by_name']?></td>
+                    <!-- <td><a id="show-signature-pad1" class="btn btn-mini">sign</a></td> -->
+                  </tr>
+                  <tr style="border-top: 1px solid black;">
+                    <td><?=$k['pos_from']?></td>
+                  </tr>
+                </tbody>
+              </table>
+              <p></p>
+            </div>
+            <div id="ir-sign">
+              <table>
+                <thead>
+                  <tr><th style="background-color: white;">Noted by:</th></tr>
+                </thead>
+                <tbody>
+                  <?php if (!empty($k['noted_names'])) { ?>
+                  <tr>
+                      <td style="text-transform:uppercase;"><?=$k["noted_names"]?></td>
+                      <!-- <td><a id="show-signature-pad" class="btn btn-outline-dark btn-mini">sign</a></td> -->
+                  </tr>
+                  <tr style="border-top: 1px solid black;">
+                    <td><?=$k["noted_by_positions"]?></td>
+                  </tr>
+                  <?php }else{ ?>
+                  <tr>
+                      <td><a id="show-signature-pad" class="btn btn-outline-dark btn-mini" data-toggle="modal" data-target="#_13a-noted">Add</a></td>
+                  </tr>
+                  <tr style="border-top: 1px solid black;">
+                    <td></td>
+                  </tr>
+                  <?php } ?>
+                </tbody>
+              </table>
+              <p></p>
+            </div>
+            <div id="ir-sign" style="display: flex;height: 60px;"> 
+              <button type="button" class="btn btn-outline-primary btn-mini waves-effect waves-light" data-toggle="modal" data-target="#_13a-ir">Attach IR</button>
+            </div>
+          </div>
+          <!-- C-H-E-C-K-E-D -->
+          <!-- R-E-V-I-E-W-E-D -->
+          <?php } elseif ($k['13a_stat'] == 'reviewed') { ?>
+          <div id="ir-bottom" >
+            <div id="ir-sign">
+              <table>
+                <thead>
+                  <tr><th style="background-color: white;">Issued by:</th></tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td style="text-transform:uppercase;"><?=$k['issued_by_name']?></td>
+                    <!-- <td><a id="show-signature-pad1" class="btn btn-mini">sign</a></td> -->
+                  </tr>
+                  <tr style="border-top: 1px solid black;">
+                    <td><?=$k['pos_from']?></td>
+                  </tr>
+                </tbody>
+              </table>
+              <p></p>
+            </div>
+            <div id="ir-sign">
+              <table>
+                <thead>
+                  <tr><th style="background-color: white;">Noted by:</th></tr>
+                </thead>
+                <tbody>
+                  <tr>
+                      <td style="text-transform:uppercase;"><?=$k["noted_names"]?></td>
+                      <!-- <td><a id="show-signature-pad" class="btn btn-outline-dark btn-mini">sign</a></td> -->
+                  </tr>
+                  <tr style="border-top: 1px solid black;">
+                    <td><?=$k["noted_by_positions"]?></td>
+                  </tr>
+                </tbody>
+              </table>
+              <p></p>
+            </div>
+            <div id="ir-sign" style="display: flex;height: 60px;"> 
+              <button type="button" class="btn btn-outline-primary btn-mini waves-effect waves-light" data-toggle="modal" data-target="#_13a-ir">Attach IR</button>
+              <button type="button" class="btn btn-danger btn-mini waves-effect waves-light" onclick="cancel13A(<?=$k['13a_id']?>, 'cancelled')">Cancel</button>
+            </div>
+          </div>
+          <!-- R-E-V-I-E-W-E-D -->
+          <!-- I-S-S-U-E-D -->
+          <?php } elseif ($k['13a_stat'] == 'issued') { ?>
+          <div id="ir-bottom" >
+            <div id="ir-sign">
+              <table>
+                <thead>
+                  <tr><th style="background-color: white;">Issued by:</th></tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td style="text-transform:uppercase;"><?=$k['issued_by_name']?></td>
+                    <!-- <td><a id="show-signature-pad1" class="btn btn-mini">sign</a></td> -->
+                  </tr>
+                  <tr style="border-top: 1px solid black;">
+                    <td><?=$k['pos_from']?></td>
+                  </tr>
+                </tbody>
+              </table>
+              <p></p>
+            </div>
+            <div id="ir-sign">
+              <table>
+                <thead>
+                  <tr><th style="background-color: white;">Noted by:</th></tr>
+                </thead>
+                <tbody>
+                  <tr>
+                      <td style="text-transform:uppercase;"><?=$k["noted_names"]?></td>
+                      <!-- <td><a id="show-signature-pad" class="btn btn-outline-dark btn-mini">sign</a></td> -->
+                  </tr>
+                  <tr style="border-top: 1px solid black;">
+                    <td><?=$k["noted_by_positions"]?></td>
+                  </tr>
+                </tbody>
+              </table>
+              <p></p>
+            </div>
+            <div id="ir-sign">
+              <table>
+                <tbody>
+                  <tr>
+                      <td style="text-transform:uppercase;"><?=$k["to_name"]?></td>
+                      <!-- <td><a id="show-signature-pad" class="btn btn-outline-dark btn-mini">sign</a></td> -->
+                  </tr>
+                  <tr style="border-top: 1px solid black;">
+                    <!-- <td><?=$k["13a_to_position"]?></td> -->
+                    <td>Employee</td>
+                  </tr>
+                  <tr>
+                    <td>Date Received:</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Time:</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <p></p>
+            </div>
+          </div>
+          <div id="ir-bottom" >
+            <div id="ir-sign" style="display: flex;height: 60px;"> 
+              <button type="button" class="btn btn-outline-primary btn-mini waves-effect waves-light" data-toggle="modal" data-target="#_13a-ir">Attach IR</button>
+              <button type="button" class="btn btn-danger btn-mini waves-effect waves-light" onclick="cancel13A(<?=$k['13a_id']?>, 'cancelled')">Cancel</button>
+              <button type="button" class="btn btn-outline-primary btn-mini waves-effect waves-light" data-toggle="modal" data-target="#_13a-ir">Create 13B</button>
+            </div>
+          </div>
+          <!-- I-S-S-U-E-D -->
+          <!-- R-E-C-E-I-V-E-D -->
+          <?php } elseif ($k['13a_stat'] == 'received') { ?>
+          <div id="ir-bottom" >
+            <div id="ir-sign">
+              <table>
+                <thead>
+                  <tr><th style="background-color: white;">Issued by:</th></tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td style="text-transform:uppercase;"><?=$k['issued_by_name']?></td>
+                    <!-- <td><a id="show-signature-pad1" class="btn btn-mini">sign</a></td> -->
+                  </tr>
+                  <tr style="border-top: 1px solid black;">
+                    <td><?=$k['pos_from']?></td>
+                  </tr>
+                </tbody>
+              </table>
+              <p></p>
+            </div>
+            <div id="ir-sign">
+              <table>
+                <thead>
+                  <tr><th style="background-color: white;">Noted by:</th></tr>
+                </thead>
+                <tbody>
+                  <tr>
+                      <td style="text-transform:uppercase;"><?=$k["noted_names"]?></td>
+                      <!-- <td><a id="show-signature-pad" class="btn btn-outline-dark btn-mini">sign</a></td> -->
+                  </tr>
+                  <tr style="border-top: 1px solid black;">
+                    <td><?=$k["noted_by_positions"]?></td>
+                  </tr>
+                </tbody>
+              </table>
+              <p></p>
+            </div>
+            <div id="ir-sign">
+              <table>
+                <tbody>
+                  <tr>
+                      <td style="text-transform:uppercase;"><?=$k["to_name"]?></td>
+                      <!-- <td><a id="show-signature-pad" class="btn btn-outline-dark btn-mini">sign</a></td> -->
+                  </tr>
+                  <tr style="border-top: 1px solid black;">
+                    <!-- <td><?=$k["13a_to_position"]?></td> -->
+                    <td>Employee</td>
+                  </tr>
+                  <tr>
+                    <td>Date Received:</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Time:</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <p></p>
+            </div>
+          </div>
+          <div id="ir-bottom" >
+            <div id="ir-sign" style="display: flex;height: 60px;"> 
+              <button type="button" class="btn btn-outline-primary btn-mini waves-effect waves-light" data-toggle="modal" data-target="#_13a-ir">Attach IR</button>
+              <button type="button" class="btn btn-danger btn-mini waves-effect waves-light" onclick="cancel13A(<?=$k['13a_id']?>, 'cancelled')">Cancel</button>
+              <button type="button" class="btn btn-outline-secondary btn-mini waves-effect waves-light" data-toggle="modal" data-target="#_13a-ir" style="margin-left: 5px;">Transcript</button>
+              <button type="button" class="btn btn-outline-secondary btn-mini waves-effect waves-light" data-toggle="modal" data-target="#_13a-ir" style="margin-left: 5px;">Commitment Plan</button>
+              <button type="button" class="btn btn-outline-primary btn-mini waves-effect waves-light" data-toggle="modal" data-target="#_13a-ir" style="margin-left: 5px;">Create 13B</button>
+            </div>
+          </div>
+          <!-- R-E-C-E-I-V-E-D -->
+          <?php } ?>
+          <!-- REMARKS -->
           <div class="ir-bottom">
             <div class="col-md-9">
               <div class="panel panel-default" style="border: 1px solid #a59e9e !important;">
@@ -250,12 +492,14 @@ if (!empty($_13A)) {
                   </div>
               </div>
             </div>
-          </div>
+          </div><br>
+          <!-- REMARKS -->
         </div>
       </div>
     </div>
   </div>
 </div>
+<?php }} ?>
 <div class="modal fade" id="_13a-remark" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -301,5 +545,29 @@ if (!empty($_13A)) {
         </div>
     </div>
 </div>
-<?php }} ?>
+<div class="modal fade" id="_13a-ir" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" style="text-align: left !important;">Attach IR</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="padding: 10px !important;">
+                <!-- <input type="hidden" name="idremrk" id="remrkid" value="<?=$k['13a_id']?>"> -->
+                <select class="selectpicker" multiple data-live-search="true" name="noted_by" id="nbInput">
+                    <?php if (!empty($myIR)) { 
+                        foreach ($myIR as $ir) { ?>
+                            <option value="<?=$ir['ir_id']?>"><?=$ir['ir_subject']?></option>       
+                    <?php } } ?>
+                </select>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default btn-mini " data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary btn-mini waves-light" id="save-notedby">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
 <script type="text/javascript" src="../assets/js/_13A.js"></script>
