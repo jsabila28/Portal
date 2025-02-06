@@ -48,6 +48,33 @@
        ?>
      </div>
  </div>
+ <?php
+$_SESSION['csrf_token1']=getToken(50);
+$wcay_ans="";
+$wcay_dt="";
+$wcay_1="";
+$wcay_2="";
+$wcay_3="";
+$wcay_4="";
+$app_name="";
+if(isset($_GET['id'])){
+    $sql_wcay="SELECT * FROM tblapp_whatcolorareyou WHERE wcay_id=".$_GET['id'];
+    foreach ($port_db->query($sql_wcay) as $wcay) {
+        $wcay_ans=$wcay['wcay_ans'];
+        $wcay_dt=$wcay['wcay_dt'];
+        $wcay_1=$wcay['_1'];
+        $wcay_2=$wcay['_2'];
+        $wcay_3=$wcay['_3'];
+        $wcay_4=$wcay['_4'];
+
+        $sql_app="SELECT * FROM tblapp_persinfo WHERE app_id=".$wcay['app_id'];
+        foreach ($port_db->query($sql_app) as $applicant) {
+            $app_name=$applicant['app_fname']." ".$applicant['app_lname'];
+        }
+    }
+}
+
+?>
  <div class="modal fade" id="COLOR" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content" id="section1">
@@ -61,7 +88,7 @@
 
               <div id="personal-form">
                     <div class="container-fluid" style="border: 1px solid lightgrey; padding: 5px;">
-                        <div class="col-md-9" style="border: 1px solid grey;"><br>
+                        <div class="col-md-9" id="div_set_1" name="div_set" style="border: 1px solid grey;"><br>
                         <span> Instructions: Choose the characteristic that best describes you: choose one answer per number.</span>
                         <br>
                         <label style="display: block;font-family: Courier New; font-weight: normal;">
@@ -108,7 +135,7 @@
             <div class="modal-body" style="padding: 5px !important;">
               <div id="personal-form">
                     <div class="container-fluid" style="border: 1px solid lightgrey; padding: 5px;">
-                        <div class="col-md-9" style="border: 1px solid grey;"><br>
+                        <div class="col-md-9" id="div_set_2" name="div_set" style="border: 1px solid grey;"><br>
                         <span> Instructions: Choose the characteristic that best describes you: choose one answer per number.</span>
                         <br>
                         <label style="display: block;font-family: Courier New; font-weight: normal;">
@@ -156,7 +183,7 @@
 
               <div id="personal-form">
                     <div class="container-fluid" style="border: 1px solid lightgrey; padding: 5px;">
-                        <div class="col-md-9" style="border: 1px solid grey;"><br>
+                        <div class="col-md-9" id="div_set_3" name="div_set" style="border: 1px solid grey;"><br>
                         <span> Instructions: Choose the characteristic that best describes you: choose one answer per number.</span>
                         <br>
                         <label style="display: block;font-family: Courier New; font-weight: normal;">
@@ -204,7 +231,7 @@
 
               <div id="personal-form">
                     <div class="container-fluid" style="border: 1px solid lightgrey; padding: 5px;">
-                        <div class="col-md-9" style="border: 1px solid grey;"><br>
+                        <div class="col-md-9" id="div_set_4" name="div_set" style="border: 1px solid grey;"><br>
                         <span> Instructions: Choose the characteristic that best describes you: choose one answer per number.</span>
                         <br>
                         <label style="display: block;font-family: Courier New; font-weight: normal;">
@@ -252,7 +279,7 @@
 
               <div id="personal-form">
                     <div class="container-fluid" style="border: 1px solid lightgrey; padding: 5px;">
-                        <div class="col-md-9" style="border: 1px solid grey;"><br>
+                        <div class="col-md-9" id="div_set_5" name="div_set" style="border: 1px solid grey;"><br>
                         <span> Instructions: Choose the characteristic that best describes you: choose one answer per number.</span>
                         <br>
                         <label style="display: block;font-family: Courier New; font-weight: normal;">
@@ -300,7 +327,7 @@
 
               <div id="personal-form">
                     <div class="container-fluid" style="border: 1px solid lightgrey; padding: 5px;">
-                        <div class="col-md-9" style="border: 1px solid grey;"><br>
+                        <div class="col-md-9" id="div_set_6" name="div_set" style="border: 1px solid grey;"><br>
                         <span> Instructions: Choose the characteristic that best describes you: choose one answer per number.</span>
                         <br>
                         <label style="display: block;font-family: Courier New; font-weight: normal;">
@@ -348,7 +375,7 @@
 
               <div id="personal-form">
                     <div class="container-fluid" style="border: 1px solid lightgrey; padding: 5px;">
-                        <div class="col-md-9" style="border: 1px solid grey;"><br>
+                        <div class="col-md-9" id="div_set_7" name="div_set" style="border: 1px solid grey;"><br>
                         <span> Instructions: Choose the characteristic that best describes you: choose one answer per number.</span>
                         <br>
                         <label style="display: block;font-family: Courier New; font-weight: normal;">
@@ -396,7 +423,7 @@
 
               <div id="personal-form">
                     <div class="container-fluid" style="border: 1px solid lightgrey; padding: 5px;">
-                        <div class="col-md-9" style="border: 1px solid grey;"><br>
+                        <div class="col-md-9" id="div_set_8" name="div_set" style="border: 1px solid grey;"><br>
                         <span> Instructions: Choose the characteristic that best describes you: choose one answer per number.</span>
                         <br>
                         <label style="display: block;font-family: Courier New; font-weight: normal;">
@@ -444,7 +471,7 @@
 
               <div id="personal-form">
                     <div class="container-fluid" style="border: 1px solid lightgrey; padding: 5px;">
-                        <div class="col-md-9" style="border: 1px solid grey;"><br>
+                        <div class="col-md-9" id="div_set_9" name="div_set" style="border: 1px solid grey;"><br>
                         <span> Instructions: Choose the characteristic that best describes you: choose one answer per number.</span>
                         <br>
                         <label style="display: block;font-family: Courier New; font-weight: normal;">
@@ -492,7 +519,7 @@
 
               <div id="personal-form">
                     <div class="container-fluid" style="border: 1px solid lightgrey; padding: 5px;">
-                        <div class="col-md-9" style="border: 1px solid grey;"><br>
+                        <div class="col-md-9" id="div_set_10" name="div_set" style="border: 1px solid grey;"><br>
                         <span> Instructions: Choose the characteristic that best describes you: choose one answer per number.</span>
                         <br>
                         <label style="display: block;font-family: Courier New; font-weight: normal;">
@@ -540,7 +567,7 @@
 
               <div id="personal-form">
                     <div class="container-fluid" style="border: 1px solid lightgrey; padding: 5px;">
-                        <div class="col-md-9" style="border: 1px solid grey;"><br>
+                        <div class="col-md-9" id="div_set_11" name="div_set" style="border: 1px solid grey;"><br>
                         <span> Instructions: Choose the characteristic that best describes you: choose one answer per number.</span>
                         <br>
                         <label style="display: block;font-family: Courier New; font-weight: normal;">
@@ -588,7 +615,7 @@
 
               <div id="personal-form">
                     <div class="container-fluid" style="border: 1px solid lightgrey; padding: 5px;">
-                        <div class="col-md-9" style="border: 1px solid grey;"><br>
+                        <div class="col-md-9" id="div_set_12" name="div_set" style="border: 1px solid grey;"><br>
                         <span> Instructions: Choose the characteristic that best describes you: choose one answer per number.</span>
                         <br>
                         <label style="display: block;font-family: Courier New; font-weight: normal;">
@@ -636,7 +663,7 @@
 
               <div id="personal-form">
                     <div class="container-fluid" style="border: 1px solid lightgrey; padding: 5px;">
-                        <div class="col-md-9" style="border: 1px solid grey;"><br>
+                        <div class="col-md-9" id="div_set_13" name="div_set" style="border: 1px solid grey;"><br>
                         <span> Instructions: Choose the characteristic that best describes you: choose one answer per number.</span>
                         <br>
                         <label style="display: block;font-family: Courier New; font-weight: normal;">
@@ -684,7 +711,7 @@
 
               <div id="personal-form">
                     <div class="container-fluid" style="border: 1px solid lightgrey; padding: 5px;">
-                        <div class="col-md-9" style="border: 1px solid grey;"><br>
+                        <div class="col-md-9" id="div_set_14" name="div_set" style="border: 1px solid grey;"><br>
                         <span> Instructions: Choose the characteristic that best describes you: choose one answer per number.</span>
                         <br>
                         <label style="display: block;font-family: Courier New; font-weight: normal;">
@@ -721,7 +748,7 @@
                 <button type="button" id="save-miq" class="btn btn-primary btn-mini waves-effect waves-light" onclick="goToNextDiv('section15')">Next Page</button>
             </div>
         </div>
-        <div class="modal-content hidden" id="section11">
+        <div class="modal-content hidden" id="section15">
             <div class="modal-header">
                 <h4 class="modal-title">What color are you?</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -732,7 +759,7 @@
 
               <div id="personal-form">
                     <div class="container-fluid" style="border: 1px solid lightgrey; padding: 5px;">
-                        <div class="col-md-9" style="border: 1px solid grey;"><br>
+                        <div class="col-md-9" id="div_set_15" name="div_set" id="" style="border: 1px solid grey;"><br>
                         <span> Instructions: Choose the characteristic that best describes you: choose one answer per number.</span>
                         <br>
                         <label style="display: block;font-family: Courier New; font-weight: normal;">
@@ -771,3 +798,56 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    $(function() {
+        <?php if($wcay_ans!=""){ ?>
+            var wcay_ans="<?=$wcay_ans?>";
+            wcay_ans=wcay_ans.split(",");
+            for(resx in wcay_ans){
+                var resy=wcay_ans[resx].split("-");
+                $("input[name='set_"+resy[0]+"']").each(function(){
+                    if($(this).attr("q_category")==resy[1]){
+                        $(this).prop("checked",true);
+                    }
+                });
+            }
+        <?php }else{ ?>
+            $("#form_wcay").submit(function(e){
+                e.preventDefault();
+                var q_category=[4];
+                var q_ans="";
+                for (var i = 1; i <= 4; i++) {
+                    var q_cat_val=0;
+                    $("input[type='radio']:checked").each(function(){
+                        if($(this).attr("q_category")==i){
+                            q_cat_val+=1;
+                        }
+                    });
+                    q_category[i-1]=q_cat_val;
+                }
+
+                $("input[type='radio']:checked").each(function(){
+                    var ans_set=$(this).attr("name").split("_");
+                    q_ans+=ans_set[1]+"-"+$(this).attr("q_category")+",";
+                });
+                q_ans=q_ans.slice(0,-1);
+                $.post("../actions/what-color-are-you-save.php",
+                    {
+                        action:"add",
+                        appid:$("#_applicant").val(),
+                        q_category:q_category,
+                        answer:q_ans,
+                        _t:"<?=$_SESSION['csrf_token1']?>"
+                    },
+                    function(data1){
+                        if(data1=="1"){
+                            alert("Saved");
+                        }else{
+                            alert(data1);
+                        }
+                    });
+            });
+        <?php } ?>
+    });
+</script>

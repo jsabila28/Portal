@@ -10,6 +10,7 @@ $routes = [
 	'/province' => '/actions/province.php',
 	'/municipal' => '/actions/municipal.php',
 	'/brngy' => '/actions/barangay.php',
+	'/loc' => '/actions/location.php',
 	
 	'/skillCat' => '/actions/get_skill_cat.php',
 	'/skillType' => '/actions/get_skill_type.php',
@@ -55,6 +56,7 @@ $routes = [
 	'/saveEnneagram' => '/actions/save_enneagram.php',
 	'/saveTAPT' => '/actions/save_tapt.php',
 	'/saveMIQ' => '/actions/save_miq.php',
+	'/saveColo' => '/actions/save_colo.php',
 	'/saveIR' => '/actions/save_ir.php',
 	'/savedraftIR' => '/actions/save_irdraft.php',
 

@@ -136,4 +136,7 @@
                     </a>
                   </li>
                 </ul>
+                <div style="padding: 15px;">
+                  True North Group of Companies | 2025
+                </div>
             </div>
