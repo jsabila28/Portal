@@ -108,10 +108,10 @@
 	<div id="pcoded" class="pcoded" vertical-nav-type="offcanvas">
 		<div class="pcoded-overlay-box">
 			<?php if (!empty($sidenav)) { ?>
-								<li>
-									<div class="sidebar_toggle"><a href="javascript:void(0)"><i class="ti-menu"></i></a></div>
-								</li>
-								<?php } ?>
+				<li>
+					<div class="sidebar_toggle"><a href="javascript:void(0)"><i class="ti-menu"></i></a></div>
+				</li>
+			<?php } ?>
 		</div>
 		<div class="pcoded-container navbar-wrapper" style="height: 100vh !important;">
 			<nav class="navbar header-navbar pcoded-header">

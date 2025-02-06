@@ -16,7 +16,22 @@ function fetchAndDisplay(url, elementId) {
 }
 
 fetchAndDisplay('13_b', '13B');
-fetchAndDisplay('postIR', 'IRposted');
-fetchAndDisplay('draftIR', 'IRdraft');
-fetchAndDisplay('solvedIR', 'IRsolved');
-fetchAndDisplay('explIR', 'IRexplain');
+// fetchAndDisplay('postIR', '_13bdraft');
+// fetchAndDisplay('13b_pending', '_13bposted');
+// fetchAndDisplay('solvedIR', '_13breviewed');
+// fetchAndDisplay('explIR', '_13bissued');
+// fetchAndDisplay('explIR', '_13breceived');
+// fetchAndDisplay('explIR', '_13brefused');
+// fetchAndDisplay('explIR', '_13bcancelled');
+
+$(document).ready(function() {
+    $.ajax({
+        url: "13b_pending",
+        method: "GET",
+        success: function(response) {
+            $("#_13bposted").html(response);
+        }
+    });
+
+   
+});

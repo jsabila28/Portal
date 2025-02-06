@@ -19831,10 +19831,10 @@ textarea{
   padding-right: 50px;
   padding-top: 20px;
   padding-bottom: 20px;
-}
+}/*
 .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
   width: 100% !important;
-}
+}*/
 .dropdown-menu{
   max-height: 354px !important;
   overflow: auto !important;
@@ -19848,4 +19848,10 @@ textarea{
 }
 #emoji-tabs{
   width: calc(100% / 4) !important;
+}
+#phone-agr{
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
 }

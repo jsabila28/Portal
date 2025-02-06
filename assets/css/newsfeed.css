@@ -95,7 +95,7 @@
 .media img {
     width: 38px !important;
     height: 38px !important;
-    padding: 2px;
+    /*padding: 2px;*/
     /*border: 2px solid #f4f4f4;*/
 }
 
@@ -940,7 +940,7 @@ background:#ffc;
 
 #image-collage {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(20px, 1fr));
   gap: 10px;
   width: 100%; 
   height: 100%;

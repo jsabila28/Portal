@@ -15,8 +15,8 @@ function fetchAndDisplay(url, elementId) {
     });
 }
 
-fetchAndDisplay('incidentReport', 'IR');
-fetchAndDisplay('postIR', 'IRposted');
+fetchAndDisplay('incidentReport', 'Inc-reprt');
+fetchAndDisplay('irposted', 'IRposted');
 fetchAndDisplay('draftIR', 'IRdraft');
 fetchAndDisplay('solvedIR', 'IRsolved');
 fetchAndDisplay('explIR', 'IRexplain');

@@ -11,7 +11,7 @@ $atd_root = $portal_root."/ATD";
 $sr_root = $portal_root."/profile";
 $dtr_root = $portal_root."/dtr";
 $com_root = $portal_root."/compliance";
-$lv_root = $portal_root."/leave";
+$pa_root = $portal_root."/pa";
 
 
 // sidenav

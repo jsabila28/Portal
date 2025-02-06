@@ -1,60 +1,39 @@
-fetch('innegram')
-.then(response => {
-    if (!response.ok) {
-        throw new Error('Network response was not ok: ' + response.statusText);
-    }
-    return response.text(); // Since we're expecting HTML
-})
-.then(data => {
-    document.getElementById("inne").innerHTML = data; // Set the inner HTML
-})
-
-fetch('disc')
-.then(response => {
-    if (!response.ok) {
-        throw new Error('Network response was not ok: ' + response.statusText);
-    }
-    return response.text(); // Since we're expecting HTML
-})
-.then(data => {
-    document.getElementById("disc").innerHTML = data; // Set the inner HTML
-})
-fetch('color')
-.then(response => {
-    if (!response.ok) {
-        throw new Error('Network response was not ok: ' + response.statusText);
-    }
-    return response.text(); // Since we're expecting HTML
-})
-.then(data => {
-    document.getElementById("color").innerHTML = data; // Set the inner HTML
-})
-fetch('vak')
-.then(response => {
-    if (!response.ok) {
-        throw new Error('Network response was not ok: ' + response.statusText);
-    }
-    return response.text(); // Since we're expecting HTML
-})
-.then(data => {
-    document.getElementById("vak").innerHTML = data; // Set the inner HTML
-})
-function goToNextDiv(nextSectionId) {
-    // Hide all sections
-    $('.modal-content').addClass('hidden');
-    // Show the next section
-    $('#' + nextSectionId).removeClass('hidden');
-}
-
-function goToPreviousDiv(previousSectionId) {
-    // Hide all sections
-    $('.modal-content').addClass('hidden');
-    // Show the previous section
-    $('#' + previousSectionId).removeClass('hidden');
-}
-
 document.addEventListener('DOMContentLoaded', function () {
-    document.querySelector('#save-enneagram').addEventListener('click', function () {
+    function fetchContent(id) {
+        fetch(id)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok: ' + response.statusText);
+                }
+                return response.text();
+            })
+            .then(data => {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.innerHTML = data;
+                } else {
+                    console.warn(`Element with ID '${id}' not found.`);
+                }
+            })
+            .catch(error => console.error(`Error fetching ${id}:`, error));
+    }
+
+    // Fetch content after DOM is loaded
+    ['disc', 'color', 'vak'].forEach(fetchContent);
+
+    // Navigation functions
+    function goToNextDiv(nextSectionId) {
+        $('.modal-content').addClass('hidden');
+        $('#' + nextSectionId).removeClass('hidden');
+    }
+
+    function goToPreviousDiv(previousSectionId) {
+        $('.modal-content').addClass('hidden');
+        $('#' + previousSectionId).removeClass('hidden');
+    }
+
+    // Enneagram save function
+    document.querySelector('#save-enneagram')?.addEventListener('click', function () {
         const selectedCheckboxes = document.querySelectorAll('input[type="checkbox"]:checked');
         const selectedValues = [];
         const qCategories = [];
@@ -66,10 +45,8 @@ document.addEventListener('DOMContentLoaded', function () {
             qCategories.push(qCategory);
         });
 
-        // Combine the values into a single string
         const formattedData = selectedValues.join(',');
 
-        // Send the data as JSON
         fetch('saveEnneagram', {
             method: 'POST',
             headers: {
@@ -95,5 +72,4 @@ document.addEventListener('DOMContentLoaded', function () {
                 alert('An unexpected error occurred');
             });
     });
-
 });

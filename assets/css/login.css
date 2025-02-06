@@ -25,7 +25,7 @@ body{
 }
 .wrapper .title{
   height: 50px;
-  background: #9c727f;
+  background: #b48c78;
   border-radius: 5px 5px 0 0;
   color: white;
   font-size: 16px;
@@ -35,11 +35,16 @@ body{
   justify-content: center;
 }
 .login{
-  background: #9c727f;
+  background: #b48c78;
   color: white;
 }
+#logo{
+  margin-bottom: 10px;
+}
 .wrapper form{
-  padding: 30px 25px 25px 25px;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-bottom: 25px;
 }
 .wrapper form .row{
   height: 45px;
