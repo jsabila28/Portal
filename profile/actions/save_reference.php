@@ -14,79 +14,73 @@ try {
     $port_db = Database::getConnection('port');
     $hr_db = Database::getConnection('hr');
     
-    $reflname = $_POST['reflname'] ?? '';
-    $reffname = $_POST['reffname'] ?? '';
-    $refmname = $_POST['refmname'] ?? '';    
-    $position = $_POST['position'] ?? '';
+    $refname = $_POST['refname'] ?? '';
     $refcompany = $_POST['refcompany'] ?? '';
-    $refcompadd = $_POST['refcompadd'] ?? '';
+    $refposition = $_POST['refposition'] ?? '';    
+    $refaddress = $_POST['refaddress'] ?? '';
     $refcontact = $_POST['refcontact'] ?? '';
+    $refrelation = $_POST['refrelation'] ?? '';
     $stat = '1';
 
     // Check if the record already exists
     $checkQuery = $port_db->prepare("SELECT COUNT(*) FROM tbl201_reference 
                                      WHERE ref_empno = :employee 
-                                     AND ref_company = :compnany");
+                                     AND ref_fullname = :fullname");
     $checkQuery->bindParam(':employee', $user_id);
-    $checkQuery->bindParam(':compnany', $company);
+    $checkQuery->bindParam(':fullname', $refname);
     $checkQuery->execute();
     $exists = $checkQuery->fetchColumn() > 0;
 
     if ($exists) {
         // Update the existing record
-        $updateQuery = $port_db->prepare("UPDATE tbl201_employment 
-                                          SET empl_from = :dfrom, 
-                                              empl_to = :dto, 
-                                              empl_address = :address,   
-                                              empl_position = :position,
-                                              empl_contact = :contact,
-                                              empl_supervisor = :supervisor, 
-                                              empl_reason = :reason 
+        $updateQuery = $port_db->prepare("UPDATE tbl201_reference 
+                                          SET ref_fullname = :refname, 
+                                              ref_company = :refcompany, 
+                                              ref_position = :refposition,   
+                                              ref_address = :refaddress,
+                                              ref_contact = :refcontact,
+                                              ref_relationship = :refrelation
                                           WHERE empl_empno = :employee 
-                                          AND empl_company = :compnany");
-        $updateQuery->bindParam(':dfrom', $sdate);
-        $updateQuery->bindParam(':dto', $edate);
-        $updateQuery->bindParam(':address', $address);
-        $updateQuery->bindParam(':position', $position);
-        $updateQuery->bindParam(':contact', $contact);
-        $updateQuery->bindParam(':supervisor', $supervisor);
-        $updateQuery->bindParam(':reason', $reason);
+                                          AND ref_fullname = :refname");
+        $updateQuery->bindParam(':refname', $refname);
+        $updateQuery->bindParam(':refcompany', $refcompany);
+        $updateQuery->bindParam(':refposition', $refposition);
+        $updateQuery->bindParam(':refaddress', $refaddress);
+        $updateQuery->bindParam(':refcontact', $refcontact);
+        $updateQuery->bindParam(':refrelation', $refrelation);
         $updateQuery->bindParam(':employee', $user_id);
-        $updateQuery->bindParam(':compnany', $compnany);
+        $updateQuery->bindParam(':refname', $refname);
         $updateQuery->execute();
 
         echo json_encode(["success" => true, "message" => "Record updated successfully."]);
     } else {
         // Insert a new record
-        $insertQuery = $port_db->prepare("INSERT INTO tbl201_employment 
-            (empl_empno, 
-            empl_from, 
-            empl_to, 
-            empl_company, 
-            empl_address, 
-            empl_position, 
-            empl_contact, 
-            empl_supervisor, 
-            empl_reason)
+        $insertQuery = $port_db->prepare("INSERT INTO tbl201_reference 
+            (ref_empno, 
+            ref_fullname, 
+            ref_company, 
+            ref_position, 
+            ref_address, 
+            ref_contact, 
+            ref_relationship, 
+            datastat)
             VALUES (
-            :employee, 
-            :dfrom, 
-            :dto, 
-            :compnany, 
-            :address,  
+            :empno, 
+            :fullname, 
+            :company, 
             :position, 
+            :address,  
             :contact, 
-            :supervisor, 
-            :reason)");
-        $insertQuery->bindParam(':employee', $user_id);
-        $insertQuery->bindParam(':dfrom', $sdate);
-        $insertQuery->bindParam(':dto', $edate);
-        $insertQuery->bindParam(':compnany', $compnany);
-        $insertQuery->bindParam(':address', $address);
-        $insertQuery->bindParam(':position', $position);
-        $insertQuery->bindParam(':contact', $contact);
-        $insertQuery->bindParam(':supervisor', $supervisor);
-        $insertQuery->bindParam(':reason', $reason);
+            :relationship, 
+            :stat)");
+        $insertQuery->bindParam(':empno', $user_id);
+        $insertQuery->bindParam(':fullname', $refname);
+        $insertQuery->bindParam(':company', $refcompany);
+        $insertQuery->bindParam(':position', $refposition);
+        $insertQuery->bindParam(':address', $refaddress);
+        $insertQuery->bindParam(':contact', $refcontact);
+        $insertQuery->bindParam(':relationship', $refrelation);
+        $insertQuery->bindParam(':stat', $stat);
         $insertQuery->execute();
 
         echo json_encode(["success" => true, "message" => "Record inserted successfully."]);

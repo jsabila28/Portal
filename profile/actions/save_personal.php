@@ -276,7 +276,7 @@ try {
     if ($address_info) {
         // Update existing entry in tbl201_gov_req
         $stmt = $port_db->prepare("UPDATE tbl201_gov_req SET 
-            gov_empno = :gov_empno, 
+            -- gov_empno = :gov_empno, 
             gov_sss = :gov_sss, 
             gov_pagibig = :gov_pagibig, 
             gov_philhealth = :gov_philhealth, 
@@ -285,7 +285,7 @@ try {
             WHERE gov_id = :gov_id");
 
         $stmt->execute([
-            'gov_empno' => $user_id,
+            // 'gov_empno' => $user_id,
             'gov_sss' => $sss,
             'gov_pagibig' => $pagibig,
             'gov_philhealth' => $philhealth,

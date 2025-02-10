@@ -14,11 +14,12 @@ try {
 
    
     $stmt = $port_db->prepare("SELECT 
-      CONCAT(ref_firstname,' ',ref_lastname) as refname,
+      ref_fullname as refname,
       ref_position,
       ref_company,
       ref_address,
-      ref_contact
+      ref_contact,
+      ref_relationship
      FROM tbl201_reference WHERE ref_empno = ?");
     $stmt->execute([$user_id]);
     $reference = $stmt->fetchAll(PDO::FETCH_ASSOC);    
@@ -26,7 +27,7 @@ try {
 
     if (!empty($reference)) {
         foreach ($reference as $ref => $k) {
-           // PERSONAL FAMILY INFO START
+           // PERSONAL CHARACTER REFERENCE INFO START
             echo '<div class="card-block" id="prof-card">';  //prof-card start
             echo '<div class="contact" style="margin-bottom: 15px">'; //contact start
                 echo '<div class="numbers">
@@ -83,11 +84,11 @@ try {
             
                 echo '<div class="numbers">
                         <div class="icon">
-                          
+                          <i class="icofont icofont-ipod-touch"></i>
                         </div>
                         <div class="content">
-                          <p> </p><br> 
-                          <span></span>
+                          <p>' . htmlspecialchars($k['ref_relationship'] ?: 'None') . '</p><br> 
+                          <span>Relationship</span>
                         </div>
                       </div>';
 
@@ -114,63 +115,8 @@ try {
             echo '</div>'; // End the spouse contact section
             echo '</div>';  //prof-card end
             }   
-                //MODAL EDIT EMPLOYMENT START
-                  echo '<div class="modal fade" id="Char-' . htmlspecialchars($user_id) . '" tabindex="-1" role="dialog">
-                  <div class="modal-dialog modal-lg" role="document">
-                      <div class="modal-content">
-                          <div class="modal-header">
-                              <h4 class="modal-title">Employments</h4>
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                  <span aria-hidden="true"><i style="font-size: 30px;" class="fa fa-times-circle"></i></span>
-                              </button>
-                          </div>
-                          <div class="modal-body" style="padding: 5px !important;">
-                              
-                              
-                              <p>Please provide accurate and complete information...</p>
-
-                              <div id="personal-form">
-                                  <div id="pers-name">
-                                      <label>Last Name 
-                                          <input class="form-control" type="text" name="reflname" id="reflnameInput" value=""/>
-                                      </label>
-                                      <label>First Name 
-                                          <input class="form-control" type="text" name="reffname" id="reffnameInput" value=""/>
-                                      </label>
-                                      <label>Middle Name 
-                                          <input class="form-control" type="text" name="refmname" id="refmnameInput" value=""/>
-                                      </label>
-                                      <label>Position 
-                                          <input class="form-control" type="text" name="position" id="positionInput" value=""/>
-                                      </label>
-                                  </div>
-                                  
-                                  <div id="pers-name">
-                                      <label>Company Name 
-                                          <input class="form-control" type="text" name="refcompany" id="refcompanyInput" value=""/>
-                                      </label>
-                                      <label>Company Address 
-                                          <input class="form-control" type="text" name="refcompadd" id="refcompaddInput" value=""/>
-                                      </label>
-                                      <label>Contact 
-                                          <input class="form-control" type="text" name="refcontact" id="refcontactInput" value=""/>
-                                      </label>
-                                      
-                                  </div>
-                              </div>
-                          </div>
-                          <!-- Alert Message -->
-                          <div id="charac-message" class="alert" style="display:none;"></div>
-                          <div class="modal-footer" id="footer">
-                              <button type="button" class="btn btn-default btn-mini waves-effect" data-dismiss="modal">Close</button>
-                              <button type="button" id="save-charac" class="btn btn-primary btn-mini waves-effect waves-light">Save changes</button>
-                          </div>
-                      </div>
-                  </div>
-                </div>';
-            //MODAL EDIT FAMILY BACKGROUND END
         } else {
-          // PERSONAL FAMILY INFO START
+          // PERSONAL CHARACTER REFERENCE INFO START
             echo '<div class="card-block" id="prof-card">';  //prof-card start
             echo '<div class="contact" style="margin-bottom: 15px">'; //contact start
                 echo '<div class="numbers">
@@ -227,11 +173,11 @@ try {
             
                 echo '<div class="numbers">
                         <div class="icon">
-                          
+                          <i class="icofont icofont-ipod-touch"></i>
                         </div>
                         <div class="content">
-                          <p> </p><br> 
-                          <span></span>
+                          <p>None</p><br> 
+                          <span>Relationship</span>
                         </div>
                       </div>';
 
@@ -263,7 +209,7 @@ try {
                   <div class="modal-dialog modal-lg" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
-                              <h4 class="modal-title">Employments</h4>
+                              <h4 class="modal-title">Character Reference</h4>
                               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                   <span aria-hidden="true"><i style="font-size: 30px;" class="fa fa-times-circle"></i></span>
                               </button>
@@ -275,31 +221,27 @@ try {
 
                               <div id="personal-form">
                                   <div id="pers-name">
-                                      <label>Last Name 
-                                          <input class="form-control" type="text" name="reflname" id="reflnameInput" value=""/>
+                                      <label class="col-md-4">Full Name 
+                                          <input class="form-control" type="text" name="refname" id="refnameInpt" value=""/>
                                       </label>
-                                      <label>First Name 
-                                          <input class="form-control" type="text" name="reffname" id="reffnameInput" value=""/>
+                                      <label class="col-md-4">Company Name
+                                          <input class="form-control" type="text" name="refcompany" id="refcompanyInpt" value=""/>
                                       </label>
-                                      <label>Middle Name 
-                                          <input class="form-control" type="text" name="refmname" id="refmnameInput" value=""/>
-                                      </label>
-                                      <label>Position 
-                                          <input class="form-control" type="text" name="position" id="positionInput" value=""/>
+                                      <label class="col-md-4">Company Address 
+                                          <input class="form-control" type="text" name="refaddress" id="refaddressInpt" value=""/>
                                       </label>
                                   </div>
                                   
                                   <div id="pers-name">
-                                      <label>Company Name 
-                                          <input class="form-control" type="text" name="refcompany" id="refcompanyInput" value=""/>
+                                      <label class="col-md-4">Position 
+                                          <input class="form-control" type="text" name="refposition" id="refpositionInpt" value=""/>
                                       </label>
-                                      <label>Company Address 
-                                          <input class="form-control" type="text" name="refcompadd" id="refcompaddInput" value=""/>
+                                      <label class="col-md-4">Contact 
+                                          <input class="form-control" type="text" name="refcontact" id="refcontactInpt" value=""/>
                                       </label>
-                                      <label>Contact 
-                                          <input class="form-control" type="text" name="refcontact" id="refcontactInput" value=""/>
+                                      <label class="col-md-4">Relationship
+                                          <input class="form-control" type="text" name="refrelation" id="refrelationInpt" value=""/>
                                       </label>
-                                      
                                   </div>
                               </div>
                           </div>
@@ -312,7 +254,7 @@ try {
                       </div>
                   </div>
                 </div>';
-            //MODAL EDIT FAMILY BACKGROUND END
+            //MODAL EDIT CHARACTER REFERENCE BACKGROUND END
 
 } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();

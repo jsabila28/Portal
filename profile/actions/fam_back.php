@@ -443,17 +443,17 @@ try {
                                     <div class="modal-body" style="padding: 5px !important;">
                                         
                                         
-                                        <p>Please provide accurate and complete information...</p>
+                                        <p>Please provide accurate and complete information. Leave blank if no answer.</p>
                         
                                         <div id="personal-form">
                                             <div id="pers-name">
-                                                <label for="Famlastname">Last Name<span class="required">*</span> 
+                                                <label for="Famlastname">Last Name<span style="color:red;">*</span> 
                                                     <input class="form-control" type="text" id="Famlastname" />
                                                 </label>
                                                 <label for="Fammidname">Middle Name 
                                                     <input class="form-control" type="text" id="Fammidname" />
                                                 </label>
-                                                <label for="Famfirstname">First Name<span class="required">*</span> 
+                                                <label for="Famfirstname">First Name<span style="color:red;">*</span> 
                                                     <input class="form-control" type="text" id="Famfirstname" />
                                                 </label>
                                                 <label for="Famsuffixname">Suffix 
@@ -465,8 +465,8 @@ try {
                                                 <label for="Fammaidenname">Maiden Name 
                                                     <input class="form-control" type="text" id="Fammaidenname" />
                                                 </label>
-                                                <label for="relationship">Relationship<span class="required">*</span> 
-                                                    <select id="relationship">
+                                                <label for="relationship">Relationship<span style="color:red;">*</span> 
+                                                    <select class="form-control" id="relationship">
                                                         <option>Select Relation</option>
                                                         <option>Spouse</option>
                                                         <option>Mother</option>
@@ -478,7 +478,7 @@ try {
                                                         <option>Live-in Partner</option>
                                                     </select>
                                                 </label>
-                                                <label for="Famperson_num">Contact Number<span class="required">*</span> 
+                                                <label for="Famperson_num">Contact Number<span style="color:red;">*</span> 
                                                     <input class="form-control" type="text" id="Famperson_num" />
                                                 </label>
                                                 <label for="Fambirthdate">Birthdate 
@@ -496,13 +496,13 @@ try {
                                                 <label for="Famworkadd">Work Address 
                                                     <input class="form-control" type="text" id="Famworkadd" />
                                                 </label>
-                                                <label>Sex<span class="required">*</span>
+                                                <label>Sex<span style="color:red;">*</span>
                                                     <div id="sex">
-                                                        <input id="FamgenderMale" type="radio" name="Famsex" value="Male" /> 
+                                                        <input style="width:20px;height:20px;" id="FamgenderMale" type="radio" name="Famsex" value="Male" /> 
                                                         <label for="FamgenderMale">Male</label>
                                                     </div>
                                                     <div id="sex">
-                                                        <input id="FamgenderFemale" type="radio" name="Famsex" value="Female" /> 
+                                                        <input style="width:20px;height:20px;" id="FamgenderFemale" type="radio" name="Famsex" value="Female" /> 
                                                         <label for="FamgenderFemale">Female</label>
                                                     </div>
                                                 </label>

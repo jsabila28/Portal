@@ -43,7 +43,7 @@ $education = $stmt->fetchAll(PDO::FETCH_ASSOC);
 if (!empty($education)) {
       echo '<div class="card-block" id="prof-card">';  //prof-card start
         
-      echo '<div id="specialSkills" class="contact" style="margin-bottom:10px;">';
+      echo '<div id="specialSkills" class="" style="margin-bottom:10px;">';
       //START OF EDUCATION
     foreach ($education as $educ) {
       if ($educ['LEVEL'] == 'Primary') {

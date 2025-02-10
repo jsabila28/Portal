@@ -459,8 +459,8 @@ try {
                                             echo'<div id="pers-name">
                                                 <label>Permanent Address </label>
                                                 <label> 
-                                                    <select class="form-control" id="province-perm1" name="Pprovince">
-                                                      <option value="' . htmlspecialchars($ad['P_code']) . '" selected>' . htmlspecialchars($ad['P_province']) . '</option>  
+                                                    <select class="form-control" id="province-perm" name="Pprovince">
+                                                      <option value="' . htmlspecialchars($ad['P_code']) . '">' . htmlspecialchars($ad['P_province']) . '</option>  
                                                     </select>
                                                 </label>
                                                 <label> 
@@ -477,8 +477,8 @@ try {
                                             <div id="pers-name">
                                                 <label>Current Address </label>
                                                 <label> 
-                                                    <select class="form-control" id="province-cur1" name="Cprovince">
-                                                        <option value="' . htmlspecialchars($ad['C_code']) . '">' . htmlspecialchars($ad['C_province']) . '</option>
+                                                    <select class="form-control" id="rovince-cur1" name="Cprovince">
+                                                        <option selected value="' . htmlspecialchars($ad['C_code']) . '">' . htmlspecialchars($ad['C_province']) . '</option>
                                                     </select>
                                                 </label>
                                                 <label> 
@@ -487,7 +487,7 @@ try {
                                                     </select>
                                                 </label>
                                                 <label> 
-                                                    <select class="form-control" id="brngy-cur1" name="Cbrngy">
+                                                    <select class="form-control" id="municipal-birth1" name="Cbrngy">
                                                         <option value="' . htmlspecialchars($ad['C_Bid']) . '">' . htmlspecialchars($ad['C_barangay']) . '</option>
                                                     </select>
                                                 </label>
@@ -495,17 +495,17 @@ try {
                                             <div id="pers-name">
                                                 <label>Place of Birth </label>
                                                 <label> 
-                                                    <select class="form-control" id="province-birth1" name="Bprovince">
+                                                    <select class="form-control" id="province-birth" name="Bprovince">
                                                         <option value="' . htmlspecialchars($ad['B_code']) . '">' . htmlspecialchars($ad['B_province']) . '</option>
                                                     </select>
                                                 </label>
                                                 <label> 
-                                                    <select class="form-control" id="municipal-birth1" name="Bmunicipal">
+                                                    <select class="form-control" id="municipal-birth" name="Bmunicipal">
                                                         <option value="' . htmlspecialchars($ad['B_Cid']) . '">' . htmlspecialchars($ad['B_city']) . '</option>
                                                     </select>
                                                 </label>
                                                 <label> 
-                                                    <select class="form-control" id="brngy-birth1" name="Bbrngy">
+                                                    <select class="form-control" id="brngy-birth" name="Bbrngy">
                                                         <option value="' . htmlspecialchars($ad['B_Bid']) . '">' . htmlspecialchars($ad['B_barangay']) . '</option>
                                                     </select>
                                                 </label>

@@ -22,7 +22,8 @@ try {
     // Check if the record already exists
     $checkQuery = $port_db->prepare("SELECT COUNT(*) FROM tbl201_skills 
                                      WHERE skill_empno = :empno 
-                                     AND skill_type = :type");
+                                     AND skill_type = :type
+                                     AND skill_type <> '0'");
     $checkQuery->bindParam(':empno', $user_id);
     $checkQuery->bindParam(':type', $stype);
     $checkQuery->execute();
