@@ -55,10 +55,10 @@ if (!empty($draft_ir)) {
      	echo "<td>" . htmlspecialchars($dir['ir_from_fullname']) . "</td>";
      	echo "<td>" . htmlspecialchars($dir['ir_to_fullname']) . "</td>";
      	echo "<td>" . htmlspecialchars($dir['ir_subject']) . "</td>";
-     	echo "<td style='display:flex;justify-content: space-between;'>
-     		<a href='IRopen?irID=" . htmlspecialchars($dir['ir_id']) . "'><i class='icofont icofont-eye-alt' style='font-size:14px;'></i></a>
-     		<a href='#!'><i class='icofont icofont-ui-edit' style='font-size:14px;'></i></a>
-     		<a href='#!'><i class='icofont icofont-trash' style='font-size:14px;'></i></a>
+     	echo "<td style='display:flex;margin: 0 -5px;'>
+     		<a style='margin: 0 5px;' class='btn btn-primary btn-mini' href='IRopen?irID=" . htmlspecialchars($dir['ir_id']) . "'><i class='icofont icofont-eye-alt' style='font-size:14px;'></i></a>
+     		<a style='margin: 0 5px;' class='btn btn-success btn-mini' href='#!'><i class='icofont icofont-ui-edit' style='font-size:14px;'></i></a>
+     		<a style='margin: 0 5px;' class='btn btn-danger btn-mini' href='#!'><i class='icofont icofont-trash' style='font-size:14px;'></i></a>
      	</td>";
      	echo "</tr>";
       } 

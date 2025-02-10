@@ -12,7 +12,7 @@
        <a href="_13Bcreate" class="btn btn-primary btn-mini" style="width: 10%;">create 13B</a>
      </div>
      <div class="basic-info">
-        <div class="col-lg-12 col-xl-12">                                       
+        <div class="col-md-12">                                     
             <!-- Nav tabs -->
             <ul class="nav nav-tabs md-tabs" role="tablist">
                 <li class="nav-item">
@@ -49,7 +49,7 @@
                 <div class="tab-pane active" id="draft" role="tabpanel"><br>
                 <div class="card">
                     <div class="card-block">
-                    <div class="table-container" id="IRdraft">
+                    <div class="table-container" id="_13bdraft">
                         
                     </div>
                     </div>
@@ -58,8 +58,8 @@
                 <div class="tab-pane" id="posted" role="tabpanel"><br>
                     <div class="card">
                     <div class="card-block">
-                    <div class="table-container" id="IRposted">
-                        
+                    <div class="table-container" id="_13bposted">
+                        loading...
                     </div>
                     </div>
                 </div>
@@ -67,7 +67,7 @@
                 <div class="tab-pane" id="reviewed" role="tabpanel"><br>
                     <div class="card">
                     <div class="card-block">
-                    <div class="table-container" id="IRexplain">
+                    <div class="table-container" id="_13breviewed">
                         
                     </div>
                     </div>
@@ -76,7 +76,7 @@
                 <div class="tab-pane" id="issued" role="tabpanel"><br>
                     <div class="card">
                     <div class="card-block">
-                    <div class="table-container" id="IRissued">
+                    <div class="table-container" id="_13bissued">
                         
                     </div>
                     </div>
@@ -85,7 +85,7 @@
                 <div class="tab-pane" id="received" role="tabpanel"><br>
                     <div class="card">
                     <div class="card-block">
-                    <div class="table-container" id="IRreceived">
+                    <div class="table-container" id="_13breceived">
                         
                     </div>
                     </div>
@@ -94,7 +94,7 @@
                 <div class="tab-pane" id="refused" role="tabpanel"><br>
                     <div class="card">
                     <div class="card-block">
-                    <div class="table-container" id="IRrefused">
+                    <div class="table-container" id="_13brefused">
                         
                     </div>
                     </div>
@@ -103,7 +103,7 @@
                 <div class="tab-pane" id="cancelled" role="tabpanel"><br>
                     <div class="card">
                     <div class="card-block">
-                    <div class="table-container" id="IRcancelled">
+                    <div class="table-container" id="_13bcancelled">
                         
                     </div>
                     </div>

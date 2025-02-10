@@ -58,7 +58,8 @@ try {
                           <i class="icofont icofont-calendar"></i>
                         </div>
                         <div class="content">
-                          <p>'; 
+                          <p>';
+                if ($k['empl_from'] != '0000-00-00' || $k['empl_to'] != '0000-00-00') {
                 echo (isset($k['empl_from']) && !empty($k['empl_from']) ? 
                       htmlspecialchars((new DateTime($k['empl_from']))->format('F j, Y')) : 
                       'Invalid date') 
@@ -71,7 +72,14 @@ try {
                           <span>Dates</span>
                         </div>
                       </div>'; 
-            
+                }else{
+                        echo 'None';
+
+                          echo'</p><br> 
+                          <span>Dates</span>
+                        </div>
+                      </div>'; 
+                }
             echo '</div>'; // End the spouse contact section
             echo '<div class="contact" style="margin-bottom: 15px">'; //contact start
                 echo '<div class="numbers">
@@ -135,7 +143,7 @@ try {
                               <div id="personal-form">
                                   <div id="pers-name">
                                       <label>Company Name 
-                                          <input class="form-control" type="text" name="company" id="companyInput" value=""/>
+                                          <input class="form-control" type="text" name="companyName" id="companyInput" value=""/>
                                       </label>
                                       <label>Company Address 
                                           <input class="form-control" type="text" name="address" id="addressInput" value=""/>
@@ -158,7 +166,7 @@ try {
                                       <label>End Date 
                                           <input class="form-control" type="date" name="edate" id="edateInput" value=""/>
                                       </label>
-                                      <label>Reason 
+                                      <label>Reason of Leaving 
                                           <input class="form-control" type="text" name="reason" id="reasonInput" value=""/>
                                       </label>
                                   </div>

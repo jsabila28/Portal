@@ -62,6 +62,10 @@ class Profile
                 ir.`ir_reponsibility_2`,
                 ir.`ir_violation`,
                 ir.`ir_amount`,
+                ir.`ir_stat`,
+                ir.`ir_from`,
+                ir.`ir_to`,
+                ir.`ir_involved`,
                 a.bi_empno, 
                 CONCAT(a.bi_empfname, ' ', a.bi_empmname, ' ', a.bi_emplname) AS fullname, 
                 jd.jd_title, 
@@ -260,6 +264,30 @@ class Profile
             WHERE `gs_type` = '13a'
             AND `gs_typeid` = ?");
             $stmt->execute([$_13aID]);
+
+            return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
+        }
+        return [];
+    }
+    public static function GetSimNum() {
+        $conn = self::getDatabaseConnection('port');
+
+        if ($conn) {
+            $stmt = $conn->prepare("SELECT * FROM
+            tbl_mobile_accounts");
+            $stmt->execute([]);
+
+            return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
+        }
+        return [];
+    }
+    public static function GetIMEI() {
+        $conn = self::getDatabaseConnection('port');
+
+        if ($conn) {
+            $stmt = $conn->prepare("SELECT * FROM
+            tbl_phone");
+            $stmt->execute([]);
 
             return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
         }

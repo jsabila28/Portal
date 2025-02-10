@@ -24,6 +24,7 @@ $routes = [
 	'/save_mood' => 'main/actions/save_mood.php',
 	'/save_event' => 'main/actions/save_event.php',
 	'/save_post' => 'main/actions/save_cust_post.php',
+	'/save_gov' => 'main/actions/save_government.php',
 	'/emoji' => 'main/actions/emoji.php'
 
 

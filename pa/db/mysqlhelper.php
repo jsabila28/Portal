@@ -1,9 +1,10 @@
 <?php
 
-	$host ='localhost';
+	// $host ='localhost';
+	$host ='13.213.190.95';
 	//$host ='192.168.10.6';
-	$uname='root';
-	$pword='';
+	$uname='misadmin';
+	$pword='88224646abxy@';
 	//$pword='';
 	$dbase = 'tngc_hrd2';
 	

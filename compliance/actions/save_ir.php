@@ -29,7 +29,7 @@ try {
     $position = $_POST['position'] ?? '';
     $department = $_POST['department'] ?? '';
     $outlet = $_POST['outlet'] ?? '';
-    $stats = 'posted';
+    $stats = 'draft';
     $date = date("Y-m-d");
 
 

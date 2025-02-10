@@ -341,7 +341,7 @@
                             <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
                                 <a class="media-left" href="/Portal/dtr" style="text-align: center;">
                                 	<div>
-                                		<img src="/Portal/assets/img/dtr.png" width="40" height="40"><br>DTR
+                                		<img src="/Portal/assets/img/dtrlogs.png" width="40" height="40"><br>DTR
                                 	</div>
                                 </a>
                                 <a class="media-left" href="#!" style="text-align: center;">
@@ -419,7 +419,7 @@
                             <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
                                 <a class="media-left" href="/Portal/compliance/phoneA" style="text-align: center;">
                                 	<div>
-                                		<img src="/Portal/assets/img/ph-agr.png" width="45" height="45"><br>Phone Agreement
+                                		<img src="/Portal/assets/img/phoneAgree.png" width="45" height="45"><br>Phone Agreement
                                 	</div>
                                 </a>
                                 <a class="media-left" href="#!" style="text-align: center;">
@@ -429,24 +429,24 @@
                                 </a>
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
-                                		<img src="/Portal/assets/img/contract.png" width="45" height="45"><br>Device Contract
+                                		<img src="/Portal/assets/img/device.png" width="45" height="45"><br>Device Contract
                                 	</div>
                                 </a>
                             </div>
                             <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
                                 <a class="media-left" href="/Portal/compliance/ir" style="text-align: center;">
                                 	<div>
-                                		<img src="/Portal/assets/img/grievance.png" width="45" height="45"><br>IR
+                                		<img src="/Portal/assets/img/grieviance.png" width="45" height="45"><br>IR
                                 	</div>
                                 </a>
                                 <a class="media-left" href="/Portal/compliance/13A" style="text-align: center;">
                                 	<div>
-                                		<img src="/Portal/assets/img/grievance.png" width="45" height="45"><br>13A
+                                		<img src="/Portal/assets/img/grieviance.png" width="45" height="45"><br>13A
                                 	</div>
                                 </a>
                                 <a class="media-left" href="/Portal/compliance/13B" style="text-align: center;">
                                 	<div>
-                                		<img src="/Portal/assets/img/grievance.png" width="45" height="45"><br>13B
+                                		<img src="/Portal/assets/img/grieviance.png" width="45" height="45"><br>13B
                                 	</div>
                                 </a>
                             </div>
@@ -467,7 +467,7 @@
                                 </a> -->
                                 <a class="media-left" href="/Portal/pa" style="text-align: center;">
                                 	<div>
-                                		<img src="/Portal/assets/img/performance.png" width="45" height="45"><br>PA
+                                		<img src="/Portal/assets/img/persapp.png" width="45" height="45"><br>PA
                                 	</div>
                                 </a>
                                 <!-- <a class="media-left" href="#!" style="text-align: center;">

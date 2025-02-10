@@ -10,18 +10,18 @@ class Database
 	public static function getConnection($name) {
 		if (!isset(self::$connections[$name])) {
 			$config = [
-                "hr" => [
-                    "host" => "localhost",
-                    "dbname" => "tngc_hrd2",
-                    "username" => "root",
-                    "password" => ""
-                ],
                 // "hr" => [
-                //     "host" => "13.213.190.95",
+                //     "host" => "localhost",
                 //     "dbname" => "tngc_hrd2",
-                //     "username" => "misadmin",
-                //     "password" => "88224646abxy@"
+                //     "username" => "root",
+                //     "password" => ""
                 // ],
+                "hr" => [
+                    "host" => "13.213.190.95",
+                    "dbname" => "tngc_hrd2",
+                    "username" => "misadmin",
+                    "password" => "88224646abxy@"
+                ],
                 "port" => [
                     "host" => "localhost",
                     "dbname" => "portal_db",

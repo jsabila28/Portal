@@ -1,62 +1,80 @@
-fetch('characters')
-.then(response => {
-    if (!response.ok) {
-        throw new Error('Network response was not ok: ' + response.statusText);
-    }
-    return response.text(); // Since we're expecting HTML
-})
-.then(data => {
-    document.getElementById("char").innerHTML = data; // Set the inner HTML
-})
-
-document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('save-charac').addEventListener('click', function() {
-        // Create a new FormData object
-        let formData = new FormData();
-        formData.append('reflname', document.getElementById('reflnameInput').value);
-        formData.append('reffname', document.getElementById('reffnameInput').value);
-        formData.append('refmname', document.getElementById('refmnameInput').value);
-        formData.append('position', document.getElementById('positionInput').value);
-        formData.append('refcompany', document.getElementById('refcompanyInput').value);
-        formData.append('refcompadd', document.getElementById('refcompaddInput').value);
-        formData.append('refcontact', document.getElementById('refcontactInput').value);
-
-        // Send the form data to PHP using AJAX
-        fetch('saveRef', {
-            method: 'POST',
-            body: formData
+document.addEventListener('DOMContentLoaded', function () {
+    fetch('characters')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok: ' + response.statusText);
+            }
+            return response.text();
         })
-        .then(response => response.json())
         .then(data => {
-            const alertMessage = document.getElementById('charac-message');
-
-            if (data.success) {
-                // Display success message
-                alertMessage.className = 'alert alert-success';
-                alertMessage.textContent = "Data saved successfully!";
-                
-                // Clear input values
-                document.getElementById('reflnameInput').value = '';
-                document.getElementById('reffnameInput').value = '';
-                document.getElementById('refmnameInput').value = '';
-                document.getElementById('positionInput').value = '';
-                document.getElementById('refcompanyInput').value = '';
-                document.getElementById('refcompaddInput').value = '';
-                document.getElementById('refcontactInput').value = '';
+            const familyContainer = document.getElementById("char");
+            if (familyContainer) {
+                familyContainer.innerHTML = data; 
             } else {
-                // Display error message
+                console.error('Element with id "family" not found.');
+            }
+        })
+        .catch(error => console.error('Error fetching family data:', error));
+
+    document.body.addEventListener('click', function (event) {
+        if (event.target && event.target.id === 'save-charac') {
+            // Validate form inputs
+            const fullname = document.getElementById('refnameInpt').value.trim();
+            const company = document.getElementById('refcompanyInpt').value.trim();
+            const position = document.getElementById('refpositionInpt').value.trim();
+            const address = document.getElementById('refaddressInpt').value.trim();
+            const contact = document.getElementById('refcontactInpt').value.trim();
+            const relationship = document.getElementById('refrelationInpt').value.trim();
+
+            if (!company || !address) {
+                const alertMessage = document.getElementById('charac-message');
                 alertMessage.className = 'alert alert-danger';
-                alertMessage.textContent = "Error saving data: " + data.error;
+                alertMessage.textContent = 'Please fill out all required fields.';
+                alertMessage.style.display = 'block';
+                setTimeout(() => alertMessage.style.display = 'none', 3000);
+                return;
             }
 
-            // Show the alert message
-            alertMessage.style.display = 'block';
+            // Create FormData object
+            const formData = new FormData();
+            formData.append('refname', fullname);
+            formData.append('refcompany', company);
+            formData.append('refposition', position);
+            formData.append('refaddress', address);
+            formData.append('refcontact', contact);
+            formData.append('refrelation', relationship);
 
-            // Hide the alert message after 3 seconds
-            setTimeout(() => {
-                alertMessage.style.display = 'none';
-            }, 3000);
-        })
-        .catch(error => console.error('Error:', error));
+            // Send data via fetch to PHP
+            fetch('saveRef', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    const alertMessage = document.getElementById('charac-message');
+                    if (data.success) {
+                        alertMessage.className = 'alert alert-success';
+                        alertMessage.textContent = 'Family information saved successfully!';
+                        
+                        // Clear form fields
+                        document.querySelectorAll('input').forEach(input => input.value = '');
+                        document.querySelectorAll('input[name="Famsex"]').forEach(radio => radio.checked = false);
+                    } else {
+                        alertMessage.className = 'alert alert-danger';
+                        alertMessage.textContent = 'Error saving data: ' + (data.error || 'Unknown error.');
+                    }
+                    alertMessage.style.display = 'block';
+                    setTimeout(() => alertMessage.style.display = 'none', 3000);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    const alertMessage = document.getElementById('charac-message');
+                    alertMessage.className = 'alert alert-danger';
+                    alertMessage.textContent = 'An error occurred while saving data.';
+                    alertMessage.style.display = 'block';
+                    setTimeout(() => alertMessage.style.display = 'none', 3000);
+                });
+        }
     });
 });
+

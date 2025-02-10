@@ -67,8 +67,7 @@ foreach ($phone_agreement as $p) {
     echo "<td>" . htmlspecialchars(
     is_array($decoded = json_decode($p['acca_custodian'], true)) 
         ? implode(', ', array_filter($decoded)) 
-        : ''
-) . "</td>";
+        : '') . "</td>";
 
     echo "<td>".$p['acca_accountno']."</td>";
     echo "<td>".$p['acca_accountname']."</td>";
@@ -85,7 +84,11 @@ foreach ($phone_agreement as $p) {
     echo "<td>".$p['acca_imei1']."</td>";
     echo "<td>".$p['acca_imei2']."</td>";
     echo "<td>".$p['acca_serial']."</td>";
-    echo "<td>".$p['acca_accessories']."</td>";
+    // echo "<td>".$p['acca_accessories']."</td>";
+    echo "<td>" . htmlspecialchars(
+    is_array($decoded = json_decode($p['acca_accessories'], true)) 
+        ? implode(', ', array_filter($decoded)) 
+        : '') . "</td>";
     echo "<td>".$p['acca_dtissued']."</td>";
     echo "<td>".$p['acca_dtreturned']."</td>";
     echo "<td>".$p['acca_remarks']."</td>";
@@ -107,66 +110,5 @@ echo "</div>";
 }
 ?>
 <script type="text/javascript">
-    $(document).ready(function () {
-    // Handle button click for updating the status
-    $('#forsign').on('click', function () {
-        // Get all checked rows
-        const selectedRows = [];
-        $('.row-checkbox:checked').each(function () {
-            selectedRows.push($(this).data('accountno')); // Collect the account numbers
-        });
-
-        if (selectedRows.length === 0) {
-            alert('No rows selected!');
-            return;
-        }
-
-        // Send AJAX request to update the status
-        $.ajax({
-            url: 'PhoneforSign', // PHP script to handle the update
-            method: 'POST',
-            data: {
-                accountnos: selectedRows,
-                action: 'forsign' // Identify the action
-            },
-            success: function (response) {
-                alert(response); // Display success message
-                location.reload(); // Reload the page to reflect changes
-            },
-            error: function (xhr, status, error) {
-                console.error('AJAX Error: ', error);
-                alert('Failed to update the status.');
-            }
-        });
-    });
-
-    $('#forrelease').on('click', function () {
-        const selectedRows = [];
-        $('.row-checkbox:checked').each(function () {
-            selectedRows.push($(this).data('accountno'));
-        });
-
-        if (selectedRows.length === 0) {
-            alert('No rows selected!');
-            return;
-        }
-
-        $.ajax({
-            url: 'PhoneforSign',
-            method: 'POST',
-            data: {
-                accountnos: selectedRows,
-                action: 'forrelease'
-            },
-            success: function (response) {
-                alert(response);
-                location.reload();
-            },
-            error: function (xhr, status, error) {
-                console.error('AJAX Error: ', error);
-                alert('Failed to update the status.');
-            }
-        });
-    });
-});
+   
 </script>

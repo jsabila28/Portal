@@ -12,20 +12,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $port_db = Database::getConnection('port');
         $user_id = $_SESSION['user_id'];
 
-        // Collect input data
         $eventname = $_POST['eventname'] ?? null;
         $eventdate = $_POST['eventdate'] ?? null;
         $startdate = $_POST['startdate'] ?? null;
         $enddate = $_POST['enddate'] ?? null;
 
-        // Handle file upload
         if (isset($_FILES['eventimg']) && $_FILES['eventimg']['error'] === UPLOAD_ERR_OK) {
             $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/Portal/assets/events/';
             $fileName = uniqid() . '_' . basename($_FILES['eventimg']['name']);
             $targetFilePath = $uploadDir . $fileName;
 
             if (move_uploaded_file($_FILES['eventimg']['tmp_name'], $targetFilePath)) {
-                $eventImg = '/Portal/assets/events/' . $fileName; // Save relative path for database
+                $eventImg = '/Portal/assets/events/' . $fileName; 
             } else {
                 echo json_encode(['success' => false, 'message' => 'File upload failed.']);
                 exit;

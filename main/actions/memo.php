@@ -11,24 +11,47 @@ class Portal
         }
     }
 
-    public static function GetMemo() {
+    public static function GetMemo($Year,$empno,$company,$department,$area,$outlet) {
         $conn = self::getDatabaseConnection('hr');
 
         if ($conn) {
-            $stmt = $conn->prepare("SELECT * FROM tbl_memo ORDER BY memo_date DESC LIMIT 3");
-            $stmt->execute([]);
+            $stmt = $conn->prepare("SELECT * FROM tbl_memo 
+                WHERE LEFT(memo_date, 4) = ?
+                AND (
+                    memo_recipient = 'All'
+                    OR memo_recipient = ''
+                    OR REPLACE(memo_recipient, ' ', '') LIKE CONCAT(?, ',%')
+                    OR REPLACE(memo_recipient, ' ', '') LIKE CONCAT(?, ',%')
+                    OR REPLACE(memo_recipient, ' ', '') LIKE CONCAT(?, ',%')
+                    OR REPLACE(memo_recipient, ' ', '') LIKE CONCAT('%,', ?)
+                    OR REPLACE(memo_recipient, ' ', '') LIKE CONCAT('%,', ?, ',%')
+                )
+                ORDER BY memo_date DESC LIMIT 3
+                ");
+            $stmt->execute([$Year,$empno,$company,$department,$area,$outlet]);
 
             return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
         }
         return [];
     }
 
-    public static function GetAllMemo($Year) {
+    public static function GetAllMemo($Year,$empno,$company,$department,$area,$outlet) {
         $conn = self::getDatabaseConnection('hr');
 
         if ($conn) {
-            $stmt = $conn->prepare("SELECT * FROM tbl_memo WHERE LEFT(memo_date, 4) = ? ORDER BY memo_date DESC");
-            $stmt->execute([$Year]);
+            $stmt = $conn->prepare("SELECT * FROM tbl_memo 
+                WHERE LEFT(memo_date, 4) = ?
+                AND (
+                    memo_recipient = 'All'
+                    OR memo_recipient = ''
+                    OR REPLACE(memo_recipient, ' ', '') LIKE CONCAT(?, ',%')
+                    OR REPLACE(memo_recipient, ' ', '') LIKE CONCAT(?, ',%')
+                    OR REPLACE(memo_recipient, ' ', '') LIKE CONCAT(?, ',%')
+                    OR REPLACE(memo_recipient, ' ', '') LIKE CONCAT('%,', ?)
+                    OR REPLACE(memo_recipient, ' ', '') LIKE CONCAT('%,', ?, ',%')
+                ) 
+                ORDER BY memo_date DESC");
+            $stmt->execute([$Year,$empno,$company,$department,$area,$outlet]);
 
             return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
         }
@@ -78,7 +101,7 @@ class Portal
         }
         return [];
     }
-    public static function GetResigning($date) {
+    public static function GetResigning($Year) {
         $conn = self::getDatabaseConnection('hr');
 
         if ($conn) {
@@ -100,9 +123,10 @@ class Portal
             WHERE a.`ji_resdate` != ''
             AND jrec_status = 'Primary'
             AND datastat = 'current'
-            AND ji_resdate >= ?
-            GROUP BY a.`ji_empno`");
-            $stmt->execute([$date]);
+            AND YEAR(ji_resdate) = ?
+            GROUP BY a.`ji_empno`
+            ORDER BY ji_resdate DESC");
+            $stmt->execute([$Year]);
 
             return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
         }
@@ -150,6 +174,30 @@ class Portal
         return [];
     }
 
+    public static function GetArea() {
+        $conn = self::getDatabaseConnection('hr');
+
+        if ($conn) {
+            $stmt = $conn->prepare("SELECT * FROM tbl_area WHERE Area_stat = 'active' ORDER BY Area_Name ASC");
+            $stmt->execute();
+
+            return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
+        }
+        return [];
+    }
+
+    public static function GetOutlet() {
+        $conn = self::getDatabaseConnection('hr');
+
+        if ($conn) {
+            $stmt = $conn->prepare("SELECT * FROM tbl_outlet WHERE OL_stat = 'active' ORDER BY OL_Name ASC");
+            $stmt->execute();
+
+            return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
+        }
+        return [];
+    }
+
     public static function GetEmployee() {
         $conn = self::getDatabaseConnection('hr');
 
@@ -159,6 +207,10 @@ class Portal
                     ON a.`bi_empno` = b.`jrec_empno`
                     LEFT JOIN tbl201_jobinfo c
                     ON c.`ji_empno` = b.`jrec_empno`
+                    LEFT JOIN tbl_department d ON d.`Dept_Code` = b.`jrec_department`
+                    LEFT JOIN tbl_company e ON e.`C_Code` = b.`jrec_company`
+                    LEFT JOIN tbl_outlet f ON f.`OL_Code` = b.`jrec_outlet`
+                    LEFT JOIN tbl_area g ON g.`Area_Code` = b.`jrec_area`
                     WHERE a.`datastat` = 'current'
                     AND b.`jrec_status` = 'Primary'
                     AND c.`ji_remarks` = 'Active'

@@ -679,7 +679,7 @@ div#four{
 
 .table-container {
   width: 100%;
-  height: 300px; /* Adjust height as needed */
+  height: auto; /* Adjust height as needed */
   overflow-y: auto;
   
 }
@@ -765,7 +765,7 @@ hr.new2 {
 }
 #_13Arow{
   padding: 10px; 
-  height: 40px;
+  height: auto;
   align-items: center;
 }
 #_13Arow label{

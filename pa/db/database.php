@@ -45,9 +45,9 @@
   class HRDatabase
   {
       private static $dbName = 'tngc_hrd2' ;
-      private static $dbHost = 'localhost' ;
-      private static $dbUsername = 'root';
-      private static $dbUserPassword = '';
+      private static $dbHost = '13.213.190.95' ;
+      private static $dbUsername = 'misadmin';
+      private static $dbUserPassword = '88224646abxy@';
 
       private static $cont  = null;
 

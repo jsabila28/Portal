@@ -1,7 +1,6 @@
 <?php
 require_once($sr_root . "/db/db.php");
 
-// Enable error reporting for debugging
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
@@ -14,7 +13,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $audience = $_POST['audience'];
     $filePath = null;
 
-    // Handle file upload
     if (isset($_FILES['file']) && $_FILES['file']['error'] == 0) {
         $targetDir = "assets/announcement/";
         $fileName = basename($_FILES["file"]["name"]);
@@ -28,7 +26,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 
-    // Prepare and execute the SQL statement
     $sql = "INSERT INTO tbl_announcement (ann_title, ann_content, ann_receiver, ann_approvedby) VALUES (:ann_title, :ann_content, :ann_receiver, :ann_approvedby)";
     $stmt = $port->prepare($sql);
     $stmt->bindParam(':ann_title', $postDesc);

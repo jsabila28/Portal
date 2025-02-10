@@ -1,22 +1,17 @@
 <?php
 require_once($main_root."/actions/memo.php");
-// if (!isset($_SESSION['user_id'])) {
-//     echo json_encode(['error' => 'User not authenticated']);
-//     exit;
-// }
-
-// $user_id = $_SESSION['user_id'];
+require_once($main_root."/actions/get_personal.php");
 
 $date = date("Y-m-d");
 $Year = date("Y");
 $Month = date("m");
 $Day = date("d");
 $yearMonth = date("Y-m");
-$memos = Portal::GetMemo();
-$memoAll = Portal::GetAllMemo($Year);
+$memos = Portal::GetMemo($Year,$empno,$company,$department,$area,$outlet);
+$memoAll = Portal::GetAllMemo($Year,$empno,$company,$department,$area,$outlet);
 $leave = Portal::GetLeave($date);
 $ongoingleave = Portal::GetOngoingLeave($date);
-$resigning = Portal::GetResigning($date);
+$resigning = Portal::GetResigning($Year);
 $government = Portal::GetGovAnn($yearMonth);
 $birthday = Portal::GetBirthday($Month,$Day);
 $moods = Portal::GetMood($date);
@@ -53,12 +48,12 @@ $events = Portal::GetEvents($date);
                         <!-- MEMO -->
                         <?php require_once($main_root."/pages/memo.php"); ?>
                         <div id="memo"> 
-                            <ul class="nav nav-tabs  tabs" role="tablist">
+                            <ul class="nav nav-tabs  tabs" role="tablist" style="background-color: transparent !important;">
                                 <li class="nav-item" style="width: 40% !important;">
-                                    <a class="nav-link active" data-toggle="tab" href="#home1" role="tab">Leave/Offset</a>
+                                    <a class="nav-link active" data-toggle="tab" href="#home1" role="tab" style="background-color: transparent !important;">Leave | Offset</a>
                                 </li>
                                 <li class="nav-item" style="width: 40% !important;">
-                                    <a class="nav-link" data-toggle="tab" href="#profile1" role="tab">Resigning</a>
+                                    <a class="nav-link" data-toggle="tab" href="#profile1" role="tab" style="background-color: transparent !important;">Resigning</a>
                                 </li>
                             </ul>
                             <div class="tab-content tabs card-block">
@@ -187,5 +182,6 @@ $events = Portal::GetEvents($date);
 <?php }else{
     require_once($main_root."/pages/mood.php");
 } ?>
+
 <script type="text/javascript" src="/Portal/assets/js/post.js"></script>
 <script type="text/javascript" src="/Portal/assets/js/portal.js"></script>

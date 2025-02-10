@@ -64,8 +64,10 @@
 	<link rel="stylesheet" type="text/css" href="/Portal/assets/css/leave.css">
 	<link rel="stylesheet" type="text/css" href="/Portal/assets/css/post.css">
 	<link rel="stylesheet" type="text/css" href="/Portal/assets/css/profile.css">
-	<!-- <link rel="stylesheet" type="text/css" href="/Portal/assets/css/atd.css"> -->
+		<!-- <link rel="stylesheet" type="text/css" href="/Portal/assets/css/atd.css"> -->
 	<link rel="stylesheet" type="text/css" href="/Portal/assets/css/events.css">
+
+	<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
     <!-- Required Jqurey -->
     <!-- <script type="text/javascript" src="/Portal/admin_template/bower_components/jquery/js/jquery.min.js"></script> -->
@@ -75,6 +77,7 @@
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/handsontable@9.0.0/dist/handsontable.full.min.css"> -->
 	<!-- <script src="https://cdn.jsdelivr.net/npm/handsontable@9.0.0/dist/handsontable.full.min.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 
       <!-- Bootstrap CSS -->
     <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.5.1/css/bootstrap.min.css" rel="stylesheet"> -->
@@ -92,11 +95,32 @@
     <link rel="stylesheet" type="text/css" href="/Portal/admin_template/bower_components/bootstrap-multiselect/css/bootstrap-multiselect.css">
     <link rel="stylesheet" type="text/css" href="/Portal/admin_template/bower_components/multiselect/css/multi-select.css">
 
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/css/select2.min.css" rel="stylesheet"> -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.6.0/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/js/select2.min.js"></script>
+	<!-- Select 2 css -->
+	<link rel="stylesheet" href="/Portal/admin_template/bower_components/select2/css/select2.min.css">
+	<!-- Multi Select css -->
+	<link rel="stylesheet" type="text/css" href="/Portal/admin_template/bower_components/bootstrap-multiselect/css/bootstrap-multiselect.css">
+	<link rel="stylesheet" type="text/css" href="/Portal/admin_template/bower_components/multiselect/css/multi-select.css">
 	<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@joeattardi/emoji-button/dist/index.css"> -->
 	<!-- <script src="https://cdn.jsdelivr.net/npm/@joeattardi/emoji-button@5.4.0/dist/emoji-button.min.js"></script> -->
   	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+	<!-- <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.1.7/dist/signature_pad.umd.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/signature_pad@5.0.4/dist/signature_pad.umd.min.js"></script>
+	<script src="/Portal/assets/signature_pad-master/docs/js/signature_pad.umd.js"></script>
+    <script src="/Portal/assets/signature_pad-master/docs/js/sign.js"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js" integrity="sha256-W+ivNvVjmQX6FTlF0S+SCDMjAuTVNKzH16+kQvRWcTg=" crossorigin="anonymous"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.1.7/dist/signature_pad.umd.min.js"></script>
+    <script type="text/javascript" src="/Portal/assets/js/signature.js"></script>
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous"> -->
 </head>
 
 <body>

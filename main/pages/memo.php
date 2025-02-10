@@ -1,6 +1,9 @@
 <link rel="stylesheet" type="text/css" href="/Portal/assets/css/memo.css">
 <div id="memo"> 
-    <span><a href="#" data-toggle="modal" data-target="#all_memo"><h6>Memo</h6></a></span>
+    <span style="display: flex;justify-content: space-between;height: 25px;">
+        <a href="#" data-toggle="modal" data-target="#all_memo"><h6>Memo</h6></a>
+        <a href="add_memo" class="btn btn-outline-primary btn-mini"><h6><i class="fa fa-plus-circle"></i></h6></a>
+    </span>
     <div class="modal fade" id="all_memo" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">

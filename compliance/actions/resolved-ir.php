@@ -12,25 +12,33 @@ try {
     $port_db = Database::getConnection('port');
     $hr_db = Database::getConnection('hr');
 
-   
+
 $stmt = $port_db->prepare("
-	    SELECT 
-	    ir.ir_subject,
-	    ir.ir_date,
-	    CONCAT(bi_from.bi_empfname,' ',bi_from.bi_emplname) AS ir_from_fullname,
-	    CONCAT(bi_to.bi_empfname,' ',bi_to.bi_emplname) AS ir_to_fullname
-	FROM 
-	    tbl_ir ir
-	LEFT JOIN 
-	    tbl201_basicinfo bi_from ON ir.ir_from = bi_from.bi_empno
-	LEFT JOIN 
-	    tbl201_basicinfo bi_to ON ir.ir_to = bi_to.bi_empno
-	WHERE ir.ir_stat = 'resolved'
-	AND bi_from.datastat = 'current'
-	AND ir_from = ?
-	GROUP BY ir.ir_id, bi_from.bi_empno
-	");
-$stmt->execute([$user_id]);
+    SELECT 
+        ir.ir_id,
+        ir.ir_subject,
+        ir.ir_date,
+        CONCAT(bi_from.bi_empfname, ' ', bi_from.bi_emplname) AS ir_from_fullname,
+        CONCAT(bi_to.bi_empfname, ' ', bi_to.bi_emplname) AS ir_to_fullname
+    FROM 
+        tbl_ir ir
+    LEFT JOIN 
+        tbl201_basicinfo bi_from ON ir.ir_from = bi_from.bi_empno
+    LEFT JOIN 
+        tbl201_basicinfo bi_to ON ir.ir_to = bi_to.bi_empno
+    WHERE 
+        ir.ir_stat = 'resolved'
+        AND bi_from.datastat = 'current'
+        AND (
+            ir.ir_from = ? 
+            OR ir.ir_to = ? 
+            OR REPLACE(ir.ir_involved, ' ', '') LIKE CONCAT(?, ',%')
+            -- OR REPLACE(ir.ir_cc, ' ', '') LIKE CONCAT('%,', ?)
+            OR REPLACE(ir.ir_cc, ' ', '') LIKE CONCAT('%,', ?, ',%')
+        )
+    GROUP BY ir.ir_id
+");
+$stmt->execute([$user_id, $user_id, $user_id, $user_id]);
 $incident_report = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 if (!empty($incident_report)) {

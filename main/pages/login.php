@@ -15,8 +15,8 @@
     <div class="wrapper">
     <div class="title"><span><b>Sign In</b></span></div>
     <form action="" method="post" id="loginForm" class="sign-in-form">
-      <div align="center">
-        <!-- <img src="assets/image/sc.png"> -->
+      <div id="logo" align="center">
+        <img src="/Portal/assets/img/cortadella.png">
       </div>
       <div class="col-12">
         <div class="input-group mb-3">

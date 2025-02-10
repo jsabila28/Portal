@@ -30,13 +30,13 @@ $stmt = $port_db->prepare("
 		LEFT JOIN 
     		tbl201_basicinfo bi_to ON _13A.13a_to = bi_to.bi_empno
 		WHERE 
-		    _13A.13a_stat = 'checked'
+		    _13A.13a_stat = 'pending'
 		    AND bi_from.datastat = 'current'
 		    AND (
             _13A.13a_from = ? 
             OR _13A.13a_to= ? 
             OR _13A.13a_issuedby= ? 
-            OR REPLACE(_13A.13a_notedby, ' ', '') LIKE CONCAT(?, ',%')
+            OR REPLACE(_13A.ir_notedby, ' ', '') LIKE CONCAT(?, ',%')
             -- OR REPLACE(_13A.ir_cc, ' ', '') LIKE CONCAT('%,', ?)
             OR REPLACE(_13A.13a_cc, ' ', '') LIKE CONCAT('%,', ?, ',%')
         )
@@ -68,8 +68,8 @@ if (!empty($incident_report)) {
      	echo "<td>" . htmlspecialchars($ir['to_name']) . "</td>";
      	echo "<td>" . htmlspecialchars($ir['13a_regarding']) . "</td>";
      	echo "<td style='display:flex;margin: 0 -5px;'>
-     		<a style='margin: 0 5px;' class='btn btn-primary btn-mini' href='checked13a?_13aID=" . htmlspecialchars($ir['13a_id']) . "'><i class='icofont icofont-eye-alt' style='font-size:14px;'></i></a>
-     		<a style='margin: 0 5px;' class='btn btn-success btn-mini' href='#!'><i class='zmdi zmdi-edit' style='font-size:14px;'></i></i></a>
+     		<a style='margin: 0 5px;' class='btn btn-primary btn-mini' class='btn btn-primary btn-mini' href='_13Aopen?_13aID=" . htmlspecialchars($ir['13a_id']) . "'><i class='icofont icofont-eye-alt' style='font-size:14px;'></i></a>
+     		<a style='margin: 0 5px;' class='btn btn-success btn-mini' class='btn btn-primary btn-mini' href='#!'><i class='zmdi zmdi-edit' style='font-size:14px;'></i></i></a>
      	</td>";
      	echo "</tr>";
       } 

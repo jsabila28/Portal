@@ -82,15 +82,15 @@
                  </div>
                  <div style="display: flex; align-items: center;">
                    <label style="width: 150px; margin-right: 10px;">Account No:</label>
-                   <input type="text" class="form-control" name="MAmodel" id="MAmodelInput" style="flex: 1;">
+                   <input type="text" class="form-control" name="accNo" id="accNoInput" style="flex: 1;">
                  </div>
                  <div style="display: flex; align-items: center;">
                    <label style="width: 150px; margin-right: 10px;">Account Name:</label>
-                   <input type="text" class="form-control" name="MAimei1" id="MAimei1Input" style="flex: 1;">
+                   <input type="text" class="form-control" name="accName" id="accNameInput" style="flex: 1;">
                  </div>
                  <div style="display: flex; align-items: center;">
                    <label style="width: 150px; margin-right: 10px;">SIM No:</label>
-                   <input type="text" class="form-control" name="MAimei2" id="MAimei2Input" style="flex: 1;">
+                   <input type="text" class="form-control" name="simNo" id="simNoInput" style="flex: 1;">
                  </div>
                  <div style="display: flex; align-items: center;">
                    <label style="width: 150px; margin-right: 10px;">SIM Serial No:</label>
@@ -118,46 +118,146 @@
                    <label style="width: 150px; margin-right: 10px;">Authorized By:</label>
                    <input type="text" class="form-control" name="MAauthor" id="MAauthorInput" style="flex: 1;">
                  </div>
+                 <div style="display: flex; align-items: center;">
+                   <label style="width: 150px; margin-right: 10px;">QRPH:</label>
+                   <input type="text" class="form-control" name="MAqrph" id="MAqrphInput" style="flex: 1;">
+                 </div>
+                 <div style="display: flex; align-items: center;">
+                   <label style="width: 150px; margin-right: 10px;">Merchant Description:</label>
+                   <input type="text" class="form-control" name="MAmerch" id="MAmerchInput" style="flex: 1;">
+                 </div>
                </div>
-               <div id="ps-message" class="alert" style="display: none;"></div>
+               <div id="ma-message" class="alert" style="display: none;"></div>
              </div>
 
              <div class="modal-footer" id="footer">
                  <button type="button" class="btn btn-outline-danger btn-mini waves-effect waves-light" data-dismiss="modal">Cancel</button>
-                 <button type="button" id="save-ps" class="btn btn-primary btn-mini waves-effect waves-light ">Save</button>
+                 <button type="button" id="save-ma" class="btn btn-primary btn-mini waves-effect waves-light ">Save</button>
              </div>
          </div>
      </div>
  </div>
-<script type="text/javascript" src="../assets/js/_PA.js"></script>
+<!-- <script type="text/javascript" src="../assets/js/_PA.js"></script> -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    $(document).ready(function () {
-        $('#accountTypeSelect').on('change', function () {
-            var selectedType = $(this).val();
+$(document).ready(function() {
+  $.ajax({
+    url: 'phoneMobile',
+    type: 'GET',
+    success: function(response) {
+      $('#mobile-account').html(response);
+    },
+    error: function() {
+      $('#mobile-account').html("An error occurred while fetching content for div 1.");
+    }
+  });
 
-            // Show all rows if no value is selected
-            if (selectedType === "") {
-                $('table.sticky-table tbody tr').show();
-            } else {
-                // Hide rows that don't match the selected type
-                $('table.sticky-table tbody tr').each(function () {
-                    var accountType = $(this).data('account-type');
-                    if (accountType === selectedType) {
-                        $(this).show();
-                    } else {
-                        $(this).hide();
-                    }
-                });
+});
+
+$(document).ready(function () {
+    $('#accountTypeSelect').on('change', function () {
+        var selectedType = $(this).val();
+
+        // Show all rows if no value is selected
+        if (selectedType === "") {
+            $('table.sticky-table tbody tr').show();
+        } else {
+            // Hide rows that don't match the selected type
+            $('table.sticky-table tbody tr').each(function () {
+                var accountType = $(this).data('account-type');
+                if (accountType === selectedType) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        }
+    });
+});
+
+const accountTypeSelect = document.getElementById('accountTypeSelect');
+const accountTypeMobile = document.getElementById('accountTypeMobile');
+
+accountTypeSelect.addEventListener('change', function () {
+  accountTypeMobile.textContent = accountTypeSelect.value;
+});
+$(document).ready(function () {
+    $("#save-ma").click(function () {
+        var accountType = $("#accountTypeMobile").text().trim();
+        var accNum = $("#accNoInput").val();
+        var accName = $("#accNameInput").val();
+        var simNum = $("#simNoInput").val();
+        var serialNo = $("#MAserialNoInput").val();
+        var planType = $("#MAplanTypeInput").val();
+        var planfeatrs = $("#MAplanfeatrsInput").val();
+        var msf = $("#MAmsfInput").val();
+        var author = $("#MAauthorInput").val();
+        var qrph = $("#MAqrphInput").val();
+        var merch = $("#MAmerchInput").val();
+        var simtype = $("select[name='simtype']").val();
+
+        $.ajax({
+            url: "MobAccsave",
+            type: "POST",
+            data: {
+                accountType: accountType,
+                accNum: accNum,
+                accName: accName,
+                simNum: simNum,
+                serialNo: serialNo,
+                planType: planType,
+                planfeatrs: planfeatrs,
+                msf: msf,
+                author: author,
+                qrph: qrph,
+                merch: merch,
+                simtype: simtype
+            },
+            dataType: "json",
+            success: function (response) {
+                if (response.status === "success") {
+                    $("#ma-message")
+                        .removeClass("alert-danger")
+                        .addClass("alert-success")
+                        .text(response.message)
+                        .show();
+
+                    $("#accountTypeMobile").val("");
+                    $("#accNoInput").val("");
+                    $("#accNameInput").val(""); 
+                    $("#simNoInput").val("")
+                    $("#MAserialNoInput").val("")
+                    $("#MAplanTypeInput").val("")
+                    $("#MAplanfeatrsInput").val("")
+                    $("#MAmsfInput").val("")
+                    $("#MAauthorInput").val("")
+                    $("#MAqrphInput").val("")
+                    $("#MAmerchInput").val("")
+                    $("select[name='simtype']").val(""); 
+
+                    setTimeout(function () {
+                        $("#ma-message").hide();
+                        if (!dontClose) {
+                            $("#mobileacc").modal("hide");
+                        }
+                    }, 2000);
+                } else {
+                    $("#ma-message")
+                        .removeClass("alert-success")
+                        .addClass("alert-danger")
+                        .text(response.message)
+                        .show();
+                }
+            },
+            error: function () {
+                $("#ma-message")
+                    .removeClass("alert-success")
+                    .addClass("alert-danger")
+                    .text("An error occurred. Please try again.")
+                    .show();
             }
         });
     });
-
-  const accountTypeSelect = document.getElementById('accountTypeSelect');
-  const accountTypeMobile = document.getElementById('accountTypeMobile');
-
-  accountTypeSelect.addEventListener('change', function () {
-    accountTypeMobile.textContent = accountTypeSelect.value;
-  });
+});
 </script>
 

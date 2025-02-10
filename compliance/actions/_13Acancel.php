@@ -31,11 +31,18 @@ $stmt = $port_db->prepare("
 		WHERE 
 		    _13A.13a_stat = 'cancelled'
 		    AND bi_from.datastat = 'current'
-		    AND _13A.13a_to = ?
+		    AND (
+            _13A.13a_from = ? 
+            OR _13A.13a_to= ? 
+            OR _13A.13a_issuedby= ? 
+            OR REPLACE(_13A.13a_notedby, ' ', '') LIKE CONCAT(?, ',%')
+            -- OR REPLACE(_13A.ir_cc, ' ', '') LIKE CONCAT('%,', ?)
+            OR REPLACE(_13A.13a_cc, ' ', '') LIKE CONCAT('%,', ?, ',%')
+        )
 		GROUP BY 
     	_13A.13a_memo_no, bi_from.bi_empno
 	");
-$stmt->execute([$user_id]);
+$stmt->execute([$user_id, $user_id, $user_id, $user_id, $user_id]);
 $incident_report = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 if (!empty($incident_report)) {
@@ -59,9 +66,9 @@ if (!empty($incident_report)) {
      	echo "<td>" . htmlspecialchars($ir['issued_by_name']) . "</td>";
      	echo "<td>" . htmlspecialchars($ir['to_name']) . "</td>";
      	echo "<td>" . htmlspecialchars($ir['13a_regarding']) . "</td>";
-     	echo "<td style='display:flex;justify-content: space-between;'>
-     		<a href='_13Aopen?_13aID=" . htmlspecialchars($ir['13a_memo_no']) . "'><i class='icofont icofont-eye-alt' style='font-size:14px;'></i></a>
-     		<a href='#!'><i class='zmdi zmdi-edit' style='font-size:14px;'></i></i></a>
+     	echo "<td style='display:flex;margin: 0 -5px;'>
+     		<a style='margin: 0 5px;' class='btn btn-primary btn-mini' href='_13Aopen?_13aID=" . htmlspecialchars($ir['13a_memo_no']) . "'><i class='icofont icofont-eye-alt' style='font-size:14px;'></i></a>
+     		<a style='margin: 0 5px;' class='btn btn-success btn-mini' href='#!'><i class='zmdi zmdi-edit' style='font-size:14px;'></i></i></a>
      	</td>";
      	echo "</tr>";
       } 

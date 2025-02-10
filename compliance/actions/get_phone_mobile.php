@@ -37,7 +37,7 @@ echo "</tr>";
 echo "</thead>";
 echo "<tbody>";
 foreach ($phone_setting as $ps) {
-    echo "<tr data-account-type='".htmlspecialchars($ps['acc_simtype'])."'>";
+    echo "<tr data-account-type='".htmlspecialchars($ps['acc_type'])."'>";
     echo "<td>".$ps['acc_no']."</td>";
     echo "<td>".$ps['acc_name']."</td>";
     echo "<td>".$ps['acc_simno']."</td>";

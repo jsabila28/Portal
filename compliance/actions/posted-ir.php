@@ -13,26 +13,64 @@ try {
     $hr_db = Database::getConnection('hr');
 
    
+// $stmt = $port_db->prepare("
+// 	    SELECT 
+// 	    ir.ir_id,
+// 	    ir.ir_subject,
+// 	    ir.ir_date,
+// 	    CONCAT(bi_from.bi_empfname,' ',bi_from.bi_emplname) AS ir_from_fullname,
+// 	    CONCAT(bi_to.bi_empfname,' ',bi_to.bi_emplname) AS ir_to_fullname
+// 	FROM 
+// 	    tbl_ir ir
+// 	LEFT JOIN 
+// 	    tbl201_basicinfo bi_from ON ir.ir_from = bi_from.bi_empno
+// 	LEFT JOIN 
+// 	    tbl201_basicinfo bi_to ON ir.ir_to = bi_to.bi_empno
+// 	WHERE ir.ir_stat = 'posted'
+// 	AND bi_from.datastat = 'current'
+// 	AND ir_from = ?
+// 	AND (
+//         ir.`ir_from` = ?
+//         OR TRIM(ir.`ir_cc`) = ?
+//         OR TRIM(ir.`ir_cc`) LIKE '?,%'
+//         OR TRIM(ir.`ir_cc`) LIKE '%,?'
+//         OR TRIM(ir.`ir_cc`) LIKE '%,?,%'
+//     )
+// 	GROUP BY ir.ir_id, bi_from.bi_empno
+// 	");
+// $stmt->execute([$user_id]);
+// $incident_report = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
 $stmt = $port_db->prepare("
-	    SELECT 
-	    ir.ir_id,
-	    ir.ir_subject,
-	    ir.ir_date,
-	    CONCAT(bi_from.bi_empfname,' ',bi_from.bi_emplname) AS ir_from_fullname,
-	    CONCAT(bi_to.bi_empfname,' ',bi_to.bi_emplname) AS ir_to_fullname
-	FROM 
-	    tbl_ir ir
-	LEFT JOIN 
-	    tbl201_basicinfo bi_from ON ir.ir_from = bi_from.bi_empno
-	LEFT JOIN 
-	    tbl201_basicinfo bi_to ON ir.ir_to = bi_to.bi_empno
-	WHERE ir.ir_stat = 'posted'
-	AND bi_from.datastat = 'current'
-	AND ir_from = ?
-	GROUP BY ir.ir_id, bi_from.bi_empno
-	");
-$stmt->execute([$user_id]);
+    SELECT 
+        ir.ir_id,
+        ir.ir_subject,
+        ir.ir_date,
+        CONCAT(bi_from.bi_empfname, ' ', bi_from.bi_emplname) AS ir_from_fullname,
+        CONCAT(bi_to.bi_empfname, ' ', bi_to.bi_emplname) AS ir_to_fullname
+    FROM 
+        tbl_ir ir
+    LEFT JOIN 
+        tbl201_basicinfo bi_from ON ir.ir_from = bi_from.bi_empno
+    LEFT JOIN 
+        tbl201_basicinfo bi_to ON ir.ir_to = bi_to.bi_empno
+    WHERE 
+        ir.ir_stat = 'posted'
+        AND bi_from.datastat = 'current'
+        AND (
+            ir.ir_from = ? 
+            OR ir.ir_to = ? 
+            OR REPLACE(ir.ir_involved, ' ', '') LIKE CONCAT(?, ',%')
+            -- OR REPLACE(ir.ir_cc, ' ', '') LIKE CONCAT('%,', ?)
+            OR REPLACE(ir.ir_cc, ' ', '') LIKE CONCAT('%,', ?, ',%')
+        )
+    GROUP BY ir.ir_id
+");
+$stmt->execute([$user_id, $user_id, $user_id, $user_id]);
+
 $incident_report = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 
 if (!empty($incident_report)) {
 
@@ -55,9 +93,9 @@ if (!empty($incident_report)) {
      	echo "<td>" . htmlspecialchars($ir['ir_from_fullname']) . "</td>";
      	echo "<td>" . htmlspecialchars($ir['ir_to_fullname']) . "</td>";
      	echo "<td>" . htmlspecialchars($ir['ir_subject']) . "</td>";
-     	echo "<td style='display:flex;justify-content: space-between;'>
-     		<a href='IRopen?irID=" . htmlspecialchars($ir['ir_id']) . "'><i class='icofont icofont-eye-alt' style='font-size:14px;'></i></a>
-     		<a href='#!'><i class='zmdi zmdi-edit' style='font-size:14px;'></i></i></a>
+     	echo "<td style='display:flex;margin: 0 -5px;'>
+     		<a style='margin: 0 5px;' class='btn btn-primary btn-mini' href='IRopen?irID=" . htmlspecialchars($ir['ir_id']) . "'><i class='icofont icofont-eye-alt' style='font-size:14px;'></i></a>
+     		<a style='margin: 0 5px;' class='btn btn-success btn-mini' href='#!'><i class='zmdi zmdi-edit' style='font-size:14px;'></i></i></a>
      	</td>";
      	echo "</tr>";
       } 

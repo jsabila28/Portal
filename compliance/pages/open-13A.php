@@ -30,59 +30,59 @@ if (!empty($_13A)) {
           </div>
           <div class="panel-body" style="padding: 10px;">
               <div class="form-group row" id="_13Arow">
-                <label for="fullName" class="col-sm-1 col-form-label text-left">MEMORANDUM NO.</label>
+                <label class="col-sm-1 col-form-label text-left">MEMORANDUM NO.</label>
                 <div class="col-sm-3">
-                  <label for="fullName" class="col-sm-3 col-form-label text-left"><?=$k['13a_memo_no']?></label>
+                  <label class="col-sm-3 col-form-label text-left"><?=$k['13a_memo_no']?></label>
                 </div>
-                <label for="fullName" class="col-sm-1 col-form-label text-left"></label>
+                <label class="col-sm-1 col-form-label text-left"></label>
                 <div class="col-sm-3">
                   <p></p>
                 </div>
               </div>
               <div class="form-group row" id="_13Arow">
-                <label for="fullName" class="col-sm-1 col-form-label text-left">TO:</label>
+                <label class="col-sm-1 col-form-label text-left">TO:</label>
                 <div class="col-sm-3">
                   <p><?=$k['to_name']?></p>
                 </div>
-                <label for="fullName" class="col-sm-1 col-form-label text-left">DATE:</label>
+                <label class="col-sm-1 col-form-label text-left">DATE:</label>
                 <div class="col-sm-3">
                   <p><?=$k['1_3ADate']?></p>
                 </div>
               </div>
               <div class="form-group row" id="_13Arow">
-                <label for="fullName" class="col-sm-1 col-form-label text-left">CC:</label>
+                <label class="col-sm-1 col-form-label text-left">CC:</label>
                 <div class="col-sm-6">
                   <p><?=$k['cc_names']?></p>
                 </div>
               </div>
               <div class="form-group row" id="_13Arow">
-                <label for="fullName" class="col-sm-1 col-form-label text-left">POSITION:</label>
+                <label class="col-sm-1 col-form-label text-left">POSITION:</label>
                 <div class="col-sm-3">
                   <p><?=$k['13a_to_position']?></p>
                 </div>
-                <label for="fullName" class="col-sm-1 col-form-label text-left">DEPT/BRANCH:</label>
+                <label class="col-sm-1 col-form-label text-left">DEPT/BRANCH:</label>
                 <div class="col-sm-3">
                   <p><?=$k['13a_to_department']?></p>
                 </div>
               </div>
               <div class="form-group row" id="_13Arow">
-                <label for="fullName" class="col-sm-1 col-form-label text-left">COMPANY:</label>
+                <label class="col-sm-1 col-form-label text-left">COMPANY:</label>
                 <div class="col-sm-6">
                   <p><?=$k['company']?></p>
                 </div>
               </div>
               <div class="form-group row" id="_13Arow">
-                <label for="fullName" class="col-sm-1 col-form-label text-left">RE:</label>
+                <label class="col-sm-1 col-form-label text-left">RE:</label>
                 <div class="col-sm-6">
                   <p><?=$k['13a_regarding']?></p>
                 </div>
               </div>
               <div class="form-group row" id="_13Arow">
-                <label for="fullName" class="col-sm-1 col-form-label text-left">FROM:</label>
+                <label class="col-sm-1 col-form-label text-left">FROM:</label>
                 <div class="col-sm-3">
                   <p><?=$k['issued_by_name']?></p>
                 </div>
-                <label for="fullName" class="col-sm-1 col-form-label text-left">POSITION:</label>
+                <label class="col-sm-1 col-form-label text-left">POSITION:</label>
                 <div class="col-sm-3">
                   <p><?=$k['pos_from']?></p>
                 </div>
@@ -112,19 +112,19 @@ if (!empty($_13A)) {
               </div><br>
             <p>Time and Location of Response:</p>
               <div class="form-group row" id="_13Arow">
-                <label for="fullName" class="col-sm-1 col-form-label text-left">Date and Time(mm/dd/yyyy hh:mm AM/PM):</label>
+                <label class="col-sm-1 col-form-label text-left">Date and Time(mm/dd/yyyy hh:mm AM/PM):</label>
                 <div class="col-sm-6">
                   <p><?=$k['1_3ADateTime']?></p>
                 </div>
               </div>
               <div class="form-group row" id="_13Arow">
-                <label for="fullName" class="col-sm-1 col-form-label text-left">Place:</label>
+                <label class="col-sm-1 col-form-label text-left">Place:</label>
                 <div class="col-sm-6">
                   <p><?=$k['13a_place']?></p>
                 </div>
               </div>
               <div class="form-group row" id="_13Arow">
-                <label for="fullName" class="col-sm-1 col-form-label text-left">Penalty/Punishment:</label>
+                <label class="col-sm-1 col-form-label text-left">Penalty/Punishment:</label>
                 <div class="col-sm-3">
                   <p><?=$k['13a_penalty']?></p>
                 </div>
@@ -133,13 +133,13 @@ if (!empty($_13A)) {
                 </div>
               </div>
               <div class="form-group row" id="_13Arow">
-                <label for="fullName" class="col-sm-1 col-form-label text-left">Offense:</label>
+                <label class="col-sm-1 col-form-label text-left">Offense:</label>
                 <div class="col-sm-6">
                   <p><?=$k['13a_offense']?></p>
                 </div>
               </div>
               <div class="form-group row" id="_13Arow">
-                <label for="fullName" class="col-sm-1 col-form-label text-left">Offense type:</label>
+                <label class="col-sm-1 col-form-label text-left">Offense type:</label>
                 <div class="col-sm-6">
                   <p><?=$k['13a_offensetype']?></p>
                 </div>

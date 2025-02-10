@@ -1,3 +1,10 @@
+<?php
+    require_once($com_root."/db/db.php");
+    require_once($com_root."/actions/get_profile.php");
+    require_once($com_root."/actions/get_person.php");
+
+    $sim = Profile::GetSimNum();
+?>
 <div class="page-wrapper">
     <div class="page-body">
         <div class="row">
@@ -66,50 +73,81 @@
 </div>
 <div class="modal fade" id="psetting" tabindex="-1" role="dialog">
      <div class="modal-dialog modal-lg" role="document">
-         <div class="modal-content">
+        <div class="modal-content">
              <div class="modal-header">
                  <span class="modal-title">Phone Details</span>
                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                      <span aria-hidden="true"><i style="font-size: 30px;" class="fa fa-times-circle"></i></span>
                  </button>
              </div>
-             <div class="modal-body" style="padding: 5px !important;">
-               <div id="personal-form" style="display: flex; flex-direction: column; gap: 15px;">
-                 <div style="display: flex; align-items: center;">
-                   <label style="width: 150px; margin-right: 10px;">Account Type:</label>
-                   <span style="flex: 1;" id="accountTypeDisplay"></span>
-                 </div>
-                 <div style="display: flex; align-items: center;">
-                   <label style="width: 150px; margin-right: 10px;">Model:</label>
-                   <input type="text" class="form-control" name="psmodel" id="psmodelInput" style="flex: 1;">
-                 </div>
-                 <div style="display: flex; align-items: center;">
-                   <label style="width: 150px; margin-right: 10px;">IMEI 1:</label>
-                   <input type="text" class="form-control" name="psimei1" id="psimei1Input" style="flex: 1;">
-                 </div>
-                 <div style="display: flex; align-items: center;">
-                   <label style="width: 150px; margin-right: 10px;">IMEI 2:</label>
-                   <input type="text" class="form-control" name="psimei2" id="psimei2Input" style="flex: 1;">
-                 </div>
-                 <div style="display: flex; align-items: center;">
-                   <label style="width: 150px; margin-right: 10px;">Unit Serial No:</label>
-                   <input type="text" class="form-control" name="psserialNo" id="psserialNoInput" style="flex: 1;">
-                 </div>
-                 <div style="display: flex; align-items: center;">
-                   <label style="width: 150px; margin-right: 10px;">Accessories:</label>
-                   <input type="text" class="form-control" name="psaccessories" id="psaccessoriesInput" style="flex: 1;">
-                 </div>
-                 <div style="display: flex; align-items: center;">
-                   <label style="width: 150px; margin-right: 10px;">Sim No.:</label>
-                   <select class="form-control" searchable="Search here.." style="flex: 1;">
-                     <option value="" selected>Select</option>
-                   </select>
-                 </div>
-                 <div style="display: flex; align-items: center;">
-                   <label style="width: 100px; margin-right: 10px;">Don't close this:</label>
-                   <input type="checkbox" name="keepOpen" style="width:20px;" checked>
-                 </div>
-               </div>
+             <div class="modal-body" style="padding: 15px !important;">
+              <form class="form-horizontal" action="/action_page.php" style="margin-left: 5px !important;">
+                  <div class="form-group row">
+                      <label class="col-md-3 col-form-label text-left">Account Type:</label>
+                      <div class="col-md-8">
+                          <span class="form-control" id="accountTypeDisplay"></span>
+                          <!-- <input type="text" id="accountTypeDisplay" name="username2"> -->
+                      </div>
+                  </div>
+                  <div class="form-group row">
+                      <label class="col-md-3 col-form-label text-left">Model:</label>
+                      <div class="col-md-8">
+                          <input type="text" class="form-control" name="psmodel" id="psmodelInput">
+                      </div>
+                  </div>
+                  <div class="form-group row">
+                      <label class="col-md-3 col-form-label text-left">IMEI 1:</label>
+                      <div class="col-md-8">
+                          <input type="text" class="form-control" name="psimei1" id="psimei1Input">
+                      </div>
+                  </div>
+                  <div class="form-group row">
+                      <label class="col-md-3 col-form-label text-left">IMEI 2:</label>
+                      <div class="col-md-8">
+                          <input type="text" class="form-control" name="psimei2" id="psimei2Input">
+                      </div>
+                  </div>
+                  <div class="form-group row">
+                      <label class="col-md-3 col-form-label text-left">Unit Serial No:</label>
+                      <div class="col-md-8">
+                          <input type="text" class="form-control" name="psserialNo" id="psserialNoInput">
+                      </div>
+                  </div>
+                  <div class="form-group row">
+                      <label class="col-md-3 col-form-label text-left">Accessories:</label>
+                      <div class="col-md-8">
+                          <input type="text" class="form-control" name="psaccessories[]" id="psaccessoriesInput">
+                      </div>
+                  </div>
+                  <div id="accessories-container"></div>
+                  <div class="form-group row">
+                      <label class="col-md-3 col-form-label text-left"></label>
+                      <div class="col-md-8">
+                          <button type="button" class="btn btn-outline-primary btn-mini" id="add-accessories">
+                              <i class="fa fa-plus"></i>
+                          </button>
+                      </div>
+                  </div>
+                  <div class="form-group row">
+                      <label class="col-md-3 col-form-label text-left">Sim No:</label>
+                      <div class="col-md-8">
+                        <select class="selectpicker" data-live-search="true" style="color: #000 !important;">
+                         <option value="" >Select</option>
+                         <?php 
+                           foreach ($sim as $s) {
+                             echo "<option value=".$s['acc_simno'].">".$s['acc_simno']."</option>";
+                           }
+                          ?>
+                        </select>
+                      </div>
+                  </div>
+                  <div class="form-group row">
+                      <label class="col-md-3 col-form-label text-left">Don't close this: ></label>
+                      <div class="col-md-8">
+                          <input type="checkbox" class="form-control" checked>
+                      </div>
+                  </div>
+              </form>
                <div id="ps-message" class="alert" style="display: none;"></div>
              </div>
 
@@ -117,38 +155,137 @@
                  <button type="button" class="btn btn-outline-danger btn-mini waves-effect waves-light" data-dismiss="modal">Cancel</button>
                  <button type="button" id="save-ps" class="btn btn-primary btn-mini waves-effect waves-light ">Save</button>
              </div>
-         </div>
+        </div>
      </div>
  </div>
-<script type="text/javascript" src="../assets/js/_PA.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    $(document).ready(function () {
-        $('#accountTypeSelect').on('change', function () {
-            var selectedType = $(this).val();
+$(document).ready(function() {
+  $.ajax({
+    url: 'phoneSet',
+    type: 'GET',
+    success: function(response) {
+      $('#phone-setting').html(response);
+    },
+    error: function() {
+      $('#phone-setting').html("An error occurred while fetching content for div 1.");
+    }
+  });
 
-            // Show all rows if no value is selected
-            if (selectedType === "") {
-                $('table.sticky-table tbody tr').show();
-            } else {
-                // Hide rows that don't match the selected type
-                $('table.sticky-table tbody tr').each(function () {
-                    var accountType = $(this).data('account-type');
-                    if (accountType === selectedType) {
-                        $(this).show();
-                    } else {
-                        $(this).hide();
-                    }
-                });
+});
+
+$(document).ready(function () {
+    $('#accountTypeSelect').on('change', function () {
+        var selectedType = $(this).val();
+
+        // Show all rows if no value is selected
+        if (selectedType === "") {
+            $('table.sticky-table tbody tr').show();
+        } else {
+            // Hide rows that don't match the selected type
+            $('table.sticky-table tbody tr').each(function () {
+                var accountType = $(this).data('account-type');
+                if (accountType === selectedType) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        }
+    });
+});
+
+const accountTypeSelect = document.getElementById('accountTypeSelect');
+const accountTypeDisplay = document.getElementById('accountTypeDisplay');
+
+accountTypeSelect.addEventListener('change', function () {
+  accountTypeDisplay.textContent = accountTypeSelect.value;
+});
+
+$(document).ready(function(){
+    $("#add-accessories").click(function(){
+        $("#accessories-container").append(`
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label text-left"></label>
+                <div class="col-md-8" style="display:flex;">
+                    <input type="text" class="form-control" name="psaccessories[]" placeholder="Additional accessory">
+                    <button type="button" class="btn btn-danger btn-mini remove-accessory"><i class="fa fa-minus"></i></button>
+                </div>
+            </div>
+        `);
+    });
+    $(document).on("click", ".remove-accessory", function(){
+        $(this).closest(".form-group").remove();
+    });
+});
+
+$(document).ready(function () {
+    $("#save-ps").click(function () {
+        var accountType = $("#accountTypeDisplay").text().trim();
+        var model = $("#psmodelInput").val();
+        var imei1 = $("#psimei1Input").val();
+        var imei2 = $("#psimei2Input").val();
+        var serialNo = $("#psserialNoInput").val();
+        var simNo = $("select[name='pssim']").val();
+
+        var accessories = [];
+        $("input[name='psaccessories[]']").each(function () {
+            if ($(this).val().trim() !== "") {
+                accessories.push($(this).val().trim());
+            }
+        });
+
+        $.ajax({
+            url: "PhoneSettsave",
+            type: "POST",
+            data: {
+                accountType: accountType,
+                model: model,
+                imei1: imei1,
+                imei2: imei2,
+                serialNo: serialNo,
+                accessories: JSON.stringify(accessories), 
+                simNo: simNo
+            },
+            dataType: "json",
+            success: function (response) {
+                if (response.status === "success") {
+                    $("#ps-message")
+                        .removeClass("alert-danger")
+                        .addClass("alert-success")
+                        .text(response.message)
+                        .show();
+
+                    $("#psmodelInput").val("");
+                    $("#psimei1Input").val("");
+                    $("#psimei2Input").val(""); 
+                    $("#psserialNoInput").val("")
+                    $("select[name='pssim']").val(""); 
+                    $("input[name='psaccessories[]']").val("");
+
+                    setTimeout(function () {
+                        $("#ps-message").hide();
+                        if (!dontClose) {
+                            $("#psetting").modal("hide");
+                        }
+                    }, 2000);
+                } else {
+                    $("#ps-message")
+                        .removeClass("alert-success")
+                        .addClass("alert-danger")
+                        .text(response.message)
+                        .show();
+                }
+            },
+            error: function () {
+                $("#ps-message")
+                    .removeClass("alert-success")
+                    .addClass("alert-danger")
+                    .text("An error occurred. Please try again.")
+                    .show();
             }
         });
     });
-
-  const accountTypeSelect = document.getElementById('accountTypeSelect');
-  const accountTypeDisplay = document.getElementById('accountTypeDisplay');
-
-  accountTypeSelect.addEventListener('change', function () {
-    accountTypeDisplay.textContent = accountTypeSelect.value;
-  });
+});
 </script>
 

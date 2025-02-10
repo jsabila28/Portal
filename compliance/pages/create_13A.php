@@ -9,7 +9,8 @@
       <div class="col-md-12" style="padding: 20px;">
         <div class="panel panel-default" style="border: 1px solid #a59e9e !important;">
           <div class="panel-heading" style="background-color: #dfe2e3; color: #000000;">
-            <a href="/Portal/compliance/13A"><i class="icofont icofont-arrow-left" style="font-size: 24px;"></i></a> Create 13A
+            <a class="btn btn-primary btn-mini" href="/Portal/compliance/13A"><i class="icofont icofont-arrow-left"></i>Back</a> 
+            <label> Create 13A</label>
           </div>
           <div class="panel-body" style="padding: 10px;">
               <div class="form-group row" id="_13Arow">
@@ -107,13 +108,13 @@
               <div class="form-group row" id="_13Arow">
                 <label for="fullName" class="col-sm-1 col-form-label text-left">Date and Time(mm/dd/yyyy hh:mm AM/PM):</label>
                 <div class="col-sm-6">
-                  <input type="datetime-local" name="">
+                  <input class="form-control" type="datetime-local" name="">
                 </div>
               </div>
               <div class="form-group row" id="_13Arow">
                 <label for="fullName" class="col-sm-1 col-form-label text-left">Place:</label>
                 <div class="col-sm-6">
-                  <input type="text" name="">
+                  <input class="form-control" type="text" name="">
                 </div>
               </div>
               <div class="form-group row" id="_13Arow">
@@ -127,7 +128,7 @@
                   </select>
                 </div>
                 <div class="col-sm-3">
-                  <input type="number" name="">
+                  <input class="form-control" type="number" name="">
                 </div>
               </div>
               <div class="form-group row" id="_13Arow">
@@ -218,7 +219,7 @@
               </table>
               <p></p>
             </div>
-            <div id="ir-sign" style="display: flex;height: 60px;">
+            <div id="ir-sign" style="display: flex;height: 30px;">
               <button type="button" id="save-irdraft" class="btn btn-success btn-mini waves-effect waves-light">Save as draft</button>
               <button type="button" id="save-ir" class="btn btn-primary btn-mini waves-effect waves-light ">Save</button>
             </div>

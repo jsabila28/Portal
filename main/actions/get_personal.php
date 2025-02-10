@@ -23,6 +23,7 @@
                 CONCAT(head.bi_emplname, ' ', head.bi_empfname) AS headNAME,
                 b.jrec_reportto,
                 b.`jrec_outlet`,
+                b.`jrec_area`,
                 b.`jrec_department`,
                 jd.`jd_title`,
                 jd.`jd_company` as company
@@ -55,7 +56,7 @@
             $position = $user['jd_title'];
             $reportto = $user['headNAME'];
             $reportID = $user['jrec_reportto'];
-            // $position = $user['jrec_position'];
+            $area = $user['jrec_area'];
             $department = $user['jrec_department'];
             $outlet = $user['jrec_outlet'];
             $company = $user['company'];

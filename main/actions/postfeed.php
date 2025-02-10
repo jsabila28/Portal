@@ -6,19 +6,17 @@ try {
     $port_db = Database::getConnection('port');
     $hr_db = Database::getConnection('hr');
 
-    // Cache file for each page
     $page = isset($_POST['page']) ? (int) $_POST['page'] : 1;
-    $items_per_page = 5;
+    $items_per_page = 3;
     $offset = ($page - 1) * $items_per_page;
     $cacheFile = "cache/postfeeddata_page_{$page}.json";
-    $cacheTime = 20 * 20; // 30 minutes
+    $cacheTime = 20 * 20; 
 
     if (file_exists($cacheFile) && (time() - filemtime($cacheFile)) < $cacheTime) {
         $data = json_decode(file_get_contents($cacheFile), true);
     } else {
         $currentYear = date('Y');
 
-        // Prepare SQL query with pagination
         $stmt = $port_db->prepare("
             SELECT *
             FROM tbl_announcement a
@@ -34,7 +32,6 @@ try {
             LIMIT :offset, :limit
         ");
 
-        // Bind parameters
         $stmt->bindValue(':company', $company, PDO::PARAM_STR);
         $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
         $stmt->bindValue(':limit', $items_per_page, PDO::PARAM_INT);
@@ -42,7 +39,6 @@ try {
         
         $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        // Save posts to the cache file
         file_put_contents($cacheFile, json_encode($data));
         
     }
@@ -103,13 +99,13 @@ try {
                 $sources = $imageMatches[1];
 
                 foreach ($sources as $imgv) {
-                    echo '<img class="img-fluid" style="max-height: 500px !important;cursor: pointer;" src="https://teamtngc.com/hris2/pages/announcement/' . htmlspecialchars($imgv) . '">';
+                    echo '<img class="img-fluid" style="max-height: 500px !important;cursor: pointer;" src="https://teamtngc.com/hris2/pages/announcement/' . htmlspecialchars($imgv) . '" onclick="openPostOverlay(\'https://teamtngc.com/hris2/pages/announcement/' . htmlspecialchars($imgv) . '\')">';
                 }
 
-            }else if(strpos($row['ann_content'], '<figure') !== false){
+            }else if(strpos($row['ann_content'], '<figure onclick="openPostOverlay(\'https://teamtngc.com/hris2/pages/announcement' . $row['ann_content'] . '\')"') !== false){
                 echo str_replace('../announcement', 'https://teamtngc.com/hris2/pages/announcement', $row['ann_content']);
             }else{
-                echo '<img class="img-fluid" style="max-height: 500px !important;cursor: pointer;" src="' . htmlspecialchars($row['ann_content']) . '">';
+                echo '<img class="img-fluid" style="max-height: 500px !important;cursor: pointer;" src="' . htmlspecialchars($row['ann_content']) . '" onclick="openPostOverlay(\'https://teamtngc.com/hris2/pages/announcement/' . htmlspecialchars($imgv) . '\')">';
             }
             // echo "".$row['ann_content']."";
             echo '</div>'; // Close cardbox-item
@@ -370,7 +366,7 @@ try {
             echo '<div class="media-body" id="comment">';
             echo '<div class="textarea-wrapper">';
             echo '<input type="hidden" name="com-id" value="' . htmlspecialchars($row['ann_id']) . '" />';
-            echo '<input type="text" name="Mycomment-' . htmlspecialchars($row['ann_id']) . '" placeholder="Write a comment..." id="Mycomment-' . htmlspecialchars($row['ann_id']) . '" class="emojiable-option"></input>';
+            echo '<input type="text" name="Mycomm-' . htmlspecialchars($row['ann_id']) . '" placeholder="Write a comment..." id="Mycomment-' . htmlspecialchars($row['ann_id']) . '" class="emojiable-option"></input>';
             echo '<i class="ti-face-smile icon emoji-icon" onclick="showDiv(' . $row['ann_id'] . ')"></i>';
             echo '</div>'; // Close textarea-wrapper
             echo '<a href="#" id="saveComment-' . htmlspecialchars($row['ann_id']) . '" onclick="saveComment(' . htmlspecialchars($row['ann_id']) . '); return false;"><img src="assets/img/send_icon.png" height="30" width="30"/></a>';
@@ -842,47 +838,5 @@ try {
 }
 ?>
 <script>
-function showDiv(uniqueId) {
-    const hiddenDiv = document.getElementById('hidden-div-' + uniqueId);
-    if (hiddenDiv) {
-        hiddenDiv.style.display = hiddenDiv.style.display === 'none' ? 'block' : 'none';
-    }
-}
-function showEmoji(emojiId) {
-    const emojiDiv = document.getElementById('emoji-div-' + emojiId);
-    if (emojiDiv) {
-        emojiDiv.style.display = emojiDiv.style.display === 'none' ? 'block' : 'none';
-    }
-}
-function insertEmoji(inputId, emojiCode) {
-    const inputField = document.getElementById(inputId);
 
-    // Decode the emoji code to get the actual emoji
-    const tempElement = document.createElement('span');
-    tempElement.innerHTML = emojiCode;
-    const emoji = tempElement.textContent || tempElement.innerText;
-
-    if (inputField) {
-        inputField.value += emoji; // Append the actual emoji to the input field
-    } else {
-        console.error('Input field not found:', inputId);
-    }
-}
-document.addEventListener('DOMContentLoaded', () => {
-  const tabs = document.querySelectorAll('.emoji-tab-btn');
-  const panels = document.querySelectorAll('.emoji-tab-panel');
-
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      // Remove active class from all tabs and panels
-      tabs.forEach(t => t.classList.remove('active'));
-      panels.forEach(p => p.classList.remove('active'));
-
-      // Add active class to the clicked tab and corresponding panel
-      tab.classList.add('active');
-      const panelId = tab.getAttribute('data-tab');
-      document.getElementById(panelId).classList.add('active');
-    });
-  });
-});
 </script>

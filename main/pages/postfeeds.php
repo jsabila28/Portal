@@ -51,7 +51,7 @@
                         <?php 
                             foreach ($birthday as $b) {
                         ?>
-                        <a href="#" class="pull-left" style="position: relative;width: 55px;margin-right: 60px;">
+                        <a href="#" class="pull-left" style="position: relative;width: 80px;margin-right: 60px;">
                             <img src="/Portal/assets/img/birthday.gif" alt="" style="width: 50px;height: 50px;">
                             <!-- Mood icon at the top right corner -->
                             <div class="right-birthday">
@@ -328,186 +328,14 @@
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0/html2canvas.min.js"></script>
 <script>
-    let page = 1;
-
-    function loadMorePosts() {
-        $('#loading').show();
-        $.ajax({
-            url: 'post',
-            type: 'POST',
-            data: { page: page },
-            success: function(response) {
-                $('#loading').hide();
-                if (response.trim() !== '') {
-                    $('#myDiv').append(response);
-                    page++;
-                } else {
-                    $('#loading').html('No more posts available.');
-                }
-            }
-        });
+document.addEventListener("DOMContentLoaded", function() {
+    window.openPostOverlay = function(src) {
+        document.getElementById('overlayImage').src = src;
+        document.getElementById('imageOverlay').style.display = 'flex';
     }
 
-    // Initial load
-    $(document).ready(function() {
-        loadMorePosts();
-
-        // Detect when the user reaches the bottom of the page
-        $(window).scroll(function() {
-            if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
-                loadMorePosts();
-            }
-        });
-    });
-
-    // Get elements
-    const firstPick = document.getElementById('first-pick');
-    const secondPick = document.getElementById('second-pick');
-    const firstPicker = document.getElementById('first-picker');
-    const secondPicker = document.getElementById('second-picker');
-    const textpost = document.getElementById('post-desc');
-    const addTextPost = document.getElementById('add-text-post');
-    const image = document.getElementById('img-back');
-    const back = document.getElementById('back-picker');
-    const post = document.getElementById('post-btn');
-    const post2 = document.getElementById('post-btn2');
-    const textArea = document.getElementById('post-desc2');
-
-    firstPicker.addEventListener('click', () => {
-        firstPick.style.display = 'none';
-        secondPick.style.display = 'flex';
-    });
-
-    secondPicker.addEventListener('click', () => {
-        secondPick.style.display = 'none';
-        firstPick.style.display = 'flex';
-    });
-
-    image.addEventListener('click', () => {
-        textpost.style.display = 'none';
-        addTextPost.style.display = 'block';
-        post.style.display = 'none';
-        post2.style.display = 'block';
-    });
-
-    back.addEventListener('click', () => {
-        textpost.style.display = 'block';
-        addTextPost.style.display = 'none';
-        post.style.display = 'block';
-        post2.style.display = 'none';
-    });
-
-    // Set background image selection
-    document.querySelectorAll('#second-pick .background-picker img').forEach(image => {
-        image.addEventListener('click', () => {
-            const selectedBackground = image.getAttribute('data-bg');
-            if (selectedBackground) {
-                addTextPost.style.backgroundImage = `url('${selectedBackground}')`;
-                addTextPost.style.backgroundSize = 'cover';
-                addTextPost.style.backgroundPosition = 'center';
-            }
-        });
-    });
-
-document.getElementById('post-btn2').addEventListener('click', (event) => {
-    event.preventDefault();
-
-    const selectedAudience = document.querySelector('input[name="audience"]:checked');
-    const audienceValue = selectedAudience ? selectedAudience.value : null;
-
-    if (!audienceValue) {
-        alert('Please select an audience before posting.');
-        return;
+    window.closeImageOverlay = function() {
+        document.getElementById('imageOverlay').style.display = 'none';
     }
-
-    // Ensure fonts are loaded before rendering
-    document.fonts.ready.then(() => {
-        const dpi = window.devicePixelRatio || 1;
-        html2canvas(addTextPost, {
-            scale: 10, // Increase scale for better resolution
-            useCORS: true, // Handle cross-origin resources
-            logging: true, // Enable debug logs
-        })
-        .then(canvas => {
-            const imageData = canvas.toDataURL('image/png');
-            // const imageData = canvas.toDataURL('image/png', 1.0);
-            if (!imageData) {
-                alert('Failed to generate image data.');
-                return;
-            }
-
-            const content = textArea.value;
-
-            fetch('save_post', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    image: imageData,
-                    content: content,
-                    audience: audienceValue,
-                }),
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert('Post saved successfully!');
-                } else {
-                    alert('Failed to save the post.');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-        })
-        .catch(error => {
-            console.error('Error capturing canvas:', error);
-        });
-    });
 });
-const showIcon = document.getElementById('showIcon');
-    const imageInput = document.getElementById('imageInput');
-    const previewContainer = document.getElementById('previewContainer');
-
-    // Open file input when the fixed div is clicked
-    showIcon.addEventListener('click', () => {
-      imageInput.click();
-    });
-
-    // Handle file selection and preview
-    imageInput.addEventListener('change', function () {
-      const files = Array.from(this.files);
-
-      // Clear previous previews
-      previewContainer.innerHTML = '';
-
-      if (files.length > 0) {
-        // Show the preview container if images are selected
-        previewContainer.style.display = 'flex';
-
-        // Determine if it's single or multiple images
-        if (files.length === 1) {
-          previewContainer.className = 'add-photos-video'; // Single image
-        } else {
-          previewContainer.className = 'add-photos-video multiple'; // Grid for multiple images
-        }
-
-        // Preview images
-        files.forEach((file) => {
-          const reader = new FileReader();
-          reader.onload = function (e) {
-            const img = document.createElement('img');
-            img.src = e.target.result;
-            img.className = 'image-preview';
-            previewContainer.appendChild(img);
-          };
-          reader.readAsDataURL(file);
-        });
-      } else {
-      }
-
-    });
-
-
 </script>
