@@ -632,3 +632,34 @@ url(https://static.xx.fbcdn.net/rsrc.php/v3/yX/r/QryT_9DQQgy.png);
 .icon{
     cursor: pointer;
 }
+#mention-list {
+    position: absolute;
+    background: white;
+    border: 1px solid #ccc;
+    display: none;
+    width: 200px;
+    max-height: 150px;
+    z-index: 1;
+    font-size: 12px;
+}
+.mention-list {
+    position: absolute;
+    background: white;
+    border: 1px solid #ccc;
+    display: none;
+    width: 200px;
+    max-height: 150px;
+    z-index: 1;
+    font-size: 12px;
+}
+.mention-item {
+    padding: 5px;
+    cursor: pointer;
+}
+.mention-item:hover {
+    background: #f0f0f0;
+}
+.textarea-wrapper {
+    position: relative;
+    display: inline-block;
+}

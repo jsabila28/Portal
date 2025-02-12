@@ -110,7 +110,10 @@
                                                         </div> 
                                                     </div> 
                                                     <div class="post-content"> 
-                                                        <textarea name="post-desc1" id="post-desc" cols="30" rows="5" placeholder="What's on you mind ?"></textarea>
+                                                        <div class="textarea-wrapper">
+                                                            <textarea name="post-desc1" id="post-desc" cols="30" rows="5" placeholder="What's on you mind ?"></textarea>
+                                                            <div id="mention-list"></div>
+                                                        </div>
                                                         <div id="previewContainer" class="add-photos-video" style="display: none;"></div> 
                                                         <div id="add-text-post" class="">
                                                             <textarea name="post-desc" id="post-desc2" cols="30" rows="5" placeholder="What's on you mind ?"></textarea>
@@ -338,4 +341,5 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById('imageOverlay').style.display = 'none';
     }
 });
+
 </script>

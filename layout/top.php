@@ -195,8 +195,63 @@
 								<li class="header-notification">
         							<a href="#">
         								<img src="/Portal/assets/img/notif.png" width="30" height="30">
+        								<span class="badge">5</span>
         							</a>
-    							</li>
+									<ul class="show-notification">
+									  <li>
+									   <h6>Notifications</h6>
+									   <label class="label label-danger">New</label>
+									 </li>
+									<?php
+									require_once($sr_root."/db/db.php");
+								
+									try {
+									    $port = Database::getConnection('port');
+									} catch (\PDOException $e) {
+									    throw new \PDOException($e->getMessage(), (int)$e->getCode());
+									}
+										$userId = $_SESSION['user_id']; // Logged-in user ID
+										
+										$sql = "SELECT * 
+										        FROM tbl_mention m
+										        -- JOIN tbl_announcement a ON m.content_id = a.ann_id
+												LEFT JOIN tbl201_basicinfo b ON b.`bi_empno` = m.`mentionby_user`
+										        WHERE m.mentioned_userid = ?
+										        ORDER BY m.timedate DESC";
+										
+										$stmt = $port->prepare($sql);
+										$stmt->execute([$userId]);
+										$mentions = $stmt->fetchAll(PDO::FETCH_ASSOC);
+										
+										foreach ($mentions as $mention) {
+											if ($mention['type'] == 'post') {
+											echo '<li>
+												     <div class="media">
+												      <img class="d-flex align-self-center" style="border-radius: 50%;width: 38px;height: 38px;" src="https://e-classtngcacademy.s3.ap-southeast-1.amazonaws.com/e-class/Thumbnail/img/'.htmlspecialchars($mention["bi_empno"]).'.JPG">
+												      <div class="media-body">
+												       <h5 class="notification-user">' . htmlspecialchars($mention['bi_empfname'].' '.$mention['bi_emplname']) . '</h5>
+												       <p class="notification-msg">Mentioned you in a post.</p>
+												       <span class="notification-time">30 minutes ago</span>
+												     </div>
+												   </div>
+												  </li>';
+										    // echo "<p>You were mentioned in: <strong>" . htmlspecialchars($mention['ann_title']) . "</strong></p>";
+											}else{
+											echo '<li>
+												     <div class="media">
+												      <img class="d-flex align-self-center" style="border-radius: 50%;width: 38px;height: 38px;" src="https://teamtngc.com/hris2/pages/empimg/'.htmlspecialchars($mention["bi_empno"]).'.JPG">
+												      <div class="media-body">
+												       <h5 class="notification-user">' . htmlspecialchars($mention['bi_empfname'].' '.$mention['bi_emplname']) . '</h5>
+												       <p class="notification-msg">Mentioned you in a comment.</p>
+												       <span class="notification-time">30 minutes ago</span>
+												     </div>
+												   </div>
+												  </li>';	
+											}
+										}
+									?>
+									</ul>
+								</li>
     							<div class="modal fade" id="event-Modal" tabindex="-1" role="dialog">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">

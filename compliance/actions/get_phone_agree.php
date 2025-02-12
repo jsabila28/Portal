@@ -77,7 +77,7 @@
        <span id="userName">
        Phone Agreement
        </span>
-       <a class="btn btn-primary btn-mini" style="width: 10%;" href="ircreate" data-toggle="modal" data-target="#myModal">NEW</a>
+       <a class="btn btn-primary btn-mini" style="width: 10%;" data-toggle="modal" data-target="#myModal">NEW</a>
      </div>
        <div class="col-md-2">
             <div class="input-group input-group-sm" style="margin-bottom: 0px !important;margin-top: 10px !important;">

@@ -57,13 +57,110 @@ $(document).ready(function () {
         });
     });
 
+$(document).ready(function(){
+    let mentionList = $("#mention-list");
+    let textarea = $("#post-desc");
+
+    textarea.on("input", function() {
+        let cursorPos = this.selectionStart;
+        let text = $(this).val().substring(0, cursorPos);
+        let match = text.match(/@([\w]*)$/);
+
+        if (match) {
+            let searchQuery = match[1];
+
+            if (searchQuery.length > 0) {
+                $.ajax({
+                    url: "persons",
+                    method: "POST",
+                    data: { query: searchQuery },
+                    success: function(response) {
+                        mentionList.html(response).show();
+                    }
+                });
+            } else {
+                mentionList.hide();
+            }
+        } else {
+            mentionList.hide();
+        }
+    });
+
+    $(document).on("click", ".mention-item", function() {
+        let name = $(this).text();
+        let text = textarea.val();
+        let cursorPos = textarea[0].selectionStart;
+        let textBefore = text.substring(0, cursorPos).replace(/@[\w]*$/, "@" + name + " ");
+        let textAfter = text.substring(cursorPos);
+
+        textarea.val(textBefore + textAfter).focus();
+        mentionList.hide();
+    });
+
+    $(document).click(function(event) {
+        if (!$(event.target).closest(".textarea-wrapper").length) {
+            mentionList.hide();
+        }
+    });
+});
+
+$(document).ready(function(){
+    let mentionList = $("#mention-list");
+    let textarea = $("#post-desc2");
+
+    textarea.on("input", function() {
+        let cursorPos = this.selectionStart;
+        let text = $(this).val().substring(0, cursorPos);
+        let match = text.match(/@([\w]*)$/);
+
+        if (match) {
+            let searchQuery = match[1];
+
+            if (searchQuery.length > 0) {
+                $.ajax({
+                    url: "persons",
+                    method: "POST",
+                    data: { query: searchQuery },
+                    success: function(response) {
+                        mentionList.html(response).show();
+                    }
+                });
+            } else {
+                mentionList.hide();
+            }
+        } else {
+            mentionList.hide();
+        }
+    });
+
+    $(document).on("click", ".mention-item", function() {
+        let name = $(this).text();
+        let text = textarea.val();
+        let cursorPos = textarea[0].selectionStart;
+        let textBefore = text.substring(0, cursorPos).replace(/@[\w]*$/, "@" + name + " ");
+        let textAfter = text.substring(cursorPos);
+
+        textarea.val(textBefore + textAfter).focus();
+        mentionList.hide();
+    });
+
+    $(document).click(function(event) {
+        if (!$(event.target).closest(".textarea-wrapper").length) {
+            mentionList.hide();
+        }
+    });
+});
+
+
+
+
     // Handle new post creation
     $('#post-btn').click(function (e) {
         e.preventDefault();
 
         var postedBy = $('input[name="posted-by"]').val();
-        var postDesc = $('.post-desc1').val();
-        var postDesc = $('#post-desc2').val();
+        var postDesc = $('#post-desc').val();
+        // var postDesc = $('#post-desc2').val();
         var audience = $('input[name="audience"]:checked').val();
         var postContent = new FormData();
 
@@ -85,23 +182,14 @@ $(document).ready(function () {
             success: function (response) {
                 alert(response);
                 $('#default-Modal').modal('hide');
-                resetModalForm();
+                location.reload(); // Reload the page after saving
             },
             error: function (xhr, status, error) {
                 console.error(error);
             }
         });
-    });
 
-    function resetModalForm() {
-        $('#post-desc').val('');
-        $('#post-desc2').val('');
-        $('input[name="audience"]').prop('checked', false);
-        $('#file-input').val('');
-        $('#image-video').css('background-image', 'url(assets/img/upload.png)');
-        $('.post-btn').prop('disabled', true);
-        $('#add-photo-video').addClass('hide-image');
-    }
+    });
 
     $('#post-desc').on('input', function () {
         if ($(this).val().trim() !== '') {
@@ -319,6 +407,7 @@ document.getElementById('post-btn2').addEventListener('click', (event) => {
             .then(data => {
                 if (data.success) {
                     alert('Post saved successfully!');
+                    location.reload();
                 } else {
                     alert('Failed to save the post.');
                 }
