@@ -120,11 +120,14 @@
 							<i id="toggle-sidebar" class="ti-menu" style="color: black;"></i>
 						</a>
 						<a href="/Portal">
-							<a href="/Portal">
-							<img class="img-fluid" style="float: left;margin-left: 15px;" src="https://teamtngc.com/hris2/pages/hricon.ico" width="40px" alt="Theme-Logo">
-							<!-- <b>PORTAL</b> -->
+							<img class="img-fluid" style="float: left;margin-left: 15px;" src="/Portal/assets/img/coffi.png" width="40px" alt="Theme-Logo">
 						</a>
-						</a>
+						<div class="search-container">
+						    <input type="text" class="search-input" placeholder="Search Person">
+						    <button class="search-button">
+						        <i class="fa fa-search"></i>
+						    </button>
+						</div>
 						<a class="mobile-options">
 							<i class="ti-more" style="color: black;"></i>
 						</a>

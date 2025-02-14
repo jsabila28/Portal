@@ -28,9 +28,9 @@
     </a>
   </li>
   <li>
-    <a href="#dashboard">
+    <a href="howto">
       <p>
-        <img src="assets/img/abs.png" width="40" height="40" style="margin-right: 5px;">Annual Budget
+        <img src="assets/img/howto.png" width="40" height="40" style="margin-right: 5px;">How To
       </p>
     </a>
   </li>

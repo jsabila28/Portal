@@ -56,6 +56,9 @@ document.addEventListener('DOMContentLoaded', function () {
             formData.append('Bprovince', getVisibleValue(['province-birth1','province-birth2','province-birth3']));
             formData.append('Bmunicipal', getVisibleValue(['municipal-birth1','municipal-birth2','municipal-birth3']));
             formData.append('Bbrngy', getVisibleValue(['brngy-birth1','brngy-birth2','brngy-birth3']));
+            formData.append('permaddlocInput', document.getElementById('permaddlocation')?.value || '');
+            formData.append('curaddlocInput', document.getElementById('curaddlocation')?.value || '');
+            formData.append('birthaddlocInput', document.getElementById('birthaddlocation')?.value || '');
             
             // formData.append('Pprovince', document.getElementById('province-perm1')?.value || '');
             // formData.append('Pmunicipal', document.getElementById('municipal-perm1')?.value || '');

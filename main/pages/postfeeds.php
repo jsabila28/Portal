@@ -28,6 +28,8 @@
                                     echo'<img id="img-emoji" src="/Portal/assets/reactions/Tireds.JPG">'; 
                                 }elseif ($v['m_mood'] == 'nuh') {
                                     echo'<img id="img-emoji" src="/Portal/assets/reactions/lough.WEBP">'; 
+                                }elseif ($v['m_mood'] == 'happy') {
+                                    echo'<img id="img-emoji" src="/Portal/assets/reactions/happy.JPG">'; 
                                 } ?>
                             </div>
                         </a>

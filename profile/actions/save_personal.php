@@ -42,6 +42,9 @@ $height = trim($_POST['height']);
 $weight = trim($_POST['weight']);
 $bloodtype = trim($_POST['bloodtype']);
 $dialect = trim($_POST['dialect']);
+$permaddlocInput = trim($_POST['permaddlocInput']);
+$curaddlocInput = trim($_POST['curaddlocInput']);
+$birthaddlocInput = trim($_POST['birthaddlocInput']);
 
 try {
     $port_db = Database::getConnection('port');
@@ -157,7 +160,10 @@ try {
             add_cur_brngy = :add_cur_brngy, 
             add_birth_prov = :add_birth_prov, 
             add_birth_city = :add_birth_city, 
-            add_birth_brngy = :add_birth_brngy, 
+            add_birth_brngy = :add_birth_brngy,  
+            add_perm_location = :add_perm_location,
+            add_cur_location = :add_cur_location, 
+            add_birth_location = :add_birth_location, 
             add_status = :add_status 
             WHERE add_id = :add_id");
 
@@ -171,6 +177,9 @@ try {
             'add_birth_prov' => $Bprovince,
             'add_birth_city' => $Bmunicipal,
             'add_birth_brngy' => $Bbrngy,
+            'add_perm_location' => $permaddlocInput,
+            'add_cur_location' => $curaddlocInput,
+            'add_birth_location' => $birthaddlocInput,
             'add_status' => '1',
             'add_id' => $address_info['add_id']
         ]);
@@ -187,6 +196,9 @@ try {
             add_birth_prov, 
             add_birth_city, 
             add_birth_brngy, 
+            add_perm_location,
+            add_cur_location,
+            add_birth_location,
             add_status) VALUES (
             :add_empno, 
             :add_perm_prov, 
@@ -197,7 +209,10 @@ try {
             :add_cur_brngy, 
             :add_birth_prov, 
             :add_birth_city, 
-            :add_birth_brngy, 
+            :add_birth_brngy,
+            :add_perm_location, 
+            :add_cur_location, 
+            :add_birth_location,  
             :add_status)");
 
         $stmt->execute([
@@ -211,6 +226,9 @@ try {
             'add_birth_prov' => $Bprovince,
             'add_birth_city' => $Bmunicipal,
             'add_birth_brngy' => $Bbrngy,
+            'add_perm_location' => $permaddlocInput,
+            'add_cur_location' => $curaddlocInput,
+            'add_birth_location' => $birthaddlocInput,
             'add_status' => '1'
         ]);
 

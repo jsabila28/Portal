@@ -43,22 +43,28 @@
           <small><?= date("F j, Y", strtotime($memo['memo_date'])) ?> | <?=$memo['memo_no'];?></small>
         </a>
         </li>
-        <div class="modal fade" id="memo<?=$memo['memo_no'];?>" tabindex="-1" role="dialog">
+        
+        <?php } } ?>
+    </ol>
+        <?php
+            if (!empty($memoAll)) {
+                foreach ($memoAll as $ml) {
+        ?>
+        <div class="modal fade" id="memo<?=$ml['memo_no'];?>" tabindex="-1" role="dialog">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title"><?=$memo['memo_subject'];?></h4>
+                        <h4 class="modal-title"><?=$ml['memo_subject'];?></h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true"><i style="cursor: pointer;font-size: 30px;" class="fa fa-times-circle"></i></span>
                         </button>
                     </div>
                     <div class="modal-body">
-                      <iframe class="pdf" src="https://teamtngc.com/hris2/pages/memo/<?=$memo['memo_pdf'];?>" width="100%" height="500"></iframe>
+                      <iframe class="pdf" src="https://teamtngc.com/hris2/pages/memo/<?=$ml['memo_pdf'];?>" width="100%" height="500"></iframe>
                         <!-- <embed src="<?=$memo['memo_pdf'];?>"></embed> -->
                     </div>
                 </div>
             </div>
         </div>
         <?php } } ?>
-    </ol>
 </div>

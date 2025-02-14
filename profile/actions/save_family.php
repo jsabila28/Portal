@@ -37,7 +37,7 @@ try {
 
     // Insert data into the database
     $stmt = $port_db->prepare("
-        INSERT INTO  tbl201_family (fam_empno, fam_relationship, fam_lastname, fam_firstname, fam_midname, fam_maidenname, fam_suffix, fam_contact, fam_birthdate, fam_sex, fam_occupation, fam_workplace, fam_workadd, status) 
+        INSERT INTO  tbl201_family (fam_empno, fam_relationship, fam_lastname, fam_firstname, fam_midname, fam_maidenname, fam_suffix, fam_contact, fam_birthdate, fam_sex, fam_occupation, fam_workplace, fam_add, status) 
         VALUES 
         (:empno, :relationship, :lastname, :firstname, :midname, :maidenname, :suffix, :contactNumber, :birthdate, :sex, :occupation, :workplace, :workAddress, :stat)
     ");

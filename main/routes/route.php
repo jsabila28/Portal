@@ -7,6 +7,7 @@ $routes = [
 	'/mood' => 'main/pages/mood.php',
 	'/add_memo' => 'main/pages/add_memo.php',
 	'/login' => 'main/pages/login.php',
+	'/howto' => 'main/pages/howto.php',
 	'/signIn' => 'main/actions/signIn.php',
 	'/getUser' => 'main/actions/get_user.php',
 	'/signOut' => 'main/actions/logout.php',

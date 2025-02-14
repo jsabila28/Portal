@@ -2,19 +2,20 @@
 <div class="page-wrapper">
     <div class="page-body">
             <div class="mood-title" align="center">
-                <h4>Share how you feel today!</h4>
+                <h4>Hi! Every feeling is valid—what’s on your mind?</h4>
             </div>
         <div class="row">
             <div id="moods" class="moods">
                 <div class="mood-content">
                    <div class="mood-list">
+                       <a href="#" class="mood-option" data-mood="happy"><img src="/Portal/assets/reactions/happy.GIF"/></a>
+                       <a href="#" class="mood-option" data-mood="nuh"><img src="/Portal/assets/reactions/hahaha.GIF"/></a>
+                       <a href="#" class="mood-option" data-mood="inlove"><img src="/Portal/assets/reactions/inlove.GIF"/></a>
                        <a href="#" class="mood-option" data-mood="crying"><img src="/Portal/assets/reactions/crying.GIF"/></a>
                        <a href="#" class="mood-option" data-mood="anger"><img src="/Portal/assets/reactions/anger.GIF"/></a>
                        <a href="#" class="mood-option" data-mood="eyeroll"><img src="/Portal/assets/reactions/eyeroll.GIF"/></a>
-                       <a href="#" class="mood-option" data-mood="inlove"><img src="/Portal/assets/reactions/inlove.GIF"/></a>
                        <a href="#" class="mood-option" data-mood="sleepy"><img src="/Portal/assets/reactions/sleepy.GIF"/></a>
                        <a href="#" class="mood-option" data-mood="tired"><img src="/Portal/assets/reactions/tired.GIF"/></a>
-                       <a href="#" class="mood-option" data-mood="nuh"><img src="/Portal/assets/reactions/hahaha.GIF"/></a>
                    </div>
                 </div>
             </div>

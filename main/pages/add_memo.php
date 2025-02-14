@@ -172,15 +172,15 @@ $outlet = Portal::GetOutlet();
                                     </div>
                                     <div id="emp" class="memo-tab">
                                       <div class="table-container">
-                                        <table>
+                                        <table id="emp-table">
                                             <thead>
                                                 <tr>
                                                     <th></th>
-                                                    <th><input type="text" onkeyup="filterColumn(1)" placeholder="Search Employee"></th>
-                                                    <th><input type="text" onkeyup="filterColumn(2)" placeholder="Search Company"></th>
-                                                    <th><input type="text" onkeyup="filterColumn(3)" placeholder="Search Department"></th>
-                                                    <th><input type="text" onkeyup="filterColumn(4)" placeholder="Search Area"></th>
-                                                    <th><input type="text" onkeyup="filterColumn(5)" placeholder="Search Outlet"></th>
+                                                    <th><input type="text" class="column-search" placeholder="Search Employee"></th>
+                                                    <th><input type="text" class="column-search" placeholder="Search Company"></th>
+                                                    <th><input type="text" class="column-search" placeholder="Search Department"></th>
+                                                    <th><input type="text" class="column-search" placeholder="Search Area"></th>
+                                                    <th><input type="text" class="column-search" placeholder="Search Outlet"></th>
                                                 </tr>
                                                 <tr>
                                                     <th></th>
@@ -373,25 +373,16 @@ $outlet = Portal::GetOutlet();
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-function filterColumn(colIndex) {
-    var input, filter, table, tr, td, i, txtValue;
-    input = document.querySelectorAll("thead input")[colIndex - 1]; // Adjust for index
-    filter = input.value.toUpperCase();
-    table = document.querySelector("table");
-    tr = table.getElementsByTagName("tr");
+$(document).ready(function () {
+    $(".column-search").on("keyup", function () {
+        var index = $(this).parent().index();
+        var value = $(this).val().toLowerCase();
 
-    for (i = 2; i < tr.length; i++) { // Skip first two header rows
-        td = tr[i].getElementsByTagName("td")[colIndex];
-        if (td) {
-            txtValue = td.textContent || td.innerText;
-            if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                tr[i].style.display = "";
-            } else {
-                tr[i].style.display = "none";
-            }
-        }        
-    }
-}
+        $("#emp-table tbody tr").filter(function () {
+            $(this).toggle($(this).children().eq(index).text().toLowerCase().indexOf(value) > -1);
+        });
+    });
+});
 document.querySelectorAll('.nav-pills li').forEach(tab => {
      tab.addEventListener('click', () => {
        const activeTab = document.querySelector('.nav-pills .active');

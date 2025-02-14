@@ -81,29 +81,41 @@ try {
             // ADDRESS INFO START
             $stmt = $port_db->prepare("
                 SELECT 
+                    -- CONCAT(permanent.pr_name,', ',permanent.ct_name,', ',permanent.br_name,', ',permanent.add_perm_location) AS permanent_add,
+                    -- CONCAT(current.pr_name,', ',current.ct_name,', ',current.br_name,', ',current.add_cur_location) AS current_add,
+                    -- CONCAT(birth.pr_name,', ',birth.ct_name,', ',birth.br_name,', ',birth.add_birth_location) AS birth_add,
                     permanent.pr_name AS permanent_province,
                     permanent.ct_name AS permanent_city,
+                    permanent.br_name AS permanent_brngy,
+                    permanent.add_perm_location AS permanent_location,
                     current.pr_name AS current_province,
                     current.ct_name AS current_city,
+                    current.br_name AS current_brngy,
+                    current.add_cur_location AS cur_location,
                     birth.pr_name AS birth_province,
-                    birth.ct_name AS birth_city
+                    birth.ct_name AS birth_city,
+                    birth.br_name AS birth_brngy,
+                    birth.add_birth_location AS birth_location
                 FROM (
-                    SELECT a.*, b.*, c.*
+                    SELECT a.*, b.*, c.*, d.*
                     FROM tbl201_address a
                     LEFT JOIN tbl_province b ON b.pr_code = a.add_perm_prov
                     LEFT JOIN tbl_municipality c ON c.ct_id = a.add_perm_city
+                    LEFT JOIN tbl_barangay d ON d.br_id = a.add_perm_brngy
                 ) AS permanent
                 JOIN (
-                    SELECT a.*, b.*, c.*
+                    SELECT a.*, b.*, c.*, d.*
                     FROM tbl201_address a
                     LEFT JOIN tbl_province b ON b.pr_code = a.add_cur_prov
                     LEFT JOIN tbl_municipality c ON c.ct_id = a.add_cur_city
+                    LEFT JOIN tbl_barangay d ON d.br_id = a.add_cur_brngy
                 ) AS current ON current.add_empno = permanent.add_empno
                 JOIN (
-                    SELECT a.*, b.*, c.*
+                    SELECT a.*, b.*, c.*, d.*
                     FROM tbl201_address a
                     LEFT JOIN tbl_province b ON b.pr_code = a.add_birth_prov
                     LEFT JOIN tbl_municipality c ON c.ct_id = a.add_birth_city
+                    LEFT JOIN tbl_barangay d ON d.br_id = a.add_birth_brngy
                 ) AS birth ON birth.add_empno = permanent.add_empno
                 WHERE permanent.add_empno = ?
             ");
@@ -119,7 +131,7 @@ try {
                             <i class="fa fa-home" aria-hidden="true"></i>
                         </div>
                         <div class="content">
-                          <p>' . htmlspecialchars($a['permanent_city'] . ', ' . $a['permanent_province']) . '</p><br> 
+                          <p>' . htmlspecialchars($a['permanent_location']).', ' . htmlspecialchars($a['permanent_brngy']).', '.htmlspecialchars($a['permanent_city']).', '.htmlspecialchars($a['permanent_province']).'</p><br> 
                           <span>Permanent Address</span>
                         </div>
                       </div>';
@@ -129,7 +141,7 @@ try {
                           <i class="icofont icofont-location-pin"></i>
                         </div>
                         <div class="content">
-                          <p>' . htmlspecialchars($a['current_city'] . ', ' . $a['current_province']) . '</p><br> 
+                          <p>' . htmlspecialchars($a['cur_location']).', ' . htmlspecialchars($a['current_brngy']).', '.htmlspecialchars($a['current_city']).', '.htmlspecialchars($a['current_province']).'</p><br> 
                           <span>Current Address</span>
                         </div>
                       </div>';
@@ -139,7 +151,7 @@ try {
                           <i class="icofont icofont-social-gnome"></i>
                         </div>
                         <div class="content">
-                          <p>' . htmlspecialchars($a['birth_city'] . ', ' . $a['birth_province']) . '</p><br>  
+                          <p>' . htmlspecialchars($a['birth_location']).', ' . htmlspecialchars($a['birth_brngy']).', '.htmlspecialchars($a['birth_city']).', '.htmlspecialchars($a['birth_province']).'</p><br>  
                           <span>Place of Birth</span>
                         </div>
                       </div>';
@@ -427,7 +439,10 @@ try {
                                                 g.`br_id` AS C_Bid,
                                                 h.`pr_code` AS B_code,
                                                 i.`ct_id` AS B_Cid,
-                                                j.`br_id` AS B_Bid
+                                                j.`br_id` AS B_Bid,
+                                                a.`add_perm_location` AS p_location,
+                                                a.`add_cur_location` AS c_location,
+                                                a.`add_birth_location` AS b_location
                                             FROM 
                                                 tbl201_address a
                                             LEFT JOIN 
@@ -457,116 +472,178 @@ try {
                                             if (!empty($address)) {
                                               foreach ($address as $ad) {
                                             echo'<div id="pers-name">
-                                                <label>Permanent Address </label>
-                                                <label> 
+                                                <label>Permanent Address </label>';
+                                            if (!empty($ad['P_province'])) {
+                                            echo'<label> 
                                                     <select class="form-control" id="province-perm" name="Pprovince">
                                                       <option value="' . htmlspecialchars($ad['P_code']) . '">' . htmlspecialchars($ad['P_province']) . '</option>  
                                                     </select>
-                                                </label>
-                                                <label> 
-                                                    <select class="form-control" id="municipal-perm1" name="Pmunicipal">
-                                                        <option value="' . htmlspecialchars($ad['P_Cid']) . '">' . htmlspecialchars($ad['P_city']) . '</option>
-                                                    </select>
-                                                </label>
-                                                <label> 
-                                                    <select class="form-control" id="brngy-perm1" name="Pbrngy">
-                                                        <option value="' . htmlspecialchars($ad['P_Bid']) . '">' . htmlspecialchars($ad['P_barangay']) . '</option>
-                                                    </select>
-                                                </label>
-                                            </div>
-                                            <div id="pers-name">
-                                                <label>Current Address </label>
-                                                <label> 
-                                                    <select class="form-control" id="rovince-cur1" name="Cprovince">
-                                                        <option selected value="' . htmlspecialchars($ad['C_code']) . '">' . htmlspecialchars($ad['C_province']) . '</option>
-                                                    </select>
-                                                </label>
-                                                <label> 
-                                                    <select class="form-control" id="municipal-cur1" name="Cmunicipal">
-                                                        <option value="' . htmlspecialchars($ad['C_Cid']) . '">' . htmlspecialchars($ad['C_city']) . '</option>
-                                                    </select>
-                                                </label>
-                                                <label> 
-                                                    <select class="form-control" id="municipal-birth1" name="Cbrngy">
-                                                        <option value="' . htmlspecialchars($ad['C_Bid']) . '">' . htmlspecialchars($ad['C_barangay']) . '</option>
-                                                    </select>
-                                                </label>
-                                            </div>
-                                            <div id="pers-name">
-                                                <label>Place of Birth </label>
-                                                <label> 
-                                                    <select class="form-control" id="province-birth" name="Bprovince">
-                                                        <option value="' . htmlspecialchars($ad['B_code']) . '">' . htmlspecialchars($ad['B_province']) . '</option>
-                                                    </select>
-                                                </label>
-                                                <label> 
-                                                    <select class="form-control" id="municipal-birth" name="Bmunicipal">
-                                                        <option value="' . htmlspecialchars($ad['B_Cid']) . '">' . htmlspecialchars($ad['B_city']) . '</option>
-                                                    </select>
-                                                </label>
-                                                <label> 
-                                                    <select class="form-control" id="brngy-birth" name="Bbrngy">
-                                                        <option value="' . htmlspecialchars($ad['B_Bid']) . '">' . htmlspecialchars($ad['B_barangay']) . '</option>
-                                                    </select>
-                                                </label>
-                                            </div>';
-                                              }
+                                                </label>';
                                             }else{
-                                            echo'<div id="pers-name">
-                                                <label>Permanent Address </label>
-                                                <label> 
+                                            echo '<label> 
                                                     <select class="form-control" id="province-perm3" name="Pprovince">
                                                       <option value="">Select Province</option>  
                                                     </select>
-                                                </label>
-                                                <label> 
+                                                </label>';
+                                            }
+                                            //MUNICIPALITY
+                                            if (!empty($ad['P_city'])) {
+                                            echo'<label> 
+                                                    <select class="form-control" id="municipal-perm1" name="Pmunicipal">
+                                                        <option value="' . htmlspecialchars($ad['P_Cid']) . '">' . htmlspecialchars($ad['P_city']) . '</option>
+                                                    </select>
+                                                </label>';
+                                            }else{
+                                            echo '<label> 
                                                     <select class="form-control" id="municipal-perm3" name="Pmunicipal">
                                                         <option value="">Select Municipality</option>
                                                     </select>
-                                                </label>
-                                                <label> 
+                                                </label>';
+                                            }
+                                            //BARANGAY
+                                            if (!empty($ad['P_barangay'])) {
+                                            echo'<label> 
+                                                    <select class="form-control" id="brngy-perm1" name="Pbrngy">
+                                                        <option value="' . htmlspecialchars($ad['P_Bid']) . '">' . htmlspecialchars($ad['P_barangay']) . '</option>
+                                                    </select>
+                                                </label>';
+                                            }else{
+                                            echo '<label> 
                                                     <select class="form-control" id="brngy-perm3" name="Pbrngy">
                                                         <option value="">Select Barangay</option>
                                                     </select>
-                                                </label>
-                                            </div>
+                                                </label>';
+                                            }
+                                            echo'</div>
                                             <div id="pers-name">
-                                                <label>Current Address </label>
-                                                <label> 
+                                                <label>Additional Permanent Address</label>';
+                                                //ADDITIONAL
+                                                if (!empty($ad['p_location'])) {
+                                                echo'<label style="width:566px;"> 
+                                                        <input type="text" class="form-control" name="permaddlocInput" id="permaddlocation" value="' . htmlspecialchars($ad['p_location']) . '">
+                                                    </label>';
+                                                }else{
+                                                echo '<label style="width:566px;"> 
+                                                        <input type="text" class="form-control" name="permaddlocInput" id="permaddlocation" placeholder="Block | Lot | Subdivision | Street (OPTIONAL)">
+                                                    </label>';
+                                                }
+                                            echo'</div>
+                                            <div id="pers-name">
+                                                <label>Current Address </label>';
+                                                if (!empty($ad['C_province'])) {
+                                                echo'<label> 
+                                                    <select class="form-control" id="rovince-cur1" name="Cprovince">
+                                                        <option selected value="' . htmlspecialchars($ad['C_code']) . '">' . htmlspecialchars($ad['C_province']) . '</option>
+                                                    </select>
+                                                </label>';
+                                                }else{
+                                                  echo'<label>
                                                     <select class="form-control" id="province-cur3" name="Cprovince">
                                                         <option>Select Province</option>
                                                     </select>
-                                                </label>
-                                                <label> 
+                                                    </label>';
+                                                }
+                                                if (!empty($ad['C_city'])) {
+                                                echo'<label> 
+                                                    <select class="form-control" id="municipal-cur1" name="Cmunicipal">
+                                                        <option value="' . htmlspecialchars($ad['C_Cid']) . '">' . htmlspecialchars($ad['C_city']) . '</option>
+                                                    </select>
+                                                </label>';
+                                                }else{
+                                                  echo'
                                                     <select class="form-control" id="municipal-cur3" name="Cmunicipal">
                                                         <option>Select Municipality</option>
                                                     </select>
-                                                </label>
-                                                <label> 
+                                                    ';
+                                                }
+                                                if (!empty($ad['C_barangay'])) {
+                                                echo'<label> 
+                                                    <select class="form-control" id="municipal-birth1" name="Cbrngy">
+                                                        <option value="' . htmlspecialchars($ad['C_Bid']) . '">' . htmlspecialchars($ad['C_barangay']) . '</option>
+                                                    </select>
+                                                </label>';
+                                                }else{
+                                                  echo'
+                                                  <label>
                                                     <select class="form-control" id="brngy-cur3" name="Cbrngy">
                                                         <option>Select Barangay</option>
                                                     </select>
-                                                </label>
-                                            </div>
-                                            <div id="pers-name">
-                                                <label>Place of Birth </label>
-                                                <label> 
+                                                  </label>';
+                                                }
+                                            echo'</div>';
+                                            if (!empty($ad['c_location'])) {
+                                            echo'<div id="pers-name">
+                                                     <label>Additional Current Address</label>
+                                                     <label style="width:566px;"> 
+                                                         <input type="text" class="form-control" name="curaddlocInput" id="curaddlocation" value="' . htmlspecialchars($ad['c_location']) . '">
+                                                     </label>
+                                                 </div>';
+                                            }else{
+                                            echo'<div id="pers-name">
+                                                     <label>Additional Current Address</label>
+                                                     <label style="width:566px;"> 
+                                                         <input type="text" class="form-control" name="curaddlocInput" id="curaddlocation" placeholder="Block | Lot | Subdivision | Street (OPTIONAL)">
+                                                     </label>
+                                                 </div>';
+                                            }
+                                            echo'<div id="pers-name">
+                                                <label>Place of Birth </label>';
+                                                if (!empty($ad['B_province'])) {
+                                                echo'<label> 
+                                                    <select class="form-control" id="province-birth" name="Bprovince">
+                                                        <option value="' . htmlspecialchars($ad['B_code']) . '">' . htmlspecialchars($ad['B_province']) . '</option>
+                                                    </select>
+                                                </label>';
+                                                }else{
+                                                echo'<label> 
                                                     <select class="form-control" id="province-birth3" name="Bprovince">
                                                         <option>Select Province</option>
                                                     </select>
-                                                </label>
-                                                <label> 
+                                                </label>';
+                                                }
+                                                if (!empty($ad['B_city'])) {
+                                                echo'<label> 
+                                                    <select class="form-control" id="municipal-birth" name="Bmunicipal">
+                                                        <option value="' . htmlspecialchars($ad['B_Cid']) . '">' . htmlspecialchars($ad['B_city']) . '</option>
+                                                    </select>
+                                                </label>';
+                                                }else{
+                                                echo'<label> 
                                                     <select class="form-control" id="municipal-birth3" name="Bmunicipal">
                                                         <option>Select Municipality</option>
                                                     </select>
-                                                </label>
-                                                <label> 
+                                                </label>';
+                                                }
+                                                if (!empty($ad['B_barangay'])) {
+                                                echo'<label> 
+                                                    <select class="form-control" id="brngy-birth" name="Bbrngy">
+                                                        <option value="' . htmlspecialchars($ad['B_Bid']) . '">' . htmlspecialchars($ad['B_barangay']) . '</option>
+                                                    </select>
+                                                </label>';
+                                                }else{
+                                                echo'<label> 
                                                     <select class="form-control" id="brngy-birth3" name="Bbrngy">
                                                         <option>Select Barangay</option>
                                                     </select>
+                                                </label>';
+                                                }
+                                            echo'</div>';
+                                            if (!empty($ad['b_location'])) {
+                                            echo'<div id="pers-name">
+                                                <label>Additional Birth Address</label>
+                                                <label style="width:566px;"> 
+                                                    <input type="text" class="form-control" name="birthaddlocInput" id="birthaddlocation" value="' . htmlspecialchars($ad['b_location']) . '">
                                                 </label>
                                             </div>';
-                                          }
+                                            }else{
+                                            echo '<div id="pers-name">
+                                                <label>Additional Birth Address</label>
+                                                <label style="width:566px;"> 
+                                                    <input type="text" class="form-control" name="birthaddlocInput" id="birthaddlocation" placeholder="Block | Lot | Subdivision | Street (OPTIONAL)">
+                                                </label>
+                                            </div>';
+                                            }
+                                            }
                                           echo'<div id="pers-name">
                                                 <label>Birth Date<span id="required">*</span> 
                                                     <input class="form-control" type="date" name="birthdate" id="birthdayInput" value="'. date('Y-m-d', strtotime($p['pers_birthdate'])) . '" required/>
@@ -618,7 +695,7 @@ try {
                       </div>';
                 //MODAL EDIT PROFILE END
                 // <input class="form-control" type="text" value="' . htmlspecialchars($p['pers_sex']) . '" required/>
-        }
+        }}
     } else {
         //MODAL EDIT PROFILE START
         echo '<div class="modal fade" id="Personal-' . htmlspecialchars($user_id) . '" tabindex="-1" role="dialog">

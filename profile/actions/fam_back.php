@@ -28,31 +28,38 @@ try {
                     CASE WHEN fam_relationship = 'Wife' THEN fam_contact END AS Wife_phone,
                     CASE WHEN fam_relationship = 'Wife' THEN fam_occupation END AS Wife_work,
                     CASE WHEN fam_relationship = 'Wife' THEN fam_birthdate END AS Wife_birth,
+                    CASE WHEN fam_relationship = 'Wife' THEN fam_add END AS Wife_add,
+                    CASE WHEN fam_relationship = 'Wife' THEN fam_workplace END AS Wife_workplace,
                     CASE WHEN fam_relationship = 'Husband' THEN CONCAT(fam_firstname, ' ', fam_midname, ' ', fam_lastname) END AS Husband,
                     CASE WHEN fam_relationship = 'Husband' THEN fam_contact END AS Husband_phone,
                     CASE WHEN fam_relationship = 'Husband' THEN fam_occupation END AS Husband_work,
-                    CASE WHEN fam_relationship = 'Husband' THEN fam_birthdate END AS Husband_birth
+                    CASE WHEN fam_relationship = 'Husband' THEN fam_birthdate END AS Husband_birth,
+                    CASE WHEN fam_relationship = 'Husband' THEN fam_add END AS Husband_add,
+                    CASE WHEN fam_relationship = 'Husband' THEN fam_workplace END AS Husband_workplace
                     FROM tbl201_family
                     WHERE fam_empno = ?");
                 $stmt->execute([$user_id]);
                 $member = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                
-                echo '<div class="contact">'; // Start the spouse contact section
                 
                 if (!empty($member)) {
                     $spouseName = '';
                     $spousePhone = '';
                     $spouseWork = '';
                     $spouseBirth = '';
+                    $spouseAdd = '';
+                    $spouseWork = '';
                     foreach ($member as $m) {
                         if (!empty($m['Husband']) || !empty($m['Wife'])) {
                             $spouseName = !empty($m['Husband']) ? $m['Husband'] : $m['Wife'];
                             $spousePhone = !empty($m['Husband']) ? $m['Husband_phone'] : $m['Wife_phone'];
                             $spouseWork = !empty($m['Husband']) ? $m['Husband_work'] : $m['Wife_work'];
-                            $spouseBirth = !empty($m['Husband']) ? $m['Husband_birth'] : $m['Wife_birth'];
+                            $spouseBirth = !empty($m['Husband']) ? $m['Husband_add'] : $m['Wife_add'];
+                            $spouseBirth = !empty($m['Husband']) ? $m['Husband_workplace'] : $m['Wife_workplace'];
                             break;
                         }
                     }
+                
+                    echo '<div class="contact">'; // Start the spouse contact section
                 
                     echo '<div class="numbers">
                             <div class="icon">
@@ -93,12 +100,50 @@ try {
                               <span>Age</span>
                             </div>
                           </div>';
-                
-                } else {
+                    echo '</div>'; // End the spouse contact section
+                    echo '<div class="contact" style="margin-top: 15px;">';
+                    echo '<div class="numbers">';
+                      echo'<div class="icon">
+                               <i class="icofont icofont-location-pin"></i>
+                           </div>';
+                    echo '<div class="content">
+                              <p>' . htmlspecialchars($spouseAdd ?: 'None') . '</p><br> 
+                              <span>Home Address</span>
+                            </div>
+                          </div>';
+                    echo '<div class="numbers">
+                            <div class="icon">
+                              <i class="icofont icofont-building-alt"></i>
+                            </div>
+                            <div class="content">
+                              <p>' . htmlspecialchars($spouseWork ?: 'None') . '</p><br> 
+                              <span>Work Place</span>
+                            </div>
+                          </div>';
                     
-                }
+                    echo '<div class="numbers">
+                            <div class="icon">
+                            
+                            </div>
+                            <div class="content">
+                              <p></p><br> 
+                              <span></span>
+                            </div>
+                          </div>';
+                    echo '<div class="numbers">
+                            <div class="icon">
+                              
+                            </div>
+                            <div class="content">
+                              <p></p><br> 
+                              <span></span>
+                            </div>
+                          </div>';
+                    
+                    echo '</div>'; // End of sibling contact
                 
-                echo '</div>'; // End the spouse contact section
+                } 
+                
                 // SPOUSE END
 
                 // Children START
@@ -115,15 +160,15 @@ try {
                     $child = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                     if (!empty($child)) {
-                            echo '<div class="contact" style="margin-top:20px;margin-bottom:10px;">';
-                            echo '<div class="numbers">
-                                    <div class="content">
-                                      <p style="font-size: 14px !important;"></p>
-                                    </div>
-                                  </div>';
-                            echo'</div>';
+                            // echo '<div class="contact" style="margin-top:20px;margin-bottom:10px;">';
+                            // echo '<div class="numbers">
+                            //         <div class="content">
+                            //           <p style="font-size: 14px !important;"></p>
+                            //         </div>
+                            //       </div>';
+                            // echo'</div>';
                         foreach ($child as $c) {
-                            echo '<div class="contact" style="margin-top: 20px;">';
+                            echo '<div class="contact">';
                             
                             echo '<div class="numbers">';
                               echo '<div class="icon">
@@ -170,7 +215,7 @@ try {
                             echo '</div>'; // End of child contact
                         }
                     } else {
-                        echo '<div class="contact" style="margin-top:20px;margin-bottom:10px;">';
+                        echo '<div class="contact" style="margin-top:15px;margin-bottom:10px;">';
                         echo '<div class="numbers">
                                 <div class="content">
                                   <p style="font-size: 14px !important;"></p>
@@ -232,6 +277,10 @@ try {
                       CASE WHEN fam_relationship = 'Father' THEN fam_occupation END AS occupationF,
                       CASE WHEN fam_relationship = 'Father' THEN fam_sex END AS sexF,
                       CASE WHEN fam_relationship = 'Father' THEN fam_birthdate END AS birthdateF,
+                      CASE WHEN fam_relationship = 'Father' THEN fam_add END AS addressF,
+                      CASE WHEN fam_relationship = 'Father' THEN fam_workplace END AS workF,
+                      CASE WHEN fam_relationship = 'Mother' THEN fam_add END AS addressM,
+                      CASE WHEN fam_relationship = 'Mother' THEN fam_workplace END AS workM,
                       CASE WHEN fam_relationship = 'Mother' THEN CONCAT(fam_firstname, ' ', fam_maidenname, ' ', fam_lastname) END AS Mother,
                       CASE WHEN fam_relationship = 'Mother' THEN fam_contact END AS contactM,
                       CASE WHEN fam_relationship = 'Mother' THEN fam_occupation END AS occupationM,
@@ -243,8 +292,8 @@ try {
 
                   if (!empty($momdad)) {
                       foreach ($momdad as $md) {
-                          echo '<div class="contact">'; // contact start
                           if (!empty($md['Mother'])) {
+                          echo '<div class="contact">'; // contact start
                           echo '<div class="numbers">
                                   <div class="icon">
                                       <i class="icofont icofont-girl-alt"></i>
@@ -295,10 +344,49 @@ try {
                                     <span>Age</span>
                                   </div>
                                 </div>';
-                          }
                           echo '</div>'; // contact end
-                          echo '<div class="contact" style="margin-bottom: 20px;">'; // contact start
+                          echo '<div class="contact" style="margin-top: 15px;">'; // contact start
+                          echo '<div class="numbers">
+                                  <div class="icon">
+                                      <i class="icofont icofont-location-pin"></i>
+                                  </div>
+                                  <div class="content">
+                                    <p>' . htmlspecialchars($md['addressM'] ?: 'None') . '</p><br> 
+                                    <span>Home Address</span>
+                                  </div>
+                                </div>';
+                          echo '<div class="numbers">
+                                  <div class="icon">
+                                      <i class="icofont icofont-building-alt"></i>
+                                  </div>
+                                  <div class="content">
+                                    <p>' . htmlspecialchars($md['workM'] ?: 'None') . '</p><br> 
+                                    <span>Work Place</span>
+                                  </div>
+                                </div>';
+                          echo '<div class="numbers">
+                            <div class="icon">
+                                
+                            </div>
+                            <div class="content">
+                              <p></p><br> 
+                              <span></span>
+                            </div>
+                          </div>';
+                          echo '<div class="numbers">
+                            <div class="icon">
+                               
+                            </div>
+                            <div class="content">
+                              <p></p><br> 
+                              <span></span>
+                            </div>
+                          </div>';
+                          echo '</div>'; // contact end
+                         
+                          }
                           if (!empty($md['Father'])) {
+                          echo '<div class="contact" style="margin-bottom: 20px;">'; // contact start
                               echo '<div class="numbers">
                                       <div class="icon">
                                           <i class="icofont icofont-business-man-alt-1"></i>
@@ -349,8 +437,46 @@ try {
                                     <span>Age</span>
                                   </div>
                                 </div>';
-                          }
                           echo '</div>'; // contact end
+                          echo '<div class="contact" style="margin-top: 10px;">'; // contact start
+                          echo '<div class="numbers">
+                                  <div class="icon">
+                                      <i class="icofont icofont-location-pin"></i>
+                                  </div>
+                                  <div class="content">
+                                    <p>' . htmlspecialchars($md['addressF'] ?: 'None') . '</p><br> 
+                                    <span>Home Address</span>
+                                  </div>
+                                </div>';
+                          echo '<div class="numbers">
+                                  <div class="icon">
+                                      <i class="icofont icofont-building-alt"></i>
+                                  </div>
+                                  <div class="content">
+                                    <p>' . htmlspecialchars($md['workF'] ?: 'None') . '</p><br> 
+                                    <span>Work Place</span>
+                                  </div>
+                                </div>';
+                          echo '<div class="numbers">
+                            <div class="icon">
+                                
+                            </div>
+                            <div class="content">
+                              <p></p><br> 
+                              <span></span>
+                            </div>
+                          </div>';
+                          echo '<div class="numbers">
+                            <div class="icon">
+                               
+                            </div>
+                            <div class="content">
+                              <p></p><br> 
+                              <span></span>
+                            </div>
+                          </div>';
+                          echo '</div>'; // contact end
+                          }
                       }
                   }
                   // MOTHER FATHER END
@@ -361,7 +487,9 @@ try {
                         CONCAT(fam_firstname, ' ', fam_midname, ' ', fam_lastname) AS full_name,
                         fam_contact,
                         fam_sex,
-                        fam_birthdate
+                        fam_birthdate,
+                        fam_add,
+                        fam_workplace
                         FROM tbl201_family
                         WHERE fam_empno = ? AND (fam_relationship = 'Brother' OR fam_relationship = 'Sister')
                         ORDER BY fam_relationship");
@@ -370,7 +498,7 @@ try {
 
                     if (!empty($siblings)) {
                         foreach ($siblings as $sibling) {
-                            echo '<div class="contact" style="margin-top: 5px;">';
+                            echo '<div class="contact" style="margin-top: 15px;">';
                             
                             echo '<div class="numbers">';
                             if ($sibling['fam_sex'] == 'Male') {
@@ -417,6 +545,47 @@ try {
                                     <div class="content">
                                       <p>' . $age . '</p><br> 
                                       <span>Age</span>
+                                    </div>
+                                  </div>';
+                            
+                            echo '</div>'; // End of sibling contact
+
+                            echo '<div class="contact" style="margin-top: 15px;">';
+                            echo '<div class="numbers">';
+                              echo'<div class="icon">
+                                       <i class="icofont icofont-location-pin"></i>
+                                   </div>';
+                            echo '<div class="content">
+                                      <p>' . htmlspecialchars($sibling['fam_add'] ?: 'None') . '</p><br> 
+                                      <span>Home Address</span>
+                                    </div>
+                                  </div>';
+                            echo '<div class="numbers">
+                                    <div class="icon">
+                                      <i class="icofont icofont-building-alt"></i>
+                                    </div>
+                                    <div class="content">
+                                      <p>' . htmlspecialchars($sibling['fam_workplace'] ?? 'None') . '</p><br> 
+                                      <span>Work Place</span>
+                                    </div>
+                                  </div>';
+                            
+                            echo '<div class="numbers">
+                                    <div class="icon">
+                                    
+                                    </div>
+                                    <div class="content">
+                                      <p></p><br> 
+                                      <span></span>
+                                    </div>
+                                  </div>';
+                            echo '<div class="numbers">
+                                    <div class="icon">
+                                      
+                                    </div>
+                                    <div class="content">
+                                      <p></p><br> 
+                                      <span></span>
                                     </div>
                                   </div>';
                             
@@ -487,14 +656,14 @@ try {
                                             </div>
                                             
                                             <div id="pers-name">
+                                                <label for="Famworkadd">Home Address 
+                                                    <input class="form-control" type="text" id="Famworkadd" />
+                                                </label>
                                                 <label for="Famoccupation">Occupation 
                                                     <input class="form-control" type="text" id="Famoccupation" />
                                                 </label>
                                                 <label for="Famworkplace">Work Place 
-                                                    <input class="form-control" type="text" id="Famworkplace" />
-                                                </label>
-                                                <label for="Famworkadd">Work Address 
-                                                    <input class="form-control" type="text" id="Famworkadd" />
+                                                    <input class="form-control" type="text" id="Famworkplace" placeholder="Company, Location"/>
                                                 </label>
                                                 <label>Sex<span style="color:red;">*</span>
                                                     <div id="sex">

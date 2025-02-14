@@ -119,7 +119,7 @@
 						</a>
 						<a href="/Portal">
 							<a href="/Portal">
-							<img class="img-fluid" style="float: left;margin-left: 15px;" src="https://teamtngc.com/hris2/pages/hricon.ico" width="40px" alt="Theme-Logo">
+							<img class="img-fluid" style="float: left;margin-left: 15px;" src="/Portal/assets/img/coffi.png" width="40px" alt="Theme-Logo">
 							<!-- <b>PORTAL</b> -->
 						</a>
 						</a>

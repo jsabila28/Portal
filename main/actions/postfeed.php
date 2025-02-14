@@ -9,8 +9,12 @@ try {
     $page = isset($_POST['page']) ? (int) $_POST['page'] : 1;
     $items_per_page = 3;
     $offset = ($page - 1) * $items_per_page;
-    $cacheFile = "cache/postfeeddata_page_{$page}.json";
-    $cacheTime = 20 * 20; 
+
+    $userIdentifier = $empno;
+    $cacheFile = "cache/postfeeddata_user_{$userIdentifier}_page_{$page}.json";
+
+    // $cacheFile = "cache/postfeeddata_page_{$page}.json";
+    $cacheTime = 5 * 5; 
 
     if (file_exists($cacheFile) && (time() - filemtime($cacheFile)) < $cacheTime) {
         $data = json_decode(file_get_contents($cacheFile), true);
@@ -21,11 +25,10 @@ try {
             SELECT *
             FROM tbl_announcement a
             LEFT JOIN tbl201_basicinfo b ON a.ann_approvedby = b.bi_empno
-            WHERE 
-        ann_status = 'Approved' AND 
+            WHERE ann_status = 'Approved' AND 
         (
             FIND_IN_SET(:company, a.ann_receiver) > 0 OR
-            a.ann_receiver = 'Only Me' OR
+            a.ann_receiver = 'Only Me' AND ann_approvedby = :user OR
             a.ann_receiver = 'All'
         )
             -- AND a.ann_content IS NOT NULL
@@ -34,6 +37,7 @@ try {
         ");
 
         $stmt->bindValue(':company', $company, PDO::PARAM_STR);
+        $stmt->bindValue(':user', $empno, PDO::PARAM_STR);
         $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
         $stmt->bindValue(':limit', $items_per_page, PDO::PARAM_INT);
         $stmt->execute();
