@@ -21,7 +21,7 @@ try {
     } else {
         $currentYear = date('Y');
 
-        $stmt = $port_db->prepare("
+        $stmt = $hr_db->prepare("
             SELECT *
             FROM tbl_announcement a
             LEFT JOIN tbl201_basicinfo b ON a.ann_approvedby = b.bi_empno
