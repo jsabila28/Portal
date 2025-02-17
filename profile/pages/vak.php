@@ -45,4 +45,77 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="../assets/js/perstest.js"></script>
+<!-- <script type="text/javascript" src="../assets/js/perstest.js"></script> -->
+<script>
+fetch('vak')
+.then(response => {
+    if (!response.ok) {
+        throw new Error('Network response was not ok: ' + response.statusText);
+    }
+    return response.text(); // Since we're expecting HTML
+})
+.then(data => {
+    document.getElementById("vak").innerHTML = data; // Set the inner HTML
+
+    // Ensure the button exists before adding the event listener
+$(document).ready(function() {
+    $("#save-vak").click(function() {
+        let counts = { a: 0, b: 0, c: 0 }; // Initialize category counts
+        let selectedValues = []; // Array to store selected values
+
+        // Loop through all checked radio buttons
+        $("input[type='radio']:checked").each(function() {
+            let category = $(this).attr("q_category"); // Get category (a, b, c)
+            let value = $(this).val(); // Get selected value
+
+            if (category && counts.hasOwnProperty(category)) {
+                counts[category]++; // Increment category count
+            }
+            selectedValues.push(value); // Store value
+        });
+
+        let ans = selectedValues.join(","); // Convert array to comma-separated string
+
+        // Send data via AJAX to PHP
+        $.ajax({
+            url: "saveVAK",
+            type: "POST",
+            data: { 
+                _a: counts.a, 
+                _b: counts.b, 
+                _c: counts.c,
+                ans: ans
+            },
+            success: function(response) {
+                alert("Data saved successfully!");
+            },
+            error: function() {
+                alert("Error saving data.");
+            }
+        });
+    });
+});
+
+
+
+})
+.catch(error => {
+    console.error('Error loading content:', error);
+    alert('Error loading content');
+});   
+
+function goToNextDiv(nextSectionId) {
+    // Hide all sections
+    $('.modal-content').addClass('hidden');
+    // Show the next section
+    $('#' + nextSectionId).removeClass('hidden');
+}
+
+function goToPreviousDiv(previousSectionId) {
+    // Hide all sections
+    $('.modal-content').addClass('hidden');
+    // Show the previous section
+    $('#' + previousSectionId).removeClass('hidden');
+}
+
+</script>

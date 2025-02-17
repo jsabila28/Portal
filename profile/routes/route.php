@@ -56,10 +56,11 @@ $routes = [
 	'/saveEnneagram' => '/actions/save_enneagram.php',
 	'/saveTAPT' => '/actions/save_tapt.php',
 	'/saveMIQ' => '/actions/save_miq.php',
-	'/saveColo' => '/actions/save_colo.php',
+	'/saveColor' => '/actions/save_color.php',
+	'/saveVAK' => '/actions/save_vak.php',
 	'/saveIR' => '/actions/save_ir.php',
 	'/savedraftIR' => '/actions/save_irdraft.php',
-
+	'/searchEmp' => '/actions/search_emp.php',
 
 
 
@@ -86,7 +87,8 @@ $routes = [
 	'/13A' => '/pages/13A.php',
 	'/IR' => '/pages/incident_report.php',
 	'/employee' => '/pages/employee.php',
-	'/IRopen' => '/pages/open-ir.php'
+	'/IRopen' => '/pages/open-ir.php',
+	'/getemp' => '/pages/employees.php'
 
 	
 ];

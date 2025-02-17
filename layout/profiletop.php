@@ -16,8 +16,6 @@
 	<meta name="description" content="#">
 	<meta name="keywords" content="flat ui, Admin , Responsive, Landing, Bootstrap, App, Template, Mobile, iOS, Android, apple, creative app">
 	<meta name="author" content="#">
-	<!-- Favicon icon -->
-	<!-- <link rel="icon" href="/prosperityph/admin_template/assets/images/favicon.ico" type="image/x-icon"> -->
 	<!-- Google font-->
 	<!-- <link href="../../../../css.css?family=Mada:300,400,500,600,700" rel="stylesheet"> -->
 	<!-- Required Fremwork -->
@@ -71,7 +69,7 @@
 
     <!-- Required Jqurey -->
     <!-- <script type="text/javascript" src="/Portal/admin_template/bower_components/jquery/js/jquery.min.js"></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.0/xlsx.full.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.0/xlsx.full.min.js"></script> -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/handsontable@9.0.0/dist/handsontable.full.min.css"> -->
@@ -128,6 +126,42 @@
 						        <i class="fa fa-search"></i>
 						    </button>
 						</div>
+						<div id="suggestions" style="display: none;">
+							<ul class="suggestions"></ul>
+						</div>
+						<script>
+						$(document).ready(function(){
+						    $(".search-input").on("keyup", function() {
+						        let query = $(this).val();
+						        if (query.length > 1) {
+						            $.ajax({
+						                url: "searchEmp", // URL to your PHP search script
+						                type: "POST",
+						                data: { query: query },
+						                success: function(data) {
+										    let results = JSON.parse(data);
+										    let suggestions = "";
+										    results.forEach(function(item) {
+										        let displayText = item.fullname + ' | ' + item.Dept_Name || 'No information available';
+										        suggestions += `<li class="suggestion-item">${displayText}</li>`;
+										    });
+										    $("#suggestions").html(suggestions).show();
+										}
+
+						            });
+						        } else {
+						            $("#suggestions").hide();
+						        }
+						    });
+						
+						    $(document).on("click", ".suggestion-item", function() {
+						        let selectedPerson = $(this).text();
+						        window.location.href = "getemp?search=" + encodeURIComponent(selectedPerson);
+						    });
+						});
+
+						</script>
+
 						<a class="mobile-options">
 							<i class="ti-more" style="color: black;"></i>
 						</a>

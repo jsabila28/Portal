@@ -16,8 +16,6 @@
 	<meta name="description" content="#">
 	<meta name="keywords" content="flat ui, Admin , Responsive, Landing, Bootstrap, App, Template, Mobile, iOS, Android, apple, creative app">
 	<meta name="author" content="#">
-	<!-- Favicon icon -->
-	<!-- <link rel="icon" href="/prosperityph/admin_template/assets/images/favicon.ico" type="image/x-icon"> -->
 	<!-- Google font-->
 	<!-- <link href="../../../../css.css?family=Mada:300,400,500,600,700" rel="stylesheet"> -->
 	<!-- Required Fremwork -->

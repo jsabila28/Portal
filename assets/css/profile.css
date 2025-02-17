@@ -961,3 +961,35 @@ hr.new2 {
 .search-button:hover {
     color: #385898;
 }
+
+#suggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 350px; 
+    background: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    display: none;
+    text-align: left;
+    padding: 5px;
+    max-height: 350px;
+    overflow: auto;
+}
+
+#suggestions {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#suggestions li {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #ddd;
+}
+
+#suggestions li:hover {
+    background-color: #f1f1f1;
+}

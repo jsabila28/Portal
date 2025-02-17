@@ -54,9 +54,43 @@ fetch('miq')
 })
 .then(data => {
 document.getElementById("miq").innerHTML = data; // Set the inner HTML
+
+// document.getElementById('save-miq').addEventListener('click', function () {
+//     const selectedValues = Array.from(document.querySelectorAll('input[name="_miq"]:checked'))
+//         .map(checkbox => checkbox.value); // Ensure we are getting values
+
+//     console.log("Selected Values:", selectedValues); // Debugging
+
+//     if (selectedValues.length === 0) {
+//         alert("No checkboxes selected!");
+//         return;
+//     }
+
+//     const valuesString = selectedValues.join(',');
+
+//     fetch('saveMIQ', {
+//         method: 'POST',
+//         headers: { 'Content-Type': 'application/json' },
+//         body: JSON.stringify({ selectedValues: valuesString })
+//     })
+//     .then(response => response.text())
+//     .then(data => {
+//         console.log("Server Response:", data); // Debugging
+//         alert(data); // Display success or error message
+//     })
+//     .catch(error => console.error('Error:', error));
+// });
 document.getElementById('save-miq').addEventListener('click', function () {
-    const selectedValues = Array.from(document.querySelectorAll('#checkbox-group input[type="checkbox"]:checked'))
-        .map(checkbox => checkbox.value);
+    // Select all checked checkboxes with name '_miq'
+    const selectedValues = Array.from(document.querySelectorAll('input[name="_miq"]:checked'))
+        .map(checkbox => checkbox.id.replace('miq_', '')); // Extract number from ID
+
+    console.log("Selected Values:", selectedValues); // Debugging
+
+    if (selectedValues.length === 0) {
+        showMessage("No checkboxes selected!", "alert-danger");
+        return;
+    }
 
     const valuesString = selectedValues.join(',');
 
@@ -67,10 +101,35 @@ document.getElementById('save-miq').addEventListener('click', function () {
     })
     .then(response => response.text())
     .then(data => {
-        alert(data); // Handle response
+        console.log("Server Response:", data); // Debugging
+        showMessage(data, "alert-success");
+
+        // Close the modal after 2 seconds
+        setTimeout(() => {
+            $('#miqModal').modal('hide'); // Bootstrap modal hide
+        }, 2000);
     })
-    .catch(error => console.error('Error:', error));
+    .catch(error => {
+        console.error('Error:', error);
+        showMessage("Error saving data!", "alert-danger");
+    });
 });
+
+// Function to show message in #miq-message
+function showMessage(text, alertClass) {
+    const messageDiv = document.getElementById("miq-message");
+    messageDiv.innerHTML = text;
+    messageDiv.className = `alert ${alertClass}`;
+    messageDiv.style.display = "block";
+
+    // Hide message after 3 seconds
+    setTimeout(() => {
+        messageDiv.style.display = "none";
+        window.location.reload();
+    }, 3000);
+}
+
+
 
 })
 .catch(error => {

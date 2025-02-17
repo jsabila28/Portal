@@ -298,6 +298,7 @@ try {
                 LEFT JOIN tbl_user2 ON U_ID = comment_by
                 LEFT JOIN tbl201_basicinfo ON bi_empno = Emp_No
                 WHERE comment_onid = ?
+                AND comment_stat = 'active'
                 GROUP BY bi_empno,comment_onid,comment_content
                 ORDER BY comment_datetime DESC
                 LIMIT 2
