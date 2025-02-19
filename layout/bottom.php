@@ -54,7 +54,9 @@
     <!-- Required Jqurey -->
     <script type="text/javascript" src="/Portal/admin_template/bower_components/jquery-ui/js/jquery-ui.min.js"></script>
     <script type="text/javascript" src="/Portal/admin_template/bower_components/popper.js/js/popper.min.js"></script>
+    <?php if($sr_root == $portal_root."/dtr"){ ?>
     <script type="text/javascript" src="/Portal/admin_template/bower_components/bootstrap/js/bootstrap.min.js"></script>
+    <?php } ?>
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> -->
 
     <!-- <script type="text/javascript" src="/Portal/admin_template/bower_components/jquery/js/jquery.min.js"></script> -->
@@ -122,7 +124,9 @@
     <!-- Handson table js -->
     <!-- <script type="text/javascript" src="/Portal/admin_template/bower_components/handsontable/js/handsontable.full.js"></script> -->
     <!-- <script src="/Portal/assets/js/Portal.js"></script> -->
+    <?php if($sr_root == $portal_root."/dtr"){ ?>
     <script src="/Portal/assets/js/post.js"></script>
+    <?php } ?>
     <!-- <script src="fullcalendar/js/main.min.js"></script> -->
     <!-- <script src="/Portal/assets/pages/jquery.filer/js/jquery.filer.min.js"></script> -->
     <script type="text/javascript" src="/Portal/assets/js/jquery.emojipicker.js"></script>
@@ -153,7 +157,12 @@
     <link rel="stylesheet" type="text/css" href="/Portal/assets/js/atd_maintenance.js">
     <link rel="stylesheet" type="text/css" href="/Portal/assets/js/home.js">
     <link rel="stylesheet" type="text/css" href="/Portal/assets/js/event.js">
+    <?php if($sr_root == $portal_root."/dtr"){ ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
+    <?php }else{ ?>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.18/js/bootstrap-select.min.js"></script>
+    <?php } ?>
 </body> 
 
 </html>

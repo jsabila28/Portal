@@ -401,7 +401,7 @@ Card-Layout css start
     letter-spacing: 1px; }
   .card .card-block code {
     background-color: #eee; }
-  .card .card-block .dropdown-menu {
+  .card .card-block .dropdown-menu:not(.get-default) {
     top: 38px; }
   .card .card-block p {
     line-height: 15px; }
@@ -417,20 +417,20 @@ Card-Layout css start
     padding: 0; }
   .card .card-block.button-list span.badge {
     margin-left: 5px; }
-  .card .card-block .dropdown-menu {
+  .card .card-block .dropdown-menu:not(.get-default) {
     background-color: #fff;
     padding: 0;
     min-width: 130px; }
-    .card .card-block .dropdown-menu .dropdown-divider {
+    .card .card-block .dropdown-menu:not(.get-default) .dropdown-divider {
       background-color: #ddd;
       margin: 3px 0; }
-  .card .card-block .dropdown-menu > a {
+  .card .card-block .dropdown-menu:not(.get-default) > a {
     padding: 10px 16px;
     line-height: 1.429; }
-  .card .card-block .dropdown-menu > li > a:focus,
-  .card .card-block .dropdown-menu > li > a:hover {
+  .card .card-block .dropdown-menu:not(.get-default) > li > a:focus,
+  .card .card-block .dropdown-menu:not(.get-default) > li > a:hover {
     background-color: rgba(202, 206, 209, 0.5); }
-  .card .card-block .dropdown-menu > li:first-child > a:first-child {
+  .card .card-block .dropdown-menu:not(.get-default) > li:first-child > a:first-child {
     border-top-right-radius: 4px;
     border-top-left-radius: 4px; }
   .card .card-block .badge-box {
@@ -1162,14 +1162,14 @@ Cropper css start
       margin-right: -5px;
       padding-left: 5px;
       padding-right: 5px; } }
-.docs-options .dropdown-menu {
+.docs-options .dropdown-menu:not(.get-default) {
   width: 100%; }
-  .docs-options .dropdown-menu > li {
+  .docs-options .dropdown-menu:not(.get-default) > li {
     padding: 3px 20px;
     font-size: 14px; }
-    .docs-options .dropdown-menu > li:hover {
+    .docs-options .dropdown-menu:not(.get-default) > li:hover {
       background-color: #f7f7f7; }
-    .docs-options .dropdown-menu > li > label {
+    .docs-options .dropdown-menu:not(.get-default) > li > label {
       display: block; }
 
 .docs-cropped .modal-body {
@@ -1178,7 +1178,7 @@ Cropper css start
   .docs-cropped .modal-body > img {
     max-width: 100%; }
 
-.card-block .docs-options .dropdown-menu {
+.card-block .docs-options .dropdown-menu:not(.get-default) {
   top: inherit; }
 
 label.btn-upload {
@@ -2198,7 +2198,7 @@ List-chart css start
 /**  =====================
 Task-list css start
 ==========================  **/
-.filter-bar .navbar-nav .dropdown-menu {
+.filter-bar .navbar-nav .dropdown-menu:not(.get-default) {
   position: absolute; }
 
 .task-list select {
@@ -3041,9 +3041,9 @@ Invoice css start
   padding-right: 20px;
   float: right; }
 
-.dropdown-menu {
+.dropdown-menu:not(.get-default) {
   left: initial; }
-  .dropdown-menu i {
+  .dropdown-menu:not(.get-default) i {
     margin-right: 5px; }
 
 /**====== Invoice css end ======**/
@@ -7220,7 +7220,7 @@ body.menu-sidebar .navbar-wrapper {
 .button-page .btn-group {
   margin-right: 10px; }
 
-.show > .dropdown-menu {
+.show > .dropdown-menu:not(.get-default) {
   overflow: hidden; }
 
 .dropdown-danger,
@@ -7645,28 +7645,28 @@ body.menu-sidebar .navbar-wrapper {
   background-color: #bdc3c7;
   color: #fff; }
 
-.dropdown-primary .dropdown-menu a:hover,
-.dropdown-split-primary .dropdown-menu a:hover {
+.dropdown-primary .dropdown-menu:not(.get-default) a:hover,
+.dropdown-split-primary .dropdown-menu:not(.get-default) a:hover {
   background-color: #0073aa;
   color: #fff; }
 
-.dropdown-success .dropdown-menu a:hover,
-.dropdown-split-success .dropdown-menu a:hover {
+.dropdown-success .dropdown-menu:not(.get-default) a:hover,
+.dropdown-split-success .dropdown-menu:not(.get-default) a:hover {
   background-color: #2ecc71;
   color: #fff; }
 
-.dropdown-info .dropdown-menu a:hover,
-.dropdown-split-info .dropdown-menu a:hover {
+.dropdown-info .dropdown-menu:not(.get-default) a:hover,
+.dropdown-split-info .dropdown-menu:not(.get-default) a:hover {
   background-color: #3498DB;
   color: #fff; }
 
-.dropdown-warning .dropdown-menu a:hover,
-.dropdown-split-warning .dropdown-menu a:hover {
+.dropdown-warning .dropdown-menu:not(.get-default) a:hover,
+.dropdown-split-warning .dropdown-menu:not(.get-default) a:hover {
   background-color: #f1c40f;
   color: #fff; }
 
-.dropdown-danger .dropdown-menu a:hover,
-.dropdown-split-danger .dropdown-menu a:hover {
+.dropdown-danger .dropdown-menu:not(.get-default) a:hover,
+.dropdown-split-danger .dropdown-menu:not(.get-default) a:hover {
   background-color: #e74c3c;
   color: #fff; }
 
@@ -9517,7 +9517,7 @@ table.footable-paging-center > tfoot > tr.footable-paging > td {
 
 .contact-table tr td:last-child {
   position: relative; }
-  .contact-table tr td:last-child .dropdown-menu {
+  .contact-table tr td:last-child .dropdown-menu:not(.get-default) {
     top: 52px; }
 
 /**====== Handson css end ======**/
@@ -16630,7 +16630,7 @@ body.dark-layout {
     background: #2d2d2d; }
   body.dark-layout .morphsearch.open .morphsearch-form,
   body.dark-layout .dummy-media-object,
-  body.dark-layout .card .card-block .dropdown-menu,
+  body.dark-layout .card .card-block .dropdown-menu:not(.get-default),
   body.dark-layout .clock-widget,
   body.dark-layout .pignose-calendar,
   body.dark-layout .pignose-calendar .pignose-calendar-top,
@@ -16660,7 +16660,7 @@ body.dark-layout {
   body.dark-layout .handsontable th,
   body.dark-layout .handsontable td,
   body.dark-layout .offline-404,
-  body.dark-layout .dropdown-menu,
+  body.dark-layout .dropdown-menu:not(.get-default),
   body.dark-layout .email-card .user-body {
     background: #292929; }
   body.dark-layout .morphsearch-close::before,
@@ -19724,7 +19724,7 @@ a{
     max-height: 50px !important;
     overflow-y: auto;
 }
-ul.multiselect-container.dropdown-menu {
+ul.multiselect-container.dropdown-menu:not(.get-default) {
             max-height: 200px;
             overflow-y: auto;
         }
@@ -19836,7 +19836,7 @@ textarea{
 .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
   width: 100% !important;
 }*/
-.dropdown-menu{
+.dropdown-menu:not(.get-default){
   max-height: 354px !important;
   overflow: auto !important;
   min-height: 154px !important;

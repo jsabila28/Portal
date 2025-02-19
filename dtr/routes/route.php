@@ -1,11 +1,12 @@
 <?php
 // Define an array to store routes (similar to Laravel routes)
 $routes = [
-	'' => '/pages/dashboard.php',
-	'/' => '/pages/dashboard.php',
-	'/dashboard' => '/pages/dashboard.php',
-	'/login' => '/Portal/main/pages/login.php'
+	'' => '/pages/dtr.php',
+	'/' => '/pages/dtr.php',
+	'/login' => '/Portal/main/pages/login.php',
 	
+	'/process' => '/actions/dtr.php',
+	'/tk' => '/actions/tk.php'
 ];
 
 // Get the current request URI (remove the base URL if needed)
@@ -13,7 +14,7 @@ $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $uri = rtrim(str_replace("/Portal/dtr", "", $uri), "#");
 
 // top
-if(isset($routes[$uri]) && strpos($routes[$uri], "pages/") !== false) include_once($portal_root."/layout/atd_top.php");
+if(isset($routes[$uri]) && strpos($routes[$uri], "pages/") !== false) include_once($portal_root."/layout/dtr_top.php");
 
 // Check if the requested URI exists in the routes array
 if (array_key_exists($uri, $routes)) {
