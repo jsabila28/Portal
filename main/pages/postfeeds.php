@@ -15,21 +15,21 @@
                             <!-- Mood icon at the top right corner -->
                             <div style="position: absolute; top: 0; right: 0; background-color: white; color: white; padding: 2px; border-radius: 50%;">
                                 <?php if ($v['m_mood'] == 'anger') {
-                                    echo'<img id="img-emoji" src="/Portal/assets/reactions/sadness.WEBP">';  
+                                    echo'<img id="img-emoji" src="/zen/assets/reactions/sadness.WEBP">';  
                                 }elseif ($v['m_mood'] == 'crying') {
-                                    echo'<img id="img-emoji" src="/Portal/assets/reactions/cry.WEBP">'; 
+                                    echo'<img id="img-emoji" src="/zen/assets/reactions/cry.WEBP">'; 
                                 }elseif ($v['m_mood'] == 'eyeroll') {
-                                    echo'<img id="img-emoji" src="/Portal/assets/reactions/ROLL.JPG">'; 
+                                    echo'<img id="img-emoji" src="/zen/assets/reactions/ROLL.JPG">'; 
                                 }elseif ($v['m_mood'] == 'inlove') {
-                                    echo'<img id="img-emoji" src="/Portal/assets/reactions/inlove.JPG">'; 
+                                    echo'<img id="img-emoji" src="/zen/assets/reactions/inlove.JPG">'; 
                                 }elseif ($v['m_mood'] == 'sleepy') {
-                                    echo'<img id="img-emoji" src="/Portal/assets/reactions/sleep.JPG">'; 
+                                    echo'<img id="img-emoji" src="/zen/assets/reactions/sleep.JPG">'; 
                                 }elseif ($v['m_mood'] == 'tired') {
-                                    echo'<img id="img-emoji" src="/Portal/assets/reactions/Tireds.JPG">'; 
+                                    echo'<img id="img-emoji" src="/zen/assets/reactions/Tireds.JPG">'; 
                                 }elseif ($v['m_mood'] == 'nuh') {
-                                    echo'<img id="img-emoji" src="/Portal/assets/reactions/lough.WEBP">'; 
+                                    echo'<img id="img-emoji" src="/zen/assets/reactions/lough.WEBP">'; 
                                 }elseif ($v['m_mood'] == 'happy') {
-                                    echo'<img id="img-emoji" src="/Portal/assets/reactions/happy.JPG">'; 
+                                    echo'<img id="img-emoji" src="/zen/assets/reactions/happy.JPG">'; 
                                 } ?>
                             </div>
                         </a>
@@ -54,7 +54,7 @@
                             foreach ($birthday as $b) {
                         ?>
                         <a href="#" class="pull-left" style="position: relative;width: 80px;margin-right: 60px;">
-                            <img src="/Portal/assets/img/birthday.gif" alt="" style="width: 50px;height: 50px;">
+                            <img src="/zen/assets/img/birthday.gif" alt="" style="width: 50px;height: 50px;">
                             <!-- Mood icon at the top right corner -->
                             <div class="right-birthday">
                                  <strong><?=$b['bi_empfname'].' '.$b['bi_emplname']?></strong><br>

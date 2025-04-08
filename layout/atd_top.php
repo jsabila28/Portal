@@ -21,58 +21,58 @@
 	<!-- Required Fremwork -->
 	<!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> -->
 
-	<link rel="stylesheet" type="text/css" href="/Portal/admin_template/bower_components/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/zen/admin_template/bower_components/bootstrap/css/bootstrap.min.css">
 	<!-- <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"> -->
 	<!-- themify-icons line icon -->
-	<link rel="stylesheet" type="text/css" href="/Portal/admin_template/assets/icon/themify-icons/themify-icons.css">
+	<link rel="stylesheet" type="text/css" href="/zen/admin_template/assets/icon/themify-icons/themify-icons.css">
 	<!-- Material Design Icon -->
-	<link rel="stylesheet" type="text/css" href="/Portal/admin_template/assets/icon/material-design/css/material-design-iconic-font.min.css">
-	<link rel="stylesheet" type="text/css" href="/Portal/admin_template/assets/icon/typicons-icons/css/typicons.min.css">
-	<link rel="stylesheet" type="text/css" href="/Portal/admin_template/assets/icon/flag-icons/css/flag-icon.css">
+	<link rel="stylesheet" type="text/css" href="/zen/admin_template/assets/icon/material-design/css/material-design-iconic-font.min.css">
+	<link rel="stylesheet" type="text/css" href="/zen/admin_template/assets/icon/typicons-icons/css/typicons.min.css">
+	<link rel="stylesheet" type="text/css" href="/zen/admin_template/assets/icon/flag-icons/css/flag-icon.css">
 	<!-- ico font -->
-	<link rel="stylesheet" type="text/css" href="/Portal/admin_template/assets/icon/icofont/css/icofont.css">
+	<link rel="stylesheet" type="text/css" href="/zen/admin_template/assets/icon/icofont/css/icofont.css">
 	<!-- Fontawesome -->
-	<link rel="stylesheet" type="text/css" href="/Portal/admin_template/assets/icon/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="/zen/admin_template/assets/icon/font-awesome/css/font-awesome.min.css">
 	<!-- flag icon framework css -->
-	<link rel="stylesheet" type="text/css" href="/Portal/admin_template/assets/pages/flag-icon/flag-icon.min.css">   
+	<link rel="stylesheet" type="text/css" href="/zen/admin_template/assets/pages/flag-icon/flag-icon.min.css">   
 	<!-- Style.css -->
-	<link rel="stylesheet" type="text/css" href="/Portal/admin_template/assets/css/style.css">
+	<link rel="stylesheet" type="text/css" href="/zen/admin_template/assets/css/style.css">
 	<!--forms-wizard css-->
-    <link rel="stylesheet" type="text/css" href="/Portal/admin_template/bower_components/jquery.steps/css/jquery.steps.css">
+    <link rel="stylesheet" type="text/css" href="/zen/admin_template/bower_components/jquery.steps/css/jquery.steps.css">
     <!-- jquery file upload Frame work -->
-    <link href="/Portal/admin_template/assets/pages/jquery.filer/css/jquery.filer.css" type="text/css" rel="stylesheet">
-    <link href="/Portal/admin_template/assets/pages/jquery.filer/css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet">
+    <link href="/zen/admin_template/assets/pages/jquery.filer/css/jquery.filer.css" type="text/css" rel="stylesheet">
+    <link href="/zen/admin_template/assets/pages/jquery.filer/css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet">
     <!-- Menu-Search css -->
-    <link rel="stylesheet" type="text/css" href="/Portal/admin_template/assets/pages/menu-search/css/component.css">
+    <link rel="stylesheet" type="text/css" href="/zen/admin_template/assets/pages/menu-search/css/component.css">
 	<!-- <script src="https://jscolor.com/release/2.4.5/jscolor.js"></script> -->
 	<!-- Data Table Css -->
-    <link rel="stylesheet" type="text/css" href="/Portal/admin_template/bower_components/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" type="text/css" href="/Portal/admin_template/assets/pages/data-table/css/buttons.dataTables.min.css">
-    <link rel="stylesheet" type="text/css" href="/Portal/admin_template/bower_components/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" type="text/css" href="/zen/admin_template/bower_components/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" type="text/css" href="/zen/admin_template/assets/pages/data-table/css/buttons.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="/zen/admin_template/bower_components/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css">
 	<!--color css-->
 	<!-- EMOJI -->
 	<script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     
-	<link rel="stylesheet" type="text/css" href="/Portal/admin_template/assets/css/linearicons.css">
-	<link rel="stylesheet" type="text/css" href="/Portal/admin_template/assets/css/simple-line-icons.css">
-	<link rel="stylesheet" type="text/css" href="/Portal/admin_template/assets/css/ionicons.css">
-	<link rel="stylesheet" type="text/css" href="/Portal/admin_template/assets/css/jquery.mCustomScrollbar.css">
-	<link rel="stylesheet" type="text/css" href="/Portal/admin_template/assets/icon/weather-icons/css/weather-icons.min.css">
-    <link rel="stylesheet" type="text/css" href="/Portal/admin_template/assets/icon/weather-icons/css/weather-icons-wind.min.css">
+	<link rel="stylesheet" type="text/css" href="/zen/admin_template/assets/css/linearicons.css">
+	<link rel="stylesheet" type="text/css" href="/zen/admin_template/assets/css/simple-line-icons.css">
+	<link rel="stylesheet" type="text/css" href="/zen/admin_template/assets/css/ionicons.css">
+	<link rel="stylesheet" type="text/css" href="/zen/admin_template/assets/css/jquery.mCustomScrollbar.css">
+	<link rel="stylesheet" type="text/css" href="/zen/admin_template/assets/icon/weather-icons/css/weather-icons.min.css">
+    <link rel="stylesheet" type="text/css" href="/zen/admin_template/assets/icon/weather-icons/css/weather-icons-wind.min.css">
    	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
-	<link rel="stylesheet" type="text/css" href="/Portal/assets/css/Portal.css">
-	<link rel="stylesheet" type="text/css" href="/Portal/assets/css/newsfeed.css">
-	<link rel="stylesheet" type="text/css" href="/Portal/assets/css/memo.css">
-	<link rel="stylesheet" type="text/css" href="/Portal/assets/css/leave.css">
-	<link rel="stylesheet" type="text/css" href="/Portal/assets/css/post.css">
-	<link rel="stylesheet" type="text/css" href="/Portal/assets/css/profile.css">
-	<link rel="stylesheet" type="text/css" href="/Portal/assets/css/atd.css">
+	<link rel="stylesheet" type="text/css" href="/zen/assets/css/zen.css">
+	<link rel="stylesheet" type="text/css" href="/zen/assets/css/newsfeed.css">
+	<link rel="stylesheet" type="text/css" href="/zen/assets/css/memo.css">
+	<link rel="stylesheet" type="text/css" href="/zen/assets/css/leave.css">
+	<link rel="stylesheet" type="text/css" href="/zen/assets/css/post.css">
+	<link rel="stylesheet" type="text/css" href="/zen/assets/css/profile.css">
+	<link rel="stylesheet" type="text/css" href="/zen/assets/css/atd.css">
 
 
     <!-- Required Jqurey -->
-    <!-- <script type="text/javascript" src="/Portal/admin_template/bower_components/jquery/js/jquery.min.js"></script> -->
+    <!-- <script type="text/javascript" src="/zen/admin_template/bower_components/jquery/js/jquery.min.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.0/xlsx.full.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
@@ -91,10 +91,10 @@
     <!-- Bootstrap JS -->
     <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.5.1/js/bootstrap.min.js"></script> -->
     <!-- Select 2 css -->
-    <!-- <link rel="stylesheet" href="/Portal/admin_template/bower_components/select2/css/select2.min.css"> -->
+    <!-- <link rel="stylesheet" href="/zen/admin_template/bower_components/select2/css/select2.min.css"> -->
     <!-- Multi Select css -->
-    <link rel="stylesheet" type="text/css" href="/Portal/admin_template/bower_components/bootstrap-multiselect/css/bootstrap-multiselect.css">
-    <link rel="stylesheet" type="text/css" href="/Portal/admin_template/bower_components/multiselect/css/multi-select.css">
+    <link rel="stylesheet" type="text/css" href="/zen/admin_template/bower_components/bootstrap-multiselect/css/bootstrap-multiselect.css">
+    <link rel="stylesheet" type="text/css" href="/zen/admin_template/bower_components/multiselect/css/multi-select.css">
 
 
 
@@ -118,8 +118,8 @@
 						<a class="mobile-menu" id="mobile-collapse" href="#!">
 							<i id="toggle-sidebar" class="ti-menu" style="color: black;"></i>
 						</a>
-						<a href="/Portal">
-							<a href="/Portal">
+						<a href="/zen">
+							<a href="/zen">
 							<img class="img-fluid" style="float: left;margin-left: 15px;" src="https://teamtngc.com/hris2/pages/hricon.ico" width="40px" alt="Theme-Logo">
 							<!-- <b>PORTAL</b> -->
 						</a>
@@ -140,13 +140,13 @@
 							</ul>
 							<ul class="nav-right">
 								<li>
-									<a href="/Portal/">
-										<img src="/Portal/ATD/assets/img/home.png" width="15" height="15">
+									<a href="/zen/">
+										<img src="/zen/ATD/assets/img/home.png" width="15" height="15">
 									</a>
 								</li>
                             	<li class="header-notification">
         							<a href="#" class="displayChatbox">
-        								<img src="/Portal/ATD/assets/img/menu.png" class="circle-img" width="30" height="30">
+        								<img src="/zen/ATD/assets/img/menu.png" class="circle-img" width="30" height="30">
         							</a>
     							</li>
 								<?php
@@ -195,7 +195,7 @@
 
 								<li class="header-notification">
         							<a href="#">
-        								<img src="/Portal/ATD/assets/img/notif.png" width="30" height="30">
+        								<img src="/zen/ATD/assets/img/notif.png" width="30" height="30">
         							</a>
     							</li>
 
@@ -212,7 +212,7 @@
 									</a>
 									<ul class="show-notification profile-notification">
 										<li>
-											<a href="/Portal/profile">
+											<a href="/zen/profile">
 												<!-- <i class="ti-layout-sidebar-left"></i>  -->
 												<?php
             										echo $username;
@@ -220,7 +220,7 @@
 											</a>
 										</li>
 										<li>
-											<a href="/Portal/signOut">
+											<a href="/zen/signOut">
 												<i class="ti-layout-sidebar-left"></i> Logout
 											</a>
 										</li>
@@ -241,75 +241,75 @@
                                 <span>DTR Services</span>
                             </div>
                             <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
-                                <a class="media-left" href="/Portal/dtr" style="text-align: center;">
+                                <a class="media-left" href="/zen/dtr" style="text-align: center;">
                                 	<div>
-                                		<img src="/Portal/ATD/assets/img/2.png" width="40" height="40"><br>DTR
+                                		<img src="/zen/ATD/assets/img/2.png" width="40" height="40"><br>DTR
                                 	</div>
                                 </a>
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
-                                		<img src="/Portal/ATD/assets/img/schedule2.png" width="40" height="40"><br>Schedule
+                                		<img src="/zen/ATD/assets/img/schedule2.png" width="40" height="40"><br>Schedule
                                 	</div>
                                 </a>
-                                <a class="media-left" href="/Portal/leave/" style="text-align: center;">
+                                <a class="media-left" href="/zen/leave/" style="text-align: center;">
                                 	<div>
-                                		<img src="/Portal/ATD/assets/img/leave2.png" width="40" height="40"><br>Leave
+                                		<img src="/zen/ATD/assets/img/leave2.png" width="40" height="40"><br>Leave
                                 	</div>
                                 </a>
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
-                                		<img src="/Portal/ATD/assets/img/break2.png" width="40" height="40"><br>Break
+                                		<img src="/zen/ATD/assets/img/break2.png" width="40" height="40"><br>Break
                                 	</div>
                                 </a>
                             </div>
                             <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
-                                		<img src="/Portal/ATD/assets/img/restday2.png" width="40" height="40"><br>RestDay
+                                		<img src="/zen/ATD/assets/img/restday2.png" width="40" height="40"><br>RestDay
                                 	</div>
                                 </a>
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
-                                		<img src="/Portal/ATD/assets/img/offset2.png" width="40" height="40"><br>Offset
+                                		<img src="/zen/ATD/assets/img/offset2.png" width="40" height="40"><br>Offset
                                 	</div>
                                 </a>
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
-                                		<img src="/Portal/ATD/assets/img/overtime2.png" width="40" height="40"><br>OT
+                                		<img src="/zen/ATD/assets/img/overtime2.png" width="40" height="40"><br>OT
                                 	</div>
                                 </a>
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
-                                		<img src="/Portal/ATD/assets/img/gatepass2.png" width="40" height="40"><br>Gatepass
-                                	</div>
-                                </a>
-                            </div>
-                            <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
-                                <a class="media-left" href="#!" style="text-align: center;">
-                                	<div>
-                                		<img src="/Portal/ATD/assets/img/drd2.png" width="40" height="40"><br>DRD
-                                	</div>
-                                </a>
-                                <a class="media-left" href="#!" style="text-align: center;">
-                                	<div>
-                                		<img src="/Portal/ATD/assets/img/dhd2.png" width="40" height="40"><br>DHD
-                                	</div>
-                                </a>
-                                <a class="media-left" href="#!" style="text-align: center;">
-                                	<div>
-                                		<img src="/Portal/ATD/assets/img/training2.png" width="40" height="40"><br>Trainings
-                                	</div>
-                                </a>
-                                <a class="media-left" href="#!" style="text-align: center;">
-                                	<div>
-                                		<img src="/Portal/ATD/assets/img/travel2.png" width="40" height="40"><br>Travel
+                                		<img src="/zen/ATD/assets/img/gatepass2.png" width="40" height="40"><br>Gatepass
                                 	</div>
                                 </a>
                             </div>
                             <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
-                                		<img src="/Portal/ATD/assets/img/sales2.png" width="40" height="40"><br>Sales
+                                		<img src="/zen/ATD/assets/img/drd2.png" width="40" height="40"><br>DRD
+                                	</div>
+                                </a>
+                                <a class="media-left" href="#!" style="text-align: center;">
+                                	<div>
+                                		<img src="/zen/ATD/assets/img/dhd2.png" width="40" height="40"><br>DHD
+                                	</div>
+                                </a>
+                                <a class="media-left" href="#!" style="text-align: center;">
+                                	<div>
+                                		<img src="/zen/ATD/assets/img/training2.png" width="40" height="40"><br>Trainings
+                                	</div>
+                                </a>
+                                <a class="media-left" href="#!" style="text-align: center;">
+                                	<div>
+                                		<img src="/zen/ATD/assets/img/travel2.png" width="40" height="40"><br>Travel
+                                	</div>
+                                </a>
+                            </div>
+                            <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
+                                <a class="media-left" href="#!" style="text-align: center;">
+                                	<div>
+                                		<img src="/zen/ATD/assets/img/sales2.png" width="40" height="40"><br>Sales
                                 	</div>
                                 </a>
                             </div>
@@ -321,34 +321,34 @@
                             <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
-                                		<img src="/Portal/ATD/assets/img/eei2.png" width="40" height="40"><br>EEI
+                                		<img src="/zen/ATD/assets/img/eei2.png" width="40" height="40"><br>EEI
                                 	</div>
                                 </a>
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
-                                		<img src="/Portal/ATD/assets/img/employee2.png" width="40" height="40"><br>Employees
+                                		<img src="/zen/ATD/assets/img/employee2.png" width="40" height="40"><br>Employees
                                 	</div>
                                 </a>
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
-                                		<img src="/Portal/ATD/assets/img/pa2.png" width="40" height="40"><br>PA
+                                		<img src="/zen/ATD/assets/img/pa2.png" width="40" height="40"><br>PA
                                 	</div>
                                 </a>
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
-                                		<img src="/Portal/ATD/assets/img/hiring2.png" width="40" height="40"><br>Hiring
+                                		<img src="/zen/ATD/assets/img/hiring2.png" width="40" height="40"><br>Hiring
                                 	</div>
                                 </a>
                             </div>
                             <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
-                                		<img src="/Portal/ATD/assets/img/report2.png" width="40" height="40"><br>Reports
+                                		<img src="/zen/ATD/assets/img/report2.png" width="40" height="40"><br>Reports
                                 	</div>
                                 </a>
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
-                                		<img src="/Portal/ATD/assets/img/announcement2.png" width="40" height="40"><br>Post
+                                		<img src="/zen/ATD/assets/img/announcement2.png" width="40" height="40"><br>Post
                                 	</div>
                                 </a>
                             </div>

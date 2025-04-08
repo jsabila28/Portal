@@ -4,5 +4,5 @@ session_unset(); // Unset all session variables
 session_destroy(); // Destroy the session
 
 // Redirect to login page or homepage
-header("Location: /Portal"); // Change this to your login or homepage URL
+header("Location: /zen"); // Change this to your login or homepage URL
 exit();

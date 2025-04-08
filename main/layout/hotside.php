@@ -1,6 +1,6 @@
 <ul class="sidebar-menu">
   <li>
-    <a href="/Portal/ATD/">
+    <a href="/zen/ATD/">
       <p>
         <img src="assets/img/atd.png" width="40" height="40" style="margin-right: 5px;">Authority to Deduct
       </p>

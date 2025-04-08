@@ -8,14 +8,14 @@
             <div id="moods" class="moods">
                 <div class="mood-content">
                    <div class="mood-list">
-                       <a href="#" class="mood-option" data-mood="happy"><img src="/Portal/assets/reactions/happy.GIF"/></a>
-                       <a href="#" class="mood-option" data-mood="nuh"><img src="/Portal/assets/reactions/hahaha.GIF"/></a>
-                       <a href="#" class="mood-option" data-mood="inlove"><img src="/Portal/assets/reactions/inlove.GIF"/></a>
-                       <a href="#" class="mood-option" data-mood="crying"><img src="/Portal/assets/reactions/crying.GIF"/></a>
-                       <a href="#" class="mood-option" data-mood="anger"><img src="/Portal/assets/reactions/anger.GIF"/></a>
-                       <a href="#" class="mood-option" data-mood="eyeroll"><img src="/Portal/assets/reactions/eyeroll.GIF"/></a>
-                       <a href="#" class="mood-option" data-mood="sleepy"><img src="/Portal/assets/reactions/sleepy.GIF"/></a>
-                       <a href="#" class="mood-option" data-mood="tired"><img src="/Portal/assets/reactions/tired.GIF"/></a>
+                       <a href="#" class="mood-option" data-mood="happy"><img src="/zen/assets/reactions/happy.GIF"/></a>
+                       <a href="#" class="mood-option" data-mood="nuh"><img src="/zen/assets/reactions/hahaha.GIF"/></a>
+                       <a href="#" class="mood-option" data-mood="inlove"><img src="/zen/assets/reactions/inlove.GIF"/></a>
+                       <a href="#" class="mood-option" data-mood="crying"><img src="/zen/assets/reactions/crying.GIF"/></a>
+                       <a href="#" class="mood-option" data-mood="anger"><img src="/zen/assets/reactions/anger.GIF"/></a>
+                       <a href="#" class="mood-option" data-mood="eyeroll"><img src="/zen/assets/reactions/eyeroll.GIF"/></a>
+                       <a href="#" class="mood-option" data-mood="sleepy"><img src="/zen/assets/reactions/sleepy.GIF"/></a>
+                       <a href="#" class="mood-option" data-mood="tired"><img src="/zen/assets/reactions/tired.GIF"/></a>
                    </div>
                 </div>
             </div>
@@ -34,7 +34,7 @@
             data: { mood: mood },
             success: function (response) {
                 // alert('Mood saved successfully: ' + mood);
-                window.location.href = '/Portal/dashboard';
+                window.location.href = '/zen/dashboard';
             },
             error: function () {
                 alert('Failed to save mood.');

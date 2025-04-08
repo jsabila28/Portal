@@ -34,11 +34,11 @@ $routes = [
 ];
 // Get the current request URI (remove the base URL if needed)
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-$uri = rtrim(str_replace("/Portal", "", $uri), "#");
+$uri = rtrim(str_replace("/zen", "", $uri), "#");
 // top
 if(isset($routes[$uri]) 
 	&& strpos($routes[$uri], "main/pages/") !== false 
-	&& $_SERVER['REQUEST_URI'] != '/Portal/login') {
+	&& $_SERVER['REQUEST_URI'] != '/zen/login') {
 	include_once($portal_root."/layout/top.php");
 }
 
@@ -63,6 +63,6 @@ if (array_key_exists($uri, $routes)) {
 // bottom
 if(isset($routes[$uri]) 
 	&& strpos($routes[$uri], "main/pages/") !== false
-	&& $_SERVER['REQUEST_URI'] != '/Portal/login') {
+	&& $_SERVER['REQUEST_URI'] != '/zen/login') {
 	include_once($portal_root."/layout/bottom.php");
 }

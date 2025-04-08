@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="/Portal/assets/css/memo.css">
+<link rel="stylesheet" type="text/css" href="/zen/assets/css/memo.css">
 <div id="memo"> 
     <span style="display: flex;justify-content: space-between;height: 25px;">
         <a href="#" data-toggle="modal" data-target="#all_memo"><h6>Memo</h6></a>

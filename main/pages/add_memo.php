@@ -2,11 +2,11 @@
 require_once($main_root."/actions/memo.php");
 require_once($main_root."/actions/get_personal.php");
 
-$departments = Portal::GetDepartments();
-$employees = Portal::GetEmployee();
-$company = Portal::GetCompany();
-$area = Portal::GetArea();
-$outlet = Portal::GetOutlet();
+$departments = zen::GetDepartments();
+$employees = zen::GetEmployee();
+$company = zen::GetCompany();
+$area = zen::GetArea();
+$outlet = zen::GetOutlet();
 ?>
 <div class="page-wrapper">
     <div class="page-header">
@@ -21,7 +21,7 @@ $outlet = Portal::GetOutlet();
                          <i class="icofont icofont-home"></i>
                      </a>
                  </li>
-                 <li class="breadcrumb-item"><a href="#!">Portal</a>
+                 <li class="breadcrumb-item"><a href="#!">zen</a>
                  </li>
                  <li class="breadcrumb-item"><a href="#!">Memo</a>
                  </li>

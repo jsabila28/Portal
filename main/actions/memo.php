@@ -1,7 +1,7 @@
 <?php
 require_once($sr_root . "/db/db.php");
 
-class Portal
+class zen
 {
     private static function getDatabaseConnection($db) {
         try {

@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
         }
 
-        $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/Portal/assets/government/';
+        $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/zen/assets/government/';
         $uploadedFiles = [];
 
         if (!empty($_FILES['govimg']['name'][0])) {
@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $targetFilePath = $uploadDir . $fileName;
 
                     if (move_uploaded_file($tmpName, $targetFilePath)) {
-                        $uploadedFiles[] = '/Portal/assets/government/' . $fileName;
+                        $uploadedFiles[] = '/zen/assets/government/' . $fileName;
                     }
                 }
             }

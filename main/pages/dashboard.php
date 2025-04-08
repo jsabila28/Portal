@@ -7,16 +7,16 @@ $Year = date("Y");
 $Month = date("m");
 $Day = date("d");
 $yearMonth = date("Y-m");
-$memos = Portal::GetMemo($Year,$empno,$company,$department,$area,$outlet);
-$memoAll = Portal::GetAllMemo($Year,$empno,$company,$department,$area,$outlet);
-$leave = Portal::GetLeave($date);
-$ongoingleave = Portal::GetOngoingLeave($date);
-$resigning = Portal::GetResigning($Year);
-$government = Portal::GetGovAnn($yearMonth);
-$birthday = Portal::GetBirthday($Month,$Day);
-$moods = Portal::GetMood($date);
-$MyMood = Portal::GetMyMood($date,$user_id);
-$events = Portal::GetEvents($date);
+$memos = zen::GetMemo($Year,$empno,$company,$department,$area,$outlet);
+$memoAll = zen::GetAllMemo($Year,$empno,$company,$department,$area,$outlet);
+$leave = zen::GetLeave($date);
+$ongoingleave = zen::GetOngoingLeave($date);
+$resigning = zen::GetResigning($Year);
+$government = zen::GetGovAnn($yearMonth);
+$birthday = zen::GetBirthday($Month,$Day);
+$moods = zen::GetMood($date);
+$MyMood = zen::GetMyMood($date,$user_id);
+$events = zen::GetEvents($date);
 ?>
 <?php if (!empty($MyMood)) { ?>
 <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
@@ -183,5 +183,5 @@ $events = Portal::GetEvents($date);
     require_once($main_root."/pages/mood.php");
 } ?>
 
-<script type="text/javascript" src="/Portal/assets/js/post.js"></script>
-<script type="text/javascript" src="/Portal/assets/js/portal.js"></script>
+<script type="text/javascript" src="/zen/assets/js/post.js"></script>
+<script type="text/javascript" src="/zen/assets/js/portal.js"></script>

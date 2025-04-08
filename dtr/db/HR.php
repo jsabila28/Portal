@@ -46,8 +46,10 @@ class HR
 	public static function check_auth($empno,$for,$dept=false){
 		if($dept==false){
 	      	$stmt = Database::getConnection('hr')->prepare("SELECT auth_assignation FROM tbl_dept_authority WHERE auth_emp = ? AND auth_for = ?");
+			$stmt->execute([ $empno, $for ]);
       	}else{
       		$stmt = Database::getConnection('hr')->prepare("SELECT auth_dept FROM tbl_dept_authority WHERE auth_emp = ? AND auth_for = ?");
+			$stmt->execute([ $empno, $for ]);
       	}
       	$results = $stmt->fetchall();
 
@@ -56,5 +58,14 @@ class HR
       		$return = str_replace("|", ",", $res_r['auth_assignation']);
       	}
   		return $return;
+	}
+
+	public static function _log($log){
+		try {
+			$sql = Database::getConnection('hr')->prepare("INSERT INTO tbl_system_log(log_user,log_info) VALUES(?,?)");
+			$sql->execute([ ($_SESSION['user_id'] ?? ''), $log ]);
+		} catch (Exception $e) {
+			//
+		}
 	}
 }

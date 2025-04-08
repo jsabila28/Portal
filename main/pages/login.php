@@ -475,7 +475,7 @@ $(document).ready(function() {
                     if (result.success) {
                         showAlert(result.message, 'success');
                         setTimeout(function() {
-                            window.location.href = '/Portal/dashboard';
+                            window.location.href = '/zen/dashboard';
                         }, 2000); // Redirect after 2 seconds
                     } else {
                         showAlert('Login failed: ' + result.message, 'danger');
