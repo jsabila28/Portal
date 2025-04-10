@@ -235,7 +235,7 @@ if($company!=""){
                      	}else{
 	                        alert('Successfully saved to draft.');
                      	}
-                        window.location="?page=ecflist";
+                        window.location="/zen/clearance";
 					}else{
 						alert(res1);
 					}

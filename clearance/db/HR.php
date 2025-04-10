@@ -139,6 +139,17 @@ class HR
 		}
 	}
 
+	public static function get_emp_name($empno)
+	{
+		if ($empno != '') {
+			$query = Database::getConnection('hr')->query("SELECT bi_empfname,bi_emplname,bi_empext FROM tbl201_basicinfo WHERE datastat='current' AND bi_empno = '$empno'");
+			$rquery = $query->fetch(PDO::FETCH_NUM);
+			return $rquery[1] . trim(" " . $rquery[2]) . ", " . $rquery[0];
+		} else {
+			return "";
+		}
+	}
+
 	public static function get_emp_name_init($empno)
 	{
 		if ($empno != '') {
@@ -213,5 +224,38 @@ class HR
 		}
 
 		return $data;
+	}
+
+	public static function get_user_info2($field, $empno)
+	{
+		$query = Database::getConnection('hr')->query("SELECT $field FROM tbl_user2 JOIN tbl201_basicinfo ON bi_empno=Emp_No WHERE tbl201_basicinfo.datastat='current' AND Emp_No = '$empno'");
+		$rquery = $query->fetch(PDO::FETCH_NUM);
+		return $rquery[0];
+	}
+
+	public static function _jobinfo($empno, $f)
+	{
+		$query = Database::getConnection('hr')->query("SELECT $f
+										FROM tbl201_jobinfo
+										WHERE ji_empno='$empno'");
+		$rquery = $query->fetch(PDO::FETCH_NUM);
+		return $rquery[0];
+	}
+
+	public static function _jobrec($empno, $f)
+	{
+		$query = Database::getConnection('hr')->query("SELECT $f
+											FROM tbl201_jobrec JOIN tbl_jobdescription ON jrec_position=jd_code
+											WHERE jrec_empno='$empno' AND jrec_status='Primary'");
+		$rquery = $query->fetch(PDO::FETCH_NUM);
+		return $rquery[0];
+	}
+	public static function _perinfo($empno, $f)
+	{
+		$query = Database::getConnection('hr')->query("SELECT $f
+											FROM tbl201_persinfo
+											WHERE pi_empno='$empno' AND datastat='current'");
+		$rquery = $query->fetch(PDO::FETCH_NUM);
+		return $rquery[0];
 	}
 }

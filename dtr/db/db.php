@@ -17,22 +17,22 @@ class Database
                 //     "password" => ""
                 // ],
                 "hr" => [
-                    "host" => "13.213.190.95",
-                    "dbname" => "tngc_hrd2",
-                    "username" => "misadmin",
-                    "password" => "88224646abxy@"
+                    "host" => "mariadb",
+                    "dbname" => "server_copy_tngc_hrd2",
+                    "username" => "root",
+                    "password" => "p@ssw0rd"
                 ],
                 "port" => [
-                    "host" => "localhost",
+                    "host" => "mariadb",
                     "dbname" => "portal_db",
                     "username" => "root",
-                    "password" => ""
+                    "password" => "p@ssw0rd"
                 ],
                 "atd" => [
-                    "host" => "localhost",
+                    "host" => "mariadb",
                     "dbname" => "atd_db",
                     "username" => "root",
-                    "password" => ""
+                    "password" => "p@ssw0rd"
                 ]
             ];
 

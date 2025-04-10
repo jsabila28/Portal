@@ -20,16 +20,20 @@ if(isset($_POST["getreq"])){
 
 	echo json_encode($arrset);
 
-}else{
+}else{ ?>
+<style>
+	.pcoded[theme-layout="vertical"] .pcoded-container {
+		overflow: auto;
+	}
+</style>
 
-?>
 <div class="container-fluid">
 	
-	<div class="panel panel-default">
-		<div class="panel-heading">
+	<div class="card bg-white">
+		<div class="card-header">
 			<label>Clearance Category</label>
 		</div>
-		<div class="panel-body">
+		<div class="card-body">
 			<div align="right">
 				<button class="btn btn-primary btn-sm" onclick="addcat('addcat', '', '', '', '', '1')">Add</button>
 			</div>
@@ -93,7 +97,7 @@ if(isset($_POST["getreq"])){
 		      	</div>
 		      	<div class="modal-footer">
 		      		<button type="submit" class="btn btn-primary" >Save</button>
-		        	<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+		        	<button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
 		      	</div>
 	      	</form>
     	</div>
@@ -111,7 +115,7 @@ if(isset($_POST["getreq"])){
 		$("#form-cat").submit(function(e){
 			e.preventDefault();
 
-			$.post("../actions/ecf.php",
+			$.post("process/ecf",
 				{
 					action:catact,
 					id:catid,
@@ -149,7 +153,7 @@ if(isset($_POST["getreq"])){
 	}
 
 	function statcat(_id1, _stat) {
-		$.post("../actions/ecf.php",{ action:"statcat", id: _id1, stat:_stat },function(res1){
+		$.post("process/ecf",{ action:"statcat", id: _id1, stat:_stat },function(res1){
 			if(res1=="1"){
 				$("#list-cat-"+c_company1+" a").click();
 			}else{
@@ -161,7 +165,7 @@ if(isset($_POST["getreq"])){
 	function getcat(_c) {
 		c_company1=_c;
 		$("#tab-category-div").html("<img src='../../img/loading.gif' width='100px'>");
-		$.post("ecf-category.php",{ getcat:_c },function(res1){
+		$.post("process/ecf-category",{ getcat:_c },function(res1){
 
 			var obj=JSON.parse(res1);
 			var txt1="<br>";
@@ -192,7 +196,7 @@ if(isset($_POST["getreq"])){
 					txt1+="<button class='btn btn-warning btn-sm' onclick=\"statcat('"+obj[x][0]+"', 'active')\"><i class='fa fa-check'></i></button>&emsp;";
 				}
 				txt1+="<button class='btn btn-success btn-sm' onclick=\"addcat('editcat', '"+obj[x][0]+"', '"+obj[x][1]+"', '"+obj[x][2]+"', '"+obj[x][3]+"', '"+obj[x][4]+"')\"><i class='fa fa-edit'></i></button>&emsp;";
-				txt1+="<button class='btn btn-default btn-sm' onclick=\"delcat('"+obj[x][0]+"')\"><i class='fa fa-trash'></i></button>&emsp;";
+				txt1+="<button class='btn btn-outline-secondary btn-sm' onclick=\"delcat('"+obj[x][0]+"')\"><i class='fa fa-trash'></i></button>&emsp;";
 				txt1+="</td>";
 				txt1+="</tr>";
 			}
@@ -215,4 +219,4 @@ if(isset($_POST["getreq"])){
 </script>
 
 <?php
-} ?>
+}

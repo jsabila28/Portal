@@ -277,12 +277,12 @@ if (isset($_SESSION['user_id']) && $user_empno) {
                             foreach ($hr_pdo->query("SELECT * FROM db_ecf2.tbl_cat_req WHERE catreq_catstatid='" . $value[0] . "' AND catreq_ecfid='$ecf' AND catreq_reqid='" . $val[0] . "'") as $req) {
                                 $result = 1;
                                 $sql2 = $hr_pdo->prepare("UPDATE db_ecf2.tbl_cat_req  SET catreq_dtcleared=?, catreq_clearedby=?, catreq_remarks=?, catreq_required=? WHERE catreq_id=?");
-                                $sql2->execute(array($val[2], $val[3], $val[4], $val[1], $req["catreq_id"]));
+                                $sql2->execute(array($val[2] ?: null, $val[3], $val[4], $val[1], $req["catreq_id"]));
                                 $arrreqid[] = $req["catreq_id"];
                             }
                             if ($result == 0) {
                                 $sql2 = $hr_pdo->prepare("INSERT INTO db_ecf2.tbl_cat_req (catreq_catstatid, catreq_reqid, catreq_ecfid, catreq_dtcleared, catreq_clearedby, catreq_remarks, catreq_required) VALUES(?, ?, ?, ?, ? ,? ,?)");
-                                $sql2->execute(array($value[0], $val[0], $ecf, $val[2], $val[3], $val[4], $val[1]));
+                                $sql2->execute(array($value[0], $val[0], $ecf, $val[2] ?: null, $val[3], $val[4], $val[1]));
                                 $arrreqid[] = $hr_pdo->lastInsertId();
                             }
                         }
@@ -320,12 +320,12 @@ if (isset($_SESSION['user_id']) && $user_empno) {
                             foreach ($hr_pdo->query("SELECT * FROM db_ecf2.tbl_cat_req WHERE catreq_catstatid='" . $value[0] . "' AND catreq_ecfid='$ecf' AND catreq_reqid='" . $val[0] . "'") as $req) {
                                 $result = 1;
                                 $sql2 = $hr_pdo->prepare("UPDATE db_ecf2.tbl_cat_req  SET catreq_dtcleared=?, catreq_clearedby=?, catreq_remarks=?, catreq_required=? WHERE catreq_id=?");
-                                $sql2->execute(array($val[2], $val[3], $val[4], $val[1], $req["catreq_id"]));
+                                $sql2->execute(array($val[2] ?: null, $val[3], $val[4], $val[1], $req["catreq_id"]));
                                 $arrreqid[] = $req["catreq_id"];
                             }
                             if ($result == 0) {
                                 $sql2 = $hr_pdo->prepare("INSERT INTO db_ecf2.tbl_cat_req (catreq_catstatid, catreq_reqid, catreq_ecfid, catreq_dtcleared, catreq_clearedby, catreq_remarks, catreq_required) VALUES(?, ?, ?, ?, ? ,? ,?)");
-                                $sql2->execute(array($value[0], $val[0], $ecf, $val[2], $val[3], $val[4], $val[1]));
+                                $sql2->execute(array($value[0], $val[0], $ecf, $val[2] ?: null, $val[3], $val[4], $val[1]));
                                 $arrreqid[] = $hr_pdo->lastInsertId();
                             }
                         }

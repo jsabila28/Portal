@@ -1,74 +1,24 @@
 <?php
-require_once "../db/core.php";
-require_once "../db/mysqlhelper.php";
-require_once '../db/database.php';
-if(isset($_POST["getcat"])){
-	date_default_timezone_set('Asia/Manila');
-	$hr_pdo = HRDatabase::connect();
-
-	$company=$_POST["getcat"];
-
-	$arrset=[];
-	$q = $hr_pdo->prepare("SELECT a.*, GROUP_CONCAT(TRIM(CONCAT('- ',bi_emplname,', ',bi_empfname,' ',bi_empext)) SEPARATOR '<br>') AS empname FROM db_ecf2.tbl_category a
-		LEFT JOIN tbl201_basicinfo ON FIND_IN_SET(bi_empno,cat_checker) > 0 AND datastat = 'current'
-		WHERE cat_company = ?
-		GROUP BY cat_id
-		ORDER BY cat_id ASC, bi_emplname ASC, bi_empfname ASC");
-	$q->execute([ $company ]);
-	foreach ($q->fetchall(PDO::FETCH_ASSOC) as $val) {
-		$arrset[]=[ 
-					$val["cat_id"],
-					$val["cat_title"],
-					$val["cat_desc"],
-					$val["cat_company"],
-					$val["cat_priority"],
-					$val["cat_status"],
-					$val["cat_order"],
-					$val["cat_checker"],
-					($val['empname'] ? $val['empname'] : "")
-				];
-	}
-
-	echo json_encode($arrset);
-
-}else if(isset($_POST["getreq"])){
-	date_default_timezone_set('Asia/Manila');
-	$hr_pdo = HRDatabase::connect();
-
-	$cat=$_POST["getreq"];
-
-	$arrset=[];
-
-	foreach ($hr_pdo->query("SELECT * FROM db_ecf2.tbl_requirement WHERE req_cat='$cat'") as $val) {
-		$arrset[]=[ 
-					$val["req_id"],
-					$val["req_cat"],
-					$val["req_name"],
-					$val["req_status"]
-				];
-	}
-
-	echo json_encode($arrset);
-
-}else{
-
+date_default_timezone_set('Asia/Manila');
+require_once($sr_root . '/db/HR.php');
+$db_hr = new HR();
 ?>
 <div class="container-fluid">
 	
-	<div class="panel panel-default">
-		<div class="panel-heading">
+	<div class="card">
+		<div class="card-header">
 			<label>Clearance Category</label>
-			<span class="pull-right">
-				<a href="?page=ecflist" class="btn btn-default btn-sm">Clearance List</a>
+			<span class="float-right">
+				<a href="/zen/clearance" class="btn btn-outline-secondary btn-sm">Clearance List</a>
 			</span>
 		</div>
-		<div class="panel-body">
+		<div class="card-body">
 			<div align="right">
 				<button class="btn btn-primary btn-sm" onclick="addcat('addcat', '', '', '', '', '1')">Add</button>
 			</div>
 
 			<ul class="nav nav-tabs">
-				<?php foreach ($hr_pdo->query("SELECT * FROM tbl_company WHERE C_owned='True'") as $cval) { ?>
+				<?php foreach ($db_hr->getConnection()->query("SELECT * FROM tbl_company WHERE C_owned='True'") as $cval) { ?>
 						<li role="presentation" id="li-cat-<?=$cval["C_Code"]?>"><a class="ecfcat" onclick="getcat('<?=$cval["C_Code"]?>')" href="#tab-category-div" data-toggle="tab"><?=$cval["C_Name"]?></a></li>
 				<?php } ?>
 			</ul>
@@ -108,7 +58,7 @@ if(isset($_POST["getcat"])){
 		        		<label class="col-md-3">Company:</label>
 		        		<div class="col-md-7">
 		        			<select class="selectpicker form-control" id="cat-company" required>
-		        				<?php foreach ($hr_pdo->query("SELECT C_Code, C_Name FROM tbl_company WHERE C_owned='True'") as $comp_r) { ?>
+		        				<?php foreach ($db_hr->getConnection()->query("SELECT C_Code, C_Name FROM tbl_company WHERE C_owned='True'") as $comp_r) { ?>
 		        						<option value="<?=$comp_r["C_Code"]?>"><?=$comp_r["C_Name"]?></option>
 		        				<?php } ?>
 		        			</select>
@@ -138,7 +88,7 @@ if(isset($_POST["getcat"])){
 		              	  	<select class="form-control selectpicker" data-live-search="true" multiple data-actions-box="true" title="Select" id="req_checker">
 		              	  	  	<?php
 		              	  	  		$curdept = "";
-		              	  	  		foreach ($hr_pdo->query("SELECT bi_empno,bi_empfname,bi_emplname,bi_empext,jd_title, Dept_Name, Dept_Code 
+		              	  	  		foreach ($db_hr->getConnection()->query("SELECT bi_empno,bi_empfname,bi_emplname,bi_empext,jd_title, Dept_Name, Dept_Code 
   	  	      												FROM tbl201_basicinfo 
   	  	      												LEFT JOIN tbl201_jobinfo ON ji_empno=bi_empno 
   	  	      												LEFT JOIN tbl201_jobrec ON jrec_empno=bi_empno AND jrec_status='Primary'
@@ -166,7 +116,7 @@ if(isset($_POST["getcat"])){
 		      	</div>
 		      	<div class="modal-footer">
 		      		<button type="submit" class="btn btn-primary" >Save</button>
-		        	<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+		        	<button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
 		      	</div>
 	      	</form>
     	</div>
@@ -194,7 +144,7 @@ if(isset($_POST["getcat"])){
 		      	</div>
 		      	<div class="modal-footer">
 		      		<button type="submit" class="btn btn-primary" >Save</button>
-		        	<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+		        	<button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
 		      	</div>
 	      	</form>
     	</div>
@@ -214,7 +164,7 @@ if(isset($_POST["getcat"])){
 			e.preventDefault();
 
 			c_company1=$("#cat-company").val();
-			$.post("../actions/ecf.php",
+			$.post("process/ecf",
 				{
 					action:catact,
 					id:catid,
@@ -239,7 +189,7 @@ if(isset($_POST["getcat"])){
 		$("#form-cat-req").submit(function(e){
 			e.preventDefault();
 
-			$.post("../actions/ecf.php",
+			$.post("process/ecf",
 				{
 					action:catact,
 					id:reqid,
@@ -278,7 +228,7 @@ if(isset($_POST["getcat"])){
 	}
 
 	function statcat(_id1, _stat) {
-		$.post("../actions/ecf.php",{ action:"statcat", id: _id1, stat:_stat },function(res1){
+		$.post("process/ecf",{ action:"statcat", id: _id1, stat:_stat },function(res1){
 			if(res1=="1"){
 				$("#li-cat-"+c_company1+" a").click();
 			}else{
@@ -289,7 +239,7 @@ if(isset($_POST["getcat"])){
 
 	function delcat(_id1) {
 		if(confirm("Are you sure?")){
-			$.post("../actions/ecf.php",{ action:"delcat", id: _id1 },function(res1){
+			$.post("process/ecf",{ action:"delcat", id: _id1 },function(res1){
 				if(res1=="1"){
 					$("#li-cat-"+c_company1+" a").click();
 				}else{
@@ -301,8 +251,8 @@ if(isset($_POST["getcat"])){
 
 	function getcat(_c) {
 		c_company1=_c;
-		$("#tab-category-div").html("<img src='../../img/loading.gif' width='100px'>");
-		$.post("ecf-category.php",{ getcat:_c },function(res1){
+		$("#tab-category-div").html("<img src='/hris2/img/loading.gif' width='100px'>");
+		$.post("process/ecf-category",{ getcat:_c },function(res1){
 
 			var obj=JSON.parse(res1);
 			var txt1="";
@@ -325,7 +275,7 @@ if(isset($_POST["getcat"])){
 				}else{
 					txt1+="<button style='margin: 5px;' class='btn btn-warning btn-sm' onclick=\"statcat('"+obj[x][0]+"', 'active')\"><i class='fa fa-check'></i></button>&emsp;";
 				}
-				txt1+="<button style='margin: 5px;' class='btn btn-default btn-sm' onclick=\"delcat('"+obj[x][0]+"')\"><i class='fa fa-trash'></i></button>&emsp;";
+				txt1+="<button style='margin: 5px;' class='btn btn-outline-secondary btn-sm' onclick=\"delcat('"+obj[x][0]+"')\"><i class='fa fa-trash'></i></button>&emsp;";
 				txt1+="</td>";
 				txt1+="</tr>";
 				txt1+="<tr>";
@@ -366,8 +316,8 @@ if(isset($_POST["getcat"])){
 	}
 
 	function getreq(_cat) {
-		$("#div-cat-req-"+_cat).html("<img src='../../img/loading.gif' width='100px'>");
-		$.post("ecf-category.php",{ getreq:_cat },function(res1){
+		$("#div-cat-req-"+_cat).html("<img src='/hris2/img/loading.gif' width='100px'>");
+		$.post("process/ecf-category",{ getreq:_cat },function(res1){
 
 			var obj=JSON.parse(res1);
 			var txt1="";
@@ -393,7 +343,7 @@ if(isset($_POST["getcat"])){
 					txt1+="<button class='btn btn-warning btn-xs' onclick=\"statreq('"+obj[x][0]+"', 'active', '"+_cat+"')\"><i class='fa fa-check'></i></button>&emsp;";
 				}
 				txt1+="<button class='btn btn-success btn-xs' onclick=\"addreq('editreq', '"+obj[x][0]+"', '"+_cat+"', '"+obj[x][2]+"')\"><i class='fa fa-edit'></i></button>&emsp;";
-				txt1+="<button class='btn btn-default btn-xs' onclick=\"delreq('"+obj[x][0]+"', '"+_cat+"')\"><i class='fa fa-trash'></i></button>&emsp;";
+				txt1+="<button class='btn btn-outline-secondary btn-xs' onclick=\"delreq('"+obj[x][0]+"', '"+_cat+"')\"><i class='fa fa-trash'></i></button>&emsp;";
 				txt1+="</td>";
 				txt1+="</tr>";
 			}
@@ -423,7 +373,7 @@ if(isset($_POST["getcat"])){
 
 	function delreq(_id1, _cat1) {
 		if(confirm("Are you sure?")){
-			$.post("../actions/ecf.php",{ action:"delreq", id: _id1 },function(res1){
+			$.post("process/ecf.php",{ action:"delreq", id: _id1 },function(res1){
 				if(res1=="1"){
 					getreq(_cat1);
 				}else{
@@ -434,7 +384,7 @@ if(isset($_POST["getcat"])){
 	}
 
 	function statreq(_id1, _stat, _cat1) {
-		$.post("../actions/ecf.php",{ action:"statreq", id: _id1, stat:_stat },function(res1){
+		$.post("process/ecf.php",{ action:"statreq", id: _id1, stat:_stat },function(res1){
 			if(res1=="1"){
 				getreq(_cat1);
 			}else{
@@ -442,9 +392,4 @@ if(isset($_POST["getcat"])){
 			}
 		});
 	}
-
-
 </script>
-
-<?php
-} ?>

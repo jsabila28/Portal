@@ -5,8 +5,13 @@ $routes = [
 	'/' => '/pages/ecf-list.php',
 	'/ecflist' => '/pages/ecf-list.php',
 	'/addecf' => '/pages/addecf.php',
+	'/ecf-category' => '/pages/ecf-category.php',
+	'/viewecf' => '/pages/viewecf.php',
 	'/login' => '/zen/main/pages/login.php',
 	
+	'/process/ecflist' => '/actions/ecf-list.php',
+	'/print-ecf' => '/actions/print-ecf.php',
+	'/process/ecf-category' => '/actions/ecf-category.php',
 	'/hold-date' => '/actions/hold-date.php',
 	'/check-training-bond' => '/actions/check-training-bond.php',
 	'/process/ecf' => '/actions/ecf.php',
