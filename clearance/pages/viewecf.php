@@ -35,6 +35,8 @@ if (isset($_GET["id"])) {
 		$pos = HR::getName("position", $ecfr["ecf_pos"]);
 		$ecf_company = $ecfr["ecf_company"];
 		$reqby = $ecfr["ecf_reqby"];
+
+		$ecfname = $ecfr["ecf_name"];
 	}
 }
 ?>
@@ -66,49 +68,49 @@ if (isset($_GET["id"])) {
 						<div class="form-group row">
 							<label class="col-md-3 col-form-label">Name:</label>
 							<div class="col-md-7">
-								<label><?= HR::get_emp_name_init($ecfempno); ?></label>
+								<label class="col-form-label"><?= $ecfname; ?></label>
 							</div>
 						</div>
 						<div class="form-group row">
 							<label class="col-sm-3 col-form-label" style="text-align: left;">Employee ID: </label>
 							<div class="col-sm-9">
-								<label><?= $ecfempno ?></label>
+								<label class="col-form-label"><?= $ecfempno ?></label>
 							</div>
 						</div>
 						<div class="form-group row">
 							<label class="col-sm-3 col-form-label" style="text-align: left;">Department: </label>
 							<div class="col-sm-9">
-								<label><?= $dept ?></label>
+								<label class="col-form-label"><?= $dept ?></label>
 							</div>
 						</div>
 						<div class="form-group row">
 							<label class="col-sm-3 col-form-label" style="text-align: left;">Outlet: </label>
 							<div class="col-sm-9">
-								<label><?= $outlet ?></label>
+								<label class="col-form-label"><?= $outlet ?></label>
 							</div>
 						</div>
 						<div class="form-group row">
 							<label class="col-sm-3 col-form-label" style="text-align: left;">Position: </label>
 							<div class="col-sm-9">
-								<label><?= $pos ?></label>
+								<label class="col-form-label"><?= $pos ?></label>
 							</div>
 						</div>
 						<div class="form-group row">
 							<label class="col-sm-3 col-form-label" style="text-align: left;">Type of Separation: </label>
 							<div class="col-sm-5">
-								<label><?= $separation ?></label>
+								<label class="col-form-label"><?= $separation ?></label>
 							</div>
 						</div>
 						<div class="form-group row">
 							<label class="col-sm-3 col-form-label" style="text-align: left;">Last Day: </label>
 							<div class="col-sm-5">
-								<label><?= date("F d, Y", strtotime($lastday)) ?></label>
+								<label class="col-form-label"><?= date("F d, Y", strtotime($lastday)) ?></label>
 							</div>
 						</div>
 						<div class="form-group row" style="color: red;">
-							<label class="col-sm-3" style="text-align: left;">Salary hold date: </label>
+							<label class="col-sm-3 col-form-label" style="text-align: left;">Salary hold date: </label>
 							<div class="col-sm-9">
-								<label><?= $hold_date ?></label>
+								<label class="col-form-label"><?= $hold_date ?></label>
 							</div>
 						</div>
 						<div class="form-group row">
