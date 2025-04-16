@@ -6,35 +6,53 @@
         <div class="panel panel-info">
             <div id="scroll">
                 <ul>
-                    <li class="media" style="margin-left: 10px;">
-                        <?php 
-                            foreach ($moods as $v) {
-                        ?>
-                        <a href="#" class="pull-left" style="position: relative;width: 55px;">
-                            <img src="https://teamtngc.com/hris2/pages/empimg/<?= $v['m_empno'] ?>.JPG" alt="" class="img-circle">
-                            <!-- Mood icon at the top right corner -->
-                            <div style="position: absolute; top: 0; right: 0; background-color: white; color: white; padding: 2px; border-radius: 50%;">
-                                <?php if ($v['m_mood'] == 'anger') {
-                                    echo'<img id="img-emoji" src="/Portal/assets/reactions/sadness.WEBP">';  
-                                }elseif ($v['m_mood'] == 'crying') {
-                                    echo'<img id="img-emoji" src="/Portal/assets/reactions/cry.WEBP">'; 
-                                }elseif ($v['m_mood'] == 'eyeroll') {
-                                    echo'<img id="img-emoji" src="/Portal/assets/reactions/ROLL.JPG">'; 
-                                }elseif ($v['m_mood'] == 'inlove') {
-                                    echo'<img id="img-emoji" src="/Portal/assets/reactions/inlove.JPG">'; 
-                                }elseif ($v['m_mood'] == 'sleepy') {
-                                    echo'<img id="img-emoji" src="/Portal/assets/reactions/sleep.JPG">'; 
-                                }elseif ($v['m_mood'] == 'tired') {
-                                    echo'<img id="img-emoji" src="/Portal/assets/reactions/Tireds.JPG">'; 
-                                }elseif ($v['m_mood'] == 'nuh') {
-                                    echo'<img id="img-emoji" src="/Portal/assets/reactions/lough.WEBP">'; 
-                                }elseif ($v['m_mood'] == 'happy') {
-                                    echo'<img id="img-emoji" src="/Portal/assets/reactions/happy.JPG">'; 
-                                } ?>
-                            </div>
-                        </a>
-                        <?php } ?>
-                    </li>
+                    <li class="media" style="margin-left: 10px; gap: 5px;">
+    <?php foreach ($moods as $v): ?>
+        <a href="#" class="pull-left" style="position: relative; width: 55px;">
+            <img src="https://teamtngc.com/hris2/pages/empimg/<?= $v['m_empno'] ?>.JPG" alt="" class="img-circle" style="width: 100%; height: auto; border-radius: 50%;">
+            
+            <!-- Mood icon at bottom-right with better fit -->
+            <?php if (!empty($v['m_mood'])): ?>
+            <div style="
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                background-color: white;
+                border-radius: 50%;
+                padding: 1px;
+                width: 18px;
+                height: 18px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-shadow: 0 0 2px rgba(0,0,0,0.3);
+            ">
+                <img id="mood-images" src="https://teamtngc.com/zen/assets/reactions/<?= match($v['m_mood']) {
+                    'happy' => 'happiest.PNG',
+                    'weird' => 'smiles.PNG',
+                    'playful' => 'bleh.JPG',
+                    'haha' => 'laugh.WEBP',
+                    'hug' => 'hug.JPG',
+                    'relieved' => 'relieved.JPG',
+                    'inlove' => 'love.PNG',
+                    'hehe' => 'sweat.JPG',
+                    'unamused' => 'unamused.JPG',
+                    'smirk' => 'smirk.JPG',
+                    'vomit' => 'vomit.JPG',
+                    'crying' => 'cry.WEBP',
+                    'anger' => 'sadness.WEBP',
+                    'eyeroll' => 'ROLL.JPG',
+                    'sleepy' => 'sleeping.PNG',
+                    'tired' => 'Tireds.JPG',
+                    default => 'default.png',
+                } ?>" 
+                alt="mood" style="width: 12px; height: 12px; object-fit: contain;">
+            </div>
+            <?php endif; ?>
+        </a>
+    <?php endforeach; ?>
+</li>
+
                 </ul>
             </div>
         </div>
@@ -124,9 +142,145 @@
                                                             <div id="first-picker" class="background-picker"> 
                                                                 <img height="38" alt="" class="xz74otr" referrerpolicy="origin-when-cross-origin" src="assets/img/foto.png">
                                                             </div>
-                                                            <!-- <div class="emoji-picker"> 
+                                                            <div class="emoji-picker" style="cursor: pointer;"> 
                                                                 <img height="38" alt="" class="xz74otr" referrerpolicy="origin-when-cross-origin" src="assets/img/emoji.png">
-                                                            </div> -->
+                                                            </div>
+                                                        </div>
+                                                        <div id="list-emojis" style="display: none;">
+                                                            <ul class="nav nav-tabs  tabs" role="tablist" style="height: 50px;">
+                                                                <li class="nav-item">
+                                                                    <a class="nav-link active" data-toggle="tab" href="#face" role="tab">&#128578;</a>
+                                                                </li>
+                                                                <li class="nav-item">
+                                                                    <a class="nav-link" data-toggle="tab" href="#heart" role="tab">&#129293;</a>
+                                                                </li>
+                                                                <li class="nav-item">
+                                                                    <a class="nav-link" data-toggle="tab" href="#food" role="tab">&#127860;</a>
+                                                                </li>
+                                                                <li class="nav-item">
+                                                                    <a class="nav-link" data-toggle="tab" href="#plant" role="tab">&#127808;</a>
+                                                                </li>
+                                                                <li class="nav-item">
+                                                                    <a class="nav-link" data-toggle="tab" href="#weather" role="tab">&#127759;</a>
+                                                                </li>
+                                                                <li class="nav-item">
+                                                                    <a class="nav-link" data-toggle="tab" href="#symbols" role="tab">&#127881;</a>
+                                                                </li>
+                                                            </ul>
+                                                            <div class="tab-content tabs card-block">
+                                                                <div class="tab-pane active" id="face" role="tabpanel" style="padding: 5px;">
+                                                                    <p class="m-0" style="font-size:14px!important; display: flex;flex-wrap: wrap;gap: 8px;">
+                                                                        <?php 
+                                                                            $faces = [
+                                                                                '&#128512;', '&#128513;', '&#128514;', '&#128515;', '&#128516;', '&#128517;', '&#128518;', '&#128519;',
+                                                                                '&#129392;',
+                                                                                '&#129297;', '&#129303;', '&#129312;', '&#129319;', '&#129321;', '&#129395;', '&#129392;', '&#129327;',
+                                                                                '&#128520;', '&#128521;', '&#128522;', '&#128523;', '&#128524;', '&#128525;', '&#128526;', '&#128527;',
+                                                                                '&#128528;', '&#128529;', '&#128530;', '&#128531;', '&#128532;', '&#128533;', '&#128534;', '&#128535;',
+                                                                                '&#128536;', '&#128537;', '&#128538;', '&#128539;', '&#128540;', '&#128541;', '&#128542;', '&#128543;',
+                                                                                '&#128544;', '&#128545;', '&#128546;', '&#128547;', '&#128548;', '&#128549;', '&#128550;', '&#128551;',
+                                                                                '&#128552;', '&#128553;', '&#128554;', '&#128555;', '&#128556;', '&#128557;', '&#128558;', '&#128559;',
+                                                                                '&#128560;', '&#128561;', '&#128562;', '&#128563;', '&#128564;', '&#128565;', '&#128566;', '&#128567;',
+                                                                                '&#129305;', '&#129310;', '&#128079;', '&#128133;', '&#129309;', '&#9996;', '&#128077;','&#128400;'
+                                                                            ];
+                                                                            
+                                                                            foreach ($faces as $fc) {
+                                                                                echo '<span class="emoji" onclick="insertEmoji(\'post-desc\', \'' . htmlspecialchars_decode($fc) . '\')" style="cursor:pointer;">' . htmlspecialchars_decode($fc) . '</span>';
+                                                                            }
+                                                                        ?>
+                                                                    </p>
+                                                                </div>
+                                                                <div class="tab-pane" id="heart" role="tabpanel" style="padding: 5px;">
+                                                                    <p class="m-0" style="font-size:14px!important; display: flex;flex-wrap: wrap;gap: 8px;">
+                                                                        <?php 
+                                                                            $heart = [ 
+                                                                                '&#10084;','&#128140;','&#10083;',
+                                                                                '&#128147;', '&#128148;', '&#128149;', '&#128150;', '&#128151;', '&#128152;', '&#128153;', '&#128154;', 
+                                                                                '&#128155;', '&#128156;', '&#128157;', '&#128158;', '&#128159;', '&#128420;', '&#129293;', '&#129294;'
+                                                                            ];
+                                                                            
+                                                                            foreach ($heart as $hrt) {
+                                                                                echo '<span class="emoji" onclick="insertEmoji(\'post-desc\', \'' . htmlspecialchars_decode($hrt) . '\')" style="cursor:pointer;">' . htmlspecialchars_decode($hrt) . '</span>';
+                                                                            }
+                                                                        ?>
+                                                                    </p>
+                                                                </div>
+                                                                <div class="tab-pane" id="food" role="tabpanel" style="padding: 5px;">
+                                                                    <p class="m-0" style="font-size:14px!important; display: flex;flex-wrap: wrap;gap: 8px;">
+                                                                        <?php 
+                                                                            $food = [ 
+                                                                                '&#127838;','&#129360;','&#129366;','&#129391;','&#129374;','&#129479;','&#129472;','&#127830;',
+                                                                                '&#127831;','&#129385;','&#127828;','&#127839;','&#127789;','&#127829;','&#129386;','&#129747;',
+                                                                                '&#127790;','&#127791;','&#129372;','&#129478;','&#127837;','&#127836;','&#127829;','&#129368;',
+                                                                                '&#129367;','&#127835;','&#127834;','&#127843;','&#127844;','&#127845;','&#129382;','&#129748;',
+                                                                                '&#127846;','&#127847;','&#127848;','&#127849;','&#127850;','&#127874;','&#127856;','&#129473;',
+                                                                                '&#129383;','&#127851;','&#127852;','&#127853;','&#127854;','&#127855;','&#128006;','&#9749;',
+                                                                                '&#129749;','&#127861;','&#127862;','&#127867;','&#127863;','&#127864;','&#127865;','&#127866;',
+                                                                                '&#127867;','&#129380;','&#129749;','&#127860;','&#129379;','&#127869;','&#129475;',
+                                                                            ];
+                                                                            
+                                                                            foreach ($food as $fd) {
+                                                                                echo '<span class="emoji" onclick="insertEmoji(\'post-desc\', \'' . htmlspecialchars_decode($fd) . '\')" style="cursor:pointer;">' . htmlspecialchars_decode($fd) . '</span>';
+                                                                            }
+                                                                        ?>
+                                                                    </p>
+                                                                </div>
+                                                                <div class="tab-pane" id="plant" role="tabpanel" style="padding: 5px;">
+                                                                    <p class="m-0" style="font-size:14px!important; display: flex;flex-wrap: wrap; gap: 8px;">
+                                                                        <?php 
+                                                                            $plant = [ 
+                                                                                '&#127793;','&#127794;','&#127795;','&#127796;','&#127797;','&#127806;','&#127807;','&#9752;',
+                                                                                '&#127808;','&#127809;','&#127810;','&#127811;','&#127799;','&#127800;','&#127801;','&#129344;',
+                                                                                '&#127802;','&#127803;','&#127804;','&#127806;','&#127805;','&#127807;','&#127812;','&#127883;',
+                                                                                '&#127885;','&#127815;','&#127816;','&#127817;','&#127818;','&#127819;','&#127820;','&#127821;',
+                                                                                '&#129389;','&#127822;','&#127823;','&#127824;','&#127825;','&#127826;','&#127827;','&#129744;',
+                                                                                '&#129373;','&#127813;','&#129381;','&#129361;','&#127814;','&#129364;','&#129365;','&#127805;',
+                                                                                '&#129362;','&#129388;','&#129382;','&#129476;','&#129477;','&#127812;','&#129745;'
+                                                                            ];
+                                                                            
+                                                                            foreach ($plant as $plt) {
+                                                                                echo '<span class="emoji" onclick="insertEmoji(\'post-desc\', \'' . htmlspecialchars_decode($plt) . '\')" style="cursor:pointer;">' . htmlspecialchars_decode($plt) . '</span>';
+                                                                            }
+                                                                        ?>
+                                                                    </p>
+                                                                </div>
+                                                                <div class="tab-pane" id="weather" role="tabpanel" style="padding: 5px;">
+                                                                    <p class="m-0" style="font-size:14px!important; display: flex;flex-wrap: wrap;gap: 8px;">
+                                                                        <?php 
+                                                                            $weather = [ 
+                                                                                '&#9728;','&#127774;','&#9925;','&#127775;','&#127776;','&#127777;','&#127778;','&#127779;',
+                                                                                '&#9928;','&#127786;','&#127787;','&#127788;','&#10052;','&#9731;','&#127777;','&#127752;',
+                                                                                '&#9889;','&#127746;','&#9730;','&#128168;','&#127756;','&#127775;','&#127769;','&#127762;',
+                                                                                '&#127761;','&#11088;','&#9732;','&#127765;','&#127766;','&#127767;','&#127768;','&#127763;',
+                                                                                '&#127764;','&#127757;','&#127758;','&#127759;','&#129680;'
+                                                                            ];
+                                                                            
+                                                                            foreach ($weather as $weath) {
+                                                                                echo '<span class="emoji" onclick="insertEmoji(\'post-desc\', \'' . htmlspecialchars_decode($weath) . '\')" style="cursor:pointer;">' . htmlspecialchars_decode($weath) . '</span>';
+                                                                            }
+                                                                        ?>
+                                                                    </p>
+                                                                </div>
+                                                                <div class="tab-pane" id="symbols" role="tabpanel" style="padding: 5px;">
+                                                                    <p class="m-0" style="font-size:14px!important; display: flex;flex-wrap: wrap;gap: 8px;">
+                                                                        <?php 
+                                                                            $symbols = [ 
+                                                                                '&#127881;','&#127882;','&#129395;','&#127880;','&#127874;','&#127873;','&#129665;','&#129681;',
+                                                                                '&#127879;','&#127878;','&#129512;','&#10024;','&#127775;','&#128171;','&#127925;','&#127926;',
+                                                                                '&#127908;','&#127911;','&#129668;','&#127942;','&#127935;','&#129351;','&#129352;','&#129353;',
+                                                                                '&#10013;','&#9770;','&#9784;','&#9775;','&#10017;','&#128303;','&#128329;','&#128720;',
+                                                                                '&#128334;','&#9774;','&#129418;','&#9851;','&#9884;','&#9888;','&#128696;','&#9940;',
+                                                                                '&#128683;','&#10060;','&#10004;','&#128308;','&#128309;','&#9898;','&#9899;','&#128312;',
+                                                                                '&#128311;'
+                                                                            ];
+                                                                            
+                                                                            foreach ($symbols as $sym) {
+                                                                                echo '<span class="emoji" onclick="insertEmoji(\'post-desc\', \'' . htmlspecialchars_decode($sym) . '\')" style="cursor:pointer;">' . htmlspecialchars_decode($sym) . '</span>';
+                                                                            }
+                                                                        ?>
+                                                                    </p>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                         <!-- BACKGROUND SELECTION -->
                                                         <div id="second-pick" class="custom-pick" style="display: none;">
@@ -344,4 +498,18 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
+</script>
+<script>
+    $(document).ready(function() {
+        $('.emoji-picker').on('click', function() {
+            $('#list-emojis').toggle(); // Show/hide emojis on click
+        });
+
+        // Optional: Hide emojis when clicking outside
+        $(document).on('click', function(e) {
+            if (!$(e.target).closest('.emoji-picker, #list-emojis').length) {
+                $('#list-emojis').hide();
+            }
+        });
+    });
 </script>

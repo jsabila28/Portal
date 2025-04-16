@@ -35,6 +35,7 @@ try {
     $newId = "$year-$month-$nextSequence-$department";
 
     echo "$newId";
+    echo "<input type='hidden' name='memoID' value='". $newId ."' />";
 
 
 

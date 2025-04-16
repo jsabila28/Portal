@@ -22,8 +22,6 @@
           </p>
         </a>
       </li>
-      <hr>
-      <div id="header"><label>Education</label></div>
       <li>
         <a href="education">
           <p>
@@ -31,17 +29,19 @@
           </p>
         </a>
       </li>
+      <hr>
+      <div id="header"><label>Professional</label></div>
       <li>
         <a href="eligibility">
           <p>
-            <i class="icofont icofont-certificate-alt-1"></i> Eligibility/Licenses
+            <i class="icofont icofont-certificate-alt-1"></i> Eligibility & Licenses
           </p>
         </a>
       </li>
       <li>
         <a href="cert">
           <p>
-           <i class="icofont icofont-certificate-alt-2"></i> Certificate
+           <i class="icofont icofont-certificate-alt-2"></i> Training and Seminar
           </p>
         </a>
       </li>
@@ -55,13 +55,13 @@
           </p>
         </a>
       </li>
-      <li>
+      <!-- <li>
         <a href="Intcert">
           <p>
             <i class="icofont icofont-certificate-alt-2"></i> Internal Certificate
           </p>
         </a>
-      </li>
+      </li> -->
       <li>
         <a href="payslip">
           <p>

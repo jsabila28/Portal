@@ -1,5 +1,6 @@
 <?php
 require_once($sr_root . "/db/db.php");
+header('Content-Type: application/json');
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -9,7 +10,7 @@ try {
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $postedBy = $_POST['postedBy'];
-        $postDesc = $_POST['postDesc'];
+        $postDesc = strip_tags($_POST['postDesc']);
         $audience = $_POST['audience'];
         $filePath = null;
 

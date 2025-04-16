@@ -24,8 +24,6 @@
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
-
-            <div id="prof-header"><label>Education</label></div>
             <li class="">
                 <a href="education">
                     <span class="pcoded-micon"><i class="icon-graduation"></i></span>
@@ -33,17 +31,19 @@
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
+
+            <div id="prof-header"><label>Professional</label></div>
             <li class="prof-sidebar">
                 <a href="eligibility">
                     <span class="pcoded-micon"><i class="icofont icofont-certificate-alt-1"></i></span>
-                    <span class="pcoded-mtext">Eligibility/Licenses</span>
+                    <span class="pcoded-mtext">Eligibility and Licenses</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
             <li class="prof-sidebar">
                 <a href="cert">
                     <span class="pcoded-micon"><i class="icofont icofont-certificate-alt-2"></i></span>
-                    <span class="pcoded-mtext">Certificate</span>
+                    <span class="pcoded-mtext">Training and Seminar</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>

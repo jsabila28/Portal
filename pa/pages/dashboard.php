@@ -3,9 +3,9 @@ require_once($pa_root."/db/db.php");
 require_once($pa_root."/db/core.php");
 require_once($pa_root."/actions/get_person.php");
 
-if (!isset($_SESSION['csrf_token1'])) {
-    $_SESSION['csrf_token1'] = bin2hex(random_bytes(32)); // Generates a secure random token
-}
+// if (!isset($_SESSION['csrf_token1'])) {
+//     $_SESSION['csrf_token1'] = bin2hex(random_bytes(32)); // Generates a secure random token
+// }
 
 ?>
 <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
@@ -16,11 +16,14 @@ if (!isset($_SESSION['csrf_token1'])) {
             <div class="panel-heading" align="left" style="background-color: #dfe2e3;color: #000000;">
                <label>Performance Appraisal</label>
             </div>
-            <?php if(isset($SESSION['user_id']) && $SESSION['user_id']!=""){ ?>
-            <div style="display: inline-flex;"><button onclick="location='dashboard?page=dashboard'" class="btn btn-default btn-sm"><i class="fa fa-arrow-circle-left"></i> List</button></div>
-            <div style="display: inline-flex;"><h3><?=get_emp_name($SESSION['user_id'])?></h3></div>
+            <?php if(isset($_SESSION['user_id']) && $_SESSION['user_id']!=""){ ?>
+            <div style="display: inline-flex;width: 100%;padding-left: 20px;padding-top: 10px;align-items: center;">
+              <button onclick="location='dashboard?page=dashboard'" style="float: left;" class="btn btn-default btn-mini"><i class="fa fa-arrow-circle-left"></i> List</button>
+              <h4><?=get_emp_name($_SESSION['user_id'])?></h4>
+            </div>
+            <!-- <div style="display: inline-flex;"><h3><?=get_emp_name($_SESSION['user_id'])?></h3></div> -->
             <div class="panel-body" style="padding: 20px !important;">
-          <a href="?page=pa-summary" class="btn btn-default btn-mini">PA Summary</a>
+          <a href="pasummary?page=pasummary" class="btn btn-default btn-mini" style="float: left !important;">PA Summary</a>
           <?php if($empno==$_SESSION['user_id']){ ?>
           <div align="right"><a href="pa?page=pa" class="btn btn-primary btn-mini">New <i class="fa fa-plus"></i></a></div>
           <br>
@@ -138,7 +141,7 @@ if (!isset($_SESSION['csrf_token1'])) {
         </script>
       <?php }else if(check_auth($empno,"PA")!='' || get_assign("pa","viewall",$empno)){ ?>
         <div class="panel-body" style="padding: 20px !important;">
-          <a href="?page=pa-summary" class="btn btn-default btn-mini">PA Summary</a>
+          <a href="pasummary?page=pasummary" class="btn btn-default btn-mini" style="float: left !important;">PA Summary</a>
           <table  class="table table-bordered table-hover" id="tbl-pa" style="width: 100%;">
             <thead>
               <tr>
@@ -172,7 +175,7 @@ if (!isset($_SESSION['csrf_token1'])) {
                     $pa_emp=ucwords(trim($paf_k['bi_emplname']." ".$paf_k['bi_empext']).", ".$paf_k['bi_empfname']);
 
                      ?>
-                    <tr style="cursor: pointer;" onclick="location='dashboard?page=dashboard&emp=<?=$paf_k['bi_empno']?>'">
+                    <tr style="cursor: pointer;" onclick="location='dashboard?page=pa&emp=<?=$paf_k['bi_empno']?>'">
                       <td><?=$pa_emp?></td>
                       <td><?=$paf_k['jd_title']?></td>
                       <td><?=$paf_k['Dept_Name']?></td>

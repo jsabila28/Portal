@@ -223,131 +223,152 @@
                 <div class="card card_main p-fixed users-main" style="background-color: white;">
                     <div class="user-box" style="background-color: white;">
                         <div class="main-friend-list"><br>
-                        	<div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" data-placement="left" title="Josephin Doe">
+                        	<div class="media userlist-box" data-id="1" data-status="online" data-toggle="tooltip" data-placement="left" title="Josephin Doe">
                                 <span>DTR Services</span>
                             </div>
-                            <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
-                                <a class="media-left" href="/Portal/dtr" style="text-align: center;">
+                            <div class="media userlist-box" data-id="1" data-status="online" data-toggle="tooltip" style="text-align: center;">
+                                <a class="media-left" href="/zen/dtr" style="text-align: center;">
                                 	<div>
-                                		<img src="/Portal/ATD/assets/img/2.png" width="40" height="40"><br>DTR
+                                		<img src="/zen/assets/img/dtrlogs.png" width="40" height="40"><br>DTR
                                 	</div>
                                 </a>
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
-                                		<img src="/Portal/ATD/assets/img/schedule2.png" width="40" height="40"><br>Schedule
+                                		<img src="/zen/assets/img/gatepass.png" width="45" height="45"><br>Gatepass
                                 	</div>
                                 </a>
-                                <a class="media-left" href="/Portal/leave/" style="text-align: center;">
+                                <a class="media-left" href="https://teamtngc.com/hrisdtrservices/manpower/leave" target="_blank" style="text-align: center;">
                                 	<div>
-                                		<img src="/Portal/ATD/assets/img/leave2.png" width="40" height="40"><br>Leave
+                                		<img src="/zen/assets/img/leave.png" width="45" height="45"><br>Leave
                                 	</div>
                                 </a>
-                                <a class="media-left" href="#!" style="text-align: center;">
+                                <a class="media-left" href="https://teamtngc.com/hrisdtrservices/manpower/break-edit" target="_blank" style="text-align: center;">
                                 	<div>
-                                		<img src="/Portal/ATD/assets/img/break2.png" width="40" height="40"><br>Break
+                                		<img src="/zen/assets/img/break.png" width="45" height="45"><br>Break
                                 	</div>
                                 </a>
                             </div>
-                            <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
+                            <div class="media userlist-box" data-id="1" data-status="online" data-toggle="tooltip" style="text-align: center;">
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
-                                		<img src="/Portal/ATD/assets/img/restday2.png" width="40" height="40"><br>RestDay
+                                		<img src="/zen/assets/img/restday.png" width="45" height="45"><br>RestDay
                                 	</div>
                                 </a>
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
-                                		<img src="/Portal/ATD/assets/img/offset2.png" width="40" height="40"><br>Offset
+                                		<img src="/zen/assets/img/schedule2.png" width="45" height="45"><br>Schedule
                                 	</div>
                                 </a>
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
-                                		<img src="/Portal/ATD/assets/img/overtime2.png" width="40" height="40"><br>OT
+                                		<img src="/zen/assets/img/offset.png" width="45" height="45"><br>Offset
                                 	</div>
                                 </a>
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
-                                		<img src="/Portal/ATD/assets/img/gatepass2.png" width="40" height="40"><br>Gatepass
-                                	</div>
-                                </a>
-                            </div>
-                            <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
-                                <a class="media-left" href="#!" style="text-align: center;">
-                                	<div>
-                                		<img src="/Portal/ATD/assets/img/drd2.png" width="40" height="40"><br>DRD
-                                	</div>
-                                </a>
-                                <a class="media-left" href="#!" style="text-align: center;">
-                                	<div>
-                                		<img src="/Portal/ATD/assets/img/dhd2.png" width="40" height="40"><br>DHD
-                                	</div>
-                                </a>
-                                <a class="media-left" href="#!" style="text-align: center;">
-                                	<div>
-                                		<img src="/Portal/ATD/assets/img/training2.png" width="40" height="40"><br>Trainings
-                                	</div>
-                                </a>
-                                <a class="media-left" href="#!" style="text-align: center;">
-                                	<div>
-                                		<img src="/Portal/ATD/assets/img/travel2.png" width="40" height="40"><br>Travel
+                                		<img src="/zen/assets/img/ot.png" width="45" height="45"><br>OT
                                 	</div>
                                 </a>
                             </div>
-                            <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
+                            <div class="media userlist-box" data-id="1" data-status="online" data-toggle="tooltip" style="text-align: center;">
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
-                                		<img src="/Portal/ATD/assets/img/sales2.png" width="40" height="40"><br>Sales
+                                		<img src="/zen/assets/img/drd.png" width="45" height="45"><br>DRD
+                                	</div>
+                                </a>
+                                <a class="media-left" href="#!" style="text-align: center;">
+                                	<div>
+                                		<img src="/zen/assets/img/dhd.png" width="45" height="45"><br>DHD
+                                	</div>
+                                </a>
+                                <a class="media-left" href="#!" style="text-align: center;">
+                                	<div>
+                                		<img src="/zen/assets/img/training.png" width="45" height="45"><br>Trainings
+                                	</div>
+                                </a>
+                                <a class="media-left" href="#!" style="text-align: center;">
+                                	<div>
+                                		<img src="/zen/assets/img/travel.png" width="45" height="45"><br>Travel
+                                	</div>
+                                </a>
+                            </div>
+                            <div class="media userlist-box" data-id="1" data-status="online" data-toggle="tooltip" style="text-align: center;">
+                                <a class="media-left" href="#!" style="text-align: center;">
+                                	<div>
+                                		<img src="/zen/assets/img/directory.png" width="45" height="45"><br>Sales
                                 	</div>
                                 </a>
                             </div>
 
+                            
+                            <div class="media userlist-box" data-id="1" data-status="online" data-toggle="tooltip" data-placement="left" title="Josephin Doe">
+                                <span>Compliance</span>
+                            </div>
+                            <div class="media userlist-box" data-id="1" data-status="online" data-toggle="tooltip" style="text-align: center;">
+                                <a class="media-left" href="/zen/compliance/phoneA" style="text-align: center;">
+                                	<div>
+                                		<img src="/zen/assets/img/phoneAgree.png" width="45" height="45"><br>Phone Agreement
+                                	</div>
+                                </a>
+                                <a class="media-left" href="#!" style="text-align: center;">
+                                	<div>
+                                		<img src="/zen/assets/img/employee2.png" width="45" height="45"><br>Clearance
+                                	</div>
+                                </a>
+                                <a class="media-left" href="#!" style="text-align: center;">
+                                	<div>
+                                		<img src="/zen/assets/img/device.png" width="45" height="45"><br>Device Contract
+                                	</div>
+                                </a>
+                            </div>
+                            <div class="media userlist-box" data-id="1" data-status="online" data-toggle="tooltip" style="text-align: center;">
+                                <a class="media-left" href="/zen/compliance/ir" style="text-align: center;">
+                                	<div>
+                                		<img src="/zen/assets/img/grieviance.png" width="45" height="45"><br>IR
+                                	</div>
+                                </a>
+                                <a class="media-left" href="/zen/compliance/13A" style="text-align: center;">
+                                	<div>
+                                		<img src="/zen/assets/img/grieviance.png" width="45" height="45"><br>13A
+                                	</div>
+                                </a>
+                                <a class="media-left" href="/zen/compliance/13B" style="text-align: center;">
+                                	<div>
+                                		<img src="/zen/assets/img/grieviance.png" width="45" height="45"><br>13B
+                                	</div>
+                                </a>
+                            </div>
 
-                            <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" data-placement="left" title="Josephin Doe">
+                            <div class="media userlist-box" data-id="1" data-status="online" data-toggle="tooltip" data-placement="left" title="Josephin Doe">
                                 <span>Others</span>
                             </div>
-                            <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
-                                <a class="media-left" href="#!" style="text-align: center;">
+                            <div class="media userlist-box" data-id="1" data-status="online" data-toggle="tooltip" style="text-align: center;">
+                                <a class="media-left" href="/zen/pa" style="text-align: center;">
                                 	<div>
-                                		<img src="/Portal/ATD/assets/img/eei2.png" width="40" height="40"><br>EEI
+                                		<img src="/zen/assets/img/persapp.png" width="45" height="45"><br>PA TNGC
                                 	</div>
                                 </a>
-                                <a class="media-left" href="#!" style="text-align: center;">
+                                <a class="media-left" href="/zen/pasji" style="text-align: center;">
                                 	<div>
-                                		<img src="/Portal/ATD/assets/img/employee2.png" width="40" height="40"><br>Employees
-                                	</div>
-                                </a>
-                                <a class="media-left" href="#!" style="text-align: center;">
-                                	<div>
-                                		<img src="/Portal/ATD/assets/img/pa2.png" width="40" height="40"><br>PA
-                                	</div>
-                                </a>
-                                <a class="media-left" href="#!" style="text-align: center;">
-                                	<div>
-                                		<img src="/Portal/ATD/assets/img/hiring2.png" width="40" height="40"><br>Hiring
-                                	</div>
-                                </a>
-                            </div>
-                            <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
-                                <a class="media-left" href="#!" style="text-align: center;">
-                                	<div>
-                                		<img src="/Portal/ATD/assets/img/report2.png" width="40" height="40"><br>Reports
-                                	</div>
-                                </a>
-                                <a class="media-left" href="#!" style="text-align: center;">
-                                	<div>
-                                		<img src="/Portal/ATD/assets/img/announcement2.png" width="40" height="40"><br>Post
+                                		<img src="/zen/assets/img/persapp.png" width="45" height="45"><br>PA SJI
                                 	</div>
                                 </a>
                             </div>
                             
-                            <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" data-placement="left" title="Josephin Doe">
+                            <div class="media userlist-box" data-id="1" data-status="online" data-toggle="tooltip" data-placement="left" title="Josephin Doe">
                                 <span>Systems</span>
                             </div>
-                            <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
-                                <!-- <a class="media-left" href="#!" style="text-align: center;">
+                            <div class="media userlist-box" data-id="1" data-status="online" data-toggle="tooltip" style="text-align: center;">
+                                <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
-                                		<img src="assets/img/atd.png" width="40" height="40"><br>ATD
+                                		<img src="/zen/assets/img/atd.png" width="40" height="40"><br>ATD
                                 	</div>
-                                </a> -->
+                                </a>
+                                <a class="media-left" href="/Portal/pcf/" style="text-align: center;">
+                                	<div>
+                                		<img src="/Portal/pcf/assets/img/PCF.png" width="40" height="40"><br>PCF
+                                	</div>
+                                </a>
                             </div>
                         </div>
                     </div>

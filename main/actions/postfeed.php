@@ -1,10 +1,14 @@
 <?php
 require_once($main_root . "/db/db.php");
 require_once($main_root . "/actions/get_personal.php");
+// header('Content-Type: text/html; charset=utf-8');
+
 
 try {
     $port_db = Database::getConnection('port');
     $hr_db = Database::getConnection('hr');
+    $port_db->exec("SET NAMES 'utf8mb4'");
+    $hr_db->exec("SET NAMES 'utf8mb4'");
 
     $page = isset($_POST['page']) ? (int) $_POST['page'] : 1;
     $items_per_page = 3;
@@ -12,40 +16,88 @@ try {
 
     $userIdentifier = $empno;
     $cacheFile = "cache/postfeeddata_user_{$userIdentifier}_page_{$page}.json";
-
-    // $cacheFile = "cache/postfeeddata_page_{$page}.json";
     $cacheTime = 5 * 5; 
 
     if (file_exists($cacheFile) && (time() - filemtime($cacheFile)) < $cacheTime) {
         $data = json_decode(file_get_contents($cacheFile), true);
+
     } else {
         $currentYear = date('Y');
 
-        $stmt = $hr_db->prepare("
-            SELECT *
+        // Query for port_db
+        $port_db->exec("SET NAMES 'utf8mb4'");
+        $hr_db->exec("SET NAMES 'utf8mb4'");
+
+        $stmt_port = $port_db->prepare("
+            SELECT a.*, b.*
             FROM tbl_announcement a
             LEFT JOIN tbl201_basicinfo b ON a.ann_approvedby = b.bi_empno
             WHERE ann_status = 'Approved' AND 
-        (
-            FIND_IN_SET(:company, a.ann_receiver) > 0 OR
-            a.ann_receiver = 'Only Me' AND ann_approvedby = :user OR
-            a.ann_receiver = 'All'
-        )
-            -- AND a.ann_content IS NOT NULL
+            (
+                FIND_IN_SET(:company, a.ann_receiver) > 0 OR
+                (a.ann_receiver = 'Only Me' AND a.ann_approvedby = :user) OR
+                a.ann_receiver = 'All'
+            )
+            GROUP BY a.`ann_id`
+            ORDER BY a.ann_pinned DESC, a.ann_timestatmp DESC
+            LIMIT :offset, :limit
+        ");
+        $stmt_port->bindValue(':company', $company, PDO::PARAM_STR);
+        $stmt_port->bindValue(':user', $empno, PDO::PARAM_STR);
+        $stmt_port->bindValue(':offset', $offset, PDO::PARAM_INT);
+        $stmt_port->bindValue(':limit', $items_per_page, PDO::PARAM_INT);
+        $stmt_port->execute();
+        $port_data = $stmt_port->fetchAll(PDO::FETCH_ASSOC);
+
+        // Query for hr_db
+        $stmt_hr = $hr_db->prepare("
+            SELECT a.*, b.*
+            FROM tbl_announcement a
+            LEFT JOIN tbl201_basicinfo b ON a.ann_approvedby = b.bi_empno
+            WHERE ann_status = 'Approved' AND 
+            (
+                FIND_IN_SET(:company, a.ann_receiver) > 0 OR
+                (a.ann_receiver = 'Only Me' AND a.ann_approvedby = :user) OR
+                a.ann_receiver = 'All'
+            )
+            AND a.ann_type = 'LOCAL'
             ORDER BY a.ann_timestatmp DESC
             LIMIT :offset, :limit
         ");
+        $stmt_hr->bindValue(':company', $company, PDO::PARAM_STR);
+        $stmt_hr->bindValue(':user', $empno, PDO::PARAM_STR);
+        $stmt_hr->bindValue(':offset', $offset, PDO::PARAM_INT);
+        $stmt_hr->bindValue(':limit', $items_per_page, PDO::PARAM_INT);
+        $stmt_hr->execute();
+        $hr_data = $stmt_hr->fetchAll(PDO::FETCH_ASSOC);
 
-        $stmt->bindValue(':company', $company, PDO::PARAM_STR);
-        $stmt->bindValue(':user', $empno, PDO::PARAM_STR);
-        $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
-        $stmt->bindValue(':limit', $items_per_page, PDO::PARAM_INT);
-        $stmt->execute();
+        // Ensure ann_pinned exists in both data sets
+        foreach ($port_data as &$row) {
+            $row['ann_pinned'] = isset($row['ann_pinned']) ? (int)$row['ann_pinned'] : 0;
+        }
+        unset($row); // break reference
         
-        $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($hr_data as &$row) {
+            $row['ann_pinned'] = 0; // HR data has no pinned field, default to 0
+        }
+        unset($row);
+
+        $data = array_merge($port_data, $hr_data);
+
+        usort($data, function($a, $b) {
+            if ($a['ann_pinned'] != $b['ann_pinned']) {
+                return $b['ann_pinned'] - $a['ann_pinned'];
+            }
+        
+            $timeA = !empty($a['ann_timestatmp']) ? strtotime($a['ann_timestatmp']) : 0;
+            $timeB = !empty($b['ann_timestatmp']) ? strtotime($b['ann_timestatmp']) : 0;
+            return $timeB - $timeA;
+        });
+
 
         file_put_contents($cacheFile, json_encode($data));
-        
+        // file_put_contents($cacheFile, json_encode($data, JSON_UNESCAPED_UNICODE));
+
     }
 
     if (!empty($data)) {
@@ -87,7 +139,7 @@ try {
 
             echo '<div class="media m-0">';
             echo '<div class="media-body">';
-            echo '<p><span><i class="icon ion-md-time"></i>' . htmlspecialchars($row['ann_title']). '</span></p>';
+            echo '<p><span><i class="icon ion-md-time"></i>' . htmlspecialchars_decode($row['ann_title']) . '</span></p>';
             echo '</div>'; // Close media-body
             echo '</div>'; // Close media
 
@@ -110,7 +162,7 @@ try {
             }else if(strpos($row['ann_content'], '<figure onclick="openPostOverlay(\'https://teamtngc.com/hris2/pages/announcement' . $row['ann_content'] . '\')"') !== false){
                 echo str_replace('../announcement', 'https://teamtngc.com/hris2/pages/announcement', $row['ann_content']);
             }else{
-                echo '<img class="img-fluid" style="max-height: 500px !important;cursor: pointer;" src="' . htmlspecialchars($row['ann_content']) . '" onclick="openPostOverlay(\'' . htmlspecialchars($row['ann_content']) . '\')">';
+                echo '<img class="img-fluid" style="max-height: 500px !important;cursor: pointer;" src="https://teamtngc.com/zen/' . htmlspecialchars($row['ann_content']) . '" onclick="openPostOverlay(\'https://teamtngc.com/zen/' . htmlspecialchars($row['ann_content']) . '\')">';
             }
             // echo "".$row['ann_content']."";
             echo '</div>'; // Close cardbox-item
@@ -238,7 +290,7 @@ try {
             $stmt->execute([$row['ann_id']]);
             $cm = $stmt->fetch(PDO::FETCH_ASSOC);
             
-            $stmt = $hr_db->prepare("
+            $stmt = $port_db->prepare("
                 SELECT comment_onid, COUNT(*) AS counts 
                 FROM tbl_comment 
                 WHERE comment_onid = ?
@@ -876,7 +928,7 @@ try {
             
             // Cardbox Item
             echo '<div class="cardbox-item" style="padding:20px !important;color:#000000;">';
-            echo '<span>' . htmlspecialchars($row['ann_title']). '</span>';
+            echo '<span>' . htmlspecialchars_decode($row['ann_title']) . '</span>';
             echo '</div>'; // Close cardbox-item
             
             // Cardbox Base

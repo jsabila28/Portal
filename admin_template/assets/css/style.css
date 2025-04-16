@@ -2704,9 +2704,11 @@ Panels and wells css start
   padding: 15px; }
 
 .panel-heading {
-  padding: 10px 15px;
+  padding: 5px;
   border-top-left-radius: 3px;
-  border-top-right-radius: 3px; }
+  border-top-right-radius: 3px;
+  background-color: #e9ecf1;
+}
 
 .panel-footer {
   padding: 10px 15px;
@@ -19191,7 +19193,7 @@ body[themebg-pattern="pattern9"] {
   margin-bottom: 0; }
   .table-container .table tr th {
     border-bottom: 1px solid #f1f1f1;
-    font-size: 13px;
+    /*font-size: 13px;*/
     font-weight: 600;
     background: #00bcd4;
     color: #FFF; }

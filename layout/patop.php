@@ -45,7 +45,7 @@
 	<!-- <script src="https://jscolor.com/release/2.4.5/jscolor.js"></script> -->
 	<!--color css-->
 	<!-- EMOJI -->
-	<script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
+	<!-- <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     
 	<link rel="stylesheet" type="text/css" href="/Portal/admin_template/assets/css/linearicons.css">
@@ -94,6 +94,18 @@
 	<!-- <script src="https://cdn.jsdelivr.net/npm/@joeattardi/emoji-button@5.4.0/dist/emoji-button.min.js"></script> -->
   	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
+	<!-- Bootstrap CSS -->
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"> -->
+<!-- Bootstrap Select CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css">
+
+<!-- jQuery -->
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+<!-- Bootstrap JS -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script> -->
+<!-- Bootstrap Select JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
 
 </head>
 
@@ -333,13 +345,13 @@
                 <div class="card card_main p-fixed users-main" style="background-color: white;">
                     <div class="user-box" style="background-color: white;">
                         <div class="main-friend-list"><br>
-                        	<div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" data-placement="left" title="Josephin Doe">
+                        	<div class="media userlist-box" data-id="1" data-status="online" data-toggle="tooltip" data-placement="left" title="Josephin Doe">
                                 <span>DTR Services</span>
                             </div>
-                            <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
+                            <div class="media userlist-box" data-id="1" data-status="online" data-toggle="tooltip" style="text-align: center;">
                                 <a class="media-left" href="/Portal/dtr" style="text-align: center;">
                                 	<div>
-                                		<img src="/Portal/assets/img/dtr.png" width="40" height="40"><br>DTR
+                                		<img src="/Portal/assets/img/dtrlogs.png" width="40" height="40"><br>DTR
                                 	</div>
                                 </a>
                                 <a class="media-left" href="#!" style="text-align: center;">
@@ -349,19 +361,19 @@
                                 </a>
                                 <a class="media-left" href="https://teamtngc.com/hrisdtrservices/manpower/leave" target="_blank" style="text-align: center;">
                                 	<div>
-                                		<img src="/Portal/assets/img/leave2.png" width="45" height="45"><br>Leave
+                                		<img src="/Portal/assets/img/leave.png" width="45" height="45"><br>Leave
                                 	</div>
                                 </a>
                                 <a class="media-left" href="https://teamtngc.com/hrisdtrservices/manpower/break-edit" target="_blank" style="text-align: center;">
                                 	<div>
-                                		<img src="/Portal/assets/img/break2.png" width="45" height="45"><br>Break
+                                		<img src="/Portal/assets/img/break.png" width="45" height="45"><br>Break
                                 	</div>
                                 </a>
                             </div>
-                            <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
+                            <div class="media userlist-box" data-id="1" data-status="online" data-toggle="tooltip" style="text-align: center;">
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
-                                		<img src="/Portal/assets/img/restday2.png" width="45" height="45"><br>RestDay
+                                		<img src="/Portal/assets/img/restday.png" width="45" height="45"><br>RestDay
                                 	</div>
                                 </a>
                                 <a class="media-left" href="#!" style="text-align: center;">
@@ -371,53 +383,53 @@
                                 </a>
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
-                                		<img src="/Portal/assets/img/offset2.png" width="45" height="45"><br>Offset
+                                		<img src="/Portal/assets/img/offset.png" width="45" height="45"><br>Offset
                                 	</div>
                                 </a>
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
-                                		<img src="/Portal/assets/img/overtime2.png" width="45" height="45"><br>OT
-                                	</div>
-                                </a>
-                            </div>
-                            <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
-                                <a class="media-left" href="#!" style="text-align: center;">
-                                	<div>
-                                		<img src="/Portal/assets/img/drd2.png" width="45" height="45"><br>DRD
-                                	</div>
-                                </a>
-                                <a class="media-left" href="#!" style="text-align: center;">
-                                	<div>
-                                		<img src="/Portal/assets/img/dhd2.png" width="45" height="45"><br>DHD
-                                	</div>
-                                </a>
-                                <a class="media-left" href="#!" style="text-align: center;">
-                                	<div>
-                                		<img src="/Portal/assets/img/training2.png" width="45" height="45"><br>Trainings
-                                	</div>
-                                </a>
-                                <a class="media-left" href="#!" style="text-align: center;">
-                                	<div>
-                                		<img src="/Portal/assets/img/travel2.png" width="45" height="45"><br>Travel
+                                		<img src="/Portal/assets/img/ot.png" width="45" height="45"><br>OT
                                 	</div>
                                 </a>
                             </div>
-                            <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
+                            <div class="media userlist-box" data-id="1" data-status="online" data-toggle="tooltip" style="text-align: center;">
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
-                                		<img src="/Portal/assets/img/sales2.png" width="45" height="45"><br>Sales
+                                		<img src="/Portal/assets/img/drd.png" width="45" height="45"><br>DRD
+                                	</div>
+                                </a>
+                                <a class="media-left" href="#!" style="text-align: center;">
+                                	<div>
+                                		<img src="/Portal/assets/img/dhd.png" width="45" height="45"><br>DHD
+                                	</div>
+                                </a>
+                                <a class="media-left" href="#!" style="text-align: center;">
+                                	<div>
+                                		<img src="/Portal/assets/img/training.png" width="45" height="45"><br>Trainings
+                                	</div>
+                                </a>
+                                <a class="media-left" href="#!" style="text-align: center;">
+                                	<div>
+                                		<img src="/Portal/assets/img/travel.png" width="45" height="45"><br>Travel
+                                	</div>
+                                </a>
+                            </div>
+                            <div class="media userlist-box" data-id="1" data-status="online" data-toggle="tooltip" style="text-align: center;">
+                                <a class="media-left" href="#!" style="text-align: center;">
+                                	<div>
+                                		<img src="/Portal/assets/img/directory.png" width="45" height="45"><br>Sales
                                 	</div>
                                 </a>
                             </div>
 
                             
-                            <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" data-placement="left" title="Josephin Doe">
+                            <div class="media userlist-box" data-id="1" data-status="online" data-toggle="tooltip" data-placement="left" title="Josephin Doe">
                                 <span>Compliance</span>
                             </div>
-                            <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
+                            <div class="media userlist-box" data-id="1" data-status="online" data-toggle="tooltip" style="text-align: center;">
                                 <a class="media-left" href="/Portal/compliance/phoneA" style="text-align: center;">
                                 	<div>
-                                		<img src="/Portal/assets/img/ph-agr.png" width="45" height="45"><br>Phone Agreement
+                                		<img src="/Portal/assets/img/phoneAgree.png" width="45" height="45"><br>Phone Agreement
                                 	</div>
                                 </a>
                                 <a class="media-left" href="#!" style="text-align: center;">
@@ -427,73 +439,55 @@
                                 </a>
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
-                                		<img src="/Portal/assets/img/contract.png" width="45" height="45"><br>Device Contract
+                                		<img src="/Portal/assets/img/device.png" width="45" height="45"><br>Device Contract
                                 	</div>
                                 </a>
                             </div>
-                            <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
-                                <a class="media-left" href="/Portal/compliance/ir" style="text-align: center;">
+                            <div class="media userlist-box" data-id="1" data-status="online" data-toggle="tooltip" style="text-align: center;">
+                                <a class="media-left" href="/Portal/compliance/" style="text-align: center;">
                                 	<div>
-                                		<img src="/Portal/assets/img/grievance.png" width="45" height="45"><br>IR
+                                		<img src="/Portal/assets/img/grieviance.png" width="45" height="45"><br>IR
                                 	</div>
                                 </a>
                                 <a class="media-left" href="/Portal/compliance/13A" style="text-align: center;">
                                 	<div>
-                                		<img src="/Portal/assets/img/grievance.png" width="45" height="45"><br>13A
+                                		<img src="/Portal/assets/img/grieviance.png" width="45" height="45"><br>13A
                                 	</div>
                                 </a>
                                 <a class="media-left" href="/Portal/compliance/13B" style="text-align: center;">
                                 	<div>
-                                		<img src="/Portal/assets/img/grievance.png" width="45" height="45"><br>13B
+                                		<img src="/Portal/assets/img/grieviance.png" width="45" height="45"><br>13B
                                 	</div>
                                 </a>
                             </div>
 
-                            <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" data-placement="left" title="Josephin Doe">
+                            <div class="media userlist-box" data-id="1" data-status="online" data-toggle="tooltip" data-placement="left" title="Josephin Doe">
                                 <span>Others</span>
                             </div>
-                            <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
-                                <!-- <a class="media-left" href="#!" style="text-align: center;">
-                                	<div>
-                                		<img src="/Portal/assets/img/eei2.png" width="45" height="45"><br>EEI
-                                	</div>
-                                </a> -->
-                               <!--  <a class="media-left" href="#!" style="text-align: center;">
-                                	<div>
-                                		<img src="/Portal/assets/img/employee2.png" width="45" height="45"><br>Employees
-                                	</div>
-                                </a> -->
+                            <div class="media userlist-box" data-id="1" data-status="online" data-toggle="tooltip" style="text-align: center;">
                                 <a class="media-left" href="/Portal/pa" style="text-align: center;">
                                 	<div>
-                                		<img src="/Portal/assets/img/performance.png" width="45" height="45"><br>PA
+                                		<img src="/Portal/assets/img/persapp.png" width="45" height="45"><br>PA TNGC
                                 	</div>
                                 </a>
-                                <!-- <a class="media-left" href="#!" style="text-align: center;">
+                                <a class="media-left" href="/Portal/pasji" style="text-align: center;">
                                 	<div>
-                                		<img src="/Portal/assets/img/hiring2.png" width="45" height="45"><br>Hiring
+                                		<img src="/Portal/assets/img/persapp.png" width="45" height="45"><br>PA SJI
                                 	</div>
-                                </a> -->
+                                </a>
                             </div>
-                            <!-- <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
-                                <a class="media-left" href="#!" style="text-align: center;">
-                                	<div>
-                                		<img src="/Portal/assets/img/report2.png" width="45" height="45"><br>Reports
-                                	</div>
-                                </a>
-                                <a class="media-left" href="#!" style="text-align: center;">
-                                	<div>
-                                		<img src="/Portal/assets/img/announcement2.png" width="45" height="45"><br>Post
-                                	</div>
-                                </a>
-                            </div> -->
-                            
-                            <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" data-placement="left" title="Josephin Doe">
+                            <div class="media userlist-box" data-id="1" data-status="online" data-toggle="tooltip" data-placement="left" title="Josephin Doe">
                                 <span>Systems</span>
                             </div>
-                            <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
+                            <div class="media userlist-box" data-id="1" data-status="online" data-toggle="tooltip" style="text-align: center;">
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
                                 		<img src="/Portal/assets/img/atd.png" width="40" height="40"><br>ATD
+                                	</div>
+                                </a>
+                                <a class="media-left" href="/Portal/pcf/" style="text-align: center;">
+                                	<div>
+                                		<img src="/Portal/pcf/assets/img/PCF.png" width="40" height="40"><br>PCF
                                 	</div>
                                 </a>
                             </div>

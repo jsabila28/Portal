@@ -151,45 +151,96 @@ $(document).ready(function(){
     });
 });
 
+$(document).ready(function(){
+    $(document).on("input", "input[name^='Mycomm-']", function() {
+        let textarea = $(this);
+        let annId = textarea.attr("id").replace("Mycomment-", "");
+        let mentionList = $("#mention-list-" + annId);
+
+        let cursorPos = this.selectionStart;
+        let text = textarea.val().substring(0, cursorPos);
+        let match = text.match(/@([\w]*)$/);
+
+        if (match) {
+            let searchQuery = match[1];
+
+            if (searchQuery.length > 0) {
+                $.ajax({
+                    url: "persons",
+                    method: "POST",
+                    data: { query: searchQuery },
+                    success: function(response) {
+                        mentionList.html(response).show();
+                    }
+                });
+            } else {
+                mentionList.hide();
+            }
+        } else {
+            mentionList.hide();
+        }
+    });
+
+    $(document).on("click", ".mention-item", function() {
+        let name = $(this).text();
+        let textarea = $(this).closest(".textarea-wrapper").find("input[name^='Mycomm-']");
+        let cursorPos = textarea[0].selectionStart;
+        let text = textarea.val();
+        let textBefore = text.substring(0, cursorPos).replace(/@[\w]*$/, "@" + name + " ");
+        let textAfter = text.substring(cursorPos);
+
+        textarea.val(textBefore + textAfter).focus();
+        $(this).parent().hide();
+    });
+
+    $(document).click(function(event) {
+        if (!$(event.target).closest(".textarea-wrapper").length) {
+            $(".mention-list").hide();
+        }
+    });
+});
 
 
 
     // Handle new post creation
-    $('#post-btn').click(function (e) {
-        e.preventDefault();
+$('#post-btn').click(function (e) {
+    e.preventDefault();
 
-        var postedBy = $('input[name="posted-by"]').val();
-        var postDesc = $('#post-desc').val();
-        // var postDesc = $('#post-desc2').val();
-        var audience = $('input[name="audience"]:checked').val();
-        var postContent = new FormData();
+    var postedBy = $('input[name="posted-by"]').val();
+    var postDesc = $('#post-desc').val(); // Emojis will be captured here
+    var audience = $('input[name="audience"]:checked').val();
+    var postContent = new FormData();
 
-        postContent.append('postedBy', postedBy);
-        postContent.append('postDesc', postDesc);
-        postContent.append('audience', audience);
+    postContent.append('postedBy', postedBy);
+    postContent.append('postDesc', postDesc); // Ensure emojis are sent properly
+    postContent.append('audience', audience);
 
-        var fileInput = $('#imageInput')[0].files[0];
-        if (fileInput) {
-            postContent.append('file', fileInput);
-        }
+    var fileInput = $('#imageInput')[0].files[0];
+    if (fileInput) {
+        postContent.append('file', fileInput);
+    }
 
-        $.ajax({
-            url: 'postnews',
-            type: 'POST',
-            data: postContent,
-            processData: false,
-            contentType: false,
-            success: function (response) {
-                alert(response);
+    $.ajax({
+        url: 'postnews',
+        type: 'POST',
+        data: postContent,
+        processData: false,
+        contentType: false,
+        dataType: 'json', // Expect JSON response
+        success: function (response) {
+            if (response.success) {
                 $('#default-Modal').modal('hide');
                 location.reload(); // Reload the page after saving
-            },
-            error: function (xhr, status, error) {
-                console.error(error);
+            } else {
+                console.error(response.error);
             }
-        });
-
+        },
+        error: function (xhr, status, error) {
+            console.error('AJAX error:', error);
+        }
     });
+});
+
 
     $('#post-desc').on('input', function () {
         if ($(this).val().trim() !== '') {
@@ -299,6 +350,7 @@ let page = 1;
                     $('#loading').html('No more posts available.');
                 }
             }
+            
         });
     }
 
@@ -406,7 +458,7 @@ document.getElementById('post-btn2').addEventListener('click', (event) => {
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    alert('Post saved successfully!');
+                    // alert('Post saved successfully!');
                     location.reload();
                 } else {
                     alert('Failed to save the post.');

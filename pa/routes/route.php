@@ -6,7 +6,9 @@ $routes = [
 	'/dashboard' => '/pages/dashboard.php',
 	'/login' => '/pages/login.php',
 	'/pa' => '/pages/pa.php',
-	'/savepa' => '/actions/pa.php'
+	'/savepa' => '/actions/pa.php',
+	'/pasummary' => '/pages/pa-summary.php',
+	'/PA_summary' => '/pages/PAsummary.php'
 	
 ];
 

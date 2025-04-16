@@ -8,6 +8,8 @@ $routes = [
 	'/add_memo' => 'main/pages/add_memo.php',
 	'/login' => 'main/pages/login.php',
 	'/howto' => 'main/pages/howto.php',
+	'/feedback' => 'main/pages/feedback.php',
+
 	'/signIn' => 'main/actions/signIn.php',
 	'/getUser' => 'main/actions/get_user.php',
 	'/signOut' => 'main/actions/logout.php',
@@ -16,9 +18,11 @@ $routes = [
 	'/save_comment' => 'main/actions/save_comment.php',
 	'/postnews' => 'main/actions/post_news.php',
 	'/comment' => 'main/actions/comment.php',
+	'/govern' => 'main/actions/get_gov.php',
 
 
 	// DASHBOARD
+	'/saveMemo' => 'main/actions/save_memo.php',
 	'/holiday' => 'main/actions/holiday.php',
 	'/post' => 'main/actions/postfeed.php',
 	'/legal' => 'main/actions/gov_ann.php',

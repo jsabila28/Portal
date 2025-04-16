@@ -232,7 +232,7 @@
 				</div>
 			</nav>
 			<!-- Sidebar chat start -->
-        <div id="sidebar" class="users p-chat-user showChat">
+        <div id="sidebar" class="users p-chat-user showChat" style="width: 350px!important;">
             <div class="had-container" style="background-color: white;">
                 <div class="card card_main p-fixed users-main" style="background-color: white;">
                     <div class="user-box" style="background-color: white;">
@@ -256,13 +256,13 @@
                                 		<img src="/Portal/ATD/assets/img/leave2.png" width="40" height="40"><br>Leave
                                 	</div>
                                 </a>
+                            </div>
+                            <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
                                 		<img src="/Portal/ATD/assets/img/break2.png" width="40" height="40"><br>Break
                                 	</div>
                                 </a>
-                            </div>
-                            <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
                                 		<img src="/Portal/ATD/assets/img/restday2.png" width="40" height="40"><br>RestDay
@@ -273,6 +273,8 @@
                                 		<img src="/Portal/ATD/assets/img/offset2.png" width="40" height="40"><br>Offset
                                 	</div>
                                 </a>
+                            </div>
+                            <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
                                 		<img src="/Portal/ATD/assets/img/overtime2.png" width="40" height="40"><br>OT

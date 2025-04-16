@@ -23,10 +23,10 @@ class Database
                     "password" => "88224646abxy@"
                 ],
                 "port" => [
-                    "host" => "localhost",
+                    "host" => "13.213.190.95",
                     "dbname" => "portal_db",
-                    "username" => "root",
-                    "password" => ""
+                    "username" => "misadmin",
+                    "password" => "88224646abxy@"
                 ],
                 "atd" => [
                     "host" => "localhost",

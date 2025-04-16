@@ -4,7 +4,7 @@
     $Month = date("m");
     $Day = date("d");
     $yearMonth = date("Y-m");
-    $employee = Profile::GetEmployee();
+    // $employee = Profile::GetEmployee();
 
     try {
         $hr_db = Database::getConnection('hr');

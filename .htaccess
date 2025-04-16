@@ -1,11 +1,11 @@
 Options -Indexes
 
 RewriteEngine On
-# RewriteBase /prosperityph/pi/
+# RewriteBase /Portal/main/
 # RewriteRule \.(js|css|ico|gif|jpg|png|xml|html|swf|ttf|eot)$ - [NC,L]
 
-# RewriteRule ^admin_template/(.*)$ /prosperityph/admin_template/$1 [NC,L]
-# RewriteRule ^assets/(.*)$ /prosperityph/assets/$1 [NC,L]
+# RewriteRule ^admin_template/(.*)$ /Portal/admin_template/$1 [NC,L]
+# RewriteRule ^assets/(.*)$ /Portal/assets/$1 [NC,L]
 
 RewriteRule ^index\\.php$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-d

@@ -1,8 +1,10 @@
 <?php
 try {
-    $pdo = new PDO("mysql:host=localhost;dbname=portal_db", "root", "", [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-    ]);
+    $pdo = new PDO("mysql:host=localhost;dbname=portal_db;charset=utf8mb4", "root", "", [
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+]);
+
     
     $query = isset($_POST['query']) ? trim($_POST['query']) : '';
 
@@ -20,9 +22,9 @@ try {
                 AND b.jrec_type = 'Primary'
                 AND b.jrec_status = 'Primary'
                 AND ji.ji_remarks = 'Active'
-                AND a.bi_emplname LIKE :query 
-                OR a.bi_empfname LIKE :query
-                GROUP BY a.bi_empno LIMIT 5");
+                AND (a.bi_emplname LIKE :query OR a.bi_empfname LIKE :query)
+                GROUP BY a.bi_empno");
+
         $stmt->execute(['query' => $query . '%']);
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 

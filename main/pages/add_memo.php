@@ -4,47 +4,23 @@ require_once($main_root."/actions/get_personal.php");
 
 $departments = Portal::GetDepartments();
 $employees = Portal::GetEmployee();
-$company = Portal::GetCompany();
+$companies = Portal::GetCompany();
 $area = Portal::GetArea();
 $outlet = Portal::GetOutlet();
 ?>
 <div class="page-wrapper">
     <div class="page-header">
-         <!-- <div class="page-header-title">
-             <h4>Add Memo</h4>
-             <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit</span>
-         </div>
-         <div class="page-header-breadcrumb">
-             <ul class="breadcrumb-title">
-                 <li class="breadcrumb-item">
-                     <a href="index.html">
-                         <i class="icofont icofont-home"></i>
-                     </a>
-                 </li>
-                 <li class="breadcrumb-item"><a href="#!">Portal</a>
-                 </li>
-                 <li class="breadcrumb-item"><a href="#!">Memo</a>
-                 </li>
-             </ul>
-         </div> -->
     </div>
     <div class="page-body">
         <div class="row" style="margin-left: 0px !important;margin-right: 0px !important;">
             <div class="col-sm-8">
                 <div class="card" id="addmemo-card">
-                    <!-- <div class="card-header">
-                        <div class="card-header-left">
-                            <h5>Badges</h5>
-                            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit</span>
-                        </div>
-                        <div class="card-header-right">
-                            <i class="icofont icofont-rounded-down"></i>
-                            <i class="icofont icofont-refresh"></i>
-                            <i class="icofont icofont-close-circled"></i>
-                        </div>
-                    </div> -->
                     <div class="card-block" style="padding: 1.25rem;">
-                    <form>
+                    <form id="memo-form">
+                        <input type="hidden" name="position" value="<?=$position?>">
+                        <input type="hidden" name="dprtmnt" value="<?=$department?>">
+                        <input type="hidden" name="company" value="<?=$company?>">
+                        <input type="hidden" name="selected_tab" id="selected-tab" value="all">
                         <div class="form-group row" id="form-g">
                             <label class="col-sm-4 col-form-label">Date:
                                 <?php
@@ -55,7 +31,16 @@ $outlet = Portal::GetOutlet();
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label">Memo Number:
-                                <?php require_once($main_root."/actions/get_memo_no.php"); ?>
+                              <?php require_once($main_root."/actions/get_memo_no.php");?>
+                            </label>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label" style="display: flex;">Group:
+                                <select class="form-control" name="memoType" style="margin-left: 10px !important;" required>
+                                  <option value="">No Selected</option>
+                                  <option value="marketing">Marketing</option>
+                                  <option value="policies">Policies and Guidelines</option>
+                                </select>
                             </label>
                         </div>
                         <div class="form-group row">
@@ -72,7 +57,14 @@ $outlet = Portal::GetOutlet();
                                   </ul>
                                   <div class="tabs-content">
                                     <div id="all" class="memo-tab active">
-                                        
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td><input type='checkbox' name="checkboxes[]" value="All" checked></td>
+                                                    <td>All</td>
+                                                </tr>                                          
+                                            </tbody>
+                                        </table>
                                     </div>
                                     <div id="comp" class="memo-tab">
                                       <div class="table-container">
@@ -85,10 +77,10 @@ $outlet = Portal::GetOutlet();
                                             </thead>
 
                                             <tbody>
-                                                <?php if (!empty($company)) {
-                                                  foreach($company as $com){
+                                                <?php if (!empty($companies)) {
+                                                  foreach($companies as $com){
                                                         echo "<tr>";
-                                                        echo "<td><input type='checkbox'></td>";
+                                                        echo "<td><input type='checkbox' name='checkboxes[]' value=".$com['C_Code']."></td>";
                                                         echo "<td>".$com['C_Name']."</td>";
                                                         echo "</tr>";
                                                     }
@@ -112,7 +104,7 @@ $outlet = Portal::GetOutlet();
                                                 <?php if (!empty($departments)) {
                                                   foreach($departments as $dept){
                                                         echo "<tr>";
-                                                        echo "<td><input type='checkbox'></td>";
+                                                        echo "<td><input type='checkbox' name='checkboxes[]' value=".$dept['Dept_Code']."></td>";
                                                         echo "<td>".$dept['Dept_Name']."</td>";
                                                         echo "</tr>";
                                                     }
@@ -136,7 +128,7 @@ $outlet = Portal::GetOutlet();
                                                 <?php if (!empty($area)) {
                                                   foreach($area as $ar){
                                                         echo "<tr>";
-                                                        echo "<td><input type='checkbox'></td>";
+                                                        echo "<td><input type='checkbox' name='checkboxes[]' value=".$ar['Area_Code']."></td>";
                                                         echo "<td>".$ar['Area_Name']."</td>";
                                                         echo "</tr>";
                                                     }
@@ -160,7 +152,7 @@ $outlet = Portal::GetOutlet();
                                                 <?php if (!empty($outlet)) {
                                                   foreach($outlet as $ol){
                                                         echo "<tr>";
-                                                        echo "<td><input type='checkbox'></td>";
+                                                        echo "<td><input type='checkbox' name='checkboxes[]' value=".$ol['OL_Code']."></td>";
                                                         echo "<td>".$ol['OL_Name']."</td>";
                                                         echo "</tr>";
                                                     }
@@ -195,7 +187,7 @@ $outlet = Portal::GetOutlet();
                                                 <?php if (!empty($employees)) {
                                                     foreach($employees as $emp){
                                                         echo "<tr>";
-                                                        echo "<td><input type='checkbox'></td>";
+                                                        echo "<td><input type='checkbox' name='checkboxes[]' value=".$emp['bi_empno']."></td>";
                                                         echo "<td>".$emp['bi_empfname'].' '.$emp['bi_emplname']."</td>";
                                                         echo "<td>".$emp['C_Name']."</td>";
                                                         echo "<td>".$emp['Dept_Name']."</td>";
@@ -216,13 +208,14 @@ $outlet = Portal::GetOutlet();
                         <div class="form-group row">
                             <label class="col-md-1 col-form-label">Subject</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" placeholder="SUBJECT (maximum of 10 words)">
+                                <input type="text" class="form-control" name="subject" id="subInput" placeholder="SUBJECT (maximum of 10 words)">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-md-1 col-form-label">Upload File</label>
                             <div class="col-sm-10">
-                                <input class="form-control" type="file" id="fileInput" accept="image/*,application/pdf" multiple>
+                                <input class="form-control" type="file" name="memofile[]" id="fileInput" accept="image/*,application/pdf" multiple>
+
                             </div>
                         </div>
                         <div class="">
@@ -233,7 +226,7 @@ $outlet = Portal::GetOutlet();
                         </div>
                         <div class="">
                             <div class="col-sm-12">
-                                <button class="btn btn-primary btn-mini" style="float: right;" id="save-memo">Submit</button>
+                                <button type="submit" class="btn btn-primary btn-mini" style="float: right;" id="save-memo">Submit</button>
                             </div>
                         </div>
                     </form>
@@ -382,6 +375,23 @@ $(document).ready(function () {
             $(this).toggle($(this).children().eq(index).text().toLowerCase().indexOf(value) > -1);
         });
     });
+
+    // Handle tab click event
+    $('.nav-pills li').on('click', function() {
+      // Remove 'active' class from all tabs and add it to the clicked tab
+      $('.nav-pills li').removeClass('active');
+      $(this).addClass('active');
+      
+      // Get the data-tab attribute value of the clicked tab
+      var tabToShow = $(this).data('tab');
+      
+      // Hide all tabs and show the selected one
+      $('.memo-tab').removeClass('active');
+      $('#' + tabToShow).addClass('active');
+      
+      // Uncheck all checkboxes when switching tabs
+      $('input[type="checkbox"]').prop('checked', false);
+    });
 });
 document.querySelectorAll('.nav-pills li').forEach(tab => {
      tab.addEventListener('click', () => {
@@ -470,4 +480,77 @@ fileInput.addEventListener('change', function () {
       previewContainer.textContent = 'No files selected';
     }
 });
+
+// $(document).ready(function() {
+//     $('.nav-pills li').on('click', function() {
+//         $('.nav-pills li').removeClass('active');
+//         $(this).addClass('active');
+
+//         // Update the hidden input value
+//         $('#selected-tab').val($(this).data('tab'));
+//     });
+
+//     $('#memo-form').on('submit', function(e) {
+//         e.preventDefault();
+
+//         const selectedTab = $('#selected-tab').val();
+//         const selectedValues = $('input[name="checkboxes[]"]:checked')
+//             .map(function() {
+//                 return $(this).val();
+//             }).get().join(',');
+
+//         if (!selectedTab || selectedValues.length === 0) {
+//             alert('Please select a tab and at least one recipient.');
+//             return;
+//         }
+
+//         $.ajax({
+//             url: 'saveMemo',
+//             type: 'POST',
+//             data: $(this).serialize(),
+//             success: function(response) {
+//                 console.log('Success:', response);
+//             },
+//             error: function(xhr) {
+//                 console.error('Error:', xhr.responseText);
+//             }
+//         });
+//     });
+// });
+
+$('#memo-form').on('submit', function(e) {
+    e.preventDefault();
+
+    const selectedTab = $('#selected-tab').val();
+    const selectedValues = $('input[name="checkboxes[]"]:checked')
+        .map(function() {
+            return $(this).val();
+        }).get(); // Get an array instead of a comma-separated string
+
+    if (!selectedTab || selectedValues.length === 0) {
+        alert('Please select a tab and at least one recipient.');
+        return;
+    }
+
+    let formData = new FormData(this);
+    formData.append('selected_tab', selectedTab);
+
+    // Add each selected value to formData
+    selectedValues.forEach(value => formData.append('checkboxes[]', value));
+
+    $.ajax({
+        url: 'saveMemo',
+        type: 'POST',
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function(response) {
+            console.log('Success:', response);
+        },
+        error: function(xhr) {
+            console.error('Error:', xhr.responseText);
+        }
+    });
+});
+
 </script>

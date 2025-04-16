@@ -11,8 +11,8 @@ class Portal
         }
     }
 
-    public static function GetMemo($Year,$empno,$company,$department,$area,$outlet) {
-        $conn = self::getDatabaseConnection('hr');
+    public static function GetDirectives($Year,$empno,$company,$department,$area,$outlet) {
+        $conn = self::getDatabaseConnection('port');
 
         if ($conn) {
             $stmt = $conn->prepare("SELECT * FROM tbl_memo 
@@ -26,7 +26,8 @@ class Portal
                     OR REPLACE(memo_recipient, ' ', '') LIKE CONCAT('%,', ?)
                     OR REPLACE(memo_recipient, ' ', '') LIKE CONCAT('%,', ?, ',%')
                 )
-                ORDER BY memo_date DESC LIMIT 3
+                AND memo_type = 'policies'
+                ORDER BY memo_date DESC LIMIT 5
                 ");
             $stmt->execute([$Year,$empno,$company,$department,$area,$outlet]);
 
@@ -35,8 +36,8 @@ class Portal
         return [];
     }
 
-    public static function GetAllMemo($Year,$empno,$company,$department,$area,$outlet) {
-        $conn = self::getDatabaseConnection('hr');
+    public static function GetPromotions($Year,$empno,$company,$department,$area,$outlet) {
+        $conn = self::getDatabaseConnection('port');
 
         if ($conn) {
             $stmt = $conn->prepare("SELECT * FROM tbl_memo 
@@ -49,7 +50,44 @@ class Portal
                     OR REPLACE(memo_recipient, ' ', '') LIKE CONCAT(?, ',%')
                     OR REPLACE(memo_recipient, ' ', '') LIKE CONCAT('%,', ?)
                     OR REPLACE(memo_recipient, ' ', '') LIKE CONCAT('%,', ?, ',%')
-                ) 
+                )
+                AND memo_type = 'marketing'
+                ORDER BY memo_date DESC LIMIT 5
+                ");
+            $stmt->execute([$Year,$empno,$company,$department,$area,$outlet]);
+
+            return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
+        }
+        return [];
+    }
+
+    // public static function GetMemo() {
+    //     $conn = self::getDatabaseConnection('port');
+
+    //     if ($conn) {
+    //         $stmt = $conn->prepare("SELECT * FROM tbl_memo");
+    //         $stmt->execute();
+
+    //         return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
+    //     }
+    //     return [];
+    // }
+
+    public static function GetAllMemo($Year,$empno,$company,$department,$area,$outlet) {
+        $conn = self::getDatabaseConnection('port');
+
+        if ($conn) {
+            $stmt = $conn->prepare("SELECT * FROM tbl_memo 
+                WHERE LEFT(memo_date, 4) = ?
+                AND (
+                    memo_recipient = 'All'
+                    OR memo_recipient = ''
+                    OR REPLACE(memo_recipient, ' ', '') LIKE CONCAT(?, ',%')
+                    OR REPLACE(memo_recipient, ' ', '') LIKE CONCAT(?, ',%')
+                    OR REPLACE(memo_recipient, ' ', '') LIKE CONCAT(?, ',%')
+                    OR REPLACE(memo_recipient, ' ', '') LIKE CONCAT('%,', ?)
+                    OR REPLACE(memo_recipient, ' ', '') LIKE CONCAT('%,', ?, ',%')
+                )
                 ORDER BY memo_date DESC");
             $stmt->execute([$Year,$empno,$company,$department,$area,$outlet]);
 
@@ -69,8 +107,8 @@ class Portal
                 ON c.`jrec_empno` = a.`la_empno`
                 LEFT JOIN tbl_department d
                 ON d.`Dept_Code` = c.`jrec_department`
-                WHERE a.`la_status` NOT IN ('cancelled','draft','pending')
-                AND a.`la_start` >= ?
+                WHERE a.`la_status` = 'approved'
+                AND a.`la_end` >= ?
                 GROUP BY a.`la_empno`,a.`la_start`
                 ORDER BY a.`la_start` ASC");
             $stmt->execute([$date]);
@@ -245,12 +283,14 @@ class Portal
             return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
         }
     }
-    public static function GetMood($date) {
+    public static function GetMood($date,$empno) {
         $conn = self::getDatabaseConnection('port');
 
         if ($conn) {
-            $stmt = $conn->prepare("SELECT * FROM tbl_mood WHERE DATE(m_date) = ?");
-            $stmt->execute([$date]);
+            $stmt = $conn->prepare("SELECT * FROM tbl_mood
+            WHERE DATE(m_date) = ?
+            AND (m_disp_type = 'Public' OR m_empno = ?);");
+            $stmt->execute([$date,$empno]);
 
             return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
         }

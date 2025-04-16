@@ -1,9 +1,9 @@
 <?php
   //Connect to my database
-  class Database
+  class PADatabase
   {
       private static $dbName = 'db_hr' ;
-      private static $dbHost = 'localhost' ;
+      private static $dbHost = '13.213.190.95' ;
       private static $dbUsername = 'admin';
       private static $dbUserPassword = 'Administr@t0r';
       private static $cont  = null;
@@ -36,7 +36,7 @@
 
       public static function mysqli()
       {
-          $cont = new mysqli("localhost", "admin", "Administr@t0r", "db_hr");
+          $cont = new mysqli("13.213.190.95", "admin", "Administr@t0r", "db_hr");
           return $cont;
       }
   }
@@ -79,7 +79,7 @@
       }
       public static function mysqli()
       {
-          $cont = new mysqli("localhost", "admin", "Administr@t0r", "tngc_hrd2");
+          $cont = new mysqli("13.213.190.95", "admin", "Administr@t0r", "tngc_hrd2");
           return $cont;
       }
   }
@@ -88,7 +88,7 @@
   class MainDatabase
   {
       private static $dbName = 'db_main' ;
-      private static $dbHost = 'localhost' ;
+      private static $dbHost = '13.213.190.95' ;
       private static $dbUsername = 'admin';
       private static $dbUserPassword = 'Administr@t0r';
       private static $cont  = null;
@@ -121,7 +121,7 @@
 
       public static function mysqli()
       {
-          $cont = new mysqli("localhost", "admin", "", "db_main");
+          $cont = new mysqli("13.213.190.95", "admin", "", "db_main");
           return $cont;
       }
   }
@@ -130,7 +130,7 @@
   class HR1Database
   {
       private static $dbName = 'tngc_hrd' ;
-      private static $dbHost = 'localhost' ;
+      private static $dbHost = '13.213.190.95' ;
       private static $dbUsername = 'admin';
       private static $dbUserPassword = 'Administr@t0r';
 
@@ -164,14 +164,14 @@
       }
       public static function mysqli()
       {
-          $cont = new mysqli("localhost", "admin", "Administr@t0r", "tngc_hrd");
+          $cont = new mysqli("13.213.190.95", "admin", "Administr@t0r", "tngc_hrd");
           return $cont;
       }
   }
    class DTRDatabase
   {
       private static $dbName = 'db_dtr' ;
-      private static $dbHost = 'localhost' ;
+      private static $dbHost = '13.213.190.95' ;
       private static $dbUsername = 'admin';
       private static $dbUserPassword = 'Administr@t0r';
 
@@ -205,7 +205,7 @@
       }
       public static function mysqli()
       {
-          $cont = new mysqli("localhost", "admin", "Administr@t0r", "db_dtr");
+          $cont = new mysqli("13.213.190.95", "admin", "Administr@t0r", "db_dtr");
           return $cont;
       }
   }
@@ -213,7 +213,7 @@
   class APPDatabase
   {
       private static $dbName = 'db_applicants' ;
-      private static $dbHost = 'localhost' ;
+      private static $dbHost = '13.213.190.95' ;
       private static $dbUsername = 'admin';
       private static $dbUserPassword = 'Administr@t0r';
 
@@ -247,7 +247,7 @@
       }
       public static function mysqli()
       {
-          $cont = new mysqli("localhost", "admin", "Administr@t0r", "db_applicants");
+          $cont = new mysqli("13.213.190.95", "admin", "Administr@t0r", "db_applicants");
           return $cont;
       }
   }

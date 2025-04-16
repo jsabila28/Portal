@@ -177,7 +177,7 @@ https://static.xx.fbcdn.net/rsrc.php/v3/yY/r/fCbUcoRfiez.png);
     display: flex;
     margin-bottom: 1rem;
     position: relative;
-    /*justify-content: space-between;*/
+    justify-content: space-between;
     max-width: 100% !important;
     overflow: auto !important;
 }
@@ -641,6 +641,8 @@ url(https://static.xx.fbcdn.net/rsrc.php/v3/yX/r/QryT_9DQQgy.png);
     max-height: 150px;
     z-index: 1;
     font-size: 12px;
+    max-height: 300px;
+    overflow: auto;
 }
 .mention-list {
     position: absolute;
@@ -651,6 +653,8 @@ url(https://static.xx.fbcdn.net/rsrc.php/v3/yX/r/QryT_9DQQgy.png);
     max-height: 150px;
     z-index: 1;
     font-size: 12px;
+    max-height: 300px;
+    overflow: auto;
 }
 .mention-item {
     padding: 5px;

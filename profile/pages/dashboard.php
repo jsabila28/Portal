@@ -12,6 +12,7 @@
                       <div id="personal-info">
                         <div class="profile">
                           <img src="https://e-classtngcacademy.s3.ap-southeast-1.amazonaws.com/e-class/Thumbnail/img/<?= $empno ?>.JPG" alt="User-Profile-Image" width="100" height="100" style="border-radius: 50px;">
+                          <a style="margin-top: 30%;font-size: 16px;"><i class="icofont icofont-camera-alt"></i></a>
                           <div class="basic-info">
                             <span id="userName">
                             <?php

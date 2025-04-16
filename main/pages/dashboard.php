@@ -7,14 +7,16 @@ $Year = date("Y");
 $Month = date("m");
 $Day = date("d");
 $yearMonth = date("Y-m");
-$memos = Portal::GetMemo($Year,$empno,$company,$department,$area,$outlet);
+$directives = Portal::GetDirectives($Year,$empno,$company,$department,$area,$outlet);
+$promotions = Portal::GetPromotions($Year,$empno,$company,$department,$area,$outlet);
 $memoAll = Portal::GetAllMemo($Year,$empno,$company,$department,$area,$outlet);
+// $memo = Portal::GetMemo();
 $leave = Portal::GetLeave($date);
 $ongoingleave = Portal::GetOngoingLeave($date);
 $resigning = Portal::GetResigning($Year);
 $government = Portal::GetGovAnn($yearMonth);
 $birthday = Portal::GetBirthday($Month,$Day);
-$moods = Portal::GetMood($date);
+$moods = Portal::GetMood($date,$empno);
 $MyMood = Portal::GetMyMood($date,$user_id);
 $events = Portal::GetEvents($date);
 ?>
@@ -26,6 +28,9 @@ $events = Portal::GetEvents($date);
             <div class="col-md-3" id="left-side">
                 <?php if (!empty($hotside)) include_once($hotside); ?>
                 <?php require_once($main_root."/pages/events.php"); ?>
+                <div style="height: 50px;padding: 10px;">
+                    <span>True North Group of Companies | 2025</span>
+                </div>
             </div>
             <div class="col-xm-3">
             </div>
@@ -63,7 +68,7 @@ $events = Portal::GetEvents($date);
                                              if (!empty($ongoingleave)) {
                                                   foreach ($ongoingleave as $ol) {
                                         ?>
-                                        <div class="m-widget4__item"style="display:flex;justify-content: space-between;">
+                                        <!-- <div class="m-widget4__item"style="display:flex;justify-content: space-between;">
                                             <div class="m-widget4__img m-widget4__img--pic">
                                                 <img style="width:30px; height:30px; border-radius:50%" src="assets/image/img/<?=$ol['la_empno'].'.jpg'?>" alt="">
                                             </div>
@@ -89,7 +94,7 @@ $events = Portal::GetEvents($date);
                                             <div class="m-widget4__ext"style="width:20% !important;">
                                                 <label class="label label-inverse-danger"><?=$ol['la_type']?></label>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <?php }} ?>
                                         <?php
                                              if (!empty($leave)) {

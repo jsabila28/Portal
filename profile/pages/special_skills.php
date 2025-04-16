@@ -39,62 +39,62 @@
 </div>
 <!-- <script type="text/javascript" src="../assets/js/skills.js"></script> -->
 <script type="text/javascript">
-fetch('skills')
-.then(response => {
-    if (!response.ok) {
-        throw new Error('Network response was not ok: ' + response.statusText);
-    }
-    return response.text(); // Since we're expecting HTML
-})
-.then(data => {
-    document.getElementById("skills").innerHTML = data; // Set the inner HTML
-})
-//POPULATING SKILLS OPTIONS
-.catch(error => console.error('Error fetching data:', error));
-$(document).ready(function() {
-    // Fetch categories on page load
+// Function to fetch and display skills
+function fetchSkills() {
+    fetch('skills')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok: ' + response.statusText);
+        }
+        return response.text();
+    })
+    .then(data => {
+        document.getElementById("skills").innerHTML = data;
+        setupSkillEventListeners(); // Re-setup event listeners after content update
+    })
+    .catch(error => console.error('Error fetching data:', error));
+}
+
+// Function to setup all skill-related event listeners
+function setupSkillEventListeners() {
+    // Fetch categories on page load or after update
     $.ajax({
         url: 'skillCat',
         method: 'GET',
         success: function(response) {
-            $('#skillCategory').append(response); // Populate categories
+            $('#skillCategory').html('<option value="">Select Skill Category</option>' + response);
         }
     });
 
-    // Fetch skill types based on selected category
-    $('#skillCategory').on('change', function() {
+    // Handle category change
+    $(document).off('change', '#skillCategory').on('change', '#skillCategory', function() {
         const sc_id = $(this).val();
-        $.ajax({
-            url: 'skillType',
-            method: 'GET',
-            data: { sc_id: sc_id },
-            success: function(response) {
-                $('#skillType').html('<option value="">Select Type</option>' + response);
-            }
-        });
-    });
-
-    // Show or hide "Others" input
-    $('#skillCategory').on('change', function() {
-        if ($(this).val() === "7") {
+        
+        // Show/hide others input
+        if (sc_id === "7") {
             $('#othersInput').show();
             $('#skillType').hide();
         } else {
             $('#othersInput').hide();
             $('#skillType').show();
+            $.ajax({
+                url: 'skillType',
+                method: 'GET',
+                data: { sc_id: sc_id },
+                success: function(response) {
+                    $('#skillType').html('<option value="">Select Type</option>' + response);
+                }
+            });
         }
     });
-});
-//SAVING SKILLS
-document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('save-skills').addEventListener('click', function() {
-        // Create a new FormData object
+
+    // Handle save button click
+    $(document).off('click', '#save-skills').on('click', '#save-skills', function() {
         let formData = new FormData();
         formData.append('Scategory', document.getElementById('skillCategory').value);
         formData.append('Stype', document.getElementById('skillType').value);
         formData.append('Others', document.getElementById('othersInput').value);
 
-        // Send the form data to PHP using AJAX
         fetch('SSkills', {
             method: 'POST',
             body: formData
@@ -102,33 +102,25 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(response => response.json())
         .then(data => {
             const alertMessage = document.getElementById('skill-message');
-
-            if (data.success) {
-                // Display success message
-                alertMessage.className = 'alert alert-success';
-                alertMessage.textContent = "Data saved successfully!";
-                
-                // Clear input values
-                document.getElementById('skillCategory').value = '';
-                document.getElementById('skillType').value = '';
-                document.getElementById('othersInput').value = '';
-                // document.getElementById('othersInput').style.display = 'none';
-            } else {
-                // Display error message
-                alertMessage.className = 'alert alert-danger';
-                alertMessage.textContent = "Error saving data: " + data.error;
-            }
-
-            // Show the alert message
+            alertMessage.className = data.success ? 'alert alert-success' : 'alert alert-danger';
+            alertMessage.textContent = data.success ? "Data saved successfully!" : "Error saving data: " + data.error;
             alertMessage.style.display = 'block';
 
-            // Hide the alert message after 3 seconds
             setTimeout(() => {
                 alertMessage.style.display = 'none';
+                if (data.success) {
+                    $('#Skill-' + <?php echo json_encode($user_id); ?>).modal('hide');
+                    fetchSkills(); // Refresh the skills display
+                }
             }, 3000);
         })
         .catch(error => console.error('Error:', error));
     });
-});
+}
 
+// Initial setup when page loads
+$(document).ready(function() {
+    fetchSkills();
+    setupSkillEventListeners();
+});
 </script>

@@ -12,6 +12,8 @@ $sr_root = $portal_root."/profile";
 $dtr_root = $portal_root."/dtr";
 $com_root = $portal_root."/compliance";
 $pa_root = $portal_root."/pa";
+$pa_root = $portal_root."/pasji";
+$pcf_root = $portal_root."/pcf";
 
 
 // sidenav

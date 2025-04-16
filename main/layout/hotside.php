@@ -28,9 +28,9 @@
     </a>
   </li>
   <li>
-    <a href="howto">
+    <a href="feedback">
       <p>
-        <img src="assets/img/howto.png" width="40" height="40" style="margin-right: 5px;">How To
+        <img src="assets/img/feedback.png" width="45" height="40" style="margin-right: 5px;">Feedback
       </p>
     </a>
   </li>

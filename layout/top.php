@@ -46,7 +46,7 @@
 	<!--color css-->
 	<!-- EMOJI -->
 	<script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/> -->
     
 	<link rel="stylesheet" type="text/css" href="/Portal/admin_template/assets/css/linearicons.css">
 	<link rel="stylesheet" type="text/css" href="/Portal/admin_template/assets/css/simple-line-icons.css">
@@ -94,7 +94,8 @@
 	<!-- <script src="https://cdn.jsdelivr.net/npm/@joeattardi/emoji-button@5.4.0/dist/emoji-button.min.js"></script> -->
   	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
-
+	<!-- Switch component css -->
+    <!-- <link rel="stylesheet" type="text/css" href="/Portal/admin_template/bower_components/switchery/css/switchery.min.css"> -->
 </head>
 
 <body>
@@ -193,12 +194,12 @@
 								<li class="header-notification">
         							<a href="#">
         								<img src="/Portal/assets/img/notif.png" width="30" height="30">
-        								<span class="badge">5</span>
+        								<!-- <span class="badge"></span> -->
         							</a>
 									<ul class="show-notification">
 									  <li>
 									   <h6>Notifications</h6>
-									   <label class="label label-danger">New</label>
+									   <!-- <label class="label label-danger">New</label> -->
 									 </li>
 									<?php
 									require_once($sr_root."/db/db.php");
@@ -223,14 +224,38 @@
 										
 										foreach ($mentions as $mention) {
 											if ($mention['type'] == 'post') {
+
 											echo '<li>
 												     <div class="media">
 												      <img class="d-flex align-self-center" style="border-radius: 50%;width: 38px;height: 38px;" src="https://e-classtngcacademy.s3.ap-southeast-1.amazonaws.com/e-class/Thumbnail/img/'.htmlspecialchars($mention["bi_empno"]).'.JPG">
 												      <div class="media-body">
 												       <h5 class="notification-user">' . htmlspecialchars($mention['bi_empfname'].' '.$mention['bi_emplname']) . '</h5>
-												       <p class="notification-msg">Mentioned you in a post.</p>
-												       <span class="notification-time">30 minutes ago</span>
-												     </div>
+												       <p class="notification-msg">Mentioned you in a post.</p>';
+												       	$inserted_time = $mention['timedate']; // Example: "2024-02-18 10:30:00"
+														$inserted_timestamp = strtotime($inserted_time);
+														$current_timestamp = time();
+														$diff = $current_timestamp - $inserted_timestamp;
+														
+														if ($diff < 60) {
+														    $time_ago = $diff . ' seconds ago';
+														} elseif ($diff < 3600) {
+														    $time_ago = floor($diff / 60) . ' minutes ago';
+														} elseif ($diff < 86400) {
+														    $time_ago = floor($diff / 3600) . ' hours ago';
+														} elseif ($diff < 604800) { // 7 days
+														    $time_ago = floor($diff / 86400) . ' days ago';
+														} elseif ($diff < 2592000) { // 30 days
+														    $time_ago = floor($diff / 604800) . ' weeks ago';
+														} elseif ($diff < 31536000) { // 1 year
+														    $time_ago = floor($diff / 2592000) . ' months ago';
+														} else {
+														    $time_ago = floor($diff / 31536000) . ' years ago';
+														}
+														
+														echo '<span class="notification-time">' . htmlspecialchars($time_ago) . '</span>';
+
+
+												     echo'</div>
 												   </div>
 												  </li>';
 										    // echo "<p>You were mentioned in: <strong>" . htmlspecialchars($mention['ann_title']) . "</strong></p>";
@@ -240,9 +265,30 @@
 												      <img class="d-flex align-self-center" style="border-radius: 50%;width: 38px;height: 38px;" src="https://teamtngc.com/hris2/pages/empimg/'.htmlspecialchars($mention["bi_empno"]).'.JPG">
 												      <div class="media-body">
 												       <h5 class="notification-user">' . htmlspecialchars($mention['bi_empfname'].' '.$mention['bi_emplname']) . '</h5>
-												       <p class="notification-msg">Mentioned you in a comment.</p>
-												       <span class="notification-time">30 minutes ago</span>
-												     </div>
+												       <p class="notification-msg">Mentioned you in a comment.</p>';
+												       $inserted_time = $mention['timedate']; // Example: "2024-02-18 10:30:00"
+														$inserted_timestamp = strtotime($inserted_time);
+														$current_timestamp = time();
+														$diff = $current_timestamp - $inserted_timestamp;
+														
+														$days = floor($diff / (60 * 60 * 24));
+														$hours = floor(($diff % (60 * 60 * 24)) / (60 * 60));
+														$minutes = floor(($diff % (60 * 60)) / 60);
+														$seconds = $diff % 60;
+														
+														if ($days > 0) {
+														    $time_ago = "$days days ago";
+														} elseif ($hours > 0) {
+														    $time_ago = "$hours hours ago";
+														} elseif ($minutes > 0) {
+														    $time_ago = "$minutes minutes ago";
+														} else {
+														    $time_ago = "$seconds seconds ago";
+														}
+														
+														echo '<span class="notification-time">' . htmlspecialchars($time_ago) . '</span>';
+
+												     echo'</div>
 												   </div>
 												  </li>';	
 											}
@@ -250,106 +296,6 @@
 									?>
 									</ul>
 								</li>
-    							<div class="modal fade" id="event-Modal" tabindex="-1" role="dialog">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h6 class="modal-title">Add Events</h6>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true"><i class="icofont icofont-close-circled"></i></span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body" style="padding: 5px;">
-                                                <div id="personal-form">
-                        						  <div id="pers-name">
-                        						      <label style="width:50% !important;">Event Title<span id="required">*</span>  
-                        						          <input class="form-control" type="text" name="eventname" id="eventInput" value=""/>
-                        						      </label>
-                        						      <label style="width:45% !important;">Event Date<span id="required">*</span> 
-                        						          <input class="form-control" type="date" name="eventdate" id="eventdateInput" value=""/>
-                        						      </label>
-                        						  </div>
-                        						  <div id="pers-name">
-                        						      <label style="width:50% !important;">Start Date<span id="required">*</span>  
-                        						          <input class="form-control" type="date" name="startdate" id="sdateInput" value=""/>
-                        						      </label>
-                        						      <label style="width:45% !important;">End Date<span id="required">*</span> 
-                        						          <input class="form-control" type="date" name="enddate" id="edateInput" value=""/>
-                        						      </label>
-                        						  </div>
-                        						  <div id="pers-name">
-                        						      <label style="width:50% !important;">Event Img(563x286 px)<span id="required">*</span> 
-                        						          <input class="form-control" type="file" name="eventimg" id="eventimgInput" value=""/>
-                        						      </label>
-                        						      <label style="width:45% !important;">
-													      Sample Img
-													      <input style="pointer-events: auto; cursor: pointer;" 
-													             type="text" 
-													             value="Click to view image" 
-													             readonly 
-													             class="clickable-input" 
-													             onclick="openImage()">
-													  </label>
-                        						  </div>
-                        						</div>
-                        						<div id="event-message" class="alert" style="display: none;"></div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-default btn-mini " data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary btn-mini waves-light" id="save-event">Save changes</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <script type="text/javascript">
-                                	function openImage() {
-										console.log('Input clicked');
-										window.open('https://i.pinimg.com/564x/b0/68/56/b06856d929b6066d2281c9f065a29e31.jpg', '_blank');
-									}
-									  document.getElementById('save-event').addEventListener('click', function () {
-									    // Get input values
-									    const eventname = document.getElementById('eventInput').value;
-									    const eventdate = document.getElementById('eventdateInput').value;
-									    const startdate = document.getElementById('sdateInput').value;
-									    const enddate = document.getElementById('edateInput').value;
-									    const eventimg = document.getElementById('eventimgInput').files[0]; // Get file
-									
-									    if (!eventname || !eventdate || !startdate || !enddate || !eventimg) {
-									        alert('All fields are required!');
-									        return;
-									    }
-									
-									    // Create FormData object
-									    const formData = new FormData();
-									    formData.append('eventname', eventname);
-									    formData.append('eventdate', eventdate);
-									    formData.append('startdate', startdate);
-									    formData.append('enddate', enddate);
-									    formData.append('eventimg', eventimg);
-									
-									    // Send AJAX request
-									    fetch('save_event', {
-									        method: 'POST',
-									        body: formData,
-									    })
-									    .then(response => response.json())
-									    .then(data => {
-									        if (data.success) {
-									            alert('Event saved successfully!');
-									            document.getElementById("eventInput").value = "";
-            									document.getElementById("eventdateInput").value = "";
-            									document.getElementById("sdateInput").value = "";
-            									document.getElementById("edateInput").value = "";
-            									document.getElementById("eventimgInput").value = "";
-									        } else {
-									            alert('Error: ' + data.message);
-									        }
-									    })
-									    .catch(error => {
-									        console.error('Error:', error);
-									    });
-									});
-                                </script>
 								<li class="user-profile header-notification">
 									<a href="#!">
 										<img src="https://e-classtngcacademy.s3.ap-southeast-1.amazonaws.com/e-class/Thumbnail/img/<?= $empno ?>.JPG" alt="User-Profile-Image" style="border-radius: 50px;">
@@ -371,6 +317,11 @@
 											</a>
 										</li>
 										<li>
+											<a href="#" data-toggle="modal" data-target="#accsetModal">
+												<i class="ti-settings"></i> Account Setting
+											</a>
+										</li>
+										<li>
 											<a href="/Portal/signOut">
 												<i class="ti-layout-sidebar-left"></i> Logout
 											</a>
@@ -378,6 +329,57 @@
 									</ul>
 								</li>
 							</ul>
+							<div class="modal fade" id="accsetModal" tabindex="-1" role="dialog">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h6 class="modal-title">User Account Setting</h6>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true"><i class="icofont icofont-close-circled"></i></span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body" style="padding: 5px;">
+                                            <div id="personal-form">
+                        					  <div id="pers-name">
+                        					      <label style="width:50% !important;">Event Title<span id="required">*</span>  
+                        					          <input class="form-control" type="text" name="eventname" id="eventInput" value=""/>
+                        					      </label>
+                        					      <label style="width:45% !important;">Event Date<span id="required">*</span> 
+                        					          <input class="form-control" type="date" name="eventdate" id="eventdateInput" value=""/>
+                        					      </label>
+                        					  </div>
+                        					  <div id="pers-name">
+                        					      <label style="width:50% !important;">Start Date<span id="required">*</span>  
+                        					          <input class="form-control" type="date" name="startdate" id="sdateInput" value=""/>
+                        					      </label>
+                        					      <label style="width:45% !important;">End Date<span id="required">*</span> 
+                        					          <input class="form-control" type="date" name="enddate" id="edateInput" value=""/>
+                        					      </label>
+                        					  </div>
+                        					  <div id="pers-name">
+                        					      <label style="width:50% !important;">Event Img(563x286 px)<span id="required">*</span> 
+                        					          <input class="form-control" type="file" name="eventimg" id="eventimgInput" value=""/>
+                        					      </label>
+                        					      <label style="width:45% !important;">
+												      Sample Img
+												      <input style="pointer-events: auto; cursor: pointer;" 
+												             type="text" 
+												             value="Click to view image" 
+												             readonly 
+												             class="clickable-input" 
+												             onclick="openImage()">
+												  </label>
+                        					  </div>
+                        					</div>
+                        					<div id="event-message" class="alert" style="display: none;"></div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default btn-mini " data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary btn-mini waves-light" id="save-event">Save changes</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 						</div>
 					</div>
 				</div>
@@ -388,10 +390,10 @@
                 <div class="card card_main p-fixed users-main" style="background-color: white;">
                     <div class="user-box" style="background-color: white;">
                         <div class="main-friend-list"><br>
-                        	<div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" data-placement="left" title="Josephin Doe">
+                        	<div class="media userlist-box" data-id="1" data-status="online" data-toggle="tooltip" data-placement="left" title="Josephin Doe">
                                 <span>DTR Services</span>
                             </div>
-                            <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
+                            <div class="media userlist-box" data-id="1" data-status="online" data-toggle="tooltip" style="text-align: center;">
                                 <a class="media-left" href="/Portal/dtr" style="text-align: center;">
                                 	<div>
                                 		<img src="/Portal/assets/img/dtrlogs.png" width="40" height="40"><br>DTR
@@ -404,19 +406,19 @@
                                 </a>
                                 <a class="media-left" href="https://teamtngc.com/hrisdtrservices/manpower/leave" target="_blank" style="text-align: center;">
                                 	<div>
-                                		<img src="/Portal/assets/img/leave2.png" width="45" height="45"><br>Leave
+                                		<img src="/Portal/assets/img/leave.png" width="45" height="45"><br>Leave
                                 	</div>
                                 </a>
                                 <a class="media-left" href="https://teamtngc.com/hrisdtrservices/manpower/break-edit" target="_blank" style="text-align: center;">
                                 	<div>
-                                		<img src="/Portal/assets/img/break2.png" width="45" height="45"><br>Break
+                                		<img src="/Portal/assets/img/break.png" width="45" height="45"><br>Break
                                 	</div>
                                 </a>
                             </div>
-                            <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
+                            <div class="media userlist-box" data-id="1" data-status="online" data-toggle="tooltip" style="text-align: center;">
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
-                                		<img src="/Portal/assets/img/restday2.png" width="45" height="45"><br>RestDay
+                                		<img src="/Portal/assets/img/restday.png" width="45" height="45"><br>RestDay
                                 	</div>
                                 </a>
                                 <a class="media-left" href="#!" style="text-align: center;">
@@ -426,50 +428,50 @@
                                 </a>
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
-                                		<img src="/Portal/assets/img/offset2.png" width="45" height="45"><br>Offset
+                                		<img src="/Portal/assets/img/offset.png" width="45" height="45"><br>Offset
                                 	</div>
                                 </a>
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
-                                		<img src="/Portal/assets/img/overtime2.png" width="45" height="45"><br>OT
-                                	</div>
-                                </a>
-                            </div>
-                            <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
-                                <a class="media-left" href="#!" style="text-align: center;">
-                                	<div>
-                                		<img src="/Portal/assets/img/drd2.png" width="45" height="45"><br>DRD
-                                	</div>
-                                </a>
-                                <a class="media-left" href="#!" style="text-align: center;">
-                                	<div>
-                                		<img src="/Portal/assets/img/dhd2.png" width="45" height="45"><br>DHD
-                                	</div>
-                                </a>
-                                <a class="media-left" href="#!" style="text-align: center;">
-                                	<div>
-                                		<img src="/Portal/assets/img/training2.png" width="45" height="45"><br>Trainings
-                                	</div>
-                                </a>
-                                <a class="media-left" href="#!" style="text-align: center;">
-                                	<div>
-                                		<img src="/Portal/assets/img/travel2.png" width="45" height="45"><br>Travel
+                                		<img src="/Portal/assets/img/ot.png" width="45" height="45"><br>OT
                                 	</div>
                                 </a>
                             </div>
-                            <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
+                            <div class="media userlist-box" data-id="1" data-status="online" data-toggle="tooltip" style="text-align: center;">
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
-                                		<img src="/Portal/assets/img/sales2.png" width="45" height="45"><br>Sales
+                                		<img src="/Portal/assets/img/drd.png" width="45" height="45"><br>DRD
+                                	</div>
+                                </a>
+                                <a class="media-left" href="#!" style="text-align: center;">
+                                	<div>
+                                		<img src="/Portal/assets/img/dhd.png" width="45" height="45"><br>DHD
+                                	</div>
+                                </a>
+                                <a class="media-left" href="#!" style="text-align: center;">
+                                	<div>
+                                		<img src="/Portal/assets/img/training.png" width="45" height="45"><br>Trainings
+                                	</div>
+                                </a>
+                                <a class="media-left" href="#!" style="text-align: center;">
+                                	<div>
+                                		<img src="/Portal/assets/img/travel.png" width="45" height="45"><br>Travel
+                                	</div>
+                                </a>
+                            </div>
+                            <div class="media userlist-box" data-id="1" data-status="online" data-toggle="tooltip" style="text-align: center;">
+                                <a class="media-left" href="#!" style="text-align: center;">
+                                	<div>
+                                		<img src="/Portal/assets/img/directory.png" width="45" height="45"><br>Sales
                                 	</div>
                                 </a>
                             </div>
 
                             
-                            <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" data-placement="left" title="Josephin Doe">
+                            <div class="media userlist-box" data-id="1" data-status="online" data-toggle="tooltip" data-placement="left" title="Josephin Doe">
                                 <span>Compliance</span>
                             </div>
-                            <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
+                            <div class="media userlist-box" data-id="1" data-status="online" data-toggle="tooltip" style="text-align: center;">
                                 <a class="media-left" href="/Portal/compliance/phoneA" style="text-align: center;">
                                 	<div>
                                 		<img src="/Portal/assets/img/phoneAgree.png" width="45" height="45"><br>Phone Agreement
@@ -486,8 +488,8 @@
                                 	</div>
                                 </a>
                             </div>
-                            <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
-                                <a class="media-left" href="/Portal/compliance/ir" style="text-align: center;">
+                            <div class="media userlist-box" data-id="1" data-status="online" data-toggle="tooltip" style="text-align: center;">
+                                <a class="media-left" href="/Portal/compliance/" style="text-align: center;">
                                 	<div>
                                 		<img src="/Portal/assets/img/grieviance.png" width="45" height="45"><br>IR
                                 	</div>
@@ -504,51 +506,33 @@
                                 </a>
                             </div>
 
-                            <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" data-placement="left" title="Josephin Doe">
+                            <div class="media userlist-box" data-id="1" data-status="online" data-toggle="tooltip" data-placement="left" title="Josephin Doe">
                                 <span>Others</span>
                             </div>
-                            <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
-                                <!-- <a class="media-left" href="#!" style="text-align: center;">
-                                	<div>
-                                		<img src="/Portal/assets/img/eei2.png" width="45" height="45"><br>EEI
-                                	</div>
-                                </a> -->
-                               <!--  <a class="media-left" href="#!" style="text-align: center;">
-                                	<div>
-                                		<img src="/Portal/assets/img/employee2.png" width="45" height="45"><br>Employees
-                                	</div>
-                                </a> -->
+                            <div class="media userlist-box" data-id="1" data-status="online" data-toggle="tooltip" style="text-align: center;">
                                 <a class="media-left" href="/Portal/pa" style="text-align: center;">
                                 	<div>
-                                		<img src="/Portal/assets/img/persapp.png" width="45" height="45"><br>PA
+                                		<img src="/Portal/assets/img/persapp.png" width="45" height="45"><br>PA TNGC
                                 	</div>
                                 </a>
-                                <!-- <a class="media-left" href="#!" style="text-align: center;">
+                                <a class="media-left" href="/Portal/pasji" style="text-align: center;">
                                 	<div>
-                                		<img src="/Portal/assets/img/hiring2.png" width="45" height="45"><br>Hiring
+                                		<img src="/Portal/assets/img/persapp.png" width="45" height="45"><br>PA SJI
                                 	</div>
-                                </a> -->
+                                </a>
                             </div>
-                            <!-- <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
-                                <a class="media-left" href="#!" style="text-align: center;">
-                                	<div>
-                                		<img src="/Portal/assets/img/report2.png" width="45" height="45"><br>Reports
-                                	</div>
-                                </a>
-                                <a class="media-left" href="#!" style="text-align: center;">
-                                	<div>
-                                		<img src="/Portal/assets/img/announcement2.png" width="45" height="45"><br>Post
-                                	</div>
-                                </a>
-                            </div> -->
-                            
-                            <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" data-placement="left" title="Josephin Doe">
+                            <div class="media userlist-box" data-id="1" data-status="online" data-toggle="tooltip" data-placement="left" title="Josephin Doe">
                                 <span>Systems</span>
                             </div>
-                            <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" style="text-align: center;">
+                            <div class="media userlist-box" data-id="1" data-status="online" data-toggle="tooltip" style="text-align: center;">
                                 <a class="media-left" href="#!" style="text-align: center;">
                                 	<div>
                                 		<img src="/Portal/assets/img/atd.png" width="40" height="40"><br>ATD
+                                	</div>
+                                </a>
+                                <a class="media-left" href="/Portal/pcf/" style="text-align: center;">
+                                	<div>
+                                		<img src="/Portal/pcf/assets/img/PCF.png" width="40" height="40"><br>PCF
                                 	</div>
                                 </a>
                             </div>
